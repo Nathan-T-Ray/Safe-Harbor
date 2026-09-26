@@ -13,6 +13,8 @@ Use these saved operational recordings alongside the genuine-model baseline demo
 
 The exports are from isolated databases, not the production model run. Open the linked JSON records in prepared tabs or a JSON viewer; do not assume their run IDs exist in the active production API. Events show committed transitions, not a fabricated crash event. Process death is established by the corresponding process/checkpoint report. Recorded elapsed times differ from this accelerated walkthrough.
 
+The runtime also emits `coordinator.recovered` when first acquiring a run at epoch 1. That startup event alone is **not evidence of process death or recovery**. The demonstrations below require the recorded termination, replacement process and epoch change together.
+
 ## Exact evidence references
 
 **After acceptance, before checkpoint:** [recovery report](../../artifacts/safe_harbor/pr66-runtime-repair/recovery-after/report.json), checks prefixed `accept_crash:`; [run export](../../artifacts/safe_harbor/pr66-runtime-repair/recovery-after/run-12c05643bd264f7892f9d7734f302799.export.json).

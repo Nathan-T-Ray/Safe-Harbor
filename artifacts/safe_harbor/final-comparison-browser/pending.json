@@ -1,0 +1,19 @@
+{
+  "status": "pending",
+  "passed": null,
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "observed_experiment_status": "running_final",
+  "observed_at": "2026-09-26T20:03:34.778Z",
+  "report_available": false,
+  "report_attached": false,
+  "case_statuses": {
+    "pending": 4,
+    "awaiting_proposal": 2,
+    "complete": 14,
+    "failed": 3,
+    "running": 1
+  },
+  "reason": "Awaiting the genuine completed report and its committed run attachment. No browser/report pass is claimed.",
+  "model_calls": 0,
+  "ledger_writes": 0
+}

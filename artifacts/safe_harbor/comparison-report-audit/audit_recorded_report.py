@@ -82,6 +82,7 @@ expected_assignments = sorted((case["case_id"], arm) for case in experiment["cas
 actual_assignments = sorted((row["case_id"], row["arm"]) for row in rows)
 check("every_frozen_case_arm_retained_including_failures", expected_assignments, actual_assignments)
 check("no_duplicate_case_arm_rows", len(set(actual_assignments)), len(actual_assignments))
+check("completed_report_has_no_active_or_pending_assignments", [], [(r["case_id"], r["arm"], r["status"]) for r in rows if r["status"] in {"pending", "running", "awaiting_proposal", "pending_terminal_reconciliation"}])
 check("report_case_rows_are_exact_experiment_rows", rows, report["case_results"])
 check("all_case_rows_bind_same_manifest", True, all(row["comparison_manifest_hash"] == experiment["comparison_manifest_hash"] for row in rows))
 check("report_promotion_is_exact_saved_decision", experiment["promotion"], report["promotion"])
@@ -131,6 +132,8 @@ check("rejected_candidate_does_not_claim_cost_win", False if decision["status"] 
 audit["case_status_counts"] = dict(Counter(r["status"] for r in rows))
 audit["failed_or_invalid_case_rows"] = [{k: r.get(k) for k in ("case_id", "split", "arm", "run_id", "status", "score", "usage")} for r in rows if r["status"] != "complete" or not (r.get("score") or {}).get("completed")]
 audit["resource_totals"] = {k: report[k] for k in ("run_resource_totals", "optimizer_overhead", "evaluation_overhead", "combined_run_and_optimizer_usage")}
+audit["inclusive_accounted_usage_calculated_by_this_audit"] = usage_arithmetic([r["usage"] for r in rows] + [optimizer, report["evaluation_overhead"]])
+audit["inclusive_usage_note"] = "Adds recorded deterministic evaluator overhead to runs plus optimizer. This is an arithmetic audit total, not a new measurement or elapsed wall time; ingestion/engineering overhead is outside the recorded scope."
 audit["assignment_count"] = len(rows)
 audit["source"] = write("source-report.json", {"experiment_id": EXPERIMENT, "comparison_manifest_hash": experiment["comparison_manifest_hash"], "assigned_cases": experiment["cases"], "case_results": rows, "report": report})
 audit["status"] = "passed" if not audit["failures"] else "failed"

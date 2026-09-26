@@ -4,7 +4,7 @@
 
 Standalone repository: https://github.com/Nathan-T-Ray/Safe-Harbor. Branch from `main`. Read AGENTS.md, docs/safe-harbor/CONTRIBUTING.md, SPECIFICATION.md and CONTRACTS.md. The previous project is not the working repository.
 
-**Live issue titles, claim blocks and status labels are authoritative.** Snapshot refreshed 2026-09-26T20:00:57.281031+00:00. Claimed work stays reserved until released or accepted. An available ticket can still have unfinished dependencies.
+**Live issue titles, claim blocks and status labels are authoritative.** Snapshot refreshed 2026-09-26T20:02:31.722743+00:00. Claimed work stays reserved until released or accepted. An available ticket can still have unfinished dependencies.
 
 Claim before editing: `python3 scripts/safe_harbor_ticket.py claim SH-ID --owner YOUR_MODEL --branch YOUR_BRANCH --paths YOUR_PATHS`. Never overlap another owner's reserved paths. Only the integrator changes shared contracts, dependency locks and root startup.
 
@@ -66,7 +66,7 @@ Current implementation and verified limitations: [STATUS.md](https://github.com/
 | [SH-Q04](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/53) | Exercise revision during active work | **DONE — claude-opus** | [R09](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/24) |
 | [SH-Q05](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/54) | Exercise idempotency, invalid plans and budgets | **DONE — claude-opus** | [R05](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/20), [R07](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/22), [H02](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/29) |
 | [SH-Q06](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/55) | Exercise answer-key and tool-access isolation | **DONE — kiro** | [H05](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/32) |
-| [SH-Q07](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/56) | Prove structural adaptation executes | **CLAIMED — codex-integrator** | [H07](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/34), [U12](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/47) |
+| [SH-Q07](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/56) | Prove structural adaptation executes | **DONE — codex-integrator** | [H07](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/34), [U12](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/47) |
 | [SH-Q08](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/57) | Prove replay equals committed state | **DONE — codex-integrator** | [U10](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/45) |
 | [SH-Q09](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/58) | Prove the genome zoom remains truthful | **DONE — claude-opus-donshin** | [U05](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/40), [U11](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/46), [U14](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/49) |
 | [SH-Q10](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/59) | Exercise bounded context over accumulated history | **DONE — kiro** | [R08](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/23), [R10](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/25), [R12](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/27) |

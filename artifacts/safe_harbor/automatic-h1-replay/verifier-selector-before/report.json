@@ -1,0 +1,49 @@
+{
+  "passed": false,
+  "failure_classification": "Verifier selector error, not a missing product row",
+  "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+  "checks_before_failure": [
+    {
+      "check": "Reset starts before evidence; event 1 reconstructs seven queued real H1 tasks",
+      "passed": true
+    },
+    {
+      "check": "All four zooms preserve actual Olonne-18 position, frozen annotations and exact bases",
+      "passed": true,
+      "sequence_sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+      "reference_artifact_id": "run-5134783b07da40f2b6ac5c6b053bf901:reference:olonne-18"
+    },
+    {
+      "check": "Event 15 exposes the executed inserted reviewer and its actual schema failure",
+      "passed": true
+    },
+    {
+      "check": "Agent tree orders actual dependencies and links tools to their requesting provider response",
+      "passed": true,
+      "review_call_order": [
+        "Model call 1",
+        "control overlap",
+        "retrieve evidence",
+        "Model call 2"
+      ],
+      "review_trace_cost_usd": 0.0030692704
+    },
+    {
+      "check": "Event 23 restores accepted intermediate revision 2; downloaded dossier excludes future revision 3",
+      "passed": true
+    },
+    {
+      "check": "Terminal replay and dossier preserve failed latest review; workflow completion does not imply accepted science",
+      "passed": true
+    },
+    {
+      "check": "Repeated backward seeking restores the correct revision and removes all assessments before event 15",
+      "passed": true
+    }
+  ],
+  "captured_error": "locator.waitFor: Timeout 30000ms exceeded while using a dialog/table-anchored has locator inside a row-relative filter.",
+  "repair": "Use page.locator(a[href]) as the inner row-relative filter. The following actual browser run passed all 9 checks.",
+  "record_note": "Failure screenshot retained. This concise report is reconstructed from the captured failing process output because the passing rerun replaced report.json.",
+  "paid_calls": 0,
+  "ledger_writes": 0
+}
