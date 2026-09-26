@@ -31,6 +31,7 @@ import urllib.request
 
 from safe_harbor.evaluation.cases import load_cases
 from safe_harbor.evaluation.reference_answers import load_reference
+from safe_harbor.evaluation.scoring import extract_run_output, score_case
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, LedgerError, digest, identifier, now
 from safe_harbor.runtime.worker import execute_tool
@@ -120,7 +121,7 @@ class ScienceJourney:
         self.process = self.log = None
         self.report = {"ticket": "SH-Q02", "started_at": now(), "database": self.database, "mode": "deterministic_operational",
                        "model_calls": 0, "reference": "data/safe_harbor/evaluator/reference_answers.json (independent raw-file recomputation, not human reviewed)",
-                       "evaluator": "SH-Q02 E2E reference comparison; H05 scoring.py was not published when this ran",
+                       "evaluators": ["safe_harbor.evaluation.scoring.score_case (H05) on actual run traces", "SH-Q02 cross-check of every exported tool number against the reference"],
                        "cases": [], "negative_controls": [], "checks": []}
 
     def request(self, path: str, body=None, method=None):
@@ -190,43 +191,94 @@ class ScienceJourney:
         assessment = self.latest_assessment(snapshot, expected["candidate_id"])
         axes = evaluate_assessment(assessment, expected)
         contexts = sorted({result["cell_context"] for result in results})
-        failures = numbers["failures"] + axes["failures"] + [f"tool copies disagree: {item}" for item in inconsistent]
+        scoring, scorer_failures = self.scorer_checks(case_id, snapshot)
+        failures = numbers["failures"] + axes["failures"] + scorer_failures + [f"tool copies disagree: {item}" for item in inconsistent]
         if contexts != ["H1 human embryonic stem cells"]:
             failures.append(f"tool results used contexts {contexts}")
         record = {"case_id": case_id, "split": expected["split"], "run_id": run_id, "passed": not failures, "failures": failures,
                   "observed_numbers": observed, "reference_numbers": expected["required_numbers"],
                   "unavailable_numbers": expected.get("unavailable_numbers", []), "tool_result_count": len(results), "tool_contexts": contexts,
                   "assessment": {key: assessment[key] for key in ("assessment_id", "assessment_revision", "screen_status", "evidence_status", "freshness")},
-                  "incomplete_criteria": axes["incomplete_criteria"], "export": export_path,
-                  "not_evaluated": ["exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
-                                    "required_limitations rubric: belongs to H05 scoring"], **(extra or {})}
+                  "incomplete_criteria": axes["incomplete_criteria"], "export": export_path, "scoring": scoring,
+                  "not_evaluated": ["model reasoning: deterministic operational mode makes no model call",
+                                    "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"], **(extra or {})}
         self.report["cases"].append(record)
         return record
 
+    @staticmethod
+    def committed_proposal(snapshot: dict, candidate_id: str) -> dict:
+        """The committed assessment's own validated findings and citations, in the scorer's answer contract."""
+        assessment = ScienceJourney.latest_assessment(snapshot, candidate_id)
+        return {"numerical_findings": dict(assessment["numerical_findings"]), "numerical_evidence": copy.deepcopy(assessment["numerical_evidence"]),
+                "exclusion_decision": assessment["exclusion_decision"], "screen_status": assessment["screen_status"],
+                "evidence_status": assessment["evidence_status"], "conclusion": assessment["conclusion"],
+                "limitation_codes": [], "limitations": [], "evidence_ids": []}
+
+    @staticmethod
+    def score(case_id: str, snapshot: dict, proposal: dict | None = None) -> dict:
+        """The H05 evaluator (safe_harbor.evaluation.scoring) applied to an actual run trace."""
+        case = next(item for item in load_cases() if item["case_id"] == case_id)
+        trace = extract_run_output(snapshot)
+        if proposal is not None:
+            trace = {**trace, "proposal": proposal}
+        return score_case(case, load_reference(case_id), trace)
+
+    @staticmethod
+    def score_summary(score: dict) -> dict:
+        numbers = {d["key"]: {"correct": d["correct"], "supported": d["supported"], "actual": d["actual"]} for d in score["details"] if d["kind"] == "number"}
+        return {"required_accuracy": score["required_accuracy"], "coverage": score["coverage"], "support_ok": score["support_ok"], "completed": score["completed"],
+                "numbers": numbers, "decisions": {d["key"]: d["correct"] for d in score["details"] if d["kind"] == "decision"},
+                "unsupported_kinds": sorted({item["kind"] for item in score["unsupported_findings"]})}
+
+    def scorer_checks(self, case_id: str, snapshot: dict) -> tuple[dict, list[str]]:
+        """Score the as-run trace honestly, then the committed deterministic findings; the latter must be correct and supported."""
+        candidate_id = load_reference(case_id)["candidate_id"]
+        as_run = self.score_summary(self.score(case_id, snapshot))
+        committed = self.score_summary(self.score(case_id, snapshot, self.committed_proposal(snapshot, candidate_id)))
+        failures = [f"scorer: {key} not correct and trace-supported" for key, item in committed["numbers"].items() if not (item["correct"] and item["supported"])]
+        if not committed["decisions"].get("screen_status"):
+            failures.append("scorer: committed screen_status does not match the required decision")
+        numeric_unsupported = [kind for kind in committed["unsupported_kinds"] if "numeric" in kind or kind == "unavailable_evidence_claim"]
+        failures += [f"scorer flagged committed findings: {kind}" for kind in numeric_unsupported]
+        return {"as_run_trace": as_run, "committed_assessment_findings": committed,
+                "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."}, failures
+
+    def negative_control(self, case_id: str, snapshot: dict, label: str, proposal: dict, rejected, mutate_snapshot=None):
+        if mutate_snapshot:
+            snapshot = copy.deepcopy(snapshot)
+            mutate_snapshot(snapshot)
+        score = self.score_summary(self.score(case_id, snapshot, proposal))
+        self.report["negative_controls"].append({"label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+                                                 "case_id": case_id, "corruption": label, "rejected_by_evaluation": bool(rejected(score)), "score": score})
+
     def negative_controls(self, snapshot: dict, case_id: str):
-        """Corrupt copies of real outputs with realistic mistakes; evaluation must reject each one."""
+        """Realistic calculation and reasoning mistakes must fail the actual evaluator."""
+        candidate_id = load_reference(case_id)["candidate_id"]
+        base = self.committed_proposal(snapshot, candidate_id)
         results = self.current_results(snapshot)
-        corruptions = {
-            "overlap fraction over control denominator": lambda r: r["tool_name"] == "control_overlap" and r["calculation"]["shared_fraction_of_targeted"].update(value=r["calculation"]["shared_fraction_of_control"]["value"]),
-            "shared count off by one": lambda r: r["tool_name"] == "control_overlap" and r["calculation"].update(shared_count=r["calculation"]["shared_count"] + 1),
-            "TSS interval gap reported as nearest-base distance": lambda r: r["tool_name"] == "screen_candidate" and [t.update(nearest_reference_base_distance_bp=t["interval_gap_bp"]) for t in r["calculation"]["nearest_transcript_tss"]],
-            "duplicate-inflated DE count": lambda r: r["tool_name"] == "expression_comparison" and r["calculation"]["targeted"].update(unique_versioned_gene_count=r["calculation"]["targeted"]["input_rows"] + 3),
-            "unmapped DE IDs counted as mapped": lambda r: r["tool_name"] == "gene_proximity" and r["calculation"].update(gencode_mapped_gene_count=r["calculation"]["de_gene_count"]),
-        }
-        expected = load_reference(case_id)
-        for label, corrupt in corruptions.items():
-            copies = copy.deepcopy(results)
-            for result in copies:
-                corrupt(result)
-            observed, inconsistent = observed_numbers(copies)
-            verdict = evaluate_numbers(observed, expected)
-            rejected = not verdict["passed"] or bool(inconsistent)
-            self.report["negative_controls"].append({"label": "deliberately corrupted copy of a real output; not a system result", "case_id": case_id, "corruption": label, "rejected_by_evaluation": rejected, "failures": verdict["failures"] + inconsistent})
-        # A withheld-controls answer that renders missing control evidence as zero must also fail.
-        withheld = load_reference(case_id.replace("--full_sources", "--controls_withheld"))
-        zeroed = {name: value for name, value in observed_numbers(results)[0].items() if name not in CONTROL_NUMBERS} | {name: 0 for name in CONTROL_NUMBERS}
-        verdict = evaluate_numbers(zeroed, withheld)
-        self.report["negative_controls"].append({"label": "deliberately corrupted copy of a real output; not a system result", "case_id": withheld["case_id"], "corruption": "withheld controls reported as zero", "rejected_by_evaluation": not verdict["passed"], "failures": verdict["failures"]})
+        overlap = next(r["calculation"] for r in results if r["tool_name"] == "control_overlap")
+        screen = next(r["calculation"] for r in results if r["tool_name"] == "screen_candidate")
+        wrong = lambda key: lambda score: not score["numbers"][key]["correct"]
+
+        proposal = copy.deepcopy(base); proposal["numerical_findings"]["overlap_fraction"] = overlap["shared_fraction_of_control"]["value"]
+        self.negative_control(case_id, snapshot, "overlap fraction over control denominator", proposal, wrong("overlap_fraction"))
+        proposal = copy.deepcopy(base); proposal["numerical_findings"]["min_tss_base_distance_bp"] = min(t["interval_gap_bp"] for t in screen["nearest_transcript_tss"])
+        self.negative_control(case_id, snapshot, "TSS interval gap reported as nearest-base distance", proposal, wrong("min_tss_base_distance_bp"))
+        proposal = copy.deepcopy(base); proposal["numerical_findings"]["mapped_de_count"] = proposal["numerical_findings"]["de_count"]
+        self.negative_control(case_id, snapshot, "unmapped DE IDs counted as mapped", proposal, wrong("mapped_de_count"))
+
+        # The calculation itself is wrong and the answer cites it faithfully: trace support alone must not pass.
+        def off_by_one(copy_snapshot):
+            for artifact in copy_snapshot["artifacts"]:
+                if artifact["kind"] == "scientific_tool_result" and artifact["data"].get("tool_name") == "control_overlap" and artifact["data"]["calculation"].get("status") != "unavailable":
+                    artifact["data"]["calculation"]["shared_count"] += 1
+        proposal = copy.deepcopy(base); proposal["numerical_findings"]["shared_de_count"] += 1
+        self.negative_control(case_id, snapshot, "faithfully cited wrong shared-count calculation", proposal,
+                              lambda score: score["numbers"]["shared_de_count"]["supported"] and not score["numbers"]["shared_de_count"]["correct"], off_by_one)
+
+        proposal = copy.deepcopy(base); proposal["screen_status"] = "pass"
+        self.negative_control(case_id, snapshot, "passing screen claimed over incomplete required criteria", proposal,
+                              lambda score: not score["decisions"]["screen_status"] and not score["support_ok"] and "missing_required_evidence_claimed_pass" in score["unsupported_kinds"])
 
     def check(self, name: str, passed: bool, **details):
         self.report["checks"].append({"check": name, "passed": passed, **details})
@@ -261,7 +313,15 @@ class ScienceJourney:
         self.check("prior_assessment_marked_stale", stale["freshness"] == "stale", run_id=run_id, assessment_id=stale["assessment_id"], stale_reason=stale.get("stale_reason"))
         self.check("reopened_tasks_selective", set(revision["unchanged_task_ids"]) != set(), run_id=run_id, affected=revision["affected_task_ids"], unchanged=revision["unchanged_task_ids"])
         _, path = self.export(run_id, f"{candidate_id}-controls-withheld")
-        self.case(f"{candidate_id}--controls_withheld", run_id, after, path, {"evidence_revision_sequence": revision["sequence"]})
+        case_id = f"{candidate_id}--controls_withheld"
+        self.case(case_id, run_id, after, path, {"evidence_revision_sequence": revision["sequence"]})
+        full = self.committed_proposal(before, candidate_id)["numerical_findings"]
+        proposal = self.committed_proposal(after, candidate_id)
+        proposal["numerical_findings"].update({key: 0 for key in CONTROL_NUMBERS})
+        self.negative_control(case_id, after, "withheld controls reported as zero", proposal, lambda score: "unavailable_evidence_claim" in score["unsupported_kinds"] and not score["support_ok"])
+        proposal = self.committed_proposal(after, candidate_id)
+        proposal["numerical_findings"].update({key: full[key] for key in CONTROL_NUMBERS})
+        self.negative_control(case_id, after, "superseded control values reused after withdrawal", proposal, lambda score: "unavailable_evidence_claim" in score["unsupported_kinds"] and not score["support_ok"])
 
     def forged_passing_screen(self, candidate_id: str):
         """Ledger acceptance boundary: an aggregate pass over incomplete criteria must not commit.
