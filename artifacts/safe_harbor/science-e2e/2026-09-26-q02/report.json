@@ -1,0 +1,836 @@
+{
+  "ticket": "SH-Q02",
+  "started_at": "2026-09-26T19:09:30.876310+00:00",
+  "database": "safe_harbor_science_e2e_1790449770",
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "reference": "data/safe_harbor/evaluator/reference_answers.json (independent raw-file recomputation, not human reviewed)",
+  "evaluator": "SH-Q02 E2E reference comparison; H05 scoring.py was not published when this ran",
+  "cases": [
+    {
+      "case_id": "keppel-19--full_sources",
+      "split": "final",
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/keppel-19-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ]
+    },
+    {
+      "case_id": "keppel-19--h1_context_only",
+      "split": "final",
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/keppel-19-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "keppel-19--controls_withheld",
+      "split": "final",
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/keppel-19-controls-withheld.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "evidence_revision_sequence": 16
+    },
+    {
+      "case_id": "olonne-18--full_sources",
+      "split": "validation",
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/olonne-18-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ]
+    },
+    {
+      "case_id": "olonne-18--h1_context_only",
+      "split": "validation",
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/olonne-18-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "olonne-18--controls_withheld",
+      "split": "validation",
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/olonne-18-controls-withheld.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "evidence_revision_sequence": 16
+    },
+    {
+      "case_id": "pansio-1--full_sources",
+      "split": "development",
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/pansio-1-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ]
+    },
+    {
+      "case_id": "pansio-1--h1_context_only",
+      "split": "development",
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/pansio-1-full-sources.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "pansio-1--controls_withheld",
+      "split": "development",
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/safe_harbor/science-e2e/1790449770/pansio-1-controls-withheld.json",
+      "not_evaluated": [
+        "exclusion_decision: deterministic mode records untyped unresolved text, not a model decision",
+        "required_limitations rubric: belongs to H05 scoring"
+      ],
+      "evidence_revision_sequence": 16
+    }
+  ],
+  "negative_controls": [
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "overlap_fraction: observed 0.18461538461538463 != reference 0.34532374100719426"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "shared count off by one",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "shared_de_count: observed 49 != reference 48"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "min_tss_base_distance_bp: observed 53277 != reference 53278"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "duplicate-inflated DE count",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "de_count: required value missing",
+        "de_count: [139, 142]"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "mapped_de_count: observed 139 != reference 130"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "keppel-19--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "control_de_count: unavailable evidence was reported as the value 0",
+        "shared_de_count: unavailable evidence was reported as the value 0",
+        "targeted_only_count: unavailable evidence was reported as the value 0",
+        "overlap_fraction: unavailable evidence was reported as the value 0"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "overlap_fraction: observed 0.15384615384615385 != reference 0.36036036036036034"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "shared count off by one",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "shared_de_count: observed 41 != reference 40"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "min_tss_base_distance_bp: observed 64425 != reference 64426"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "duplicate-inflated DE count",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "de_count: required value missing",
+        "de_count: [111, 114]"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "mapped_de_count: observed 111 != reference 103"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "olonne-18--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "control_de_count: unavailable evidence was reported as the value 0",
+        "shared_de_count: unavailable evidence was reported as the value 0",
+        "targeted_only_count: unavailable evidence was reported as the value 0",
+        "overlap_fraction: unavailable evidence was reported as the value 0"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "overlap_fraction: observed 0.11923076923076924 != reference 0.3229166666666667"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "shared count off by one",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "shared_de_count: observed 32 != reference 31"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "min_tss_base_distance_bp: observed 50000 != reference 50001"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "duplicate-inflated DE count",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "de_count: required value missing",
+        "de_count: [96, 99]"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "mapped_de_count: observed 96 != reference 90"
+      ]
+    },
+    {
+      "label": "deliberately corrupted copy of a real output; not a system result",
+      "case_id": "pansio-1--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "failures": [
+        "control_de_count: unavailable evidence was reported as the value 0",
+        "shared_de_count: unavailable evidence was reported as the value 0",
+        "targeted_only_count: unavailable evidence was reported as the value 0",
+        "overlap_fraction: unavailable evidence was reported as the value 0"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "api_health_isolated_database",
+      "passed": true,
+      "health": {
+        "status": "ok",
+        "database": "safe_harbor_science_e2e_1790449770",
+        "authoritative_store": "MongoDB",
+        "model_available": false,
+        "coordinator_available": true,
+        "schema_version": 1
+      }
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "task_id": "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "keppel-19",
+      "h1_de_count": 139,
+      "h9_de_count": 91,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "assessment_id": "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:keppel-19:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-79eec5882c1e4bb2afdedf496bba8ed3",
+      "affected": [
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:assess:r0",
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:compare:r0",
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:inspect:r0",
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:report:r0",
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:review:r0"
+      ],
+      "unchanged": [
+        "run-79eec5882c1e4bb2afdedf496bba8ed3:keppel-19:screen:r0"
+      ]
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "task_id": "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "olonne-18",
+      "h1_de_count": 111,
+      "h9_de_count": 51,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "assessment_id": "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-f235b20cfb1249188a9d0dbaec3c52c1",
+      "affected": [
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:assess:r0",
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:compare:r0",
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:inspect:r0",
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:report:r0",
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:review:r0"
+      ],
+      "unchanged": [
+        "run-f235b20cfb1249188a9d0dbaec3c52c1:olonne-18:screen:r0"
+      ]
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "task_id": "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "pansio-1",
+      "h1_de_count": 96,
+      "h9_de_count": 60,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "assessment_id": "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-4a3505175ee14362b95a1c16f3202ee3",
+      "affected": [
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:assess:r0",
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:compare:r0",
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:inspect:r0",
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:report:r0",
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:review:r0"
+      ],
+      "unchanged": [
+        "run-4a3505175ee14362b95a1c16f3202ee3:pansio-1:screen:r0"
+      ]
+    },
+    {
+      "check": "forged_pass_over_incomplete_rejected_by_ledger",
+      "passed": false,
+      "run_id": "science-e2e-forged-screen-c4ba6137e26b452ba0adc61ef02f9923",
+      "harness_mode": "mock",
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "reason": "ledger committed screen_status=pass with incomplete criteria"
+    }
+  ],
+  "finished_at": "2026-09-26T19:09:35.800128+00:00",
+  "error": null,
+  "passed": false,
+  "summary": {
+    "cases_passed": 9,
+    "cases": 9,
+    "negative_controls_rejected": 18,
+    "negative_controls": 18,
+    "checks_passed": 16,
+    "checks": 17,
+    "failed": [
+      "forged_pass_over_incomplete_rejected_by_ledger"
+    ]
+  }
+}
