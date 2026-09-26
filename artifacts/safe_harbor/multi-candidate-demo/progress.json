@@ -1,0 +1,434 @@
+{
+  "schema_version": 1,
+  "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+  "mode": "real_model",
+  "source_snapshot_url": "http://127.0.0.1:8016/runs/run-58dfbd54fef64dc69aa445c52a3f1b7a/snapshot",
+  "method": "Read-only API polling of an already authorized real model run; this recorder dispatches no work and performs no model calls or ledger writes.",
+  "observations": [
+    {
+      "observed_at": "2026-09-26T20:17:38.536207+00:00",
+      "through_sequence": 71,
+      "run_status": "running",
+      "task_status_counts": {
+        "complete": 16,
+        "running": 2
+      },
+      "task_states": [
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:screen:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "screen",
+          "kind": "screen_regions",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:inspect:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "inspect",
+          "kind": "inspect_evidence",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:compare:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "compare",
+          "kind": "compute_features",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:assess:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "assess",
+          "kind": "assess_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:review:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "review",
+          "kind": "review_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:report:r0",
+          "candidate_id": "pansio-1",
+          "role_id": "report",
+          "kind": "publish_shortlist",
+          "status": "running",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:screen:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "screen",
+          "kind": "screen_regions",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:inspect:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "inspect",
+          "kind": "inspect_evidence",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:compare:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "compare",
+          "kind": "compute_features",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:assess:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "assess",
+          "kind": "assess_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:review:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "review",
+          "kind": "review_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:report:r0",
+          "candidate_id": "olonne-18",
+          "role_id": "report",
+          "kind": "publish_shortlist",
+          "status": "running",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:screen:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "screen",
+          "kind": "screen_regions",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:inspect:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "inspect",
+          "kind": "inspect_evidence",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:compare:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "compare",
+          "kind": "compute_features",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assess:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "assess",
+          "kind": "assess_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:review:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "review",
+          "kind": "review_candidate",
+          "status": "complete",
+          "attempt": 1
+        },
+        {
+          "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:report:r0",
+          "candidate_id": "keppel-19",
+          "role_id": "report",
+          "kind": "publish_shortlist",
+          "status": "complete",
+          "attempt": 1
+        }
+      ],
+      "budget": {
+        "token_limit": 1200000,
+        "tool_limit": 120,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 475843,
+        "tool_calls": 46,
+        "model_calls": 32,
+        "cost_usd": 0.07385535920000001,
+        "reserved_tokens": 177715,
+        "uncertain_tokens": 0,
+        "reserved_tools": 8,
+        "reserved_cost_usd": 0.038454780000000015
+      },
+      "latest_assessments": [
+        {
+          "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assessment:2",
+          "candidate_id": "keppel-19",
+          "assessment_revision": 2,
+          "freshness": "current",
+          "screen_status": "incomplete",
+          "evidence_status": "unknown",
+          "exclusion_decision": "unresolved",
+          "model_proposal_accepted": false,
+          "validation_errors": [
+            "Structured assessment schema rejected: 8 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ntool_name\n  Extra inputs are not permitted [type=extra_forbidden, input_value='retrieve_evidence', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nartifact_ids\n  Extra inputs are not permitted [type=extra_forbidden, input_value=['artifact-5dae6b7296aa4c...c64e1c93219543033f7372'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+          ]
+        },
+        {
+          "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:assessment:2",
+          "candidate_id": "olonne-18",
+          "assessment_revision": 2,
+          "freshness": "current",
+          "screen_status": "incomplete",
+          "evidence_status": "unknown",
+          "exclusion_decision": "unresolved",
+          "model_proposal_accepted": false,
+          "validation_errors": [
+            "Structured assessment schema rejected: 8 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ntool_name\n  Extra inputs are not permitted [type=extra_forbidden, input_value='retrieve_evidence', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nartifact_ids\n  Extra inputs are not permitted [type=extra_forbidden, input_value=['artifact-6a98f8906bbb43...b642eb8f35eb3c963f57eb'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+          ]
+        },
+        {
+          "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:assessment:2",
+          "candidate_id": "pansio-1",
+          "assessment_revision": 2,
+          "freshness": "current",
+          "screen_status": "incomplete",
+          "evidence_status": "unknown",
+          "exclusion_decision": "unresolved",
+          "model_proposal_accepted": false,
+          "validation_errors": [
+            "Structured assessment schema rejected: 7 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\n`.retrieve_evidence`\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'artifact_ids': ['artifa...a426bac502dd756934359']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+          ]
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Task completion is distinct from a valid model assessment and from biological suitability.",
+    "The three candidates are publication-derived; this is not a whole-genome search.",
+    "This separate demonstration is excluded from frozen comparison scores."
+  ],
+  "last_observed_at": "2026-09-26T20:17:38.536207+00:00",
+  "latest": {
+    "observed_at": "2026-09-26T20:17:38.536207+00:00",
+    "through_sequence": 71,
+    "run_status": "running",
+    "task_status_counts": {
+      "complete": 16,
+      "running": 2
+    },
+    "task_states": [
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:screen:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "screen",
+        "kind": "screen_regions",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:inspect:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "inspect",
+        "kind": "inspect_evidence",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:compare:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "compare",
+        "kind": "compute_features",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:assess:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "assess",
+        "kind": "assess_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:review:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "review",
+        "kind": "review_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:report:r0",
+        "candidate_id": "pansio-1",
+        "role_id": "report",
+        "kind": "publish_shortlist",
+        "status": "running",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:screen:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "screen",
+        "kind": "screen_regions",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:inspect:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "inspect",
+        "kind": "inspect_evidence",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:compare:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "compare",
+        "kind": "compute_features",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:assess:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "assess",
+        "kind": "assess_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:review:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "review",
+        "kind": "review_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:report:r0",
+        "candidate_id": "olonne-18",
+        "role_id": "report",
+        "kind": "publish_shortlist",
+        "status": "running",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:screen:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "screen",
+        "kind": "screen_regions",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:inspect:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "inspect",
+        "kind": "inspect_evidence",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:compare:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "compare",
+        "kind": "compute_features",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assess:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "assess",
+        "kind": "assess_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:review:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "review",
+        "kind": "review_candidate",
+        "status": "complete",
+        "attempt": 1
+      },
+      {
+        "task_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:report:r0",
+        "candidate_id": "keppel-19",
+        "role_id": "report",
+        "kind": "publish_shortlist",
+        "status": "complete",
+        "attempt": 1
+      }
+    ],
+    "budget": {
+      "token_limit": 1200000,
+      "tool_limit": 120,
+      "cost_limit_usd": 5.0,
+      "tokens_used": 475843,
+      "tool_calls": 46,
+      "model_calls": 32,
+      "cost_usd": 0.07385535920000001,
+      "reserved_tokens": 177715,
+      "uncertain_tokens": 0,
+      "reserved_tools": 8,
+      "reserved_cost_usd": 0.038454780000000015
+    },
+    "latest_assessments": [
+      {
+        "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assessment:2",
+        "candidate_id": "keppel-19",
+        "assessment_revision": 2,
+        "freshness": "current",
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "unresolved",
+        "model_proposal_accepted": false,
+        "validation_errors": [
+          "Structured assessment schema rejected: 8 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...64e1c93219543033f7372']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ntool_name\n  Extra inputs are not permitted [type=extra_forbidden, input_value='retrieve_evidence', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nartifact_ids\n  Extra inputs are not permitted [type=extra_forbidden, input_value=['artifact-5dae6b7296aa4c...c64e1c93219543033f7372'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+        ]
+      },
+      {
+        "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:assessment:2",
+        "candidate_id": "olonne-18",
+        "assessment_revision": 2,
+        "freshness": "current",
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "unresolved",
+        "model_proposal_accepted": false,
+        "validation_errors": [
+          "Structured assessment schema rejected: 8 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'tool_name': 'retrieve_e...642eb8f35eb3c963f57eb']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\ntool_name\n  Extra inputs are not permitted [type=extra_forbidden, input_value='retrieve_evidence', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden\nartifact_ids\n  Extra inputs are not permitted [type=extra_forbidden, input_value=['artifact-6a98f8906bbb43...b642eb8f35eb3c963f57eb'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+        ]
+      },
+      {
+        "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:pansio-1:assessment:2",
+        "candidate_id": "pansio-1",
+        "assessment_revision": 2,
+        "freshness": "current",
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "unresolved",
+        "model_proposal_accepted": false,
+        "validation_errors": [
+          "Structured assessment schema rejected: 7 validation errors for Proposal\nconclusion\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nexclusion_decision\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nnumerical_findings\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nevidence_ids\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nunresolved_questions\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\nlimitations\n  Field required [type=missing, input_value={'.retrieve_evidence': {'...426bac502dd756934359']}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/missing\n`.retrieve_evidence`\n  Extra inputs are not permitted [type=extra_forbidden, input_value={'artifact_ids': ['artifa...a426bac502dd756934359']}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.13/v/extra_forbidden"
+        ]
+      }
+    ]
+  },
+  "terminal": false
+}

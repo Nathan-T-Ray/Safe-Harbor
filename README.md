@@ -18,7 +18,9 @@ GRCh38 reference, H1 context, publication-derived Pansio-1, Olônne-18 and Keppe
 
 A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim is made.
 
-A genuine R0 investigation completed with 18/18 required outputs and verified browser/replay state. A real model also proposed an executable structural change: it added an upstream reviewer and moved a tool. Validation rejected that version for support/completion regressions; the system retained and reused the original saved workflow. This demonstrates tested adaptation and honest selection, without a measured improvement. Final comparison cases are still running.
+A genuine R0 investigation completed with 18/18 required outputs and verified browser/replay state. A real model also proposed an executable structural change: it added an upstream reviewer and moved a tool. Validation rejected that version for support/completion regressions; the system retained and reused the original saved workflow. All 24 comparison cases are recorded, including failures; no improvement is claimed. See the [complete evaluation](docs/safe-harbor/EVALUATION.md).
+
+The separate [three-candidate demonstration](http://127.0.0.1:5176/?run=run-58dfbd54fef64dc69aa445c52a3f1b7a) uses the retained saved harness with 18 actual tasks. Its execution and export are separate from the frozen comparison. The UI is frozen for recording.
 
 See [the baseline walkthrough](docs/safe-harbor/DEMO.md), [automatic change and rejection](docs/safe-harbor/AUTOMATIC_HARNESS_DEMO.md), [actual process/revision proof](docs/safe-harbor/CONTINUITY_DEMO.md), [comparison limitations](docs/safe-harbor/COMPARISON_LIMITATIONS.md), and [current status](docs/safe-harbor/STATUS.md).
 

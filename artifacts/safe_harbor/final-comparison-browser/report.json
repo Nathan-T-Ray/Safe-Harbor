@@ -1,0 +1,136 @@
+{
+  "status": "passed",
+  "passed": true,
+  "mode": "read_only_genuine_final_comparison_browser",
+  "observed_at": "2026-09-26T20:14:09.428Z",
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+  "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+  "url": "http://127.0.0.1:5176/?run=run-0142454a0a6b4976bd380c6eeeddec99",
+  "report_sequence": 29,
+  "experiment_status": "complete",
+  "promotion_status": "rejected",
+  "selected_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "case_rows": 24,
+  "model_improvement_claim": false,
+  "cost_win_claim": false,
+  "model_calls": 0,
+  "ledger_writes": 0,
+  "checks": [
+    {
+      "check": "Final report is committed with the selected-version run and matches the saved experiment",
+      "passed": true,
+      "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+      "report_sequence": 29
+    },
+    {
+      "check": "Measured report replaces pending proposal and displays the saved rejection without an improvement claim",
+      "passed": true
+    },
+    {
+      "check": "Every split/arm table matches required outputs, unsupported findings, validated completion and measured usage",
+      "passed": true,
+      "arm_rows": 8,
+      "rendered_rows": [
+        [
+          "development · H0",
+          "33 / 52",
+          "3",
+          "1 / 3",
+          "398,545",
+          "27 / 44",
+          "$0.061220"
+        ],
+        [
+          "development · R0",
+          "48 / 52",
+          "9",
+          "0 / 3",
+          "59,275",
+          "3 / 24",
+          "$0.012190"
+        ],
+        [
+          "final · H0",
+          "37 / 55",
+          "3",
+          "2 / 3",
+          "396,408",
+          "27 / 43",
+          "$0.060187"
+        ],
+        [
+          "final · H1",
+          "39 / 55",
+          "0",
+          "2 / 3",
+          "465,585",
+          "31 / 45",
+          "$0.067732"
+        ],
+        [
+          "final · R0",
+          "50 / 55",
+          "6",
+          "2 / 3",
+          "55,885",
+          "3 / 24",
+          "$0.010941"
+        ],
+        [
+          "validation · H0",
+          "31 / 52",
+          "4",
+          "1 / 3",
+          "414,618",
+          "27 / 42",
+          "$0.064792"
+        ],
+        [
+          "validation · H1",
+          "37 / 52",
+          "8",
+          "0 / 3",
+          "463,379",
+          "31 / 47",
+          "$0.068147"
+        ],
+        [
+          "validation · R0",
+          "49 / 52",
+          "6",
+          "1 / 3",
+          "58,078",
+          "3 / 24",
+          "$0.011706"
+        ]
+      ]
+    },
+    {
+      "check": "Optimizer, combined totals and evaluator overhead remain distinct and equal the exact saved record",
+      "passed": true
+    },
+    {
+      "check": "All 24 assigned outcomes and links match; workflow completion never hides failed support or completion",
+      "passed": true,
+      "case_rows": 24,
+      "failed_workflows": 5,
+      "invalid_answers": 19
+    },
+    {
+      "check": "Exact executable patch and full inspectable report equal the saved API records",
+      "passed": true
+    },
+    {
+      "check": "Browser makes no writes or model calls and leaves the final report unchanged",
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "limitations": [
+    "Rendering and record agreement do not independently establish scientific correctness.",
+    "The proposal was rejected; successful self-improvement is not demonstrated.",
+    "Reference answers have not been human-reviewed; source-sharing and split limitations remain in the exact report.",
+    "Per-arm duration totals are summed run durations, not elapsed experiment time."
+  ]
+}

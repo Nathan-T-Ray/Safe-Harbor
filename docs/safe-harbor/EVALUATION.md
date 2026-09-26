@@ -63,3 +63,30 @@ A new, development-only configuration preflight uses the same model/provider wit
 H0 Pansio preflight `run-fd79f621f4444f47aae814434998c3b9` completed its six-role workflow with a schema-valid, non-truncated final dossier scoring 16/18. It omitted two mapping/proximity values after spending its retrieval allowance on other evidence, and included an unsupported extra numeric citation. Those artifacts were accessible and its earlier assessment had supplied both numbers. A review revision also failed the required limitations-list schema. These genuine errors remain visible; competence does not imply flawless stochastic output, and neither the baseline nor the evaluator was retuned to erase them. H0 used 206,150 tokens, 12 model calls, 21 tool calls, and USD 0.033225976. The full provider traces and report are retained beside the R0 preflight. `e2e/safe_harbor/model_preflight.py` reproduces the actual paid API journey with explicit arm, development candidate, token/tool/cost caps, and a visible real-model label.
 
 Historical experiments are retained; later code changes do not rewrite their scores or usage. Automatic executable H1 generation, selection, and final comparison remain separate release requirements.
+
+## Completed genuine comparison and rejected automatic change
+
+Experiment `experiment-a879d0fa4f5e499b89a43ed8b7f7f400` completed all 24 assigned arm/case runs, including five workflow failures, with complete reported usage and an immutable export for every run. Model, provider, low-reasoning/8,192-token settings, 400,000-token/40-tool/USD 5 case caps, evidence, criteria, references, implementation fingerprints and 900-second case deadline were frozen before dispatch.
+
+The actual optimizer proposed and saved H1 `453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124`: split evidence inspection from an inserted evidence reviewer, and reassign control-overlap computation to the reviewer. Its seven-role topology executed in real model runs, including the new reviewer and reassigned tool. The single optimizer call used 11,969 tokens and USD 0.00342986; no developer repair or retry produced the patch.
+
+Validation rejected H1 because the H1 H1-context-only case lost evidence support and completion relative to H0. H1 validation cost USD 0.0681468648 versus H0 USD 0.064791776, a 5.18% increase. Required decision gain was zero. The selected saved H0 parent was used on final cases after the rejection was committed. Later held-out H1 successes do not change that decision. There is no successful self-improvement or cost-win claim.
+
+| Split | Arm | Correct required outputs | Supported cases | Schema-complete cases | Measured cost (USD) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| development | H0 | 33/52 | 1/3 | 1/3 | 0.0612204152 |
+| development | R0 | 48/52 | 0/3 | 0/3 | 0.0121896264 |
+| final | H0 | 37/55 | 1/3 | 2/3 | 0.0601874672 |
+| final | H1 | 39/55 | 2/3 | 2/3 | 0.0677318264 |
+| final | R0 | 50/55 | 0/3 | 2/3 | 0.0109406024 |
+| validation | H0 | 31/52 | 1/3 | 1/3 | 0.0647917760 |
+| validation | H1 | 37/52 | 0/3 | 0/3 | 0.0681468648 |
+| validation | R0 | 49/52 | 0/3 | 1/3 | 0.0117060272 |
+
+Accuracy, support, schema completion, and workflow completion are distinct: 19 workflows terminated successfully, nine cases met the scorer’s schema/completion condition, and only five had `support_ok=true`. A correct value with an unsupported citation does not become a supported answer. R0 was much cheaper and obtained more required outputs, but still produced unsupported endpoint/exclusion claims; its outcome remains visible. All control-withheld H0/H1 workflows failed after requesting an unavailable untargeted table. The optimizer’s extra reviewer did not repair that investigation failure.
+
+Run inference totaled USD 0.3569146056. Including the optimizer, the measured total was USD 0.3603444656, 2,323,742 model tokens and 153 model calls. Deterministic scoring overhead was 0.065103 seconds and USD 0, reported separately. These totals exclude previous failed experiments, preflights, ingestion and development engineering. Summed run durations are not elapsed experiment time.
+
+A read-only audit independently checked 43 committed records (33 assessment revisions and 10 final dossier summaries), including 23 accepted model proposals, with zero criterion-aggregation, numerical-reference, context, evidence-scope, freshness or rejected-proposal-fallback findings. It does not establish complete semantic correctness of free-form prose. Reproduce it with `PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/assessment_integrity.py --base-url http://127.0.0.1:8016 --experiment-id experiment-a879d0fa4f5e499b89a43ed8b7f7f400 --output /tmp/safe-harbor-assessment-audit`.
+
+The final report is committed at event 29 of selected final run `run-0142454a0a6b4976bd380c6eeeddec99`. Its accepted final dossier is a separate stage from the latest candidate-review assessment: dossier revision 3 was committed at event 27, while the latest review assessment revision 2 remains an unresolved rejected-proposal fallback. Replay and presentation must preserve both facts. The full report, exact optimizer response, saved selection and 24 run exports are under `artifacts/safe_harbor/real-model-comparison/experiment-a879d0fa4f5e499b89a43ed8b7f7f400/`.

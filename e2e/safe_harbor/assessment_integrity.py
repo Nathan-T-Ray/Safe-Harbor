@@ -5,12 +5,21 @@ import requests
 from safe_harbor.evaluation.reference_answers import load_reference
 parser=argparse.ArgumentParser(description='Read-only E2E audit of actual accepted API/Mongo investigation records against independent references; performs no model calls or writes.')
 parser.add_argument('--base-url',required=True)
-parser.add_argument('--experiment-id',required=True)
+target=parser.add_mutually_exclusive_group(required=True)
+target.add_argument('--experiment-id')
+target.add_argument('--run-id',help='Audit a separate full-source demonstration; never contributes comparison scores.')
 parser.add_argument('--output',required=True)
 args=parser.parse_args()
 p={'base_url':args.base_url.rstrip('/'),'experiment_id':args.experiment_id,'output':args.output}
 Path(p['output']).mkdir(parents=True,exist_ok=True)
-e=requests.get(p['base_url']+'/experiments/'+p['experiment_id'],timeout=15).json()
+if args.experiment_id:
+ e=requests.get(p['base_url']+'/experiments/'+p['experiment_id'],timeout=15).json()
+else:
+ snapshot=requests.get(p['base_url']+'/runs/'+args.run_id+'/snapshot',timeout=15).json()
+ for candidate in snapshot['run']['candidate_ids']:
+  if snapshot['run'].get('evidence_availability',{}).get(candidate,{}).get('control_evidence') is not True:
+   parser.error('The standalone demonstration audit requires full control availability.')
+ e={'evaluation_id':None,'status':snapshot['run']['status'],'results':[{'run_id':args.run_id,'candidate_id':candidate,'case_id':candidate+'--full_sources','arm':'selected_harness_demonstration'} for candidate in snapshot['run']['candidate_ids']]}
 required={'outside_gene_body','tss_distance','mirna_distance','lncrna_distance','cancer_gene_distance','outside_dhs_buffer','outside_ultraconserved_regions'}
 findings=[];checked=[]
 for row in e['results']:
@@ -19,6 +28,7 @@ for row in e['results']:
  ref=load_reference(row['case_id']);tasks={t['task_id']:t for t in s['tasks']};artifacts={a['artifact_id']:a for a in s['artifacts']}
  records = [('assessment_collection', a) for a in s.get('assessments',[])] + [('validated_final_dossier', x['data']['validated_summary']) for x in s['artifacts'] if x['kind']=='versioned_dossier' and x.get('data',{}).get('validated_summary')]
  for record_kind, a in records:
+  if args.run_id and a['candidate_id']!=row['candidate_id']:continue
   errors=[];criteria={x['criterion_id']:x['status'] for x in a['criterion_results']}
   if len(criteria)!=len(a['criterion_results']):errors.append('duplicate criterion IDs')
   values=[criteria.get(k,'incomplete') for k in required]
@@ -53,6 +63,6 @@ for row in e['results']:
   item={'record_kind':record_kind,'case_id':row['case_id'],'arm':row['arm'],'run_id':row['run_id'],'assessment_id':a['assessment_id'],'model_proposal_accepted':a.get('model_proposal_accepted'),'screen_status':a['screen_status'],'evidence_status':a['evidence_status'],'independently_expected_aggregation':aggregate,'errors':errors}
   checked.append(item)
   if errors:findings.append(item)
-report={'audit_kind':'read_only_actual_accepted_assessment_integrity','experiment_id':e['evaluation_id'],'experiment_status':e['status'],'complete_experiment_audit':e['status'] in ['complete','operational_complete'],'accepted_assessments_checked':len(checked),'assessment_collection_records':sum(a['record_kind']=='assessment_collection' for a in checked),'validated_final_dossiers':sum(a['record_kind']=='validated_final_dossier' for a in checked),'valid_model_proposals':sum(a['model_proposal_accepted'] is True for a in checked),'findings':findings,'passed_so_far':not findings,'assessments':checked,'scope':'Independent seven-criterion aggregation, context, own-run dependency/source IDs, evidence versions, independent raw-file numerical references and rejected-proposal fallback. No production validator or arithmetic tool imported.','limitations':['No complete semantic audit of freeform prose.','This read-only record audit does not itself demonstrate rejection of forged submissions; the independent transactional acceptance E2E verifies that boundary.']}
+report={'audit_kind':'read_only_actual_accepted_assessment_integrity','experiment_id':e['evaluation_id'],'run_id':args.run_id,'experiment_status':e['status'] if args.experiment_id else None,'run_status':e['status'] if args.run_id else None,'complete_experiment_audit':bool(args.experiment_id and e['status'] in ['complete','operational_complete']),'complete_demonstration_audit':bool(args.run_id and e['status'] in ['complete','failed','budget_exhausted','stopped']),'accepted_assessments_checked':len(checked),'assessment_collection_records':sum(a['record_kind']=='assessment_collection' for a in checked),'validated_final_dossiers':sum(a['record_kind']=='validated_final_dossier' for a in checked),'valid_model_proposals':sum(a['model_proposal_accepted'] is True for a in checked),'findings':findings,'passed_so_far':not findings,'assessments':checked,'scope':'Independent seven-criterion aggregation, context, own-run dependency/source IDs, evidence versions, independent raw-file numerical references and rejected-proposal fallback. No production validator or arithmetic tool imported.','limitations':['No complete semantic audit of freeform prose.','This read-only record audit does not itself demonstrate rejection of forged submissions; the independent transactional acceptance E2E verifies that boundary.','Standalone demonstration records are excluded from frozen comparison scores.']}
 Path(p['output'],'assessment-integrity-audit.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({k:v for k,v in report.items() if k not in ('assessments','scope','limitations')}))

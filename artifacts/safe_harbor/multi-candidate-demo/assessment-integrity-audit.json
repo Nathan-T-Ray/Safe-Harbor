@@ -1,0 +1,59 @@
+{
+  "audit_kind": "read_only_actual_accepted_assessment_integrity",
+  "experiment_id": null,
+  "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+  "experiment_status": null,
+  "run_status": "running",
+  "complete_experiment_audit": false,
+  "complete_demonstration_audit": false,
+  "accepted_assessments_checked": 3,
+  "assessment_collection_records": 3,
+  "validated_final_dossiers": 0,
+  "valid_model_proposals": 2,
+  "findings": [],
+  "passed_so_far": true,
+  "assessments": [
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "olonne-18--full_sources",
+      "arm": "selected_harness_demonstration",
+      "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+      "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:olonne-18:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "selected_harness_demonstration",
+      "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+      "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "selected_harness_demonstration",
+      "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+      "assessment_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:keppel-19:assessment:2",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    }
+  ],
+  "scope": "Independent seven-criterion aggregation, context, own-run dependency/source IDs, evidence versions, independent raw-file numerical references and rejected-proposal fallback. No production validator or arithmetic tool imported.",
+  "limitations": [
+    "No complete semantic audit of freeform prose.",
+    "This read-only record audit does not itself demonstrate rejection of forged submissions; the independent transactional acceptance E2E verifies that boundary.",
+    "Standalone demonstration records are excluded from frozen comparison scores."
+  ]
+}

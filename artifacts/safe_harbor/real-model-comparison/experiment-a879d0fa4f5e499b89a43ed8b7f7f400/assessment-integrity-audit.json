@@ -1,12 +1,12 @@
 {
   "audit_kind": "read_only_actual_accepted_assessment_integrity",
   "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
-  "experiment_status": "running_final",
-  "complete_experiment_audit": false,
-  "accepted_assessments_checked": 34,
-  "assessment_collection_records": 26,
-  "validated_final_dossiers": 8,
-  "valid_model_proposals": 16,
+  "experiment_status": "complete",
+  "complete_experiment_audit": true,
+  "accepted_assessments_checked": 43,
+  "assessment_collection_records": 33,
+  "validated_final_dossiers": 10,
+  "valid_model_proposals": 23,
   "findings": [],
   "passed_so_far": true,
   "assessments": [
@@ -417,11 +417,119 @@
       "evidence_status": "unknown",
       "independently_expected_aggregation": "incomplete",
       "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--controls_withheld",
+      "arm": "R0",
+      "run_id": "run-91779eb9f1d944b39f8798feacbb7f52",
+      "assessment_id": "run-91779eb9f1d944b39f8798feacbb7f52:keppel-19:assessment:1",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H0",
+      "run_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0",
+      "assessment_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0:keppel-19:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H0",
+      "run_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0",
+      "assessment_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0:keppel-19:assessment:2",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "validated_final_dossier",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H0",
+      "run_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0",
+      "assessment_id": "run-a3c9580bdb7a425290d48cdee9ffa4c0:keppel-19:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "R0",
+      "run_id": "run-97148c14af274b9f8e3164d01fb23ec5",
+      "assessment_id": "run-97148c14af274b9f8e3164d01fb23ec5:keppel-19:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H1",
+      "run_id": "run-8de624736764447187752a963d2a86cf",
+      "assessment_id": "run-8de624736764447187752a963d2a86cf:keppel-19:assessment:1",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H1",
+      "run_id": "run-8de624736764447187752a963d2a86cf",
+      "assessment_id": "run-8de624736764447187752a963d2a86cf:keppel-19:assessment:2",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H1",
+      "run_id": "run-8de624736764447187752a963d2a86cf",
+      "assessment_id": "run-8de624736764447187752a963d2a86cf:keppel-19:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "validated_final_dossier",
+      "case_id": "keppel-19--h1_context_only",
+      "arm": "H1",
+      "run_id": "run-8de624736764447187752a963d2a86cf",
+      "assessment_id": "run-8de624736764447187752a963d2a86cf:keppel-19:assessment:4",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
     }
   ],
   "scope": "Independent seven-criterion aggregation, context, own-run dependency/source IDs, evidence versions, independent raw-file numerical references and rejected-proposal fallback. No production validator or arithmetic tool imported.",
   "limitations": [
     "No complete semantic audit of freeform prose.",
-    "Does not demonstrate that the internal Ledger.accept interface rejects forged outputs; that separate release boundary is being repaired after this frozen comparison."
+    "This read-only record audit does not itself demonstrate rejection of forged submissions; the independent transactional acceptance E2E verifies that boundary."
   ]
 }

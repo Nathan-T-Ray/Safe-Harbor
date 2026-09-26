@@ -54,7 +54,7 @@ audit = {
     "method": "Read stored API case rows/report; independently sum stored scores and reported usage. No scorer imports/invocations, new model calls, or ledger writes.",
     "new_model_calls": 0, "ledger_writes": 0, "scoring_recomputed": False,
     "status": "pending", "checks": [], "failures": [],
-    "limitations": ["Arithmetic agreement does not establish scientific correctness, support, or model improvement.", "Required-answer totals, supported completion, and raw execution status are distinct fields; invalid or failed runs remain counted.", "Known partial usage is not a complete cost total. Summed run durations are not experiment wall time.", "Optimizer overhead is distinct from selected-arm inference costs. Evaluator overhead is explicitly separate."],
+    "limitations": ["Arithmetic agreement does not establish scientific correctness, support, or model improvement.", "Required-answer totals, scored completion, evidence support, and raw execution status are distinct fields; invalid or failed runs remain counted.", "Known partial usage is not a complete cost total. Summed run durations are not experiment wall time.", "Optimizer overhead is distinct from selected-arm inference costs. Evaluator overhead is explicitly separate."],
 }
 report = experiment.get("report")
 if experiment["status"] != "complete" or not report:
@@ -130,6 +130,13 @@ check("rejected_candidate_does_not_claim_improvement", False if decision["status
 check("rejected_candidate_does_not_claim_cost_win", False if decision["status"] == "rejected" else bool(decision.get("cost_win") and decision.get("promoted")), report["cost_win_claim"])
 
 audit["case_status_counts"] = dict(Counter(r["status"] for r in rows))
+audit["distinct_outcome_counts"] = {
+    "assigned_case_rows": len(rows),
+    "workflow_status_complete": sum(r["status"] == "complete" for r in rows),
+    "scored_completed": sum((r.get("score") or {}).get("completed") is True for r in rows),
+    "scored_support_ok": sum((r.get("score") or {}).get("support_ok") is True for r in rows),
+    "scored_completed_and_support_ok": sum((r.get("score") or {}).get("completed") is True and (r.get("score") or {}).get("support_ok") is True for r in rows),
+}
 audit["failed_or_invalid_case_rows"] = [{k: r.get(k) for k in ("case_id", "split", "arm", "run_id", "status", "score", "usage")} for r in rows if r["status"] != "complete" or not (r.get("score") or {}).get("completed")]
 audit["resource_totals"] = {k: report[k] for k in ("run_resource_totals", "optimizer_overhead", "evaluation_overhead", "combined_run_and_optimizer_usage")}
 audit["inclusive_accounted_usage_calculated_by_this_audit"] = usage_arithmetic([r["usage"] for r in rows] + [optimizer, report["evaluation_overhead"]])

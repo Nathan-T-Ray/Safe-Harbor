@@ -1,0 +1,240 @@
+{
+  "passed": true,
+  "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+  "mode": "real_model_run_read_only_browser",
+  "observed_watermark": 11,
+  "observed_status": "running",
+  "candidates": 3,
+  "tasks": 18,
+  "checks": [
+    {
+      "check": "Three visible candidate branches and eighteen tasks come from the actual saved run",
+      "passed": true,
+      "branches": [
+        {
+          "id": "b:pansio-1",
+          "position": "translate(40px, 120px)",
+          "label": "Pansio-1"
+        },
+        {
+          "id": "b:olonne-18",
+          "position": "translate(260px, 120px)",
+          "label": "Olônne-18"
+        },
+        {
+          "id": "b:keppel-19",
+          "position": "translate(480px, 120px)",
+          "label": "Keppel-19"
+        }
+      ]
+    },
+    {
+      "check": "All task-to-task lines are recorded dependencies; each candidate has independent screen and inspect roots",
+      "passed": true,
+      "dependency_edges": 39
+    },
+    {
+      "check": "Each branch candidate selects its exact frozen genomic interval through the visible candidate control",
+      "passed": true
+    },
+    {
+      "check": "A real tree node opens its exact task/dependencies and keeps candidate selection coordinated",
+      "passed": true
+    },
+    {
+      "check": "Read-only browser does not dispatch work or invent task/provider status",
+      "passed": true,
+      "observed_run_status": "running",
+      "recorded_provider_responses": 2,
+      "accepted_traces": 1
+    }
+  ],
+  "effective_svg_text": [
+    {
+      "text": "Coordinator",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "running",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Pansio-1",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "0/6 done",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Screen criteria",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "screen · Running",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Inspect evidence",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "inspect · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Compare measurements",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "compare · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Assess candidate",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "assess · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Review assessment",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "review · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Publish dossier",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "report · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Olônne-18",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "0/6 done",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Screen criteria",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "screen · Running",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Inspect evidence",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "inspect · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Compare measurements",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "compare · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Assess candidate",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "assess · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Review assessment",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "review · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Publish dossier",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "report · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Keppel-19",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "1/6 done",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Screen criteria",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "screen · Complete",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Inspect evidence",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "inspect · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Compare measurements",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "compare · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Assess candidate",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "assess · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Review assessment",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "review · Queued",
+      "px": 13.458823529411767
+    },
+    {
+      "text": "Publish dossier",
+      "px": 14.494117647058825
+    },
+    {
+      "text": "report · Queued",
+      "px": 13.458823529411767
+    }
+  ],
+  "minimum_svg_text_px": 13.458823529411767,
+  "recorded_provider_responses": 2,
+  "model_calls_by_verification": 0,
+  "ledger_writes": 0,
+  "browser_errors": [],
+  "limitations": [
+    "This proves visible genuine branches and their exact dependency topology, not scientific correctness or improvement.",
+    "The run can continue while this inspection takes place; execution figures are stated at the observed watermark.",
+    "No model response is claimed for an unfinished call; recorded traces are counted explicitly."
+  ]
+}
