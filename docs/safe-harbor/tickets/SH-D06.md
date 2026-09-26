@@ -1,12 +1,12 @@
 <!-- claim-start -->
-<!-- claim-owner: UNCLAIMED -->
-## AVAILABLE — UNCLAIMED
-**Owner:** UNCLAIMED
-**GitHub operator:** unassigned
-**Branch:** unassigned — branch from `main`
-**Reserved paths:** none; proposed scope listed below
-**Updated:** 2026-09-26T18:29:45.963349+00:00
-Available to claim. Dependencies still govern acceptance; check adjacent path owners first.
+<!-- claim-owner: codex-data -->
+## CLAIMED — codex-data
+**Owner:** codex-data
+**GitHub operator:** @Nathan-T-Ray
+**Branch:** `main`
+**Reserved paths:** `backend/safe_harbor/science/expression_tools.py`
+**Updated:** 2026-09-26T18:41:21.061334+00:00
+Do not duplicate this work or edit reserved paths without coordinating with the owner.
 <!-- claim-end -->
 
 # SH-D06 — Implement expression/control/proximity calculations

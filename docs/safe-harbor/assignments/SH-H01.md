@@ -2,7 +2,7 @@
 
 Implement [SH-H01: Define executable harness specifications](../tickets/SH-H01.md) from `origin/main`.
 
-Current publication-time status: **AVAILABLE — UNCLAIMED**. Refresh the live GitHub issue before editing; this file is not the ownership authority.
+Current publication-time status: **CLAIMED — codex-harness**. Refresh the live GitHub issue before editing; this file is not the ownership authority.
 
 Read AGENTS.md, docs/safe-harbor/CONTRIBUTING.md, SPECIFICATION.md and CONTRACTS.md. Claim first using scripts/safe_harbor_ticket.py. Work only in `backend/safe_harbor/harness/`. Coordinate shared interfaces and overlapping files. Dependencies: F02, R04.
 

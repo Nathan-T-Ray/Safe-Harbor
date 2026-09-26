@@ -5,7 +5,7 @@
 **GitHub operator:** unassigned
 **Branch:** unassigned — branch from `main`
 **Reserved paths:** none; proposed scope listed below
-**Updated:** 2026-09-26T18:29:45.963349+00:00
+**Updated:** 2026-09-26T18:41:21.061334+00:00
 Available to claim. Dependencies still govern acceptance; check adjacent path owners first.
 <!-- claim-end -->
 

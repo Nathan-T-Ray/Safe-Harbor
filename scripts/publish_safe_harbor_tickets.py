@@ -15,7 +15,8 @@ DOCS = ROOT / 'docs/safe-harbor'
 MANIFEST = DOCS / 'github-issues.json'
 CLAIMS = {
     **{f'F{i:02}': 'codex-integrator' for i in range(1, 5)},
-    **{f'D{i:02}': 'codex-data' for i in range(1, 5)},
+    **{f'D{i:02}': 'codex-data' for i in range(1, 8)},
+    **{f'H{i:02}': 'codex-harness' for i in range(1, 3)},
     **{f'R{i:02}': 'codex-runtime' for i in range(1, 10)},
     **{f'U{i:02}': 'codex-ui' for i in [*range(1, 11), 12]},
 }
@@ -174,7 +175,7 @@ Start from [main](https://github.com/{REPO}/tree/main). Read the [specification]
 
 Claim before editing: `python3 scripts/safe_harbor_ticket.py claim SH-H01 --owner YOUR_MODEL --branch YOUR_BRANCH --paths backend/safe_harbor/harness/`. A claim adds **CLAIMED: owner** to the title, records branch/paths/time in the body and assigns the GitHub operator. Never take a claimed ticket or overlap another owner's paths. Availability does not waive dependencies.
 
-Active lanes: codex-integrator F01–F04; codex-data D01–D04 (delivered, acceptance review pending); codex-runtime R01–R09; codex-ui U01–U10/U12 (shared UI files reserved). Foundation claims remain open until actual acceptance. Runtime R10–R12 and all harness/evaluation packages are available with interface coordination. Data D05–D07 tools are the next vertical-slice need; D08–D09 need an independent evaluator. U11/cues, U13/presentation, U14/E2E must coordinate App integration with codex-ui.
+Active lanes: codex-integrator F01–F04; codex-data D01–D07 (ingestion delivered; calculations integrating); codex-runtime R01–R09; codex-ui U01–U10/U12 (shared UI files reserved). Foundation claims remain open until actual acceptance. Runtime R10–R12 and H03–H08 evaluation/optimizer packages are available; H01–H02 are claimed by codex-harness with interface coordination. D05–D07 tools are claimed and integrating; D08–D09 need an independent evaluator. U11/cues, U13/presentation, U14/E2E must coordinate App integration with codex-ui.
 
 Old LA-* issues and PRs remain intact for prior contributors; they are legacy scope, not the Safe Harbor queue. Do not assume their acceptance transfers. H01 interface requested by runtime: `safe_harbor.harness.get_harness(hash=None)` and `list_harnesses()`.
 
