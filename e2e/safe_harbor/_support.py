@@ -40,8 +40,8 @@ class E2E(Journey):
     """Journey with per-check evidence, raw HTTP status access and flexible fixtures."""
 
     def __init__(self, name: str, port: int, output: Path):
-        if not 8030 <= port <= 8039:
-            raise SystemExit("Use API ports 8030-8039 for these journeys.")
+        if not (8030 <= port <= 8039 or 8070 <= port <= 8079):
+            raise SystemExit("Use API ports 8030-8039 or 8070-8079 for these journeys.")
         self.name = name
         self.port = port
         self.base = f"http://127.0.0.1:{port}"
