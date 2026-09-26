@@ -53,7 +53,7 @@ def harnesses():
 
 
 def model_available() -> bool:
-    return bool(os.getenv("OPENROUTER_API_KEY") and os.getenv("MODEL_ID"))
+    return bool(os.getenv("OPENROUTER_API_KEY") and os.getenv("MODEL_ID")) and os.getenv("SAFE_HARBOR_READ_ONLY") != "1"
 
 
 REVISION_FIXTURES = [
@@ -62,9 +62,19 @@ REVISION_FIXTURES = [
 ]
 
 
+# Read-only deployments (e.g. Vercel serverless) browse recorded runs from MongoDB Atlas. They never
+# start the coordinator or accept writes, because serverless processes cannot hold coordinator leases.
+READ_ONLY = os.getenv("SAFE_HARBOR_READ_ONLY") == "1"
+READ_ONLY_MESSAGE = "Read-only deployment: recorded runs can be browsed here; start investigations from the full Safe Harbor server."
+
+
 @asynccontextmanager
 async def lifespan(app):
     global coordinator
+    if READ_ONLY:
+        logger.info("Safe Harbor API in read-only mode: coordinator disabled, writes rejected")
+        yield
+        return
     if mongo_configuration_error is not None:
         logger.error("Safe Harbor API started without MongoDB: %s", mongo_configuration_error)
         yield
@@ -87,6 +97,13 @@ async def lifespan(app):
 
 
 app = FastAPI(title="Safe Harbor", version="1.0.0", lifespan=lifespan)
+
+
+@app.middleware("http")
+async def read_only_guard(request, call_next):
+    if READ_ONLY and request.method not in ("GET", "HEAD", "OPTIONS"):
+        return JSONResponse(status_code=503, content={"detail": READ_ONLY_MESSAGE})
+    return await call_next(request)
 app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:5174", "http://127.0.0.1:5174", "http://localhost:5176", "http://127.0.0.1:5176"], allow_credentials=False, allow_methods=["GET", "POST"], allow_headers=["*"])
 
 
@@ -114,7 +131,7 @@ def health():
         ledger.client.admin.command("ping")
     except PyMongoError as exc:
         return JSONResponse(status_code=503, content={"status": "unavailable", "detail": f"MongoDB is unreachable ({type(exc).__name__}); check the Atlas network access list and credentials.", "mongodb": target, "authoritative_store": "MongoDB", "schema_version": 1})
-    return {"status": "ok", "database": ledger.db.name, "mongodb": target, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "schema_version": 1}
+    return {"status": "ok", "database": ledger.db.name, "mongodb": target, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "read_only": READ_ONLY, "schema_version": 1}
 
 
 @app.get("/catalog")

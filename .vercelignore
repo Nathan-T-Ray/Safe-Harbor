@@ -1,0 +1,10 @@
+.venv
+.tools
+.env
+.env.*
+**/node_modules
+artifacts
+data/safe_harbor/raw
+docs
+e2e
+scripts
