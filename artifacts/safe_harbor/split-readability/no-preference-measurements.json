@@ -1,0 +1,211 @@
+{
+  "entries": [
+    {
+      "selector": ".mode-chip",
+      "text": "REAL MODEL",
+      "px": 12,
+      "contrast": 9.569673970382556
+    },
+    {
+      "selector": ".sage-top .ctx",
+      "text": "GRCh38 · H1 hESC",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".sage-top .ctx",
+      "text": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".cand-chip",
+      "text": "Keppel-19",
+      "px": 13,
+      "contrast": 11.208442920330729
+    },
+    {
+      "selector": ".now-state",
+      "text": "Most recent · complete · Publish dossier",
+      "px": 12,
+      "contrast": 11.635191736034372
+    },
+    {
+      "selector": ".now-head h1",
+      "text": "Assembling the dossier",
+      "px": 28,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".now-question",
+      "text": "What versioned candidate dossier accurately records the conclusio",
+      "px": 15,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".genome-breadcrumb button",
+      "text": "Genome",
+      "px": 12,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".genome-breadcrumb button",
+      "text": "chr19",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".genome-breadcrumb button",
+      "text": "Locus",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".genome-breadcrumb button",
+      "text": "Sequence",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".coordinate-value",
+      "text": "chr19:5,400,761–5,402,139",
+      "px": 12,
+      "contrast": 11.77697355684536
+    },
+    {
+      "selector": ".reference-availability",
+      "text": "Frozen run assets · autio-79592-v2-gencode36-comp-pseudo-2026-09-",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".conclusion-panel .status-axes span",
+      "text": "Computational screen",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".conclusion-panel .status-axes span",
+      "text": "Experimental evidence",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".conclusion-panel .status-axes span",
+      "text": "Evidence freshness",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".conclusion-panel .status-axes strong",
+      "text": "incomplete",
+      "px": 12,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".conclusion-panel .status-axes strong",
+      "text": "unknown",
+      "px": 12,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".conclusion-panel .status-axes strong",
+      "text": "current",
+      "px": 12,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".conclusion-text",
+      "text": "The model proposal failed evidence or schema validation. The expr",
+      "px": 18,
+      "contrast": 14.529212723211947
+    },
+    {
+      "selector": ".final-dossier-stage",
+      "text": "Earlier assessment stage remains revision 2 · proposal rejected /",
+      "px": 14,
+      "contrast": 8.033074022946977
+    },
+    {
+      "selector": ".final-dossier-conclusion",
+      "text": "The available H1 evidence does not justify excluding Keppel-19 (c",
+      "px": 16,
+      "contrast": 14.455597160447443
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Complete",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Running",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Queued",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Not started",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Failed",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Reopened",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".tree-legend li",
+      "text": "Superseded",
+      "px": 12,
+      "contrast": 9.443285417174762
+    },
+    {
+      "selector": ".sage-budget span",
+      "text": "6 accepted tasks",
+      "px": 12.5,
+      "contrast": 10.33460818076983
+    },
+    {
+      "selector": ".sage-budget span",
+      "text": "19 tool calls",
+      "px": 12.5,
+      "contrast": 10.33460818076983
+    },
+    {
+      "selector": ".sage-budget span",
+      "text": "12 model calls",
+      "px": 12.5,
+      "contrast": 10.33460818076983
+    },
+    {
+      "selector": ".sage-budget span",
+      "text": "190,085 tokens",
+      "px": 12.5,
+      "contrast": 10.33460818076983
+    },
+    {
+      "selector": ".sage-budget span",
+      "text": "$0.0290",
+      "px": 12.5,
+      "contrast": 10.33460818076983
+    }
+  ],
+  "body_background": "rgb(10, 18, 32)",
+  "horizontal_overflow": false,
+  "conclusion_initially_in_view": false
+}

@@ -3,12 +3,15 @@
   "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
   "experiment_status": "running_final",
   "complete_experiment_audit": false,
-  "accepted_assessments_checked": 20,
-  "valid_model_proposals": 8,
+  "accepted_assessments_checked": 34,
+  "assessment_collection_records": 26,
+  "validated_final_dossiers": 8,
+  "valid_model_proposals": 16,
   "findings": [],
   "passed_so_far": true,
   "assessments": [
     {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--full_sources",
       "arm": "H0",
       "run_id": "run-650b0b7901da47e4a4400d87243a2111",
@@ -20,6 +23,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--full_sources",
       "arm": "H0",
       "run_id": "run-650b0b7901da47e4a4400d87243a2111",
@@ -31,6 +35,19 @@
       "errors": []
     },
     {
+      "record_kind": "validated_final_dossier",
+      "case_id": "pansio-1--full_sources",
+      "arm": "H0",
+      "run_id": "run-650b0b7901da47e4a4400d87243a2111",
+      "assessment_id": "run-650b0b7901da47e4a4400d87243a2111:pansio-1:assessment:3",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--full_sources",
       "arm": "R0",
       "run_id": "run-c8aa19556f5d4108892146cc99802237",
@@ -42,6 +59,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--controls_withheld",
       "arm": "R0",
       "run_id": "run-0fb89fa304d54d67ad2dcf2d1351d445",
@@ -53,6 +71,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--h1_context_only",
       "arm": "H0",
       "run_id": "run-4a650f383fb54c2e8b11b0676b608a32",
@@ -64,6 +83,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--h1_context_only",
       "arm": "H0",
       "run_id": "run-4a650f383fb54c2e8b11b0676b608a32",
@@ -75,6 +95,19 @@
       "errors": []
     },
     {
+      "record_kind": "validated_final_dossier",
+      "case_id": "pansio-1--h1_context_only",
+      "arm": "H0",
+      "run_id": "run-4a650f383fb54c2e8b11b0676b608a32",
+      "assessment_id": "run-4a650f383fb54c2e8b11b0676b608a32:pansio-1:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
       "case_id": "pansio-1--h1_context_only",
       "arm": "R0",
       "run_id": "run-e82f8848d9fa4c7db70fde8e9a4d4883",
@@ -86,6 +119,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "H0",
       "run_id": "run-584fd29a3eb94f5cb7f649520408180e",
@@ -97,6 +131,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "H0",
       "run_id": "run-584fd29a3eb94f5cb7f649520408180e",
@@ -108,6 +143,19 @@
       "errors": []
     },
     {
+      "record_kind": "validated_final_dossier",
+      "case_id": "olonne-18--full_sources",
+      "arm": "H0",
+      "run_id": "run-584fd29a3eb94f5cb7f649520408180e",
+      "assessment_id": "run-584fd29a3eb94f5cb7f649520408180e:olonne-18:assessment:3",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "R0",
       "run_id": "run-48e62ca0b7d64f2394ee60df166fc6d8",
@@ -119,6 +167,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "H1",
       "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
@@ -130,6 +179,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "H1",
       "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
@@ -141,6 +191,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--full_sources",
       "arm": "H1",
       "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
@@ -152,6 +203,19 @@
       "errors": []
     },
     {
+      "record_kind": "validated_final_dossier",
+      "case_id": "olonne-18--full_sources",
+      "arm": "H1",
+      "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+      "assessment_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assessment:4",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--controls_withheld",
       "arm": "R0",
       "run_id": "run-3c7aee6e4fdb45e7855a2b1e08bcdeea",
@@ -163,6 +227,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "H0",
       "run_id": "run-a198a3d757a140b0bafe6f37155e202b",
@@ -174,6 +239,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "H0",
       "run_id": "run-a198a3d757a140b0bafe6f37155e202b",
@@ -185,6 +251,19 @@
       "errors": []
     },
     {
+      "record_kind": "validated_final_dossier",
+      "case_id": "olonne-18--h1_context_only",
+      "arm": "H0",
+      "run_id": "run-a198a3d757a140b0bafe6f37155e202b",
+      "assessment_id": "run-a198a3d757a140b0bafe6f37155e202b:olonne-18:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "R0",
       "run_id": "run-5dbe6cd5bc244ab381b80cb490e04605",
@@ -196,6 +275,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "H1",
       "run_id": "run-90877112dccc471e8cdc64616dad0ac6",
@@ -207,6 +287,7 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "H1",
       "run_id": "run-90877112dccc471e8cdc64616dad0ac6",
@@ -218,10 +299,119 @@
       "errors": []
     },
     {
+      "record_kind": "assessment_collection",
       "case_id": "olonne-18--h1_context_only",
       "arm": "H1",
       "run_id": "run-90877112dccc471e8cdc64616dad0ac6",
       "assessment_id": "run-90877112dccc471e8cdc64616dad0ac6:olonne-18:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "validated_final_dossier",
+      "case_id": "olonne-18--h1_context_only",
+      "arm": "H1",
+      "run_id": "run-90877112dccc471e8cdc64616dad0ac6",
+      "assessment_id": "run-90877112dccc471e8cdc64616dad0ac6:olonne-18:assessment:4",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H0",
+      "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+      "assessment_id": "run-0142454a0a6b4976bd380c6eeeddec99:keppel-19:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H0",
+      "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+      "assessment_id": "run-0142454a0a6b4976bd380c6eeeddec99:keppel-19:assessment:2",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "validated_final_dossier",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H0",
+      "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+      "assessment_id": "run-0142454a0a6b4976bd380c6eeeddec99:keppel-19:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "R0",
+      "run_id": "run-ac4d60434a354003b0680e433dbac455",
+      "assessment_id": "run-ac4d60434a354003b0680e433dbac455:keppel-19:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H1",
+      "run_id": "run-853e3674257d41968fe52715c6c5c547",
+      "assessment_id": "run-853e3674257d41968fe52715c6c5c547:keppel-19:assessment:1",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H1",
+      "run_id": "run-853e3674257d41968fe52715c6c5c547",
+      "assessment_id": "run-853e3674257d41968fe52715c6c5c547:keppel-19:assessment:2",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "assessment_collection",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H1",
+      "run_id": "run-853e3674257d41968fe52715c6c5c547",
+      "assessment_id": "run-853e3674257d41968fe52715c6c5c547:keppel-19:assessment:3",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "record_kind": "validated_final_dossier",
+      "case_id": "keppel-19--full_sources",
+      "arm": "H1",
+      "run_id": "run-853e3674257d41968fe52715c6c5c547",
+      "assessment_id": "run-853e3674257d41968fe52715c6c5c547:keppel-19:assessment:4",
       "model_proposal_accepted": true,
       "screen_status": "incomplete",
       "evidence_status": "unknown",

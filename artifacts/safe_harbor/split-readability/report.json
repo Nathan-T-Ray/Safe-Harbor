@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+  "mode": "read_only_real_record_layout_verification",
+  "viewport": "1280x720",
+  "checks": [
+    {
+      "name": "no-preference: no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "no-preference: required dark navy background",
+      "passed": true,
+      "background": "rgb(10, 18, 32)"
+    },
+    {
+      "name": "no-preference: critical HTML labels >=12px",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "no-preference: critical text contrast >=4.5",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "no-preference: conclusion >=18px",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard opens harness and focus stays inside",
+      "passed": true
+    },
+    {
+      "name": "no-preference: presentation action closes the menu",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard reset removes future dossier",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard timeline restores exact stored final stage",
+      "passed": true
+    },
+    {
+      "name": "no-preference: genome has coordinate-labeled readable base alternative",
+      "passed": true
+    },
+    {
+      "name": "no-preference: detailed task alternative opens by keyboard",
+      "passed": true
+    },
+    {
+      "name": "reduce: no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "reduce: required dark navy background",
+      "passed": true,
+      "background": "rgb(10, 18, 32)"
+    },
+    {
+      "name": "reduce: critical HTML labels >=12px",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "reduce: critical text contrast >=4.5",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "reduce: conclusion >=18px",
+      "passed": true
+    },
+    {
+      "name": "reduce: keyboard opens harness and focus stays inside",
+      "passed": true
+    },
+    {
+      "name": "reduce: presentation action closes the menu",
+      "passed": true
+    },
+    {
+      "name": "reduce: keyboard reset removes future dossier",
+      "passed": true
+    },
+    {
+      "name": "reduce: keyboard timeline restores exact stored final stage",
+      "passed": true
+    },
+    {
+      "name": "reduce: genome has coordinate-labeled readable base alternative",
+      "passed": true
+    },
+    {
+      "name": "reduce: detailed task alternative opens by keyboard",
+      "passed": true
+    },
+    {
+      "name": "reduce: no decorative motion continues",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "No browser exceptions or API mutations",
+      "passed": true,
+      "errors": [],
+      "writes": []
+    }
+  ],
+  "model_calls": 0,
+  "ledger_writes": 0,
+  "limitations": [
+    "Focused merged-layout journey; it does not replace all 49 checks of the earlier legacy-layout report.",
+    "The new split layout requires vertical scrolling to read full conclusions and the separate final dossier.",
+    "Full-genome/graph SVG labels can be smaller than detail text; coordinate/base views and the keyboard-accessible detailed task list provide text alternatives."
+  ]
+}

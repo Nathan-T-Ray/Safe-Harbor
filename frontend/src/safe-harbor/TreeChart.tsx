@@ -11,7 +11,7 @@ import { taskName } from './Graph';
 type Status = 'complete' | 'running' | 'queued' | 'planned' | 'failed' | 'blocked' | 'reopened' | 'superseded';
 interface TNode { id: string; level: number; label: string; sub?: string; status: Status; tip: string; children: TNode[]; act?: () => void; x: number; y: number; w: number }
 const MAX_CALLS = 5;
-const statusWord: Record<Status, string> = { complete: 'Complete', running: 'Running', queued: 'Queued', planned: 'Forming', failed: 'Failed', blocked: 'Blocked', reopened: 'Reopened', superseded: 'Superseded' };
+const statusWord: Record<Status, string> = { complete: 'Complete', running: 'Running', queued: 'Queued', planned: 'Not started', failed: 'Failed', blocked: 'Blocked', reopened: 'Reopened', superseded: 'Superseded' };
 const trunc = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 function agg(statuses: Status[]): Status {
   if (!statuses.length) return 'planned';
@@ -53,15 +53,15 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
         const shown = a.calls.slice(0, MAX_CALLS);
         const calls: TNode[] = shown.map(c => ({ id: `c:${c.id}`, level: 3, label: c.kind === 'model' ? 'model' : trunc(c.label, 14), status: 'complete' as Status, tip: `${c.kind === 'model' ? 'Model call' : 'Tool call'} · ${c.label} · ${c.detail}`, children: [], x: 0, y: 0, w: 30, act: () => { const art = artifacts.find(x => x.artifact_id === c.artifactId); if (art) onSelectArtifact(art); else onSelectTask(t); } }));
         if (a.calls.length > MAX_CALLS) calls.push({ id: `c:${t.task_id}:more`, level: 3, label: `+${a.calls.length - MAX_CALLS}`, status: 'complete', tip: `${a.calls.length - MAX_CALLS} more recorded calls · open inspector`, children: [], x: 0, y: 0, w: 30, act: () => onSelectTask(t) });
-        const status = (t.status === 'queued' && !t.depends_on.every(d => tasks.find(x => x.task_id === d)?.status === 'complete') ? 'planned' : t.status) as Status;
-        return { id: `a:${t.task_id}`, level: 2, label: taskName[t.kind as keyof typeof taskName] ?? t.kind, sub: statusWord[status] ?? t.status, status, tip: `${taskName[t.kind as keyof typeof taskName] ?? t.kind} · ${statusWord[status] ?? t.status} · ${t.question}`, children: calls, x: 0, y: 0, w: 118, act: () => onSelectTask(t) };
+        const status = t.status as Status;
+        return { id: `a:${t.task_id}`, level: 2, label: taskName[t.kind as keyof typeof taskName] ?? t.kind, sub: `${t.role_id} · ${statusWord[status] ?? t.status}`, status, tip: `${taskName[t.kind as keyof typeof taskName] ?? t.kind} · ${statusWord[status] ?? t.status} · ${t.question}`, children: calls, x: 0, y: 0, w: 118, act: () => onSelectTask(t) };
       });
       const done = b.agents.filter(a => a.task.status === 'complete').length;
       return { id: `b:${b.id}`, level: 1, label: b.name, sub: `${done}/${b.agents.length} done`, status: agg(agents.map(a => a.status)), tip: `${b.name}${b.interval ? ` · ${b.interval}` : ''} · ${done}/${b.agents.length} tasks complete`, children: agents, x: 0, y: 0, w: 140 };
     });
     const runStatus: Status = !run ? 'planned' : run.status === 'complete' ? 'complete' : ['failed', 'blocked', 'budget_exhausted'].includes(run.status) ? 'failed' : 'running';
     const root: TNode = { id: 'root', level: 0, label: 'Coordinator', sub: run ? String(run.status).replaceAll('_', ' ') : 'not started', status: runStatus, tip: run ? `Coordinator · ${run.run_id} · epoch ${run.coordinator_epoch}` : 'No run', children: cands, x: 0, y: 0, w: 160 };
-    // Candidates spread across; each candidate's tasks form a vertical dependency chain (depth-first reading order).
+    // Candidate columns contain tasks in topological order; edges below use recorded dependencies.
     const colW = 220; root.x = (cands.length * colW) / 2; root.y = 34;
     cands.forEach((c, i) => { c.x = i * colW + 40; c.y = 120; c.children.forEach((a, j) => { a.x = c.x; a.y = 200 + j * 64; a.children.forEach((k, m) => { k.x = a.x + 26 + m * 15; k.y = a.y + 32; }); }); });
     root.w = cands.length * colW;
@@ -69,7 +69,17 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
     const height = Math.max(260, ...flat.map(n => n.y + 40));
     return { root, flat, width: Math.max(root.w, 480), height };
   }, [run, tasks, artifacts, candidates, onSelectArtifact, onSelectTask]);
-  const edges: [TNode, TNode][] = []; flat.forEach(n => { if (n.level === 1) n.children.forEach((c, i) => edges.push([i ? n.children[i - 1] : n, c])); else n.children.forEach(c => edges.push([n, c])); });
+  const nodesById = new Map(flat.map(node => [node.id, node]));
+  const edges: [TNode, TNode][] = [];
+  flat.forEach(node => {
+    if (node.level !== 1) node.children.forEach(child => edges.push([node, child]));
+    else node.children.forEach(child => {
+      const task = tasks.find(item => `a:${item.task_id}` === child.id);
+      const parents = (task?.depends_on ?? []).map(id => nodesById.get(`a:${id}`)).filter((parent): parent is TNode => Boolean(parent));
+      if (parents.length) parents.forEach(parent => edges.push([parent, child]));
+      else edges.push([node, child]);
+    });
+  });
   const active = flat.some(n => n.id === focusId) ? focusId : 'root';
   const onKey = (e: KeyboardEvent) => {
     const i = flat.findIndex(n => n.id === active); let next: TNode | undefined;
@@ -83,7 +93,7 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
     {!run ? <div className="empty-state">Start or open an investigation to grow the tree.</div> :
       <div className="tree-canvas">
         <svg ref={svgRef} role="tree" aria-label="Coordinator, candidates, agent tasks and recorded calls" viewBox={`-10 0 ${width + 20} ${height}`} preserveAspectRatio="xMidYMin meet" onKeyDown={onKey}>
-          <g className="tree-edges">{edges.map(([a, b]) => <line key={b.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} className={`edge ${b.status}`} />)}</g>
+          <g className="tree-edges">{edges.map(([a, b]) => <line key={`${a.id}:${b.id}`} data-dependency-source={a.level===2&&b.level===2?a.id.slice(2):undefined} data-dependency-target={a.level===2&&b.level===2?b.id.slice(2):undefined} x1={a.x} y1={a.y} x2={b.x} y2={b.y} className={`edge ${b.status}`} />)}</g>
           {flat.map(n => <g key={n.id} data-node={n.id} role="treeitem" aria-level={n.level + 1} aria-label={n.tip} aria-selected={selectedTask !== undefined && n.id === `a:${selectedTask}`} tabIndex={active === n.id ? 0 : -1}
             className={`tnode l${n.level} ${n.id === `a:${selectedTask}` ? 'selected' : ''}`} style={{ transform: `translate(${n.x}px, ${n.y}px)` }}
             onFocus={() => { setFocusId(n.id); setHover(n); }} onBlur={() => setHover(null)} onMouseEnter={() => setHover(n)} onMouseLeave={() => setHover(null)} onClick={() => { setFocusId(n.id); n.act?.(); }}>
@@ -95,6 +105,6 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
         </svg>
         {hover && <div className="tree-tip" role="status" style={{ left: `${(hover.x + 10) / (width + 20) * 100}%`, top: `${hover.y / height * 100}%` }}>{hover.tip}</div>}
       </div>}
-    <p className="tree-foot">Built only from committed tasks and traces{cursor === null ? '' : ` through commit ${cursor}`}. Arrow keys move · Enter inspects.</p>
+    <p className="tree-foot">Built only from committed tasks and traces{cursor === null ? '' : ` through commit ${cursor}`}. Task-to-task lines are recorded dependencies; candidate and call lines group records. Arrow keys move · Enter inspects.</p>
   </section>;
 }

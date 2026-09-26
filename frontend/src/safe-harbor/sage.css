@@ -1,15 +1,15 @@
-/* Sage-on-white theme. Palette: #cad2c5 #84a98c #52796f #354f52 #2f3e46 + white / tints. */
-:root{--s1:#cad2c5;--s2:#84a98c;--s3:#52796f;--s4:#354f52;--s5:#2f3e46;--tint:#f6f8f5;--tint2:#eef2ec;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--s5);background:#fff}
-html,body{background:#fff;color:var(--s5)}
-.sage-app{min-height:100vh;display:flex;flex-direction:column;background:#fff;color:var(--s5);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+/* Split investigation layout, using the specified dark navy, cyan and amber palette. */
+:root{--s1:#344960;--s2:#83e6d7;--s3:#83e6d7;--s4:#b1c2d8;--s5:#e3edf7;--tint:#142236;--tint2:#1a3243;--sage-surface:#101c2d;--sage-background:#0a1220;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--s5);background:var(--sage-surface)}
+html,body{background:var(--sage-surface);color:var(--s5)}
+.sage-app{min-height:100vh;display:flex;flex-direction:column;background:var(--sage-surface);color:var(--s5);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
 .sage-app h1,.sage-app h2,.sage-app h3{font-family:inherit;color:var(--s5);letter-spacing:-.01em}
 .sage-app .eyebrow{color:var(--s3);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
-.sage-app button,.sage-app .button{background:#fff;color:var(--s5);border:1px solid var(--s1);border-radius:10px;padding:7px 12px;font-size:13px;box-shadow:none}
+.sage-app button,.sage-app .button{background:var(--sage-surface);color:var(--s5);border:1px solid var(--s1);border-radius:10px;padding:7px 12px;font-size:13px;box-shadow:none}
 .sage-app button:hover,.sage-app .button:hover{background:var(--tint2);border-color:var(--s2)}
 .sage-app button.primary{background:var(--s4);color:#fff;border-color:var(--s4)}
 .sage-app button.primary:hover{background:var(--s5)}
 .sage-app button:focus-visible,.sage-app a:focus-visible,.sage-app [tabindex]:focus-visible,.sage-app select:focus-visible,.sage-app input:focus-visible{outline:2px solid var(--s3);outline-offset:3px}
-.sage-app input,.sage-app select{background:#fff;color:var(--s5);border:1px solid var(--s1);border-radius:10px;padding:7px 10px;font-size:13px}
+.sage-app input,.sage-app select{background:var(--sage-surface);color:var(--s5);border:1px solid var(--s1);border-radius:10px;padding:7px 10px;font-size:13px}
 .sage-app a{color:var(--s3)}
 .sage-app .pill{border:1px solid var(--s1);background:var(--tint);color:var(--s4);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;letter-spacing:.06em}
 .sage-app .pill.live{border-color:var(--s2);color:var(--s3)}
@@ -17,26 +17,26 @@ html,body{background:#fff;color:var(--s5)}
 .sage-app .muted,.sage-app .small.muted{color:var(--s4);opacity:.8}
 .sage-app .amber-text{color:var(--s5);font-weight:650;text-decoration:underline dotted}
 /* header */
-.sage-top{display:flex;align-items:center;gap:12px;padding:10px 24px;border-bottom:1px solid var(--s1);background:#fff;min-height:56px;flex-wrap:wrap}
+.sage-top{display:flex;align-items:center;gap:12px;padding:10px 24px;border-bottom:1px solid var(--s1);background:var(--sage-surface);min-height:56px;flex-wrap:wrap}
 .sage-top .brand{display:flex;align-items:center;gap:8px;color:var(--s5);font-weight:650;font-size:16px;text-decoration:none;font-family:inherit;letter-spacing:-.01em}
 .sage-top .brand svg{color:var(--s3)}
 .mode-chip{font-size:11px;font-weight:700;letter-spacing:.08em;color:#fff;background:var(--s4);border-radius:999px;padding:4px 10px}
 .sage-top .ctx{font-size:12px;color:var(--s4)}
 .sage-top .data-version{max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.75}
 .cand-chips{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
-.sage-app .cand-chip{border-radius:999px;padding:5px 12px;font-size:13px;background:#fff}
+.sage-app .cand-chip{border-radius:999px;padding:5px 12px;font-size:13px;background:var(--sage-surface)}
 .sage-app .cand-chip.selected{background:var(--tint2);border-color:var(--s3);color:var(--s5);font-weight:600}
 .sage-top .header-actions{display:flex;gap:8px;align-items:center}
 .more-menu{position:relative}
 .more-menu summary{list-style:none;cursor:pointer;border:1px solid var(--s1);border-radius:10px;padding:7px 12px;font-size:13px}
 .more-menu summary::-webkit-details-marker{display:none}
-.more-pop{position:absolute;right:0;top:calc(100% + 6px);z-index:40;background:#fff;border:1px solid var(--s1);border-radius:12px;padding:12px;display:grid;gap:8px;width:280px}
+.more-pop{position:absolute;right:0;top:calc(100% + 6px);z-index:25;background:var(--sage-surface);border:1px solid var(--s1);border-radius:12px;padding:12px;display:grid;gap:8px;width:280px}
 .more-pop form{display:flex;gap:6px}.more-pop input{flex:1}
 /* notices */
 .sage-app .error-banner,.sage-app .run-status-notice{margin:10px 24px 0;background:var(--tint);border:1px solid var(--s1);border-left:3px solid var(--s5);color:var(--s5);border-radius:10px;padding:10px 14px;font-size:13px}
 /* main split */
 .sage-main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;padding:20px 24px;align-items:start}
-.now-panel,.tree-panel{background:#fff;border:1px solid var(--s1);border-radius:12px;padding:22px}
+.now-panel,.tree-panel{background:var(--sage-surface);border:1px solid var(--s1);border-radius:12px;padding:22px}
 .now-panel{display:flex;flex-direction:column;gap:18px}
 .now-head{animation:sage-fade .8s ease-in-out both}
 .now-state{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--s3);font-weight:600;letter-spacing:.02em}
@@ -47,17 +47,17 @@ html,body{background:#fff;color:var(--s5)}
 .now-head h1{font-size:28px;line-height:1.2;font-weight:650;margin:10px 0 8px}
 .now-question{font-size:15px;line-height:1.5;color:var(--s4);max-width:62ch}
 .now-tool{display:flex;gap:12px;align-items:center;margin-top:16px;padding:12px 14px;background:var(--tint);border-radius:10px}
-.now-tool-icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#fff;border:1px solid var(--s1);color:var(--s3)}
+.now-tool-icon{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--sage-surface);border:1px solid var(--s1);color:var(--s3)}
 .now-tool strong{display:block;font-size:14px;text-transform:capitalize}.now-tool span{font-size:12.5px;color:var(--s4)}
 .now-numbers{display:flex;gap:28px;margin-top:14px}
 .now-numbers strong{display:block;font-size:22px;font-weight:650;color:var(--s4)}.now-numbers span{font-size:12px;color:var(--s4)}
 /* genome inside now panel */
-.sage-app .now-zoom .genome-panel{background:#fff;border:1px solid var(--s1);border-radius:12px;padding:14px;box-shadow:none;color:var(--s5)}
+.sage-app .now-zoom .genome-panel{background:var(--sage-surface);border:1px solid var(--s1);border-radius:12px;padding:14px;box-shadow:none;color:var(--s5)}
 .sage-app .genome-panel h2{font-size:15px}
 .sage-app .genome-breadcrumb button{border:none;background:none;padding:4px 6px;color:var(--s4)}
 .sage-app .genome-breadcrumb button.active{color:var(--s5);font-weight:650;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--s2)}
 .sage-app .reference-availability,.sage-app .coordinate-footer,.sage-app .track-heading,.sage-app .chromosome-title{color:var(--s4);font-size:12px;background:none;border-color:var(--s1)}
-.sage-app .genome-canvas{background:#fff;overflow:hidden;animation:sage-zoom .9s ease-in-out both;transform-origin:50% 50%}
+.sage-app .genome-canvas{background:var(--sage-surface);overflow:hidden;animation:sage-zoom .9s ease-in-out both;transform-origin:50% 50%}
 .sage-app .genome-canvas svg rect{fill:var(--s1)}
 .sage-app .genome-canvas svg line{stroke:var(--s1)}
 .sage-app .genome-canvas svg text,.sage-app .svg-label{fill:var(--s4)}
@@ -67,10 +67,10 @@ html,body{background:#fff;color:var(--s5)}
 .sage-app .conclusion-panel{background:var(--tint);border:1px solid var(--s1);border-radius:12px;padding:16px;box-shadow:none;color:var(--s5);font-size:13.5px}
 .sage-app .conclusion-panel h2{font-size:17px}
 .sage-app .status-axes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
-.sage-app .status-axes div{background:#fff;border:1px solid var(--s1);border-radius:10px;padding:8px 10px}
+.sage-app .status-axes div{background:var(--sage-surface);border:1px solid var(--s1);border-radius:10px;padding:8px 10px}
 .sage-app .status-axes span{display:block;font-size:11px;color:var(--s4)}
 .sage-app .status-axes strong{color:var(--s5);text-transform:capitalize}
-.sage-app .question-callout,.sage-app .endpoint{background:#fff;border:1px solid var(--s1);border-radius:10px;padding:10px;margin-top:10px}
+.sage-app .question-callout,.sage-app .endpoint{background:var(--sage-surface);border:1px solid var(--s1);border-radius:10px;padding:10px;margin-top:10px}
 .sage-app .text-button{margin-top:10px}
 .sage-app .scientific-footnote,.sage-app .conclusion-envelope-note{color:var(--s4);font-size:12px;margin-top:10px}
 .sage-app .sh-cue-highlight{outline:2px solid var(--s2);outline-offset:2px;transition:outline-color .8s}
@@ -91,10 +91,10 @@ html,body{background:#fff;color:var(--s5)}
 .fill-deep{fill:var(--s3);stroke:var(--s3);transition:fill .5s}
 .fill-sage{fill:var(--s2)}
 .fill-char{fill:var(--s5);stroke:var(--s5)}
-.ring-sage{fill:#fff;stroke:var(--s2);stroke-width:2.5}
-.ring-dashed{fill:#fff;stroke:var(--s2);stroke-width:1.6;stroke-dasharray:3 3;opacity:.9}
-.ring-dotted{fill:#fff;stroke:var(--s1);stroke-width:1.6;stroke-dasharray:1 3;stroke-linecap:round}
-.ring-slate{fill:#fff;stroke:var(--s4);stroke-width:1.6}
+.ring-sage{fill:var(--sage-surface);stroke:var(--s2);stroke-width:2.5}
+.ring-dashed{fill:var(--sage-surface);stroke:var(--s2);stroke-width:1.6;stroke-dasharray:3 3;opacity:.9}
+.ring-dotted{fill:var(--sage-surface);stroke:var(--s1);stroke-width:1.6;stroke-dasharray:1 3;stroke-linecap:round}
+.ring-slate{fill:var(--sage-surface);stroke:var(--s4);stroke-width:1.6}
 .mark-light{stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .mark-dark{stroke:var(--s4);stroke-width:1.6;fill:none;stroke-linecap:round}
 .halo{fill:rgba(132,169,140,.18);stroke:none;animation:sage-halo 2.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
@@ -102,21 +102,21 @@ html,body{background:#fff;color:var(--s5)}
 .tsub{font-size:11.5px;fill:var(--s4)}
 .tcall{font-size:11px;fill:var(--s4)}
 .l0 .tlabel{font-size:14px;font-weight:650}
-.tree-tip{position:absolute;transform:translate(-50%,-120%);background:#fff;border:1px solid var(--s1);border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--s5);max-width:300px;pointer-events:none;z-index:5;line-height:1.4}
+.tree-tip{position:absolute;transform:translate(-50%,-120%);background:var(--sage-surface);border:1px solid var(--s1);border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--s5);max-width:300px;pointer-events:none;z-index:5;line-height:1.4}
 .tree-foot{font-size:12px;color:var(--s4);margin-top:10px}
 .sage-budget{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--s4);padding:0 4px}
-.secondary-details{border:1px solid var(--s1);border-radius:12px;padding:10px 14px;background:#fff}
+.secondary-details{border:1px solid var(--s1);border-radius:12px;padding:10px 14px;background:var(--sage-surface)}
 .secondary-details summary{cursor:pointer;font-size:13px;color:var(--s4)}
 .sage-app .empty-state{color:var(--s4);background:var(--tint);border:1px dashed var(--s1);border-radius:10px;padding:24px;text-align:center;font-size:14px}
 /* legacy panels shown in secondary area / drawers */
-.sage-app .panel{background:#fff;border:1px solid var(--s1);border-radius:12px;box-shadow:none;color:var(--s5)}
-.sage-app .at-agent,.sage-app .at-root,.sage-app .at-branch-head,.sage-app .at-call,.sage-app .at-meter,.sage-app .task-node{background:#fff;border-color:var(--s1);color:var(--s5)}
+.sage-app .panel{background:var(--sage-surface);border:1px solid var(--s1);border-radius:12px;box-shadow:none;color:var(--s5)}
+.sage-app .at-agent,.sage-app .at-root,.sage-app .at-branch-head,.sage-app .at-call,.sage-app .at-meter,.sage-app .task-node{background:var(--sage-surface);border-color:var(--s1);color:var(--s5)}
 .sage-app .at-meta,.sage-app .at-footnote,.sage-app .task-role,.sage-app .task-question{color:var(--s4)}
-.sage-app .drawer,.sage-app aside.drawer,.sage-app .inspector,.sage-app .harness{background:#fff;color:var(--s5);border-color:var(--s1)}
+.sage-app .drawer,.sage-app aside.drawer,.sage-app .inspector,.sage-app .harness{background:var(--sage-surface);color:var(--s5);border-color:var(--s1)}
 .sage-app .drawer-scrim{background:rgba(47,62,70,.25)}
 /* timeline */
-.sage-timeline{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--s1);padding:6px 24px;z-index:20}
-.sage-timeline>*{background:#fff !important;border:none !important;box-shadow:none !important;color:var(--s5) !important;margin:0 !important}
+.sage-timeline{position:sticky;bottom:0;background:var(--sage-surface);border-top:1px solid var(--s1);padding:6px 24px;z-index:20}
+.sage-timeline>*{background:var(--sage-surface) !important;border:none !important;box-shadow:none !important;color:var(--s5) !important;margin:0 !important}
 .sage-timeline input[type=range]{accent-color:var(--s3)}
 @keyframes sage-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes sage-zoom{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
@@ -126,11 +126,34 @@ html,body{background:#fff;color:var(--s5)}
 @media (max-width:1000px){.sage-main{grid-template-columns:1fr}.sage-right{position:static}}
 @media (prefers-reduced-motion:reduce){.sage-app .genome-canvas{animation:sage-cross .6s linear both}.now-head{animation:sage-cross .6s linear both}.tnode{transition:none}.tnode-in{animation:sage-cross .4s linear both}.halo,.now-state.running i{animation:none}}
 @keyframes sage-cross{from{opacity:0}to{opacity:1}}
-body,#root,.safe-harbor-app.sage-app{background:#fff !important}
+body,#root,.safe-harbor-app.sage-app{background:var(--sage-surface) !important}
 .sage-top .header-actions button{width:auto;flex:none}
 .sage-top .data-version{max-width:140px}
 .sage-app .genome-breadcrumb button.active,.sage-app .genome-breadcrumb button[aria-current]{background:none;color:var(--s5)}
 .sage-timeline *{background-color:transparent;color:var(--s5);border-color:var(--s1)}
-.sage-timeline button,.sage-timeline select{background:#fff;border:1px solid var(--s1);color:var(--s5)}
+.sage-timeline button,.sage-timeline select{background:var(--sage-surface);border:1px solid var(--s1);color:var(--s5)}
 .sage-timeline .pill,.sage-timeline [class*=live]{background:var(--tint2);color:var(--s4)}
 .tree-canvas svg{max-height:none}
+
+/* Preserve contrast and restrained status accents on the original split layout. */
+body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important}
+.sage-app .mode-chip{background:#173d43;color:#b5f4e9;border:1px solid #417678}
+.sage-app button.primary{background:#83e6d7;color:#102b30;border-color:#83e6d7}
+.sage-app button.primary:hover{background:#b4f2e6}
+.sage-app .amber-text,.now-state.failed,.now-state.blocked{color:#efc58b}
+.now-state.failed i,.now-state.blocked i{background:#efc58b;border-color:#efc58b}
+.fill-deep{fill:#265956;stroke:#83e6d7}.fill-char{fill:#60482f;stroke:#efc58b}
+.mark-light{stroke:#e3edf7}.mark-dark{stroke:#e3edf7}
+.sage-app .genome-canvas svg rect{fill:#2c4058}
+.sage-app .status-axes span,.sage-app .pill,.mode-chip{font-size:12px}
+.sage-app .muted,.sage-app .small.muted,.sage-top .data-version{opacity:1}
+.sage-app .inspector-drawer,.sage-app .harness-drawer{background:#101c2d;color:#e3edf7;border-color:#344960}
+.sage-app .drawer-scrim{background:#0009}
+.sage-app .conclusion-text{font-size:18px;line-height:1.6}
+.sage-app .final-dossier-panel .panel-head{flex-wrap:wrap}
+@media(prefers-reduced-motion:reduce){.sage-app *,.sage-app *::before,.sage-app *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Show genuine multiple candidate columns without shrinking their role labels. */
+@media(min-width:1100px){.sage-app.multi-candidate .sage-main{grid-template-columns:minmax(320px,1fr) minmax(680px,750px)}}
+@media(max-width:1099px){.sage-app.multi-candidate .sage-main{grid-template-columns:1fr}.sage-app.multi-candidate .sage-right{position:static}}
+.sage-app.multi-candidate .tree-canvas .tlabel{font-size:14px}
+.sage-app.multi-candidate .tree-canvas .tsub{font-size:13px}

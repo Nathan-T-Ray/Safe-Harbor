@@ -1,0 +1,51 @@
+{
+  "passed": false,
+  "checks": [
+    {
+      "name": "no-preference: no horizontal page overflow",
+      "passed": true
+    },
+    {
+      "name": "no-preference: required dark navy background",
+      "passed": true,
+      "background": "rgb(10, 18, 32)"
+    },
+    {
+      "name": "no-preference: critical HTML labels >=12px",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "no-preference: critical text contrast >=4.5",
+      "passed": true,
+      "violations": []
+    },
+    {
+      "name": "no-preference: conclusion >=18px",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard opens harness and focus stays inside",
+      "passed": true
+    },
+    {
+      "name": "no-preference: presentation action closes the menu",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard reset removes future dossier",
+      "passed": true
+    },
+    {
+      "name": "no-preference: keyboard timeline restores exact stored final stage",
+      "passed": true
+    },
+    {
+      "name": "no-preference: genome has coordinate-labeled readable base alternative",
+      "passed": true
+    }
+  ],
+  "error": "locator.isVisible: Error: strict mode violation: getByRole('region', { name: 'Agent tree' }) resolved to 2 elements:\n    1) <section class=\"tree-panel\" aria-label=\"Agent tree chart\">…</section> aka getByRole('region', { name: 'Agent tree chart' })\n    2) <section id=\"agent-tree\" aria-label=\"Agent tree\" class=\"panel agent-tree-panel\">…</section> aka getByRole('region', { name: 'Agent tree', exact: true })\n\nCall log:\n\u001b[2m    - checking visibility of getByRole('region', { name: 'Agent tree' })\u001b[22m\n\n    at /Users/nathanray/safe-harbor-standalone/e2e/safe_harbor/split_readability.mjs:55:119",
+  "errors": [],
+  "writes": []
+}

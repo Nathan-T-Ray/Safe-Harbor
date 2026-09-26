@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "run_id": "run-0142454a0a6b4976bd380c6eeeddec99",
+  "mode": "recorded_replay_of_genuine_selected_H0",
+  "url": "http://127.0.0.1:5176/?run=run-0142454a0a6b4976bd380c6eeeddec99",
+  "observed_watermark": 28,
+  "dossier_commit": 27,
+  "latest_assessment_revision": 2,
+  "latest_assessment_accepted": false,
+  "final_summary_revision": 3,
+  "final_summary_accepted": true,
+  "artifact_id": "artifact-c8e7014069d74cafac0e31c4b7883692",
+  "checks": [
+    {
+      "check": "Separate final dossier shows the exact accepted revision 3 while earlier rejected assessment revision 2 remains visible",
+      "passed": true
+    },
+    {
+      "check": "Final summary opens its exact immutable source artifact, including the stored validation result",
+      "passed": true
+    },
+    {
+      "check": "Before dossier commit 27, no final summary leaks into replay; the prior unresolved assessment remains",
+      "passed": true
+    },
+    {
+      "check": "Commit 27 displays only the stored report-stage conclusion and axes with current producer/readset gating",
+      "passed": true,
+      "artifact_id": "artifact-c8e7014069d74cafac0e31c4b7883692",
+      "readset_entries": 25,
+      "summary_readset_entries": 25
+    },
+    {
+      "check": "Repeated backward/forward seeks add and remove the final summary deterministically",
+      "passed": true
+    },
+    {
+      "check": "No model calls or ledger writes; a later independent comparison-report attachment is allowed without rewriting history",
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "model_calls": 0,
+  "ledger_writes": 0,
+  "limitations": [
+    "Accepted proposal means stored schema/evidence validation, not biological safety.",
+    "The report-stage summary is a separate artifact; no backend assessment pointer was rewritten.",
+    "This journey verifies before/after publication and current readset agreement; it does not create a new evidence revision."
+  ]
+}

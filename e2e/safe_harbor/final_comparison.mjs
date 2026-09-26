@@ -42,7 +42,9 @@ page.on('pageerror',error=>errors.push(error.message));
 page.on('request',request=>{if(!['GET','HEAD'].includes(request.method()))writes.push(`${request.method()} ${request.url()}`);});
 try {
   await page.goto(`${base}/?run=${runId}`);
-  await page.locator('.mode-word').getByText('REAL MODEL',{exact:true}).waitFor();
+  await page.locator('.mode-word,.mode-chip').getByText('REAL MODEL',{exact:true}).waitFor();
+  const menu=page.locator('details.more-menu');
+  if(await menu.count()&&!await menu.evaluate(node=>node.open))await menu.locator('summary').click();
   await page.getByRole('button',{name:/Harness evolution/}).click();
   const drawer=page.getByRole('dialog',{name:'Harness evolution'});
   await drawer.getByRole('textbox',{name:'Saved experiment ID'}).fill(experimentId);

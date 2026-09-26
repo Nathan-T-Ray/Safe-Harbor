@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "observed_at": "2026-09-26T20:01:57.595610+00:00",
+  "observed_at": "2026-09-26T20:12:07.232462+00:00",
   "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
   "source_url": "http://127.0.0.1:8016/experiments/experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
   "experiment_status": "running_final",
@@ -20,10 +20,8 @@
   ],
   "pending_reason": "Final experiment/report is not complete; no arithmetic pass is asserted.",
   "observed_case_statuses": {
-    "awaiting_proposal": 3,
-    "pending": 4,
-    "complete": 13,
-    "failed": 3,
+    "complete": 18,
+    "failed": 5,
     "running": 1
   }
 }

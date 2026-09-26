@@ -75,11 +75,17 @@ function StatusIcon({ status }: { status: string }) {
 const money = (v: number | null) => (v === null ? 'cost unreported' : `$${v.toFixed(v < 0.01 ? 5 : 3)}`);
 
 export function deriveBranches(run: Run | undefined, tasks: Task[], artifacts: Artifact[], candidates: Candidate[]): Branch[] {
+  const byId = new Map(tasks.map(task => [task.task_id, task])), depths = new Map<string, number>();
+  const depth = (task: Task): number => {
+    const known = depths.get(task.task_id); if (known !== undefined) return known;
+    const parents = task.depends_on.map(id => byId.get(id)).filter((parent): parent is Task => Boolean(parent));
+    const value = parents.length ? Math.max(...parents.map(depth)) + 1 : 0; depths.set(task.task_id, value); return value;
+  };
   const ids = [...new Set([...(run?.candidate_ids ?? []), ...tasks.map(t => t.candidate_id ?? '__run')])];
   return ids.map(id => {
     const c = candidates.find(x => x.candidate_id === id);
     const agents = tasks.filter(t => (t.candidate_id ?? '__run') === id)
-      .sort((a, b) => (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
+      .sort((a, b) => depth(a) - depth(b) || (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
       .map(t => buildAgent(t, artifacts, tasks));
     return { id, name: id === '__run' ? 'Run-wide' : c?.name ?? id, interval: c ? `${c.chromosome}:${(c.start + 1).toLocaleString()}` : undefined, agents };
   }).filter(b => b.agents.length || b.id !== '__run');
@@ -93,22 +99,7 @@ export function AgentTree({ run, tasks, artifacts, candidates, selectedTask, cur
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [focusId, setFocusId] = useState('root');
   const treeRef = useRef<HTMLDivElement>(null);
-  const branches = useMemo<Branch[]>(() => {
-    const byId = new Map(tasks.map(task => [task.task_id,task])), depths = new Map<string,number>();
-    const depth = (task: Task): number => {
-      const saved=depths.get(task.task_id); if(saved !== undefined) return saved;
-      const parents=task.depends_on.map(id=>byId.get(id)).filter((parent): parent is Task=>Boolean(parent));
-      const value=parents.length ? Math.max(...parents.map(depth))+1 : 0; depths.set(task.task_id,value); return value;
-    };
-    const ids = [...new Set([...(run?.candidate_ids ?? []), ...tasks.map(t => t.candidate_id ?? '__run')])];
-    return ids.map(id => {
-      const c = candidates.find(x => x.candidate_id === id);
-      const agents = tasks.filter(t => (t.candidate_id ?? '__run') === id)
-        .sort((a, b) => depth(a) - depth(b) || (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
-        .map(t => buildAgent(t, artifacts, tasks));
-      return { id, name: id === '__run' ? 'Run-wide' : c?.name ?? id, interval: c ? `${c.chromosome}:${(c.start + 1).toLocaleString()}` : undefined, agents };
-    }).filter(b => b.agents.length || b.id !== '__run');
-  }, [run, tasks, artifacts, candidates]);
+  const branches = useMemo(() => deriveBranches(run, tasks, artifacts, candidates), [run, tasks, artifacts, candidates]);
   const running = tasks.filter(t => t.status === 'running');
   const budget = run?.budget; const limits = rec(run?.execution_limits);
   const modeWord = run?.mode === 'real_model' ? 'REAL MODEL' : run?.mode === 'mock' ? 'MOCK FIXTURE' : run ? 'DETERMINISTIC' : 'NO RUN';
