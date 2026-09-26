@@ -1,0 +1,57 @@
+{
+  "type": "actual_API_persisted_scientific_numeric_audit",
+  "mode": "deterministic_operational",
+  "run_id": "run-61c1f8d4a138477abc0a5dfe20ce9342",
+  "run_status": "complete",
+  "task_count": 18,
+  "model_calls": 0,
+  "checks": [
+    {
+      "candidate_id": "pansio-1",
+      "required_numbers": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "all_independent_values_match": true
+    },
+    {
+      "candidate_id": "olonne-18",
+      "required_numbers": {
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "all_independent_values_match": true
+    },
+    {
+      "candidate_id": "keppel-19",
+      "required_numbers": {
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "all_independent_values_match": true
+    }
+  ],
+  "human_reviewed": false,
+  "limitation": "Numerical agreement only; no model reasoning or biological-safety validation."
+}

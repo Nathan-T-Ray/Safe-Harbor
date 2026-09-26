@@ -1,20 +1,22 @@
 # Implementation status — 2026-09-26
 
-[Live contributor board](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/35) and issue claims are authoritative. Committed tables are snapshots.
+[Live contributor board](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/1) and issue claims are authoritative. This is the standalone Safe Harbor project; all 60 old-location SH tickets redirect here. Legacy LA tickets were left untouched.
 
 | Package | Owner | Actual status |
 |---|---|---|
-| F01–F04 | codex-integrator | Contracts/docs/dependencies published; MongoDB transaction verified; fixture/startup completion pending |
-| D01–D04 | codex-data | Real ingestion/catalog/criteria/reference assets delivered; 13 source hashes and coordinate/sequence checks pass |
-| D05–D10 | unclaimed at publication | Calculations/bounded tools, independent reference answers/splits and provenance review available |
-| R01–R09 | codex-runtime | Ledger/API/compiler/worker/coordinator/revision foundations implemented; complete journey acceptance pending |
-| R10–R12 | unclaimed at publication | Context, assessment validation and export review available; coordinate integration with runtime owner |
-| H01–H08 | unclaimed at publication | Harness/evaluation available; runtime is waiting for get_harness/list_harnesses |
-| U01–U10/U12 | codex-ui | Build-passing real catalog/genome/graph/evidence/replay shell; actual browser E2E pending |
-| U11/U13/U14, Q01–Q12 | unclaimed at publication | Camera/presentation/readability and E2E/critic work available |
+| F01–F04 | codex-integrator | Standalone repo, contracts, locks, startup and dedicated MongoDB proven; real model configuration pending |
+| D01–D07 | codex-data | Five real supplements, 15 source hashes, GRCh38 coordinates, sequences, Comp/PseudoGene GENCODE v36 and bounded numerical tools verified |
+| D08–D09 | codex-integrator | Independent raw-file calculation agrees with 27 persisted numbers; nine grouped audit cases and promotion rule frozen; no human review claimed |
+| R01–R09 | codex-runtime | Real API/Mongo crash, idempotency and active revision journeys passed; real provider path remains untested |
+| R10–R12 | codex-runtime | Scoped retrieval, bounded contexts, proposal validation and historical export implemented; E2E integration in progress |
+| H01–H02 | codex-harness | Saved manual structural patch executed a genuinely different task graph; this is operational evidence only |
+| H03–H05 | codex-evaluation | Both baselines and isolated scoring executed operationally; all assignments, missing H1 and zero model calls reported |
+| H06–H08 | codex-harness | Optimizer, promotion and reporting implemented; automatic proposal and actual model comparison await credentials |
+| U01–U10/U12 | codex-ui | Actual API/browser genome, exact bases, graph, evidence and historical replay verified; presentation refinements remain |
+| Q08 | codex-integrator | Browser reconstruction equals MongoDB snapshots at sequences 1/19/39, repeated seeks; no future assessment leakage |
 
-Actual source status: three verified GRCh38 intervals, frozen sequence/GENCODE v36 neighborhoods, H1/H9 experimental tables, original row provenance/hashes. Data-integrity check passed. H1 Keppel workbook139 vs article119 discrepancy remains unresolved. Missing cancer/regulatory inputs remain unavailable.
+Scientific context is H1 human embryonic stem cells against the GRCh38 reference, not a personalized H1 genome. The three candidates are publication-derived. Keppel's H1 workbook count of 139 versus article prose count of 119 remains unresolved. Missing cancer/regulatory inputs keep the overall screen incomplete. No global biological safety conclusion is produced.
 
-MongoDB transaction was executed against localhost27019 replicaSet living-atlas-dev, database safe_harbor. A local transaction-capable replica set is acceptable for this development gate; no Atlas connectivity claim is made. OpenRouter real-model credentials/model selection are pending. No real model investigation, automatic proposal, baseline comparison or improvement result exists yet.
+Evidence includes `artifacts/manifests/independent-numerical-api-audit.json`, `replay-integrity.json`, `replay-reference-versions.json`, `safe-harbor-foundation.json`, and operational process/revision reports under `artifacts/safe_harbor/`. These are deterministic operational runs and recorded replays, not real model investigations or proof of model improvement.
 
-Safe Harbor frontend should use5174: original Living Atlas currently owns5173. Safe Harbor API target8010 (runtime probe briefly used8011). Do not confuse legacy running services with new-code evidence.
+Current integration services: dedicated `safe-harbor-dev` replica set on localhost:27021, API:8016 and UI:5176. No Atlas connectivity claim is made. OpenRouter key/model configuration is pending. Genuine model investigation, automatic model-generated structural proposal, fair model comparison and final canonical real recording remain release gates.

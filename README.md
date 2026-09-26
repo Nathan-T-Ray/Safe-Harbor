@@ -10,7 +10,7 @@ Safe Harbor uses real genome data to investigate published candidate DNA inserti
 
 Read an available SH-* ticket, inspect its dependencies and reserved paths, and claim it visibly before editing. Active ownership stays on the live GitHub issue. Submit small PRs to `main`. Shared contracts/dependencies are integrator-owned.
 
-Priority available lanes: D08–D09 independent reference answers/splits; H03–H08 competent baselines, isolated scoring, real automatic proposal and promotion; R10–R12 bounded context, validated assessments and replayable export; Q01–Q12 actual E2Es. Existing data/runtime/UI and H01–H02 work is claimed; do not duplicate it.
+Current active lanes: runtime R10–R12; evaluation H03–H05; automatic harness proposals H06–H08; integrator D08–D09 and Q08. These are claimed. External contributors should inspect the live board for available E2E/critic and provenance packages, then claim a distinct file scope. Do not duplicate the active implementation.
 
 ## Current implementation
 

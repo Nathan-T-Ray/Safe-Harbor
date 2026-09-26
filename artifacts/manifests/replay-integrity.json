@@ -1,0 +1,44 @@
+{
+  "mode": "recorded_replay_of_deterministic_operational_run",
+  "mock_transport": false,
+  "run_id": "run-61c1f8d4a138477abc0a5dfe20ce9342",
+  "checks": [
+    {
+      "sequence": 1,
+      "entities_match": true,
+      "mismatches": [],
+      "assessment_count": 0,
+      "artifact_count": 4
+    },
+    {
+      "sequence": 19,
+      "entities_match": true,
+      "mismatches": [],
+      "assessment_count": 0,
+      "artifact_count": 33
+    },
+    {
+      "sequence": 39,
+      "entities_match": true,
+      "mismatches": [],
+      "assessment_count": 6,
+      "artifact_count": 64
+    },
+    {
+      "sequence": 1,
+      "entities_match": true,
+      "mismatches": [],
+      "assessment_count": 0,
+      "artifact_count": 4
+    },
+    {
+      "sequence": 39,
+      "entities_match": true,
+      "mismatches": [],
+      "assessment_count": 6,
+      "artifact_count": 64
+    }
+  ],
+  "backward_seek_hides_final_assessment": true,
+  "browser_errors": []
+}
