@@ -1,0 +1,526 @@
+{
+  "tool": "scripts/migrate_to_atlas.py",
+  "started_at": "2026-09-26T20:43:02.574803+00:00",
+  "mode": "execute",
+  "existing_document_mode": "fail",
+  "source": {
+    "uri": "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev",
+    "scheme": "mongodb",
+    "host": "127.0.0.1",
+    "kind": "self_managed"
+  },
+  "target": {
+    "uri": "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev",
+    "scheme": "mongodb",
+    "host": "127.0.0.1",
+    "kind": "self_managed",
+    "is_atlas": false,
+    "ping_ms": 7.16
+  },
+  "stand_in": true,
+  "warnings": [
+    "Target is not MongoDB Atlas (*.mongodb.net). Labelled stand-in run (--allow-non-atlas)."
+  ],
+  "problems": [],
+  "plan": {
+    "databases": [
+      {
+        "source": "safe_harbor_q01_probe",
+        "target": "sh_migrate_scratch_1790455380",
+        "exists": true,
+        "collections": [
+          {
+            "name": "artifacts",
+            "type": "collection",
+            "documents": 33,
+            "estimated_bytes": 1071040,
+            "storage_bytes": 647168,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "artifact_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "assessments",
+            "type": "collection",
+            "documents": 2,
+            "estimated_bytes": 39179,
+            "storage_bytes": 24576,
+            "index_bytes": 40960,
+            "indexes": [
+              "_id_",
+              "assessment_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "evaluations",
+            "type": "collection",
+            "documents": 0,
+            "estimated_bytes": 0,
+            "storage_bytes": 4096,
+            "index_bytes": 8192,
+            "indexes": [
+              "_id_",
+              "evaluation_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "events",
+            "type": "collection",
+            "documents": 66,
+            "estimated_bytes": 1466582,
+            "storage_bytes": 815104,
+            "index_bytes": 110592,
+            "indexes": [
+              "_id_",
+              "event_id_1",
+              "run_id_1_sequence_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "harness_versions",
+            "type": "collection",
+            "documents": 1,
+            "estimated_bytes": 9426,
+            "storage_bytes": 20480,
+            "index_bytes": 40960,
+            "indexes": [
+              "_id_",
+              "harness_hash_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "operations",
+            "type": "collection",
+            "documents": 66,
+            "estimated_bytes": 63070,
+            "storage_bytes": 77824,
+            "index_bytes": 81920,
+            "indexes": [
+              "_id_",
+              "operation_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runs",
+            "type": "collection",
+            "documents": 5,
+            "estimated_bytes": 8460,
+            "storage_bytes": 36864,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "run_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runtime_checkpoint_writes",
+            "type": "collection",
+            "documents": 84,
+            "estimated_bytes": 32410,
+            "storage_bytes": 45056,
+            "index_bytes": 81920,
+            "indexes": [
+              "_id_",
+              "thread_id_1_checkpoint_ns_1_checkpoint_id_-1_task_id_1_idx_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runtime_checkpoints",
+            "type": "collection",
+            "documents": 38,
+            "estimated_bytes": 31074,
+            "storage_bytes": 45056,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "thread_id_1_checkpoint_ns_1_checkpoint_id_-1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "tasks",
+            "type": "collection",
+            "documents": 30,
+            "estimated_bytes": 65668,
+            "storage_bytes": 53248,
+            "index_bytes": 147456,
+            "indexes": [
+              "_id_",
+              "run_id_1_canonical_question_key_1",
+              "run_id_1_status_1",
+              "task_id_1"
+            ],
+            "target_documents_before": 0
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "databases": 1,
+      "collections": 10,
+      "documents": 325,
+      "data_bytes": 2786909,
+      "storage_bytes": 1769472,
+      "index_bytes": 733184
+    }
+  },
+  "collections": [
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "artifacts",
+      "type": "collection",
+      "copy": {
+        "inserted": 33,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "artifact_id_1"
+      ],
+      "copy_seconds": 0.19,
+      "verify": {
+        "source_count": 33,
+        "target_count": 33,
+        "source_sha256": "77958d662f78dfefb772ad417118592ccebed82cc1e5febf5ec8952de25e76d3",
+        "target_sha256": "77958d662f78dfefb772ad417118592ccebed82cc1e5febf5ec8952de25e76d3",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "artifact_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "artifact_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "assessments",
+      "type": "collection",
+      "copy": {
+        "inserted": 2,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "assessment_id_1"
+      ],
+      "copy_seconds": 0.196,
+      "verify": {
+        "source_count": 2,
+        "target_count": 2,
+        "source_sha256": "5ffa3f99ad4dbc6325be3af75b61eb412914967d7e766be0ad54da0eca8f596b",
+        "target_sha256": "5ffa3f99ad4dbc6325be3af75b61eb412914967d7e766be0ad54da0eca8f596b",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "assessment_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "assessment_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "evaluations",
+      "type": "collection",
+      "copy": {
+        "inserted": 0,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "evaluation_id_1"
+      ],
+      "copy_seconds": 0.051,
+      "verify": {
+        "source_count": 0,
+        "target_count": 0,
+        "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "target_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "evaluation_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "evaluation_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "events",
+      "type": "collection",
+      "copy": {
+        "inserted": 66,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "event_id_1",
+        "run_id_1_sequence_1"
+      ],
+      "copy_seconds": 0.181,
+      "verify": {
+        "source_count": 66,
+        "target_count": 66,
+        "source_sha256": "8dc0474f7beee59ff4be1d7dfceffda95120d2796c4050826298fe2bda13ce7c",
+        "target_sha256": "8dc0474f7beee59ff4be1d7dfceffda95120d2796c4050826298fe2bda13ce7c",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "event_id_1",
+          "run_id_1_sequence_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "event_id_1",
+          "run_id_1_sequence_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "harness_versions",
+      "type": "collection",
+      "copy": {
+        "inserted": 1,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "harness_hash_1"
+      ],
+      "copy_seconds": 0.131,
+      "verify": {
+        "source_count": 1,
+        "target_count": 1,
+        "source_sha256": "87074ca84b0f6494d00ebb8a020e1ccbb535e4abc97b158aef2f4ab507887c25",
+        "target_sha256": "87074ca84b0f6494d00ebb8a020e1ccbb535e4abc97b158aef2f4ab507887c25",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "harness_hash_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "harness_hash_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "operations",
+      "type": "collection",
+      "copy": {
+        "inserted": 66,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "operation_id_1"
+      ],
+      "copy_seconds": 0.189,
+      "verify": {
+        "source_count": 66,
+        "target_count": 66,
+        "source_sha256": "d1e61e97b5bb053ac0246988696334d317017f74bfd6e1273ec6fdf07db80a6d",
+        "target_sha256": "d1e61e97b5bb053ac0246988696334d317017f74bfd6e1273ec6fdf07db80a6d",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "operation_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "operation_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "runs",
+      "type": "collection",
+      "copy": {
+        "inserted": 5,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "run_id_1"
+      ],
+      "copy_seconds": 0.24,
+      "verify": {
+        "source_count": 5,
+        "target_count": 5,
+        "source_sha256": "84bcf3923930a06e5fc995c2385e5e13de200fdb43e6f7f2458526b49824f42a",
+        "target_sha256": "84bcf3923930a06e5fc995c2385e5e13de200fdb43e6f7f2458526b49824f42a",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "run_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "run_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "runtime_checkpoint_writes",
+      "type": "collection",
+      "copy": {
+        "inserted": 84,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "thread_id_1_checkpoint_ns_1_checkpoint_id_-1_task_id_1_idx_1"
+      ],
+      "copy_seconds": 0.125,
+      "verify": {
+        "source_count": 84,
+        "target_count": 84,
+        "source_sha256": "d41fcf3624a8c31835c1cb0e6549be9625c67b59638e66cd8c2e573aa35c7bda",
+        "target_sha256": "d41fcf3624a8c31835c1cb0e6549be9625c67b59638e66cd8c2e573aa35c7bda",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "thread_id_1_checkpoint_ns_1_checkpoint_id_-1_task_id_1_idx_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "thread_id_1_checkpoint_ns_1_checkpoint_id_-1_task_id_1_idx_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "runtime_checkpoints",
+      "type": "collection",
+      "copy": {
+        "inserted": 38,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "thread_id_1_checkpoint_ns_1_checkpoint_id_-1"
+      ],
+      "copy_seconds": 0.175,
+      "verify": {
+        "source_count": 38,
+        "target_count": 38,
+        "source_sha256": "4237c2a7a56d825ab5274f06afb488ca32c8ca69e7d6142d448ac9c3b2a5932b",
+        "target_sha256": "4237c2a7a56d825ab5274f06afb488ca32c8ca69e7d6142d448ac9c3b2a5932b",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "thread_id_1_checkpoint_ns_1_checkpoint_id_-1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "thread_id_1_checkpoint_ns_1_checkpoint_id_-1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    },
+    {
+      "database": "safe_harbor_q01_probe",
+      "target_database": "sh_migrate_scratch_1790455380",
+      "collection": "tasks",
+      "type": "collection",
+      "copy": {
+        "inserted": 30,
+        "skipped_existing": 0,
+        "replaced": 0
+      },
+      "indexes_created": [
+        "run_id_1_canonical_question_key_1",
+        "run_id_1_status_1",
+        "task_id_1"
+      ],
+      "copy_seconds": 0.388,
+      "verify": {
+        "source_count": 30,
+        "target_count": 30,
+        "source_sha256": "ea2d088082c9af197d4c8f1ae485e011f1fff83f1e9a1ef999cf35d551a3be2a",
+        "target_sha256": "ea2d088082c9af197d4c8f1ae485e011f1fff83f1e9a1ef999cf35d551a3be2a",
+        "count_match": true,
+        "digest_match": true,
+        "index_names_source": [
+          "_id_",
+          "run_id_1_canonical_question_key_1",
+          "run_id_1_status_1",
+          "task_id_1"
+        ],
+        "index_names_target": [
+          "_id_",
+          "run_id_1_canonical_question_key_1",
+          "run_id_1_status_1",
+          "task_id_1"
+        ],
+        "indexes_match": true
+      },
+      "passed": true
+    }
+  ],
+  "summary": {
+    "collections_verified": 10,
+    "collections_passed": 10,
+    "documents_copied": 325
+  },
+  "result": "verified",
+  "finished_at": "2026-09-26T20:43:04.755502+00:00",
+  "exit_code": 0
+}

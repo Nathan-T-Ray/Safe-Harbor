@@ -1,0 +1,137 @@
+{
+  "journey": "atlas_connectivity",
+  "started_at": "2026-09-26T20:42:29.977407+00:00",
+  "target": {
+    "scheme": "mongodb",
+    "host": "127.0.0.1",
+    "kind": "self_managed",
+    "database": "safe_harbor",
+    "uri": "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev",
+    "is_atlas": false
+  },
+  "stand_in": true,
+  "label": "STAND-IN: non-Atlas deployment run with --allow-non-atlas; this does NOT verify Atlas connectivity",
+  "scratch_databases": [
+    "sh_e2e_atlas_1790455349_fd3d4a_txn",
+    "sh_e2e_atlas_1790455349_fd3d4a_api"
+  ],
+  "api_port": 8096,
+  "mode": "deterministic",
+  "model_calls": 0,
+  "latency": {
+    "ping_ms": {
+      "samples": [
+        5.67,
+        0.66,
+        0.23,
+        0.51,
+        0.25
+      ],
+      "min": 0.23,
+      "median": 0.51
+    },
+    "transaction_commit_ms": 59.67,
+    "transaction_abort_ms": 6.95,
+    "api_startup_ms": 1685.14,
+    "run_duration_ms": 2646.37
+  },
+  "checks": [
+    {
+      "id": "target_is_atlas",
+      "passed": false,
+      "host": "127.0.0.1",
+      "kind": "self_managed",
+      "allowed_stand_in": true
+    },
+    {
+      "id": "ping",
+      "passed": true,
+      "median_ms": 0.51
+    },
+    {
+      "id": "transaction_capable_deployment",
+      "passed": true,
+      "set_name": "safe-harbor-dev"
+    },
+    {
+      "id": "transaction_commit",
+      "passed": true,
+      "read_own_write": true,
+      "invisible_outside_before_commit": true,
+      "both_visible_after_commit": true,
+      "write_concern": "majority"
+    },
+    {
+      "id": "transaction_abort",
+      "passed": true,
+      "both_discarded": true
+    },
+    {
+      "id": "api_started_against_target",
+      "passed": true,
+      "pid": 91160,
+      "health": {
+        "status": "ok",
+        "database": "sh_e2e_atlas_1790455349_fd3d4a_api",
+        "authoritative_store": "MongoDB",
+        "model_available": false,
+        "coordinator_available": true,
+        "schema_version": 1
+      },
+      "exit_code": null,
+      "log": "artifacts/safe_harbor/atlas-connectivity/20260926T204229Z/api.log"
+    },
+    {
+      "id": "run_created",
+      "passed": true,
+      "http_status": 201,
+      "run_id": "run-3ffc778c32eb45be84b5dd1c0377249b",
+      "body": null
+    },
+    {
+      "id": "run_complete",
+      "passed": true,
+      "run_id": "run-3ffc778c32eb45be84b5dd1c0377249b",
+      "status": "complete",
+      "through_sequence": 15,
+      "tasks": 6
+    },
+    {
+      "id": "events_ordered_gap_free",
+      "passed": true,
+      "events": 15,
+      "through_sequence": 15,
+      "first": [
+        1
+      ],
+      "last": [
+        15
+      ]
+    },
+    {
+      "id": "ledger_events_in_target",
+      "passed": true,
+      "ledger_events": 15,
+      "api_events": 15
+    },
+    {
+      "id": "langgraph_checkpoints_in_target",
+      "passed": true,
+      "runtime_checkpoints": 18,
+      "runtime_checkpoint_writes": 36,
+      "checkpoints_for_run_threads": 18,
+      "database": "sh_e2e_atlas_1790455349_fd3d4a_api"
+    }
+  ],
+  "deployment": {
+    "set_name": "safe-harbor-dev",
+    "max_wire_version": 25,
+    "is_writable_primary": true
+  },
+  "api_exit_code": -15,
+  "scratch_databases_dropped": true,
+  "passed": true,
+  "atlas_verified": false,
+  "failed_checks": [],
+  "finished_at": "2026-09-26T20:42:34.812746+00:00"
+}

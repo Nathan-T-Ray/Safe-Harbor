@@ -8,7 +8,7 @@ Integrator owns shared/, root configuration, dependency manifests, startup, and 
 
 GRCh38 reference; H1 human embryonic stem cell context. Published shortlist, not newly discovered. Never label a locus globally safe. Separate screen_status, evidence_status and freshness. Missing required evidence means incomplete; missing experimental evidence is not a negative result. Use actual files, hashes, source rows, verified coordinates and real reference sequence. Preserve H9 as a different context. Cancer-gene evidence unavailable unless documented. GENCODE v36 is a new annotation analysis.
 
-MongoDB application ledger is authoritative. Accept application state and ordered events transactionally. Checkpoints are a separate recovery aid. Max two workers, 24 nodes, three replans, one transient retry; enforce durable budgets. Identical operation IDs deduplicate, conflicting hashes reject. Record query scope dependencies including empty results.
+MongoDB application ledger is authoritative; its target deployment is MongoDB Atlas (MONGODB_URI, see docs/safe-harbor/STARTUP.md). Accept application state and ordered events transactionally. Checkpoints are a separate recovery aid. Max two workers, 24 nodes, three replans, one transient retry; enforce durable budgets. Identical operation IDs deduplicate, conflicting hashes reject. Record query scope dependencies including empty results.
 
 Harness changes must be saved, bounded, executable structural patches. Fixed scientific criteria, evaluation, input data, model and budgets. Freeze per run. Distinguish mock, deterministic operational, real model, recorded replay. No fabricated improvements. Only E2E checks and honest measured results.
 

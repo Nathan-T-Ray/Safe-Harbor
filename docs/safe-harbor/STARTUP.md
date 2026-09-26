@@ -1,8 +1,8 @@
 # Startup
 
-Configuration is server-side in ignored `.env`. Initial target is a local transaction-capable MongoDB replica set; Atlas can be selected with MONGODB_URI. Never commit credentials.
+Configuration is server-side in ignored `.env`. The authoritative MongoDB deployment is MongoDB Atlas, selected by `MONGODB_URI`; there is no silent localhost fallback. Never commit credentials.
 
-Prerequisites: Python 3.11 or newer, Node.js 22.12 or newer, and either `mongod` on PATH for local mode or a transaction-capable Atlas/replica-set URI. `pip` installs the MongoDB client; it does not install the database server. Contributors do not need a model key for deterministic operational E2Es.
+Prerequisites: Python 3.11 or newer, Node.js 22.12 or newer, and a MongoDB Atlas cluster (see below). `mongod` on PATH is only needed for the explicit offline fallback. `pip` installs the MongoDB client; it does not install the database server. Contributors do not need a model key for deterministic operational E2Es.
 
 Run from this checkout's root:
 
@@ -11,10 +11,34 @@ python3 -m venv .venv
 .venv/bin/pip install -r backend/requirements.lock
 .venv/bin/pip install --no-deps -e backend
 npm ci --prefix frontend
-.venv/bin/python scripts/safe_harbor_dev.py --local-mongo
+.venv/bin/python scripts/safe_harbor_dev.py
 ```
 
-The optional `--local-mongo` starts a dedicated `safe-harbor-dev` replica set on 127.0.0.1:27021 with ignored data files. Without that flag, MONGODB_URI selects the database. This project's operational E2Es use the dedicated Safe Harbor replica set; no previous project's database is required. Stop only processes you started.
+## MongoDB Atlas setup
+
+1. In MongoDB Atlas, create a project and a cluster (M0 works for development; it is limited to 512 MB storage, about 100 databases and 500 collections, and every E2E journey creates its own scratch database).
+2. Database Access: create a database user with read/write access (for example `readWriteAnyDatabase`, since journeys create and drop isolated `sh_e2e_*` databases).
+3. Network Access: add your current public IP to the IP Access List. Connections from unlisted IPs time out at server selection.
+4. Connect -> Drivers: copy the `mongodb+srv://` connection string. Copy `.env.example` to `.env` if you have none, then set `MONGODB_URI` to that string with the real user and URL-encoded password, and keep `MONGODB_DATABASE=safe_harbor`. `.env` is ignored; never commit it.
+5. Prove connectivity (ping, a majority-write-concern multi-document transaction with commit and abort, and one deterministic investigation through the real API on port 8096 with LangGraph checkpoints written to Atlas):
+
+```sh
+set -a; . ./.env; set +a
+PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/atlas_connectivity.py
+```
+
+   It fails if `MONGODB_URI` is not an Atlas (`*.mongodb.net`) host and writes `artifacts/safe_harbor/atlas-connectivity/<timestamp>/report.json` with latency and the credential-free target description.
+6. Optional: copy existing data from the local replica set. The default is a dry run that prints databases, collections, counts, indexes and estimated size; `--execute` copies raw BSON (preserving `_id` and every document exactly), recreates indexes and verifies counts plus order-independent content digests per collection:
+
+```sh
+PYTHONPATH=backend:. .venv/bin/python scripts/migrate_to_atlas.py                          # plan only
+PYTHONPATH=backend:. .venv/bin/python scripts/migrate_to_atlas.py --execute                # copy + verify MONGODB_DATABASE
+PYTHONPATH=backend:. .venv/bin/python scripts/migrate_to_atlas.py --prefix safe_harbor --execute
+```
+
+   The source defaults to `mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev` (override with `--source-uri` or `SOURCE_MONGODB_URI`). A non-empty target collection is refused unless `--mode skip` or `--mode replace` is given. Reports go to `artifacts/safe_harbor/atlas-migration/<timestamp>/report.json`; connection strings are always redacted.
+
+Offline fallback only: `scripts/safe_harbor_dev.py --local-mongo` starts a dedicated `safe-harbor-dev` replica set on 127.0.0.1:27021 with ignored data files, for work without network access. Point `MONGODB_URI` at it explicitly; results from it are not Atlas evidence. Stop only processes you started.
 
 UI: http://127.0.0.1:5174. API: http://127.0.0.1:8010/docs. Startup uses strict ports so an unrelated service cannot silently be mistaken for Safe Harbor. API startup includes the coordinator; no second queue platform is needed. Ctrl-C stops children started by this launcher.
 

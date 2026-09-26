@@ -1,0 +1,180 @@
+{
+  "tool": "scripts/migrate_to_atlas.py",
+  "started_at": "2026-09-26T20:43:01.900163+00:00",
+  "mode": "dry_run",
+  "existing_document_mode": "fail",
+  "source": {
+    "uri": "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev",
+    "scheme": "mongodb",
+    "host": "127.0.0.1",
+    "kind": "self_managed"
+  },
+  "target": {
+    "uri": "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev",
+    "scheme": "mongodb",
+    "host": "127.0.0.1",
+    "kind": "self_managed",
+    "is_atlas": false,
+    "ping_ms": 4.51
+  },
+  "stand_in": true,
+  "warnings": [
+    "Target is not MongoDB Atlas (*.mongodb.net). --execute would refuse without --allow-non-atlas."
+  ],
+  "problems": [],
+  "plan": {
+    "databases": [
+      {
+        "source": "safe_harbor_q01_probe",
+        "target": "sh_migrate_scratch_1790455380",
+        "exists": true,
+        "collections": [
+          {
+            "name": "artifacts",
+            "type": "collection",
+            "documents": 33,
+            "estimated_bytes": 1071040,
+            "storage_bytes": 647168,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "artifact_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "assessments",
+            "type": "collection",
+            "documents": 2,
+            "estimated_bytes": 39179,
+            "storage_bytes": 24576,
+            "index_bytes": 40960,
+            "indexes": [
+              "_id_",
+              "assessment_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "evaluations",
+            "type": "collection",
+            "documents": 0,
+            "estimated_bytes": 0,
+            "storage_bytes": 4096,
+            "index_bytes": 8192,
+            "indexes": [
+              "_id_",
+              "evaluation_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "events",
+            "type": "collection",
+            "documents": 66,
+            "estimated_bytes": 1466582,
+            "storage_bytes": 815104,
+            "index_bytes": 110592,
+            "indexes": [
+              "_id_",
+              "event_id_1",
+              "run_id_1_sequence_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "harness_versions",
+            "type": "collection",
+            "documents": 1,
+            "estimated_bytes": 9426,
+            "storage_bytes": 20480,
+            "index_bytes": 40960,
+            "indexes": [
+              "_id_",
+              "harness_hash_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "operations",
+            "type": "collection",
+            "documents": 66,
+            "estimated_bytes": 63070,
+            "storage_bytes": 77824,
+            "index_bytes": 81920,
+            "indexes": [
+              "_id_",
+              "operation_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runs",
+            "type": "collection",
+            "documents": 5,
+            "estimated_bytes": 8460,
+            "storage_bytes": 36864,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "run_id_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runtime_checkpoint_writes",
+            "type": "collection",
+            "documents": 84,
+            "estimated_bytes": 32410,
+            "storage_bytes": 45056,
+            "index_bytes": 81920,
+            "indexes": [
+              "_id_",
+              "thread_id_1_checkpoint_ns_1_checkpoint_id_-1_task_id_1_idx_1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "runtime_checkpoints",
+            "type": "collection",
+            "documents": 38,
+            "estimated_bytes": 31074,
+            "storage_bytes": 45056,
+            "index_bytes": 73728,
+            "indexes": [
+              "_id_",
+              "thread_id_1_checkpoint_ns_1_checkpoint_id_-1"
+            ],
+            "target_documents_before": 0
+          },
+          {
+            "name": "tasks",
+            "type": "collection",
+            "documents": 30,
+            "estimated_bytes": 65668,
+            "storage_bytes": 53248,
+            "index_bytes": 147456,
+            "indexes": [
+              "_id_",
+              "run_id_1_canonical_question_key_1",
+              "run_id_1_status_1",
+              "task_id_1"
+            ],
+            "target_documents_before": 0
+          }
+        ]
+      }
+    ],
+    "totals": {
+      "databases": 1,
+      "collections": 10,
+      "documents": 325,
+      "data_bytes": 2786909,
+      "storage_bytes": 1769472,
+      "index_bytes": 733184
+    }
+  },
+  "result": "dry_run_only",
+  "finished_at": "2026-09-26T20:43:01.959898+00:00",
+  "exit_code": 0
+}
