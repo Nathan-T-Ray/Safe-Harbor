@@ -1,0 +1,307 @@
+{
+  "ticket": "SH-Q06",
+  "started_at": "2026-09-26T19:13:55.060125+00:00",
+  "database": "safe_harbor_isolation_1790450034",
+  "mode": "deterministic_operational",
+  "harness": "frozen baseline H0 via safe_harbor.harness.get_harness(None)",
+  "model_calls_made_by_this_script": 0,
+  "processes": [
+    {
+      "pid": 95590,
+      "log": "/Users/nathanray/safe-harbor-standalone/artifacts/safe_harbor/pr62-review/isolation-api-phases/process-1.log",
+      "started_at": "2026-09-26T19:13:55.063890+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:13:58.740331+00:00"
+    }
+  ],
+  "attempts": [
+    {
+      "attempt_id": "legitimate-run-A",
+      "category": "legitimate_task",
+      "interface": "POST /runs (deterministic) -> coordinator -> execute_worker -> ledger.accept",
+      "boundary": "positive control: isolation boundaries still allow the scored worker's assigned work",
+      "expected": "run complete; all 6 baseline tasks accepted with their assigned tool results; model_calls == 0",
+      "observed": {
+        "outcome": "error",
+        "exception": "TypeError",
+        "message": "'<' not supported between instances of 'str' and 'NoneType'",
+        "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 132, in check\n    passed, observed = call()\n                       ~~~~^^\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 439, in verify\n    adapters = sorted({artifact[\"provenance\"].get(\"adapter\") for artifact in snapshot[\"artifacts\"]})\nTypeError: '<' not supported between instances of 'str' and 'NoneType'\n"
+      },
+      "passed": false
+    },
+    {
+      "attempt_id": "legitimate-run-B",
+      "category": "legitimate_task",
+      "interface": "POST /runs (deterministic) -> coordinator -> execute_worker -> ledger.accept",
+      "boundary": "positive control: isolation boundaries still allow the scored worker's assigned work",
+      "expected": "run complete; all 6 baseline tasks accepted with their assigned tool results; model_calls == 0",
+      "observed": {
+        "outcome": "error",
+        "exception": "TypeError",
+        "message": "'<' not supported between instances of 'str' and 'NoneType'",
+        "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 132, in check\n    passed, observed = call()\n                       ~~~~^^\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 439, in verify\n    adapters = sorted({artifact[\"provenance\"].get(\"adapter\") for artifact in snapshot[\"artifacts\"]})\nTypeError: '<' not supported between instances of 'str' and 'NoneType'\n"
+      },
+      "passed": false
+    },
+    {
+      "attempt_id": "artifact-in-manifest-positive-control",
+      "category": "legitimate_task",
+      "interface": "GET /runs/{id}/artifacts/{artifact_id}",
+      "boundary": "positive control",
+      "expected": "200 with the run's own artifact",
+      "observed": {
+        "status": 200,
+        "artifact_id": "run-299630eba69a4f46829027b4690896b4:reference:pansio-1"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-cross-run:artifact-e1cde7f8a17c4156b983c2f366fb5625",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/artifact-e1cde7f8a17c4156b983c2f366fb5625",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-cross-run:run-286ed11bfd6f47a08c6a767a5db6d78f:reference:olonne-18",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/run-286ed11bfd6f47a08c6a767a5db6d78f:reference:olonne-18",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-cross-run:run-286ed11bfd6f47a08c6a767a5db6d78f:source-manifest",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/run-286ed11bfd6f47a08c6a767a5db6d78f:source-manifest",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-cross-run:artifact-7a7eeb2bce094bebad0ab0825a1b5730",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/artifact-7a7eeb2bce094bebad0ab0825a1b5730",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-nonexistent",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/artifact-00000000000000000000000000000000",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-unknown-run",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-00000000000000000000000000000000/artifacts/run-299630eba69a4f46829027b4690896b4:reference:pansio-1",
+      "boundary": "backend/safe_harbor/api.py:142 ledger.get_run -> LedgerError 404",
+      "expected": "HTTP 404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Run not found\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-00",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/..%2F..%2F..%2Fdata%2Fsafe_harbor%2Fevaluator%2Freference_answers.json",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-01",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/../../catalog",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-02",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/..%2F..%2Fexport",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-03",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/%2E%2E%2F%2E%2E%2Fcatalog",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-04",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/%7B%22%24ne%22%3Anull%7D",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-05",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/.%2A",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-06",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/reference_answers",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-07",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/reference_answers.json",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-08",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/splits",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Artifact is outside this run or does not exist.\"}"
+      },
+      "passed": true
+    },
+    {
+      "attempt_id": "artifact-traversal-09",
+      "category": "out_of_manifest_artifact",
+      "interface": "GET /runs/run-299630eba69a4f46829027b4690896b4/artifacts/data%2Fsafe_harbor%2Fevaluator%2Fsplits.json",
+      "boundary": "backend/safe_harbor/api.py:141-145 run-scoped artifacts.find_one({run_id, artifact_id}) -> 404; slash-bearing ids do not match the single-segment route",
+      "expected": "HTTP 400/404; no record returned",
+      "observed": {
+        "status": 404,
+        "returned_record": false,
+        "body": "{\"detail\":\"Not Found\"}"
+      },
+      "passed": true
+    }
+  ],
+  "findings": [],
+  "limitations": [],
+  "scope": "Actual API/process/MongoDB phases of submitted PR62 only",
+  "omitted": "Isolated synthetic function probes were not run under the E2E-only instruction; remaining context assertions require rebasing to current R10 API.",
+  "full_pr_accepted": false,
+  "summary": {
+    "attempts": 19,
+    "passed": 17,
+    "failed": 2
+  },
+  "failures": [
+    {
+      "attempt_id": "legitimate-run-A",
+      "category": "legitimate_task",
+      "interface": "POST /runs (deterministic) -> coordinator -> execute_worker -> ledger.accept",
+      "boundary": "positive control: isolation boundaries still allow the scored worker's assigned work",
+      "expected": "run complete; all 6 baseline tasks accepted with their assigned tool results; model_calls == 0",
+      "observed": {
+        "outcome": "error",
+        "exception": "TypeError",
+        "message": "'<' not supported between instances of 'str' and 'NoneType'",
+        "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 132, in check\n    passed, observed = call()\n                       ~~~~^^\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 439, in verify\n    adapters = sorted({artifact[\"provenance\"].get(\"adapter\") for artifact in snapshot[\"artifacts\"]})\nTypeError: '<' not supported between instances of 'str' and 'NoneType'\n"
+      },
+      "passed": false
+    },
+    {
+      "attempt_id": "legitimate-run-B",
+      "category": "legitimate_task",
+      "interface": "POST /runs (deterministic) -> coordinator -> execute_worker -> ledger.accept",
+      "boundary": "positive control: isolation boundaries still allow the scored worker's assigned work",
+      "expected": "run complete; all 6 baseline tasks accepted with their assigned tool results; model_calls == 0",
+      "observed": {
+        "outcome": "error",
+        "exception": "TypeError",
+        "message": "'<' not supported between instances of 'str' and 'NoneType'",
+        "traceback": "Traceback (most recent call last):\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 132, in check\n    passed, observed = call()\n                       ~~~~^^\n  File \"/private/tmp/safe-harbor-pr62-review/e2e/safe_harbor/isolation.py\", line 439, in verify\n    adapters = sorted({artifact[\"provenance\"].get(\"adapter\") for artifact in snapshot[\"artifacts\"]})\nTypeError: '<' not supported between instances of 'str' and 'NoneType'\n"
+      },
+      "passed": false
+    }
+  ]
+}
