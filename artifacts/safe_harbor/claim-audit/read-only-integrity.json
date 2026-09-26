@@ -3,8 +3,8 @@
   "mode": "read_only_artifact_audit",
   "model_calls": 0,
   "imports_production_code": false,
-  "commit": "b61b267ba357353a3934fd10aa45ebe15a72bf84",
-  "recorded_at": "2026-09-26T19:54:39.599755+00:00",
+  "commit": "890dc6903449a9b2a7f208ee262c5c13148711e1",
+  "recorded_at": "2026-09-26T19:57:48.132848+00:00",
   "checks": [
     {
       "name": "coordinates:pansio-1",
@@ -239,11 +239,10 @@
       }
     },
     {
-      "name": "experiment_has_no_candidate:experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "name": "old_experiment_has_no_candidate",
       "passed": true,
       "detail": {
         "status_in_latest_record": "running_development",
-        "updated_at": "2026-09-26T19:19:50.182547+00:00",
         "result_status_counts": {
           "development/R0/pending": 1,
           "validation/H0/pending": 3,
@@ -259,6 +258,7 @@
         },
         "scored": [
           {
+            "split": "development",
             "case": "pansio-1--full_sources",
             "arm": "H0",
             "status": "complete",
@@ -270,6 +270,7 @@
             "cost_usd": 0.0259151648
           },
           {
+            "split": "development",
             "case": "pansio-1--full_sources",
             "arm": "R0",
             "status": "complete",
@@ -281,6 +282,7 @@
             "cost_usd": 0.0033474
           },
           {
+            "split": "development",
             "case": "pansio-1--controls_withheld",
             "arm": "R0",
             "status": "complete",
@@ -292,6 +294,7 @@
             "cost_usd": 0.0033341
           },
           {
+            "split": "development",
             "case": "pansio-1--controls_withheld",
             "arm": "H0",
             "status": "failed",
@@ -306,24 +309,31 @@
       }
     },
     {
-      "name": "experiment_has_no_candidate:experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "name": "new_experiment_not_promoted_and_final_pending",
       "passed": true,
       "detail": {
-        "status_in_latest_record": "running_development",
-        "updated_at": "2026-09-26T19:45:49.012332+00:00",
+        "status_in_latest_record": "running_validation",
+        "updated_at": "2026-09-26T19:53:58.179970+00:00",
+        "H1": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
         "result_status_counts": {
-          "validation/H0/pending": 3,
-          "validation/R0/pending": 3,
-          "validation/H1/awaiting_proposal": 3,
+          "validation/R0/pending": 1,
+          "validation/H1/awaiting_proposal": 1,
           "final/H0/pending": 3,
           "final/R0/pending": 3,
           "final/H1/awaiting_proposal": 3,
           "development/H0/complete": 2,
           "development/R0/complete": 3,
-          "development/H0/failed": 1
+          "development/H0/failed": 1,
+          "validation/H0/complete": 1,
+          "validation/R0/complete": 2,
+          "validation/H1/complete": 1,
+          "validation/H0/failed": 1,
+          "validation/H1/failed": 1,
+          "validation/H0/running": 1
         },
         "scored": [
           {
+            "split": "development",
             "case": "pansio-1--full_sources",
             "arm": "H0",
             "status": "complete",
@@ -335,6 +345,7 @@
             "cost_usd": 0.0287691656
           },
           {
+            "split": "development",
             "case": "pansio-1--full_sources",
             "arm": "R0",
             "status": "complete",
@@ -346,6 +357,7 @@
             "cost_usd": 0.0045079832
           },
           {
+            "split": "development",
             "case": "pansio-1--controls_withheld",
             "arm": "R0",
             "status": "complete",
@@ -357,6 +369,7 @@
             "cost_usd": 0.0037408
           },
           {
+            "split": "development",
             "case": "pansio-1--controls_withheld",
             "arm": "H0",
             "status": "failed",
@@ -368,6 +381,7 @@
             "cost_usd": 0.0040416992
           },
           {
+            "split": "development",
             "case": "pansio-1--h1_context_only",
             "arm": "H0",
             "status": "complete",
@@ -379,6 +393,7 @@
             "cost_usd": 0.0284095504
           },
           {
+            "split": "development",
             "case": "pansio-1--h1_context_only",
             "arm": "R0",
             "status": "complete",
@@ -388,8 +403,246 @@
             "support_ok": false,
             "tokens": 19716,
             "cost_usd": 0.0039408432
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--full_sources",
+            "arm": "H0",
+            "status": "complete",
+            "required": "12/18",
+            "decisions": "3/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 194969,
+            "cost_usd": 0.030503743199999996
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--full_sources",
+            "arm": "R0",
+            "status": "complete",
+            "required": "17/18",
+            "decisions": "3/3",
+            "completed": true,
+            "support_ok": false,
+            "tokens": 19198,
+            "cost_usd": 0.0037369808
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--full_sources",
+            "arm": "H1",
+            "status": "complete",
+            "required": "18/18",
+            "decisions": "3/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 228113,
+            "cost_usd": 0.0341092472
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--controls_withheld",
+            "arm": "R0",
+            "status": "complete",
+            "required": "14/15",
+            "decisions": "2/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 19865,
+            "cost_usd": 0.0041717032
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--controls_withheld",
+            "arm": "H0",
+            "status": "failed",
+            "required": "0/15",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 20590,
+            "cost_usd": 0.0036412768
+          },
+          {
+            "split": "validation",
+            "case": "olonne-18--controls_withheld",
+            "arm": "H1",
+            "status": "failed",
+            "required": "0/15",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 17294,
+            "cost_usd": 0.0020998880000000003
           }
         ]
+      }
+    },
+    {
+      "name": "automatic_proposal_bound_to_saved_candidate",
+      "passed": true,
+      "detail": {
+        "candidate_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+        "hash_rederived_from_saved_spec": true,
+        "operations": [
+          "split_role",
+          "reassign_tools"
+        ],
+        "parent_roles": [
+          "screen",
+          "inspect",
+          "compare",
+          "assess",
+          "review",
+          "report"
+        ],
+        "candidate_roles": [
+          "screen",
+          "inspect_evidence",
+          "evidence_review",
+          "compare",
+          "assess",
+          "review",
+          "report"
+        ],
+        "immutable_constraints_unchanged": true,
+        "optimizer_usage": {
+          "tokens": 11969,
+          "model_calls": 1,
+          "cost_usd": 0.00342986,
+          "duration_seconds": 83.994899
+        }
+      }
+    },
+    {
+      "name": "h1_run_executes_saved_candidate",
+      "passed": true,
+      "detail": {
+        "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+        "case": "olonne-18--full_sources",
+        "executed_dependencies": {
+          "screen": [],
+          "inspect_evidence": [],
+          "evidence_review": [
+            "inspect_evidence"
+          ],
+          "compare": [
+            "evidence_review"
+          ],
+          "assess": [
+            "compare",
+            "evidence_review",
+            "screen"
+          ],
+          "review": [
+            "assess",
+            "compare",
+            "evidence_review",
+            "screen"
+          ],
+          "report": [
+            "assess",
+            "compare",
+            "evidence_review",
+            "review",
+            "screen"
+          ]
+        },
+        "commits": {
+          "11": [
+            [
+              "inspect_evidence",
+              "complete"
+            ]
+          ],
+          "12": [
+            [
+              "evidence_review",
+              "running"
+            ]
+          ],
+          "15": [
+            [
+              "evidence_review",
+              "complete"
+            ]
+          ],
+          "16": [
+            [
+              "compare",
+              "running"
+            ]
+          ]
+        },
+        "reviewer_tools": [
+          "control_overlap",
+          "retrieve_evidence"
+        ],
+        "budget": {
+          "tokens_used": 228113,
+          "model_calls": 14,
+          "tool_calls": 22,
+          "cost_usd": 0.0341092472
+        }
+      }
+    },
+    {
+      "name": "h1_final_answer_not_validated",
+      "passed": true,
+      "detail": {
+        "assessments": [
+          [
+            1,
+            "incomplete",
+            "unknown",
+            "unresolved"
+          ],
+          [
+            2,
+            "incomplete",
+            "unknown",
+            "not_justified_by_available_evidence"
+          ],
+          [
+            3,
+            "incomplete",
+            "unknown",
+            "unresolved"
+          ]
+        ]
+      }
+    },
+    {
+      "name": "controls_withheld_denial_pattern",
+      "passed": true,
+      "detail": {
+        "pansio-1--controls_withheld/R0": {
+          "status": "complete",
+          "failures": []
+        },
+        "olonne-18--controls_withheld/R0": {
+          "status": "complete",
+          "failures": []
+        },
+        "olonne-18--controls_withheld/H0": {
+          "status": "blocked",
+          "failures": [
+            "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+          ]
+        },
+        "pansio-1--controls_withheld/H0": {
+          "status": "blocked",
+          "failures": [
+            "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+          ]
+        },
+        "olonne-18--controls_withheld/H1": {
+          "status": "blocked",
+          "failures": [
+            "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+          ]
+        }
       }
     },
     {
@@ -450,6 +703,44 @@
           },
           "failures": []
         },
+        "olonne-18--full_sources": {
+          "status": "complete",
+          "replan_rounds": 0,
+          "roles": {
+            "screen": [
+              "inspect_candidate",
+              "screen_candidate",
+              "retrieve_evidence"
+            ],
+            "inspect": [
+              "list_evidence",
+              "table_slice",
+              "table_slice",
+              "retrieve_evidence"
+            ],
+            "compare": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "assess": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "review": [
+              "screen_candidate",
+              "control_overlap"
+            ],
+            "report": [
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence"
+            ]
+          },
+          "failures": []
+        },
         "pansio-1--full_sources": {
           "status": "complete",
           "replan_rounds": 0,
@@ -487,6 +778,24 @@
             ]
           },
           "failures": []
+        },
+        "olonne-18--controls_withheld": {
+          "status": "blocked",
+          "replan_rounds": 1,
+          "roles": {
+            "inspect": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "screen": [
+              "inspect_candidate",
+              "screen_candidate",
+              "retrieve_evidence"
+            ]
+          },
+          "failures": [
+            "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+          ]
         },
         "pansio-1--controls_withheld": {
           "status": "blocked",
@@ -529,7 +838,7 @@
       }
     },
     {
-      "name": "optimizer_attempt_rejected",
+      "name": "first_optimizer_attempt_rejected",
       "passed": true,
       "detail": {
         "status": "rejected_invalid_proposal",
@@ -539,7 +848,7 @@
       }
     },
     {
-      "name": "adaptation_e2e_blocked_on_genuine_proposal",
+      "name": "q07_adaptation_report_predates_genuine_proposal",
       "passed": true,
       "detail": {
         "mode": "deterministic_operational",
@@ -547,7 +856,8 @@
         "blocked": [
           "ledger contains a genuine automatic (real-model) structural proposal substantiated by its recorded response",
           "a run under a PROMOTED (validation-selected) structurally different version executes"
-        ]
+        ],
+        "note": "Committed Q07 report has not been rerun against the genuine candidate; selected-version run still requires promotion."
       }
     },
     {
@@ -560,7 +870,7 @@
   ],
   "passed": true,
   "summary": {
-    "checks": 26,
+    "checks": 30,
     "failed": []
   }
 }
