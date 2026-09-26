@@ -8,12 +8,13 @@ through Ledger.accept. No model inference or fictional biology is claimed.
 import argparse
 import copy
 import json
-import os
 from pathlib import Path
 import subprocess
 import sys
 import time
 import urllib.request
+
+from _atlas import child_env, e2e_database, target
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -100,17 +101,17 @@ def serve(port):
 
 def main(port, output, cost_only=False):
     output.mkdir(parents=True, exist_ok=True)
-    database = f"safe_harbor_aggregate_{int(time.time())}"
-    env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=database, OPENROUTER_API_KEY="", MODEL_ID="")
+    database = e2e_database("aggregate")
+    env = child_env(database, OPENROUTER_API_KEY="", MODEL_ID="")  # inherits MONGODB_URI unchanged
     log = (output / "api.log").open("w")
     process = subprocess.Popen([sys.executable, __file__, "--serve", "--port", str(port)], cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
 
     def request(path, body=None):
         req = urllib.request.Request(f"http://127.0.0.1:{port}" + path, data=json.dumps(body).encode() if body else None, headers={"Content-Type": "application/json"})
-        return json.load(urllib.request.urlopen(req, timeout=10))
+        return json.load(urllib.request.urlopen(req, timeout=60))
 
     try:
-        deadline = time.monotonic() + 25
+        deadline = time.monotonic() + 90
         while time.monotonic() < deadline:
             try:
                 if request("/health")["database"] == database:
@@ -134,12 +135,12 @@ def main(port, output, cost_only=False):
             exported = request(f"/runs/{case['run_id']}/export")
             (output / f"{fixture_id}.json").write_text(json.dumps(exported, indent=2) + "\n")
             cases.append(case)
-        report = {"mode": "deterministic_operational", "harness_mode": "mock", "model_calls": 0, "purpose": "Actual API/process/MongoDB acceptance boundary; real screen tool inputs, deliberately corrupted proposed copies explicitly labelled.", "passed": True, "database": database, "api_pid": process.pid, "cases": cases}
+        report = {"mongo_target": target(database), "mode": "deterministic_operational", "harness_mode": "mock", "model_calls": 0, "purpose": "Actual API/process/MongoDB acceptance boundary; real screen tool inputs, deliberately corrupted proposed copies explicitly labelled.", "passed": True, "database": database, "api_pid": process.pid, "cases": cases}
         (output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report, indent=2))
     finally:
         process.terminate()
-        process.wait(timeout=10)
+        process.wait(timeout=30)
         log.close()
 
 

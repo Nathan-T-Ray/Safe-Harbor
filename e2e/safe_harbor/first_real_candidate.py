@@ -28,6 +28,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT / ".env", override=False)
 
+from _atlas import child_env, e2e_database, target
 from safe_harbor.runtime.ledger import digest, now  # noqa: E402
 from safe_harbor.science import run_tool  # noqa: E402
 
@@ -95,11 +96,11 @@ class Journey:
         stamp = time.strftime("%Y%m%dT%H%M%S")
         self.output = ROOT / "artifacts/safe_harbor/first-real-candidate" / stamp
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"safe_harbor_q01_{stamp}"
+        self.database = e2e_database("q01")
         self.processes: list[subprocess.Popen] = []
         self.checks: list[dict] = []
         self.report = {
-            "ticket": "SH-Q01", "started_at": now(), "mode": "real_model", "database": self.database,
+            "ticket": "SH-Q01", "started_at": now(), "mode": "real_model", "database": self.database, "mongo_target": target(self.database),
             "model_id": os.getenv("MODEL_ID"), "model_provider": "openrouter", "candidate_id": args.candidate,
             "budget_request": {"token_limit": args.token_limit} if args.token_limit else None,
             "attempts": [], "checks": self.checks, "findings": [],
@@ -125,9 +126,9 @@ class Journey:
                     process.kill()
 
     def start_api(self):
-        env = {**os.environ, "MONGODB_DATABASE": self.database, "PYTHONPATH": f"{ROOT / 'backend'}:{ROOT}"}
+        env = child_env(self.database)  # inherits MONGODB_URI unchanged
         self.start([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.args.api_port)], env, "api.log")
-        for _ in range(60):
+        for _ in range(180):  # Atlas startup (index creation) is slower than localhost
             try:
                 health = request(self.base, "/health")
                 break

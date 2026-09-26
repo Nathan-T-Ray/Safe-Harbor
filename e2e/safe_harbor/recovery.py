@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """SH-Q03 E2E: actual crash recovery of the Safe Harbor coordinator.
 
-Run from the repository root (worktree), with the replica set up:
+Run from the repository root (worktree) with MONGODB_URI (MongoDB Atlas) in the environment:
   set -a; source .env; set +a
-  PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/recovery.py --port 8031
+  PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/recovery.py --port 8031 [--keep-db]
+
+Only the API/coordinator processes are killed and restarted. The database is a managed
+deployment this journey cannot and does not restart; durability is exercised across process death.
 
 Cases (each uses real uvicorn API+coordinator processes and an isolated MongoDB database):
   1. accept_then_die: a run created through POST /runs (frozen H0 baseline harness) whose
@@ -22,6 +25,7 @@ import argparse
 import time
 from pathlib import Path
 
+from _atlas import add_keep_db_flag
 from _support import E2E, default_output
 from langgraph.checkpoint.mongodb import MongoDBSaver
 from safe_harbor.harness import baseline_harness
@@ -204,6 +208,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8031)
     parser.add_argument("--output", type=Path, default=default_output("recovery"))
+    add_keep_db_flag(parser)
     args = parser.parse_args()
     journey = Recovery("recovery", args.port, args.output)
+    journey.keep_db = args.keep_db
     raise SystemExit(journey.execute([journey.accept_then_die, journey.reserve_then_die, journey.external_sigkill]))

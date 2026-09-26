@@ -1,8 +1,9 @@
 """Shared plumbing for the Safe Harbor runtime E2E journeys (SH-Q03, SH-Q04, SH-Q05).
 
 Extends the process/ledger patterns of ``runtime_operations.Journey``: every journey
-starts actual ``uvicorn safe_harbor.api:app`` processes against an isolated MongoDB
-replica-set database, kills them for real, and restarts fresh processes. Nothing here
+starts actual ``uvicorn safe_harbor.api:app`` processes against an isolated ``sh_e2e_`` database
+on the MONGODB_URI deployment (MongoDB Atlas; see ``_atlas``), kills the API processes for real
+(never the database), and restarts fresh processes. Nothing here
 asserts anything; the journey scripts record per-check evidence and pass/fail honestly.
 """
 from __future__ import annotations
@@ -15,7 +16,6 @@ import time
 import traceback
 import urllib.error
 import urllib.request
-import uuid
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -29,6 +29,7 @@ load_dotenv(ROOT / ".env", override=False)
 # override an existing variable) never starts real-model work or spends provider credit.
 os.environ["OPENROUTER_API_KEY"] = ""
 
+from _atlas import drop_journey_database, e2e_database, target  # noqa: E402
 from runtime_operations import Journey  # noqa: E402
 from shared.contracts import Budget, Run  # noqa: E402
 from safe_harbor.harness import baseline_harness  # noqa: E402
@@ -38,20 +39,23 @@ from safe_harbor.runtime.ledger import Ledger, identifier, now  # noqa: E402
 from safe_harbor.science import get_catalog  # noqa: E402
 
 TERMINAL = ("complete", "blocked", "budget_exhausted", "failed")
+# Multiplier for poll deadlines (time budgets only; assertions are unchanged).
+TIME_SCALE = float(os.getenv("SAFE_HARBOR_E2E_TIME_SCALE", "3"))
 
 
 class E2E(Journey):
     """Journey with per-check evidence, raw HTTP status access and flexible fixtures."""
 
     def __init__(self, name: str, port: int, output: Path):
-        if not (8030 <= port <= 8039 or 8070 <= port <= 8079):
-            raise SystemExit("Use API ports 8030-8039 or 8070-8079 for these journeys.")
+        if not (8030 <= port <= 8039 or 8070 <= port <= 8079 or 8090 <= port <= 8099):
+            raise SystemExit("Use API ports 8030-8039, 8070-8079 or 8090-8099 for these journeys.")
         self.name = name
         self.port = port
         self.base = f"http://127.0.0.1:{port}"
         self.output = output
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"sh_e2e_{name}_{int(time.time())}_{uuid.uuid4().hex[:6]}"
+        self.database = e2e_database(name)
+        self.keep_db = False
         self.ledger = Ledger(database=self.database)
         self.ledger.initialize()
         self.process = None
@@ -59,7 +63,7 @@ class E2E(Journey):
         self.processes = []
         self.catalog = get_catalog()
         self.report = {
-            "journey": name, "started_at": now(), "database": self.database, "api_port": port,
+            "journey": name, "started_at": now(), "database": self.database, "mongo_target": target(self.database), "api_port": port,
             "mode": "deterministic_operational", "model_calls": 0,
             "labels": {
                 "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
@@ -70,7 +74,7 @@ class E2E(Journey):
         }
 
     # ------------------------------------------------------------------ HTTP
-    def call(self, method: str, path: str, body=None, timeout: float = 15):
+    def call(self, method: str, path: str, body=None, timeout: float = 60):
         data = None if body is None else json.dumps(body).encode()
         request = urllib.request.Request(self.base + path, data=data, method=method, headers={"Content-Type": "application/json"})
         try:
@@ -87,12 +91,12 @@ class E2E(Journey):
     def kill(self, sig: str = "SIGKILL") -> int:
         """Externally kill the running API/coordinator process (no graceful shutdown)."""
         self.process.kill()
-        code = self.process.wait(timeout=10)
+        code = self.process.wait(timeout=30)
         self.processes[-1]["killed_with"] = sig
         return code
 
-    def wait_exit(self, timeout: float = 60) -> int:
-        code = self.process.wait(timeout=timeout)
+    def wait_exit(self, timeout: float = 180) -> int:
+        code = self.process.wait(timeout=timeout * TIME_SCALE)
         self.processes[-1]["exit_code"] = code
         self.processes[-1]["ended_at"] = now()
         return code
@@ -131,7 +135,8 @@ class E2E(Journey):
         return list(self.ledger.db.tasks.find({"run_id": run_id}, {"_id": 0}))
 
     def wait_until(self, predicate, timeout: float = 90, interval: float = 0.1, what: str = "condition"):
-        until = time.monotonic() + timeout
+        # Deadlines were tuned for a localhost replica set; each poll is now an Atlas round-trip.
+        until = time.monotonic() + timeout * TIME_SCALE
         while time.monotonic() < until:
             value = predicate()
             if value:
@@ -178,7 +183,7 @@ class E2E(Journey):
         return bool(passed)
 
     def export_run(self, run_id: str) -> str | None:
-        status, body = self.call("GET", f"/runs/{run_id}/export", timeout=30)
+        status, body = self.call("GET", f"/runs/{run_id}/export", timeout=120)
         if status != 200:
             return None
         path = self.output / f"{run_id}.export.json"
@@ -197,6 +202,7 @@ class E2E(Journey):
         finally:
             self.stop()
             self.report["finished_at"] = now()
+            self.report["database_cleanup"] = drop_journey_database(self.database, self.keep_db, self.ledger.client)
             self.report["passed"] = bool(self.report["checks"]) and all(check["passed"] for check in self.report["checks"])
             self.report["summary"] = {"checks": len(self.report["checks"]), "failed": [c["check"] for c in self.report["checks"] if not c["passed"]]}
             (self.output / "report.json").write_text(json.dumps(self.report, indent=2, default=str))

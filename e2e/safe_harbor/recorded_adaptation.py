@@ -12,20 +12,21 @@ import hashlib
 import json
 from pathlib import Path
 
-from pymongo import MongoClient
 import requests
+
+from _atlas import database_name, describe_target, make_client
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--experiment", required=True)
     parser.add_argument("--api", default="http://127.0.0.1:8016")
-    parser.add_argument("--mongo-uri", default="mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev")
-    parser.add_argument("--database", default="safe_harbor")
+    parser.add_argument("--mongo-uri", default=None, help="defaults to MONGODB_URI (MongoDB Atlas); never a localhost fallback")
+    parser.add_argument("--database", default=database_name())
     parser.add_argument("--output", type=Path, default=Path("artifacts/safe_harbor/selected-harness-proof"))
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
-    client = MongoClient(args.mongo_uri, serverSelectionTimeoutMS=5000)
+    client = make_client(args.mongo_uri)
     db = client[args.database]
     checks: list[dict] = []
 
@@ -126,6 +127,7 @@ def main() -> int:
     failed = [c for c in checks if not c["passed"]]
     report = {"schema_version": 1, "observed_at": datetime.now(timezone.utc).isoformat(),
         "mode": "read_only_actual_api_and_mongodb_real_model_records", "experiment_id": args.experiment,
+        "mongo_target": {**describe_target(args.mongo_uri), "database": args.database},
         "experiment_status": experiment["status"], "status": "failed" if failed else "pending" if pending else "passed",
         "checks": checks, "pending": pending, "evidence": evidence, "model_calls_by_inspection": 0,
         "ledger_writes": 0, "scoring_recomputed": False,

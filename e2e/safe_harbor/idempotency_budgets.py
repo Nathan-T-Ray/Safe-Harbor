@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """SH-Q05 E2E: idempotency, invalid plans, prohibited patches and durable budgets.
 
-Run from the repository root (worktree), with the replica set up:
+Run from the repository root (worktree) with MONGODB_URI (MongoDB Atlas) in the environment:
   set -a; source .env; set +a
   PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/idempotency_budgets.py --port 8033
 
 Every case runs against actual uvicorn API/coordinator processes and an isolated MongoDB
-replica-set database. Operation re-submission goes through the runtime's own Ledger.accept
+sh_e2e_ database on the MONGODB_URI deployment. Operation re-submission goes through the runtime's own Ledger.accept
 against that live database while the API process is serving (there is no HTTP endpoint for
 worker acceptances). Invalid harness records are stored in harness_versions exactly as a
 corrupted/hostile saved record would be, then referenced through POST /runs. Structural
@@ -22,6 +22,7 @@ import secrets
 import time
 from pathlib import Path
 
+from _atlas import add_keep_db_flag
 from _support import E2E, default_output
 from safe_harbor.harness import baseline_harness, save_harness
 from safe_harbor.harness.specification import apply_patch, canonical_hash
@@ -420,8 +421,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8033)
     parser.add_argument("--output", type=Path, default=default_output("idempotency_budgets"))
+    add_keep_db_flag(parser)
     args = parser.parse_args()
     journey = Boundaries("idem_budget", args.port, args.output)
+    journey.keep_db = args.keep_db
     journey.report["not_exercised"] = {
         "transient_exception_retry": "No runtime hook raises TimeoutError/ConnectionError inside a deterministic worker; only the crash/interrupted-attempt retry path is exercised.",
         "cost_budget": "Deterministic runs reserve and spend $0; cost enforcement needs real-model usage or a cost fault hook.",

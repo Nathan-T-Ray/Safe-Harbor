@@ -34,7 +34,8 @@ from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parents[1]
 load_dotenv(ROOT / ".env", override=False)
-MONGO_URI = "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev"
+sys.path[:0] = [str(ROOT / "backend"), str(ROOT / "e2e" / "safe_harbor")]
+from _atlas import child_env, e2e_database, target  # noqa: E402  (MONGODB_URI inherited; no localhost fallback)
 CANDIDATES = ["pansio-1", "olonne-18", "keppel-19"]
 TERMINAL = {"complete", "blocked", "failed", "stopped", "budget_exhausted"}
 SAFE_LABEL = re.compile(r"\b(is|are|as)\s+(a\s+)?(globally\s+)?safe\b(?!\s*(or|/))", re.I)
@@ -68,14 +69,14 @@ class Demo:
         stamp = time.strftime("%Y%m%dT%H%M%S")
         self.output = ROOT / "artifacts/safe_harbor/demo" / stamp
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = args.database or f"safe_harbor_q11_demo_{stamp}"
+        self.database = args.database or e2e_database("q11_demo")
         self.base = f"http://127.0.0.1:{args.api_port}"
         self.ui = f"http://127.0.0.1:{args.ui_port}"
         self.api = None
         self.vite = None
         self.checks: list[dict] = []
         self.report = {
-            "ticket": "SH-Q11", "started_at": now(), "database": self.database, "output": str(self.output.relative_to(ROOT)),
+            "ticket": "SH-Q11", "started_at": now(), "database": self.database, "mongo_target": target(self.database), "output": str(self.output.relative_to(ROOT)),
             "mode_requested": "real_model", "model_id": os.getenv("MODEL_ID"), "model_provider": "openrouter",
             "candidate_ids": CANDIDATES, "attempts": [], "checks": self.checks, "findings": [],
             "labels": {"run": "REAL MODEL (real_model) — genuine OpenRouter calls committed to MongoDB",
@@ -99,13 +100,13 @@ class Demo:
                     return health
             except Exception:
                 pass
-        env = {**os.environ, "MONGODB_URI": MONGO_URI, "MONGODB_DATABASE": self.database, "PYTHONPATH": f"{ROOT / 'backend'}:{ROOT}"}
+        env = child_env(self.database)  # inherits MONGODB_URI unchanged
         log = open(self.output / f"api-{label}.log", "w")
         self.api = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.args.api_port)],
                                     cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
-        for _ in range(80):
+        for _ in range(360):  # Atlas startup (index creation) is slower than localhost
             try:
-                status, health = http(self.base, "/health", timeout=2)
+                status, health = http(self.base, "/health", timeout=5)
                 if status == 200:
                     return health
             except Exception:

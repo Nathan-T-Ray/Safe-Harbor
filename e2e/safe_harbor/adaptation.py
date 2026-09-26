@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 """SH-Q07 E2E: prove a saved structural harness change executes.
 
-Run from the repository root against the transaction-capable replica set:
+Run from the repository root with MONGODB_URI (MongoDB Atlas) in the environment:
   PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/adaptation.py --port 8041
 
 The journey starts its own API/coordinator process on an isolated MongoDB
 database with model credentials removed from the child environment, so no
 provider request can be made. It then:
 
-1. Scans every database on the configured replica set for a genuine automatic
+1. Scans every database on the configured deployment for a genuine automatic
    (real-model) harness proposal: a saved ``real_model`` HarnessVersion whose
    recorded optimizer response reproduces the exact patch and hash. If one is
    found it is substantiated, copied into the isolated ledger and executed.
@@ -42,7 +42,6 @@ import argparse
 from copy import deepcopy
 import hashlib
 import json
-import os
 from pathlib import Path
 import subprocess
 import sys
@@ -50,15 +49,14 @@ import time
 import urllib.error
 import urllib.request
 
-from pymongo import MongoClient
 
 from safe_harbor.harness import apply_patch, canonical_hash, get_harness, save_harness
 from safe_harbor.harness.specification import IMMUTABLE_CONSTRAINTS
 from safe_harbor.runtime.compiler import APPROVED_TOOLS, compile_harness
 from safe_harbor.runtime.ledger import Ledger, LedgerError, now
+from _atlas import add_keep_db_flag, child_env, describe_target, drop_journey_database, e2e_database, make_client, mongo_uri, target
 
 ROOT = Path(__file__).resolve().parents[2]
-URI = os.getenv("MONGODB_URI", "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev")
 CANDIDATES = ["pansio-1", "olonne-18"]
 ASSIGNED_BUDGET = {"token_limit": 60000, "tool_limit": 40, "cost_limit_usd": 5.0}
 NUMERICAL_TOOLS = {"expression_comparison", "control_overlap", "gene_proximity", "screen_candidate"}
@@ -122,12 +120,13 @@ class AdaptationJourney:
         self.port, self.output = port, output
         self.base = f"http://127.0.0.1:{port}"
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"safe_harbor_adaptation_e2e_{int(time.time())}"
-        self.ledger = Ledger(uri=URI, database=self.database)
+        self.database = e2e_database("adaptation")
+        self.keep_db = False
+        self.ledger = Ledger(uri=mongo_uri(), database=self.database)
         self.ledger.initialize()
         self.process = self.log = None
         self.report = {
-            "ticket": "SH-Q07", "started_at": now(), "database": self.database, "port": port,
+            "ticket": "SH-Q07", "started_at": now(), "database": self.database, "mongo_target": target(self.database), "port": port,
             "execution_mode": "deterministic_operational",
             "labels": {
                 "structural_runs": "deterministic operational adapters over real ingested source data; zero model calls",
@@ -146,7 +145,7 @@ class AdaptationJourney:
         self.report["checks"].append({"check": name, "result": outcome, **details})
         print(f"[{outcome}] {name}", flush=True)
 
-    def request(self, path: str, body=None, timeout: float = 20):
+    def request(self, path: str, body=None, timeout: float = 60):
         data = None if body is None else json.dumps(body).encode()
         request = urllib.request.Request(self.base + path, data=data, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(request, timeout=timeout) as response:
@@ -163,7 +162,7 @@ class AdaptationJourney:
         return self.request(path)[1]
 
     def start(self):
-        env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_URI=URI, MONGODB_DATABASE=self.database)
+        env = child_env(self.database)  # inherits MONGODB_URI unchanged
         for key in list(env):
             if key.startswith("SAFE_HARBOR_CRASH_") or key.startswith("SAFE_HARBOR_OPERATIONAL_"):
                 env.pop(key)
@@ -173,7 +172,7 @@ class AdaptationJourney:
         self.log = (self.output / "api.log").open("w")
         self.process = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.port)], cwd=ROOT, env=env, stdout=self.log, stderr=subprocess.STDOUT)
         self.report["api_process_id"] = self.process.pid
-        until = time.monotonic() + 30
+        until = time.monotonic() + 90
         while time.monotonic() < until:
             if self.process.poll() is not None:
                 raise AssertionError(f"API exited {self.process.returncode}; inspect {self.output / 'api.log'}")
@@ -199,7 +198,7 @@ class AdaptationJourney:
             self.log.close()
         self.process = self.log = None
 
-    def wait_complete(self, run_id: str, timeout: float = 120) -> dict:
+    def wait_complete(self, run_id: str, timeout: float = 360) -> dict:
         until = time.monotonic() + timeout
         while time.monotonic() < until:
             snapshot = self.get(f"/runs/{run_id}/snapshot")
@@ -213,7 +212,7 @@ class AdaptationJourney:
 
     # ---- 1. genuine automatic proposal ---------------------------------
     def scan_genuine_proposals(self) -> list[dict]:
-        client = MongoClient(URI, serverSelectionTimeoutMS=5000)
+        client = make_client()
         scanned, found = [], []
         try:
             for name in sorted(client.list_database_names()):
@@ -234,7 +233,7 @@ class AdaptationJourney:
                     found.append(self.substantiate(db, record))
         finally:
             client.close()
-        self.report["genuine_proposal_scan"] = {"uri_host": URI.split("@")[-1].split("/")[0], "databases": scanned, "candidates": found}
+        self.report["genuine_proposal_scan"] = {"uri_host": describe_target()["host"], "databases": scanned, "candidates": found}
         return [item for item in found if item["substantiated"]]
 
     def substantiate(self, db, record: dict) -> dict:
@@ -562,7 +561,7 @@ class AdaptationJourney:
                        "passed" if genuine else "blocked", databases_scanned=len(scan["databases"]), real_model_versions=sum(d["real_model_harness_versions"] for d in scan["databases"]),
                        optimizer_attempts=sum(d["optimizer_attempts"] for d in scan["databases"]), optimizer_candidates_ready=sum(d["optimizer_candidates_ready"] for d in scan["databases"]),
                        optimizer_response_artifacts=sum(d["optimizer_response_artifacts"] for d in scan["databases"]), real_model_runs=sum(d["real_model_runs"] for d in scan["databases"]),
-                       reason=None if genuine else "No substantiated real-model optimizer proposal exists on this replica set; the optimizer was not invoked because this journey must not spend provider credits.")
+                       reason=None if genuine else "No substantiated real-model optimizer proposal exists on this deployment; the optimizer was not invoked because this journey must not spend provider credits.")
             baseline = get_harness()
             operational = apply_patch(baseline, OPERATIONAL_PATCH, proposal_mode="deterministic_operational", proposal_metadata={
                 "authoring": "e2e_authored_operational_control_path", "automatic_proposal": False, "ticket": "SH-Q07",
@@ -623,10 +622,11 @@ class AdaptationJourney:
                                limitations=[
                                    "Structural runs use deterministic operational adapters: they prove the saved change is compiled and executed, not that it improves answers.",
                                    "The operational patch was authored in this E2E; it is not an automatic or model-generated proposal.",
-                                   "No genuine real-model optimizer proposal exists on the scanned replica set, so automatic proposal inspection and promotion of a structural version remain unexercised.",
+                                   "No genuine real-model optimizer proposal exists on the scanned deployment, so automatic proposal inspection and promotion of a structural version remain unexercised.",
                                    "The deterministic experiment selects H0 as operational_only; no promotion, model improvement or cost win is claimed.",
-                                   "Only the local replica set was scanned; other contributors' ledgers were not accessible.",
+                                   "Only databases on the configured MONGODB_URI deployment (see mongo_target) were scanned.",
                                ])
+            self.report["database_cleanup"] = drop_journey_database(self.database, self.keep_db, self.ledger.client)
             (self.output / "report.json").write_text(json.dumps(self.report, indent=2, ensure_ascii=False) + "\n")
             self.ledger.client.close()
 
@@ -635,9 +635,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--port", type=int, default=8041)
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "safe_harbor" / "adaptation-e2e")
-    parser.add_argument("--experiment-deadline", type=float, default=900)
+    parser.add_argument("--experiment-deadline", type=float, default=1800)
+    add_keep_db_flag(parser)
     args = parser.parse_args()
     journey = AdaptationJourney(args.port, args.output)
+    journey.keep_db = args.keep_db
     try:
         journey.run(args.experiment_deadline)
     except Exception:

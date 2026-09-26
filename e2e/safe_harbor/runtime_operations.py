@@ -4,15 +4,14 @@
 Run from the repository root:
   PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/runtime_operations.py
 
-This creates an isolated MongoDB database and explicitly mock harness fixtures.
-No biological result, model execution or measured improvement is manufactured.
-The database and JSON exports remain available for inspection after execution.
+This creates an isolated sh_e2e_ database on the MONGODB_URI deployment (MongoDB Atlas) and
+explicitly mock harness fixtures. No biological result, model execution or measured improvement
+is manufactured. JSON exports remain on disk; the database is dropped unless --keep-db is given.
 """
 from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
 import subprocess
 import sys
@@ -20,6 +19,7 @@ import time
 import urllib.error
 import urllib.request
 
+from _atlas import add_keep_db_flag, child_env, drop_journey_database, e2e_database, target
 from shared.contracts import Budget, Run
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, LedgerError, digest, identifier, now
@@ -34,22 +34,23 @@ class Journey:
         self.base = f"http://127.0.0.1:{port}"
         self.output = output
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"safe_harbor_operational_{int(time.time())}"
+        self.database = e2e_database("operational")
+        self.keep_db = False
         self.ledger = Ledger(database=self.database)
         self.ledger.initialize()
         self.process = None
         self.log = None
         self.processes = []
-        self.report = {"started_at": now(), "database": self.database, "mode": "deterministic_operational", "harness_mode": "mock", "biological_results": 0, "model_calls": 0, "cases": [], "processes": self.processes}
+        self.report = {"started_at": now(), "database": self.database, "mongo_target": target(self.database), "mode": "deterministic_operational", "harness_mode": "mock", "biological_results": 0, "model_calls": 0, "cases": [], "processes": self.processes}
 
     def request(self, path: str, body=None):
         data = None if body is None else json.dumps(body).encode()
         request = urllib.request.Request(self.base + path, data=data, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=5) as response:
+        with urllib.request.urlopen(request, timeout=30) as response:  # Atlas round-trips, not localhost
             return json.load(response)
 
     def start(self, **hooks):
-        env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=self.database)
+        env = child_env(self.database)
         for key in list(env):
             if key.startswith("SAFE_HARBOR_CRASH_") or key.startswith("SAFE_HARBOR_OPERATIONAL_"):
                 env.pop(key)
@@ -58,7 +59,7 @@ class Journey:
         self.log = path.open("w")
         self.process = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.port)], cwd=ROOT, env=env, stdout=self.log, stderr=subprocess.STDOUT)
         self.processes.append({"pid": self.process.pid, "hooks": hooks, "log": str(path), "started_at": now()})
-        until = time.monotonic() + 25
+        until = time.monotonic() + 90  # startup initializes indexes on Atlas
         while time.monotonic() < until:
             if self.process.poll() is not None:
                 if self.process.returncode in (86, 87):
@@ -69,14 +70,14 @@ class Journey:
                     return
             except (OSError, urllib.error.URLError):
                 pass
-            time.sleep(0.1)
+            time.sleep(0.2)
         raise AssertionError("API did not start")
 
     def stop(self):
         if self.process:
             if self.process.poll() is None:
                 self.process.terminate()
-                self.process.wait(timeout=10)
+                self.process.wait(timeout=30)
             self.processes[-1]["exit_code"] = self.process.returncode
             self.processes[-1]["ended_at"] = now()
         if self.log:
@@ -97,14 +98,14 @@ class Journey:
         return run_id
 
     def wait_run(self, run_id: str, terminal="complete"):
-        until = time.monotonic() + 40
+        until = time.monotonic() + 180
         while time.monotonic() < until:
             snapshot = self.request(f"/runs/{run_id}/snapshot")
             if snapshot["run"]["status"] == terminal:
                 return snapshot
             if snapshot["run"]["status"] in ("blocked", "budget_exhausted", "failed"):
                 raise AssertionError(snapshot["run"])
-            time.sleep(0.1)
+            time.sleep(0.2)
         raise AssertionError(f"Run did not reach {terminal}: {run_id}")
 
     def export(self, run_id: str):
@@ -143,7 +144,7 @@ class Journey:
     def accepted_crash(self):
         run_id = self.fixture("Mock acceptance crash fixture", [role("before_crash", "screen_regions"), role("after_restart", "inspect_evidence", ["before_crash"])])
         self.start(SAFE_HARBOR_CRASH_AFTER_ACCEPT="screen_regions")
-        assert self.process.wait(timeout=25) == 86
+        assert self.process.wait(timeout=90) == 86
         assert self.ledger.db.tasks.find_one({"run_id": run_id, "role_id": "before_crash"})["status"] == "complete"
         assert self.ledger.db.tasks.find_one({"run_id": run_id, "role_id": "after_restart"})["status"] == "queued"
         assert self.ledger.db.operations.count_documents({"run_id": run_id, "operation_id": {"$regex": "^accept:"}}) == 1
@@ -160,7 +161,7 @@ class Journey:
     def reservation_crash(self):
         run_id = self.fixture("Mock interrupted reservation fixture", [role("reserved_work", "screen_regions")], token_limit=512)
         self.start(SAFE_HARBOR_CRASH_AFTER_RESERVE="screen_regions", SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION="512")
-        assert self.process.wait(timeout=25) == 87
+        assert self.process.wait(timeout=90) == 87
         assert self.ledger.get_run(run_id)["budget"]["reserved_tokens"] == 512
         self.stop()
         self.start(SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION="512")
@@ -180,6 +181,7 @@ class Journey:
         finally:
             self.stop()
             self.report["finished_at"] = now()
+            self.report["database_cleanup"] = drop_journey_database(self.database, self.keep_db, self.ledger.client)
             (self.output / "report.json").write_text(json.dumps(self.report, indent=2))
             print(json.dumps(self.report, indent=2))
 
@@ -192,5 +194,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8013)
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "safe_harbor" / "runtime-e2e" / str(int(time.time())))
+    add_keep_db_flag(parser)
     args = parser.parse_args()
-    Journey(args.port, args.output).execute()
+    journey = Journey(args.port, args.output)
+    journey.keep_db = args.keep_db
+    journey.execute()

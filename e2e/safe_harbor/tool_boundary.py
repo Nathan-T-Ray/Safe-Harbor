@@ -10,7 +10,6 @@ from __future__ import annotations
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
-import os
 from pathlib import Path
 import socket
 import subprocess
@@ -19,6 +18,7 @@ import threading
 import time
 import urllib.request
 
+from _atlas import child_env, e2e_database, target
 from shared.contracts import Budget, Run
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, digest, identifier, now
@@ -77,7 +77,7 @@ def main():
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
-    database = f"safe_harbor_tool_boundary_{int(time.time())}"
+    database = e2e_database("tool_boundary")
     ledger = Ledger(database=database)
     ledger.initialize()
     ledger.db.evaluations.insert_one({"evaluation_id": SENTINEL_ID, "mode": "mock", "private_answer": SENTINEL_VALUE})
@@ -97,20 +97,20 @@ def main():
     # Same transport redirection as provider_failure.py. No production function,
     # tool implementation, validator, coordinator or ledger method is replaced.
     bootstrap = "import os; from openai import OpenAI; import safe_harbor.runtime.worker as w; w.OpenAI=lambda **kw: OpenAI(**{**kw, 'base_url':os.environ['MOCK_PROVIDER_URL']}); import uvicorn; uvicorn.run('safe_harbor.api:app',host='127.0.0.1',port=int(os.environ['MOCK_API_PORT']))"
-    env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=database, OPENROUTER_API_KEY="mock-no-secret", MODEL_ID="mock/operational", MOCK_PROVIDER_URL=f"http://127.0.0.1:{provider.server_port}/v1", MOCK_API_PORT=str(port), NO_PROXY="127.0.0.1,localhost")
+    env = child_env(database, OPENROUTER_API_KEY="mock-no-secret", MODEL_ID="mock/operational", MOCK_PROVIDER_URL=f"http://127.0.0.1:{provider.server_port}/v1", MOCK_API_PORT=str(port), NO_PROXY="127.0.0.1,localhost")
     for key in list(env):
         if key.startswith(("SAFE_HARBOR_CRASH_", "SAFE_HARBOR_OPERATIONAL_")):
             env.pop(key)
     log = (OUTPUT / "api.log").open("w")
     process = subprocess.Popen([sys.executable, "-c", bootstrap], cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
-    report = {"mode": "mock", "execution": "deterministic_operational_http_provider", "provider_responses": "synthetic", "real_model_inference_calls": 0, "paid_calls": 0, "actual_cost_usd": 0, "database": database, "api_pid": process.pid, "api_port": port, "provider_port": provider.server_port, "data_version": source["data_version"], "cases": [], "passed": False, "started_at": now(), "limitations": ["Provider content and all recorded provider token/cost units are synthetic accounting fixtures, not measured model usage.", "A mock harness is bootstrapped through the real application ledger, then executed by the real API/coordinator/worker process.", "Only the OpenAI HTTP base URL is redirected to localhost; no tool or acceptance code is replaced.", "No biological assessment, model reasoning or improvement is evaluated."]}
+    report = {"mongo_target": target(database), "mode": "mock", "execution": "deterministic_operational_http_provider", "provider_responses": "synthetic", "real_model_inference_calls": 0, "paid_calls": 0, "actual_cost_usd": 0, "database": database, "api_pid": process.pid, "api_port": port, "provider_port": provider.server_port, "data_version": source["data_version"], "cases": [], "passed": False, "started_at": now(), "limitations": ["Provider content and all recorded provider token/cost units are synthetic accounting fixtures, not measured model usage.", "A mock harness is bootstrapped through the real application ledger, then executed by the real API/coordinator/worker process.", "Only the OpenAI HTTP base URL is redirected to localhost; no tool or acceptance code is replaced.", "No biological assessment, model reasoning or improvement is evaluated."]}
 
     def get(path):
-        return json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}" + path, timeout=5))
+        return json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}" + path, timeout=60))
 
     try:
         for case, run_id in runs.items():
-            deadline = time.monotonic() + 40
+            deadline = time.monotonic() + 150
             while time.monotonic() < deadline:
                 if process.poll() is not None:
                     raise AssertionError(f"API exited early: {process.returncode}")
@@ -172,7 +172,7 @@ def main():
     finally:
         if process.poll() is None:
             process.terminate()
-        process.wait(timeout=10)
+        process.wait(timeout=30)
         log.close()
         provider.shutdown()
         ledger.client.close()

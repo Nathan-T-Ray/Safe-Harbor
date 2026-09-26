@@ -20,7 +20,6 @@ from __future__ import annotations
 import argparse
 import copy
 import json
-import os
 from pathlib import Path
 import re
 import subprocess
@@ -29,6 +28,7 @@ import time
 import urllib.error
 import urllib.request
 
+from _atlas import child_env, e2e_database, target
 from safe_harbor.evaluation.cases import load_cases
 from safe_harbor.evaluation.reference_answers import load_reference
 from safe_harbor.evaluation.scoring import extract_run_output, score_case
@@ -115,11 +115,11 @@ class ScienceJourney:
         self.port, self.output = port, output.resolve()
         self.base = f"http://127.0.0.1:{port}"
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"safe_harbor_science_e2e_{int(time.time())}"
+        self.database = e2e_database("science")
         self.ledger = Ledger(database=self.database)
         self.ledger.initialize()
         self.process = self.log = None
-        self.report = {"ticket": "SH-Q02", "started_at": now(), "database": self.database, "mode": "deterministic_operational",
+        self.report = {"ticket": "SH-Q02", "started_at": now(), "database": self.database, "mongo_target": target(self.database), "mode": "deterministic_operational",
                        "model_calls": 0, "reference": "data/safe_harbor/evaluator/reference_answers.json (independent raw-file recomputation, not human reviewed)",
                        "evaluators": ["safe_harbor.evaluation.scoring.score_case (H05) on actual run traces", "SH-Q02 cross-check of every exported tool number against the reference"],
                        "cases": [], "negative_controls": [], "checks": []}
@@ -127,15 +127,15 @@ class ScienceJourney:
     def request(self, path: str, body=None, method=None):
         data = None if body is None else json.dumps(body).encode()
         request = urllib.request.Request(self.base + path, data=data, method=method, headers={"Content-Type": "application/json"})
-        with urllib.request.urlopen(request, timeout=10) as response:
+        with urllib.request.urlopen(request, timeout=60) as response:
             return json.load(response)
 
     def start(self):
-        env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=self.database)
+        env = child_env(self.database)  # inherits MONGODB_URI unchanged
         env.pop("OPENROUTER_API_KEY", None)
         self.log = (self.output / "api.log").open("w")
         self.process = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.port)], cwd=ROOT, env=env, stdout=self.log, stderr=subprocess.STDOUT)
-        until = time.monotonic() + 25
+        until = time.monotonic() + 90
         while time.monotonic() < until:
             if self.process.poll() is not None:
                 raise AssertionError(f"API exited {self.process.returncode}; inspect {self.output / 'api.log'}")
@@ -150,13 +150,13 @@ class ScienceJourney:
     def stop(self):
         if self.process and self.process.poll() is None:
             self.process.terminate()
-            self.process.wait(timeout=10)
+            self.process.wait(timeout=30)
         if self.log:
             self.log.close()
         self.process = self.log = None
 
     def wait_settled(self, run_id: str, after_sequence: int = 0) -> dict:
-        until = time.monotonic() + 90
+        until = time.monotonic() + 300  # Atlas round-trips per poll
         while time.monotonic() < until:
             snapshot = self.request(f"/runs/{run_id}/snapshot")
             status = snapshot["run"]["status"]

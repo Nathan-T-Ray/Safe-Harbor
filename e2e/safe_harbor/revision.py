@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """SH-Q04 E2E: prepared evidence revision applied while affected work is running.
 
-Run from the repository root (worktree), with the replica set up:
+Run from the repository root (worktree) with MONGODB_URI (MongoDB Atlas) in the environment:
   set -a; source .env; set +a
   PYTHONPATH=backend:. .venv/bin/python e2e/safe_harbor/revision.py --port 8032
 
@@ -22,6 +22,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from _atlas import add_keep_db_flag
 from _support import E2E, default_output, mock_harness
 from safe_harbor.harness.specification import SCIENTIFIC_INSTRUCTIONS, validate_harness
 
@@ -174,6 +175,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8032)
     parser.add_argument("--output", type=Path, default=default_output("revision"))
+    add_keep_db_flag(parser)
     args = parser.parse_args()
     journey = Revision("revision", args.port, args.output)
+    journey.keep_db = args.keep_db
     raise SystemExit(journey.execute([journey.revision_during_active_work]))

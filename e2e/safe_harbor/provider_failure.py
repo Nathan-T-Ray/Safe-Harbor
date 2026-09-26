@@ -8,7 +8,6 @@ from __future__ import annotations
 
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
-import os
 from pathlib import Path
 import socket
 import subprocess
@@ -17,6 +16,7 @@ import threading
 import time
 import urllib.request
 
+from _atlas import child_env, e2e_database, target
 from shared.contracts import Budget, Run
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, digest, identifier, now
@@ -50,7 +50,7 @@ def main():
     with socket.socket() as sock:
         sock.bind(("127.0.0.1", 0))
         port = sock.getsockname()[1]
-    database = f"safe_harbor_provider_failure_{int(time.time())}"
+    database = e2e_database("provider_failure")
     ledger = Ledger(database=database)
     ledger.initialize()
     source = get_catalog()
@@ -63,15 +63,15 @@ def main():
     run = Run(run_id=run_id, mode="mock", objective="Mock provider accounting fixture, not real model inference.", status="queued", candidate_ids=[cid], data_version=source["data_version"], harness_hash=harness["harness_hash"], created_at=now(), budget=Budget(token_limit=200000), evidence_versions=versions, evidence_availability={cid: {"control_evidence": True}}, operational_fixture=True, model_id="mock/operational", model_provider="mock_http_server", model_settings={"max_output_tokens": 128, "temperature": 0}, model_pricing={"pricing_hash": "mock-pricing", "prompt_usd_per_token_bound": 0.000001, "completion_usd_per_token_bound": 0.000001, "request_usd_bound": 0, "provider_routing": {}}).model_dump()
     ledger.create(run, [candidate], compile_harness(harness, run_id, [cid]), harness)
     bootstrap = "import os; from openai import OpenAI; import safe_harbor.runtime.worker as w; w.OpenAI=lambda **kw: OpenAI(**{**kw, 'base_url':os.environ['MOCK_PROVIDER_URL']}); import uvicorn; uvicorn.run('safe_harbor.api:app',host='127.0.0.1',port=int(os.environ['MOCK_API_PORT']))"
-    env = dict(os.environ, PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=database, OPENROUTER_API_KEY="mock-no-secret", MODEL_ID="mock/operational", MOCK_PROVIDER_URL=f"http://127.0.0.1:{provider.server_port}/v1", MOCK_API_PORT=str(port))
+    env = child_env(database, OPENROUTER_API_KEY="mock-no-secret", MODEL_ID="mock/operational", MOCK_PROVIDER_URL=f"http://127.0.0.1:{provider.server_port}/v1", MOCK_API_PORT=str(port))
     log = (output / "api.log").open("w")
     process = subprocess.Popen([sys.executable, "-c", bootstrap], cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
 
     def get(path):
-        return json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}" + path, timeout=5))
+        return json.load(urllib.request.urlopen(f"http://127.0.0.1:{port}" + path, timeout=60))
 
     try:
-        deadline = time.monotonic() + 35
+        deadline = time.monotonic() + 150
         while time.monotonic() < deadline:
             try:
                 snapshot = get(f"/runs/{run_id}/snapshot")
@@ -94,12 +94,12 @@ def main():
         assert failure["kind"] == "worker_failure_trace" and failure["data"]["provider_responses"][0]["response"]["id"] == "mock-provider-response-1"
         exported = get(f"/runs/{run_id}/export")
         (output / "export.json").write_text(json.dumps(exported, indent=2) + "\n")
-        report = {"mode": "mock", "purpose": "Operational API/MongoDB/HTTP-provider E2E; synthetic response and synthetic accounting units, no real model inference or biological conclusion.", "status": "passed", "run_id": run_id, "database": database, "api_pid": process.pid, "provider_port": provider.server_port, "api_port": port, "assertions": ["Task allowance explicit in provider request and packet", "Five proposed calls rejected before any tool executes", "Known mock usage settled without uncertainty", "Raw failed response preserved in atomic failure event", "Failure artifact included in export"], "budget": budget, "completed_at": now()}
+        report = {"mongo_target": target(database), "mode": "mock", "purpose": "Operational API/MongoDB/HTTP-provider E2E; synthetic response and synthetic accounting units, no real model inference or biological conclusion.", "status": "passed", "run_id": run_id, "database": database, "api_pid": process.pid, "provider_port": provider.server_port, "api_port": port, "assertions": ["Task allowance explicit in provider request and packet", "Five proposed calls rejected before any tool executes", "Known mock usage settled without uncertainty", "Raw failed response preserved in atomic failure event", "Failure artifact included in export"], "budget": budget, "completed_at": now()}
         (output / "report.json").write_text(json.dumps(report, indent=2) + "\n")
         print(json.dumps(report))
     finally:
         process.terminate()
-        process.wait(timeout=10)
+        process.wait(timeout=30)
         log.close()
         provider.shutdown()
         ledger.client.close()

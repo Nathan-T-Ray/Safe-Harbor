@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
 import socket
 import subprocess
@@ -17,7 +16,8 @@ import sys
 import time
 import urllib.error
 import urllib.request
-import uuid
+
+from _atlas import add_keep_db_flag, child_env, drop_journey_database, e2e_database, mongo_uri, target
 
 from safe_harbor.harness import apply_patch, get_harness, save_harness
 from safe_harbor.runtime.ledger import Ledger, now
@@ -29,11 +29,11 @@ ASSIGNED_BUDGET = {"token_limit": 60000, "tool_limit": 40, "cost_limit_usd": 5.0
 def request(base: str, path: str, body=None):
     payload = None if body is None else json.dumps(body).encode()
     req = urllib.request.Request(base + path, data=payload, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=20) as response:
+    with urllib.request.urlopen(req, timeout=60) as response:
         return json.load(response)
 
 
-def wait_for(base: str, run_id: str, timeout: float = 90):
+def wait_for(base: str, run_id: str, timeout: float = 300):  # Atlas round-trips per poll
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         snapshot = request(base, f"/runs/{run_id}/snapshot")
@@ -42,7 +42,7 @@ def wait_for(base: str, run_id: str, timeout: float = 90):
             return snapshot
         if status in {"blocked", "failed", "budget_exhausted"}:
             raise AssertionError(f"Run ended {status}: {[(task['role_id'], task['status'], task.get('error')) for task in snapshot['tasks']]}")
-        time.sleep(0.15)
+        time.sleep(0.3)
     raise AssertionError(f"Run {run_id} did not complete in {timeout} seconds")
 
 
@@ -66,6 +66,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--port", type=int, default=0, help="Default picks an available loopback port.")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "safe-harbor" / "harness-operational")
+    add_keep_db_flag(parser)
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     if args.port:
@@ -75,9 +76,8 @@ def main():
             listener.bind(("127.0.0.1", 0))
             port = listener.getsockname()[1]
     base = f"http://127.0.0.1:{port}"
-    database = f"safe_harbor_harness_e2e_{uuid.uuid4().hex[:12]}"
-    uri = os.getenv("MONGODB_URI", "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev")
-    ledger = Ledger(uri=uri, database=database)
+    database = e2e_database("harness")
+    ledger = Ledger(uri=mongo_uri(), database=database)
     ledger.initialize()
     baseline = get_harness()
     patch = {"operations": [{
@@ -97,19 +97,19 @@ def main():
     save_harness(baseline, database=ledger.db)
     save_harness(candidate, database=ledger.db)
     assert get_harness(candidate["harness_hash"], database=ledger.db) == candidate
-    env = dict(os.environ, PYTHONPATH=f"{ROOT}:{ROOT / 'backend'}", MONGODB_URI=uri, MONGODB_DATABASE=database)
+    env = child_env(database)  # inherits MONGODB_URI unchanged
     # This journey never performs a real model call, even if credentials exist.
     for key in list(env):
         if key.startswith("SAFE_HARBOR_CRASH_") or key.startswith("SAFE_HARBOR_OPERATIONAL_"):
             env.pop(key)
     log_path = args.output / "api-process.log"
-    report = {"schema_version": 1, "started_at": now(), "mode": "deterministic_operational", "proposal_origin": "manual_operational_e2e", "automatic_proposal": False, "model_improvement_measured": False, "database": database, "port": port, "assigned_budget_per_run": ASSIGNED_BUDGET, "patch": patch}
+    report = {"schema_version": 1, "started_at": now(), "mode": "deterministic_operational", "proposal_origin": "manual_operational_e2e", "automatic_proposal": False, "model_improvement_measured": False, "database": database, "mongo_target": target(database), "port": port, "assigned_budget_per_run": ASSIGNED_BUDGET, "patch": patch}
     process = None
     with log_path.open("w") as log:
         try:
             process = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(port)], cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT)
             report["api_process_id"] = process.pid
-            deadline = time.monotonic() + 25
+            deadline = time.monotonic() + 90
             while time.monotonic() < deadline:
                 if process.poll() is not None:
                     raise AssertionError(f"API exited unexpectedly; inspect {log_path}")
@@ -170,6 +170,7 @@ def main():
                     process.kill()
                     process.wait(timeout=5)
             report["api_exit_code"] = process.returncode if process else None
+            report["database_cleanup"] = drop_journey_database(database, args.keep_db, ledger.client)
             (args.output / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False))
             ledger.client.close()
     print(json.dumps({"passed": report["passed"], "report": str(args.output / 'report.json'), "database": database, "automatic_proposal": False, "model_calls": 0}))

@@ -32,7 +32,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import subprocess
 import sys
 import time
@@ -41,6 +40,7 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from _atlas import child_env, e2e_database, target
 from safe_harbor.runtime.compiler import MAX_TASKS, compile_harness
 from safe_harbor.runtime.ledger import Ledger, digest, identifier, now
 from safe_harbor.science import get_catalog
@@ -82,14 +82,14 @@ class HistoryJourney:
         self.port, self.base, self.output = port, f"http://127.0.0.1:{port}", output
         self.intervening, self.timeout = intervening, timeout
         self.output.mkdir(parents=True, exist_ok=True)
-        self.database = f"safe_harbor_history_{int(time.time())}"
+        self.database = e2e_database("history")
         self.ledger = Ledger(database=self.database)
         self.ledger.initialize()
         self.process = self.log = None
         self.processes: list[dict] = []
         self.checks: list[dict] = []
         self.report = {
-            "ticket": "SH-Q10", "started_at": now(), "database": self.database,
+            "ticket": "SH-Q10", "started_at": now(), "database": self.database, "mongo_target": target(self.database),
             "mode": "deterministic_operational", "harness_mode": "mock",
             "mode_note": "Mock harness fixture; real deterministic science tools; no model calls; no biological conclusion.",
             "processes": self.processes, "checks": self.checks, "code_findings": CODE_FINDINGS,
@@ -106,7 +106,7 @@ class HistoryJourney:
         return json.loads(self.raw(path, body, timeout))
 
     def start(self, **hooks):
-        env = dict(os.environ, OPENROUTER_API_KEY="", MODEL_ID="", PYTHONPATH=f"{ROOT / 'backend'}:{ROOT}", MONGODB_DATABASE=self.database)
+        env = child_env(self.database, OPENROUTER_API_KEY="", MODEL_ID="")  # inherits MONGODB_URI unchanged
         for key in list(env):
             if key.startswith(("SAFE_HARBOR_CRASH_", "SAFE_HARBOR_OPERATIONAL_")):
                 env.pop(key)
@@ -115,14 +115,14 @@ class HistoryJourney:
         self.log = path.open("w")
         self.process = subprocess.Popen([sys.executable, "-m", "uvicorn", "safe_harbor.api:app", "--host", "127.0.0.1", "--port", str(self.port)], cwd=ROOT, env=env, stdout=self.log, stderr=subprocess.STDOUT)
         self.processes.append({"index": len(self.processes) + 1, "pid": self.process.pid, "hooks": hooks, "log": str(path), "started_at": now()})
-        until = time.monotonic() + 25
+        until = time.monotonic() + 90
         while time.monotonic() < until:
             if self.process.poll() is not None:
                 if self.process.returncode == CRASH_EXIT and hooks:
                     return
                 raise AssertionError(f"API process exited {self.process.returncode}; inspect {path}")
             try:
-                if self.request("/health", timeout=5)["database"] == self.database:
+                if self.request("/health", timeout=30)["database"] == self.database:
                     return
             except (OSError, urllib.error.URLError, ValueError):
                 pass
@@ -133,7 +133,7 @@ class HistoryJourney:
         if self.process:
             if self.process.poll() is None:
                 self.process.terminate()
-                self.process.wait(timeout=10)
+                self.process.wait(timeout=30)
             self.processes[-1]["exit_code"] = self.process.returncode
             self.processes[-1]["ended_at"] = now()
         if self.log:
