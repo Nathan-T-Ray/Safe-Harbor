@@ -24,6 +24,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env", override=False)
+# These journeys are labelled "no API key present". The ignored .env may now hold a real
+# OpenRouter key (SH-Q01); blank it so the spawned API (whose own load_dotenv does not
+# override an existing variable) never starts real-model work or spends provider credit.
+os.environ["OPENROUTER_API_KEY"] = ""
 
 from runtime_operations import Journey  # noqa: E402
 from shared.contracts import Budget, Run  # noqa: E402

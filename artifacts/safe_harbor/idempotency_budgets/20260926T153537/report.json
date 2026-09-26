@@ -1,0 +1,632 @@
+{
+  "journey": "idem_budget",
+  "started_at": "2026-09-26T19:35:37.916248+00:00",
+  "database": "sh_e2e_idem_budget_1790451337_909f2a",
+  "api_port": 8073,
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "labels": {
+    "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
+    "fault_injection": "operational crash hooks / delays / token reservations are fault-injection only and never reported as model usage",
+    "biological_claims": "none; these journeys test runtime persistence and control flow only"
+  },
+  "checks": [
+    {
+      "check": "idempotency:identical_operation_deduplicates",
+      "passed": true,
+      "evidence": {
+        "operation_id": "accept:run-b7342b5c73924f7c8d5a06a57d297865:pansio-1:assess:r0:1:1",
+        "reconstructed_payload_hash": "e27940f45273bc90380d63affdf7a249aa0d1f10d17afbe4e5da1623165ca359",
+        "stored_payload_hash": "e27940f45273bc90380d63affdf7a249aa0d1f10d17afbe4e5da1623165ca359",
+        "returned": {
+          "run_id": "run-b7342b5c73924f7c8d5a06a57d297865",
+          "task_id": "run-b7342b5c73924f7c8d5a06a57d297865:pansio-1:assess:r0",
+          "sequence": 10,
+          "artifact_ids": [
+            "artifact-c236ef60321f48b1ab8c7ec8cbace129",
+            "artifact-494155c272a94133868c5df56a9095d6",
+            "artifact-e11f8193f4ea4759bed261507257e019",
+            "artifact-583f0d9badb8458787d2199fc4ecefc3",
+            "artifact-4fd8646d8d0047ceacd6cb5eace3e9a1"
+          ]
+        },
+        "ledger_counts_before": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        },
+        "ledger_counts_after": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        }
+      }
+    },
+    {
+      "check": "idempotency:conflicting_hash_rejected_with_audit_record",
+      "passed": true,
+      "evidence": {
+        "outcome": "rejected 409: Operation ID was already used with different content",
+        "rejection_record": {
+          "operation_id": "rejected:accept:run-b7342b5c73924f7c8d5a06a57d297865:pansio-1:assess:r0:1:1:3adaf332f43ed71e2dd836e165b33092063359580926f2c50481e27e027bf360",
+          "occurred_at": "2026-09-26T19:35:40.832543+00:00",
+          "original_operation_id": "accept:run-b7342b5c73924f7c8d5a06a57d297865:pansio-1:assess:r0:1:1",
+          "payload_hash": "3adaf332f43ed71e2dd836e165b33092063359580926f2c50481e27e027bf360",
+          "reason": "Operation ID was already used with different content",
+          "run_id": "run-b7342b5c73924f7c8d5a06a57d297865",
+          "status": "rejected"
+        },
+        "through_sequence": 15
+      }
+    },
+    {
+      "check": "idempotency:repeated_prepared_revision_is_noop",
+      "passed": true,
+      "evidence": {
+        "response": {
+          "run_id": "run-92ceda1806d546f0983bdb502018287e",
+          "status": "unchanged",
+          "through_sequence": 28
+        },
+        "replan_rounds": 1,
+        "evidence_revised_events": 1,
+        "note": "Repeat is detected by the fixture's target state; each POST gets a fresh operation ID (no client-supplied idempotency key)."
+      }
+    },
+    {
+      "check": "budget:three_replan_limit_enforced",
+      "passed": true,
+      "evidence": {
+        "steps": [
+          [
+            "withhold#1",
+            200,
+            16
+          ],
+          [
+            "withhold#1-repeat",
+            200,
+            {
+              "run_id": "run-92ceda1806d546f0983bdb502018287e",
+              "status": "unchanged",
+              "through_sequence": 28
+            }
+          ],
+          [
+            "restore#2",
+            200,
+            31
+          ],
+          [
+            "withhold#3",
+            200,
+            44
+          ]
+        ],
+        "fourth_revision": {
+          "http_status": 429,
+          "body": {
+            "detail": "Three-replan limit reached"
+          }
+        },
+        "replan_rounds": 3,
+        "task_nodes": 21,
+        "final_status": "complete",
+        "budget": {
+          "token_limit": 200000,
+          "tool_limit": 200,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 46,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "open_work_when_terminal": {
+          "after_withhold#1": [],
+          "after_restore#2": [],
+          "after_withhold#3": []
+        },
+        "through_sequence_unchanged": true
+      }
+    },
+    {
+      "check": "idempotency:revision_racing_coordinator_stop_not_dropped",
+      "passed": false,
+      "evidence": {
+        "attempts": [
+          {
+            "run_id": "run-2d04c2f3d47a40998e14f36822eb54dd",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [
+              "run-2d04c2f3d47a40998e14f36822eb54dd:pansio-1:assess:r0:revision1=reopened",
+              "run-2d04c2f3d47a40998e14f36822eb54dd:pansio-1:compare:r0:revision1=reopened",
+              "run-2d04c2f3d47a40998e14f36822eb54dd:pansio-1:inspect:r0:revision1=reopened",
+              "run-2d04c2f3d47a40998e14f36822eb54dd:pansio-1:report:r0:revision1=reopened",
+              "run-2d04c2f3d47a40998e14f36822eb54dd:pansio-1:review:r0:revision1=reopened"
+            ],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          }
+        ],
+        "note": "POST /resume on a complete run followed immediately by a prepared revision. A violation means the run was marked complete while reopened successors never ran. Absence of a violation in these attempts is not proof the race is absent."
+      }
+    },
+    {
+      "check": "invalid_plans:rejected_before_any_record_or_dispatch",
+      "passed": true,
+      "evidence": {
+        "results": {
+          "cyclic_dependencies": {
+            "http_status": 422,
+            "detail": "Harness dependencies contain a cycle"
+          },
+          "unknown_dependency": {
+            "http_status": 422,
+            "detail": "Role has unknown or repeated dependencies"
+          },
+          "unknown_tool": {
+            "http_status": 422,
+            "detail": "Role requests unapproved or repeated tools"
+          },
+          "unapproved_task_kind": {
+            "http_status": 422,
+            "detail": "Unapproved role kind or context policy"
+          },
+          "nine_roles_27_nodes_for_3_candidates": {
+            "http_status": 422,
+            "detail": "A harness must contain 1\u20138 roles, allowing three candidates within 24 tasks"
+          },
+          "altered_immutable_budget_and_worker_limits": {
+            "http_status": 422,
+            "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered"
+          },
+          "role_tool_cap_escalation": {
+            "http_status": 422,
+            "detail": "Role tool-call cap must remain within 0\u20134"
+          },
+          "forbidden_top_level_setting": {
+            "http_status": 422,
+            "detail": "Harness contains forbidden top-level settings"
+          },
+          "hash_does_not_match_content": {
+            "http_status": 422,
+            "detail": "Harness hash does not match its exact specification"
+          },
+          "unknown_harness_hash": {
+            "http_status": 404,
+            "detail": "Unknown saved harness version"
+          },
+          "four_candidates": {
+            "http_status": 422,
+            "detail": "schema validation error"
+          },
+          "duplicate_candidates": {
+            "http_status": 422,
+            "detail": "Candidate IDs must be unique IDs from the verified catalog."
+          },
+          "unknown_candidate": {
+            "http_status": 422,
+            "detail": "Candidate IDs must be unique IDs from the verified catalog."
+          },
+          "unassigned_budget_field": {
+            "http_status": 422,
+            "detail": "Only assigned budget limits may be supplied."
+          },
+          "negative_budget": {
+            "http_status": 422,
+            "detail": "Budget limits cannot be negative."
+          },
+          "mock_mode_live_run": {
+            "http_status": 422,
+            "detail": "Mock fixtures are supplied as files; live runs require deterministic or real_model mode."
+          },
+          "real_model_without_key": {
+            "http_status": 409,
+            "detail": "Real-model execution is unconfigured. Set OPENROUTER_API_KEY and MODEL_ID in the ignored .env file."
+          },
+          "unknown_request_field": {
+            "http_status": 422,
+            "detail": "schema validation error"
+          }
+        },
+        "expected_status": {
+          "cyclic_dependencies": 422,
+          "unknown_dependency": 422,
+          "unknown_tool": 422,
+          "unapproved_task_kind": 422,
+          "nine_roles_27_nodes_for_3_candidates": 422,
+          "altered_immutable_budget_and_worker_limits": 422,
+          "role_tool_cap_escalation": 422,
+          "forbidden_top_level_setting": 422,
+          "hash_does_not_match_content": 422,
+          "unknown_harness_hash": 404,
+          "four_candidates": 422,
+          "duplicate_candidates": 422,
+          "unknown_candidate": 422,
+          "unassigned_budget_field": 422,
+          "negative_budget": 422,
+          "mock_mode_live_run": 422,
+          "real_model_without_key": 409,
+          "unknown_request_field": 422
+        },
+        "ledger_counts_before": {
+          "runs": 3,
+          "tasks": 38,
+          "events": 89,
+          "operations": 91,
+          "artifacts": 133,
+          "assessments": 12
+        },
+        "ledger_counts_after": {
+          "runs": 3,
+          "tasks": 38,
+          "events": 89,
+          "operations": 91,
+          "artifacts": 133,
+          "assessments": 12
+        }
+      }
+    },
+    {
+      "check": "invalid_plans:24_node_limit_enforced_on_replanning",
+      "passed": true,
+      "evidence": {
+        "first_revision_status": 200,
+        "nodes_after_first": 23,
+        "second_revision": {
+          "http_status": 429,
+          "body": {
+            "detail": "Evidence revision would exceed the 24-node episode limit"
+          }
+        },
+        "replan_rounds": 1,
+        "final_status": "complete"
+      }
+    },
+    {
+      "check": "invalid_plans:prohibited_patches_rejected_allowed_patch_executes",
+      "passed": true,
+      "evidence": {
+        "prohibited": {
+          "edit_criteria": "rejected 422: Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden",
+          "edit_budget": "rejected 422: Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden",
+          "new_role_budget_escalation": "rejected 422: New role contains forbidden dependency, permission, or budget fields",
+          "new_role_unapproved_tool": "rejected 422: Role requests unapproved or repeated tools",
+          "reassign_unowned_tool": "rejected 422: Tool reassignment must move existing approved tools between distinct roles",
+          "split_dropping_tool": "rejected 422: Split roles must preserve the original role's tool capabilities",
+          "extra_patch_field": "rejected 422: Patch must contain 1\u20134 approved structural operations only"
+        },
+        "allowed_patch_hash": "06dccfcbd64b9c569b9a8a02d60b02b1d4a348e2130ceb5175c7c85ffcb9f6d4",
+        "allowed_run_status": "complete",
+        "allowed_run_tasks": 7,
+        "post_experiments": {
+          "http_status": 201,
+          "detail": null
+        }
+      }
+    },
+    {
+      "check": "budget:two_worker_cap_enforced_durably",
+      "passed": true,
+      "evidence": {
+        "third_reservation_probe": "rejected 409: Two-worker concurrency cap reached",
+        "probed_task": "e2e-idem_budget-5d2f79ab66bf45aab6d8529b452d9c76:keppel-19:inspect:r0",
+        "probed_task_status_after": "queued",
+        "max_concurrent_running_from_event_replay": 2,
+        "final_status": "complete",
+        "task_nodes": 18,
+        "note": "Probe calls Ledger.reserve with the live coordinator epoch while two workers hold reservations."
+      }
+    },
+    {
+      "check": "budget:tool_limit_stops_dispatch",
+      "passed": true,
+      "evidence": {
+        "final_status": "budget_exhausted",
+        "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+        "budget": {
+          "token_limit": 200000,
+          "tool_limit": 3,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 2,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "task_status": {
+          "assess": "queued",
+          "compare": "queued",
+          "inspect": "queued",
+          "report": "queued",
+          "review": "queued",
+          "screen": "complete"
+        }
+      }
+    },
+    {
+      "check": "budget:tool_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "resume_status": 200,
+        "status_after_resume": "budget_exhausted",
+        "tool_calls_before": 2,
+        "tool_calls_after": 2,
+        "task_started_events_after_resume": [],
+        "epochs": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "check": "budget:reservation_contention_not_reported_as_exhaustion",
+      "passed": false,
+      "evidence": {
+        "final_status": "budget_exhausted",
+        "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+        "task_status": {
+          "assess": "complete",
+          "compare": "complete",
+          "inspect": "complete",
+          "report": "complete",
+          "review": "complete",
+          "screen": "complete"
+        },
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 13,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "note": "Two concurrent 1000-unit reservations exceed a 1500 limit, so one dispatch is deferred with 429. Deterministic usage is 0, so the sequential total always fits; the run should end 'complete'."
+      }
+    },
+    {
+      "check": "budget:uncertain_tokens_count_against_limit",
+      "passed": true,
+      "evidence": {
+        "crash_exit_code": 87,
+        "final_status": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        },
+        "compare": {
+          "status": "queued",
+          "attempt": 1,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "usage_note": "Operational reservation units only; no model call."
+      }
+    },
+    {
+      "check": "budget:token_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "status_after_resume": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        }
+      }
+    },
+    {
+      "check": "budget:one_retry_for_interrupted_attempt",
+      "passed": true,
+      "evidence": {
+        "crash_exit_codes": [
+          87,
+          87
+        ],
+        "screen": {
+          "status": "failed",
+          "attempt": 2,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "reserve_operations": 2,
+        "final_status": "blocked",
+        "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+        "note": "Covers the interrupted-attempt retry path (Ledger.claim). The transient-exception retry path (Ledger.task_failed transient=True) has no fault hook and is not exercised."
+      }
+    }
+  ],
+  "processes": [
+    {
+      "pid": 81558,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-1.log",
+      "started_at": "2026-09-26T19:35:37.922119+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:35:44.281253+00:00"
+    },
+    {
+      "pid": 81564,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-2.log",
+      "started_at": "2026-09-26T19:35:44.287614+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:35:49.559171+00:00"
+    },
+    {
+      "pid": 81568,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-3.log",
+      "started_at": "2026-09-26T19:35:49.563516+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:35:55.960151+00:00"
+    },
+    {
+      "pid": 81577,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "3"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-4.log",
+      "started_at": "2026-09-26T19:35:55.987135+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:27.265366+00:00"
+    },
+    {
+      "pid": 81608,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-5.log",
+      "started_at": "2026-09-26T19:36:27.269726+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:30.083910+00:00"
+    },
+    {
+      "pid": 81611,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-6.log",
+      "started_at": "2026-09-26T19:36:30.087079+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:32.277445+00:00"
+    },
+    {
+      "pid": 81614,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-7.log",
+      "started_at": "2026-09-26T19:36:32.295736+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:36.061328+00:00"
+    },
+    {
+      "pid": 81621,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "compute_features",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-8.log",
+      "started_at": "2026-09-26T19:36:36.079112+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:36:38.882911+00:00"
+    },
+    {
+      "pid": 81629,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-9.log",
+      "started_at": "2026-09-26T19:36:38.886822+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:51.233498+00:00"
+    },
+    {
+      "pid": 81639,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-10.log",
+      "started_at": "2026-09-26T19:36:51.237015+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:36:53.061627+00:00"
+    },
+    {
+      "pid": 81640,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-11.log",
+      "started_at": "2026-09-26T19:36:53.085135+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:36:53.947030+00:00"
+    },
+    {
+      "pid": 81644,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-12.log",
+      "started_at": "2026-09-26T19:36:53.953867+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:37:05.985309+00:00"
+    },
+    {
+      "pid": 81655,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/process-13.log",
+      "started_at": "2026-09-26T19:37:05.988914+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:37:19.877583+00:00"
+    }
+  ],
+  "not_exercised": {
+    "transient_exception_retry": "No runtime hook raises TimeoutError/ConnectionError inside a deterministic worker; only the crash/interrupted-attempt retry path is exercised.",
+    "cost_budget": "Deterministic runs reserve and spend $0; cost enforcement needs real-model usage or a cost fault hook.",
+    "provider_usage_breach": "Ledger.accept budget_breach requires provider-reported usage; no model key."
+  },
+  "runs": {
+    "idempotency_and_replans": {
+      "run_id": "run-92ceda1806d546f0983bdb502018287e",
+      "export": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/idempotency_budgets/20260926T153537/run-92ceda1806d546f0983bdb502018287e.export.json"
+    },
+    "tool_budget": {
+      "run_id": "run-2de40db06cc34c0bbeb2332e3f621885"
+    }
+  },
+  "finished_at": "2026-09-26T19:37:19.882014+00:00",
+  "passed": false,
+  "summary": {
+    "checks": 15,
+    "failed": [
+      "idempotency:revision_racing_coordinator_stop_not_dropped",
+      "budget:reservation_contention_not_reported_as_exhaustion"
+    ]
+  }
+}
