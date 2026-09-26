@@ -1,0 +1,441 @@
+{
+  "mode": "mock",
+  "authorization_headers_recorded": false,
+  "requests": [
+    {
+      "case": "prohibited_science",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+          },
+          {
+            "role": "user",
+            "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"prohibited_science\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"cdfcce09dd7d8f39115238b4dae1f0ebb0240516438b60d8f8b200e8da33f0be\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+          }
+        ],
+        "model": "mock/operational",
+        "max_tokens": 128,
+        "temperature": 0,
+        "tool_choice": "auto",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "reference_sequence",
+              "description": "Retrieve at most 240 actual GRCh38 reference bases within the frozen selected-candidate window; offset is relative to candidate start, orientation is plus.",
+              "parameters": {
+                "additionalProperties": false,
+                "properties": {
+                  "cell_context": {
+                    "default": "H1",
+                    "enum": [
+                      "H1",
+                      "H9"
+                    ],
+                    "title": "Cell Context",
+                    "type": "string"
+                  },
+                  "offset": {
+                    "default": 0,
+                    "maximum": 2000,
+                    "minimum": -100,
+                    "title": "Offset",
+                    "type": "integer"
+                  },
+                  "length": {
+                    "default": 120,
+                    "maximum": 240,
+                    "minimum": 1,
+                    "title": "Length",
+                    "type": "integer"
+                  }
+                },
+                "title": "SequenceArguments",
+                "type": "object"
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "retrieve_evidence",
+              "description": "Retrieve an exact immutable evidence artifact from this task's manifest only. Use pointer to select a JSON subtree, offset/limit for arrays. No arbitrary files, URLs, evaluator data or other runs.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "pointer": {
+                    "type": "string",
+                    "description": "JSON pointer, e.g. /calculation/nearest_de_genes"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "provider": {},
+        "plugins": []
+      },
+      "synthetic_response": {
+        "id": "mock-prohibited_science-response-1",
+        "object": "chat.completion",
+        "created": 1790451846,
+        "model": "mock/operational",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "mock-prohibited_science",
+                  "type": "function",
+                  "function": {
+                    "name": "control_overlap",
+                    "arguments": "{}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 25,
+          "completion_tokens": 8,
+          "total_tokens": 33,
+          "cost": 0.0001
+        }
+      }
+    },
+    {
+      "case": "evaluator_retrieval",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+          },
+          {
+            "role": "user",
+            "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"evaluator_retrieval\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+          }
+        ],
+        "model": "mock/operational",
+        "max_tokens": 128,
+        "temperature": 0,
+        "tool_choice": "auto",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "reference_sequence",
+              "description": "Retrieve at most 240 actual GRCh38 reference bases within the frozen selected-candidate window; offset is relative to candidate start, orientation is plus.",
+              "parameters": {
+                "additionalProperties": false,
+                "properties": {
+                  "cell_context": {
+                    "default": "H1",
+                    "enum": [
+                      "H1",
+                      "H9"
+                    ],
+                    "title": "Cell Context",
+                    "type": "string"
+                  },
+                  "offset": {
+                    "default": 0,
+                    "maximum": 2000,
+                    "minimum": -100,
+                    "title": "Offset",
+                    "type": "integer"
+                  },
+                  "length": {
+                    "default": 120,
+                    "maximum": 240,
+                    "minimum": 1,
+                    "title": "Length",
+                    "type": "integer"
+                  }
+                },
+                "title": "SequenceArguments",
+                "type": "object"
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "retrieve_evidence",
+              "description": "Retrieve an exact immutable evidence artifact from this task's manifest only. Use pointer to select a JSON subtree, offset/limit for arrays. No arbitrary files, URLs, evaluator data or other runs.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "pointer": {
+                    "type": "string",
+                    "description": "JSON pointer, e.g. /calculation/nearest_de_genes"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "provider": {},
+        "plugins": []
+      },
+      "synthetic_response": {
+        "id": "mock-evaluator_retrieval-response-1",
+        "object": "chat.completion",
+        "created": 1790451846,
+        "model": "mock/operational",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "mock-evaluator_retrieval",
+                  "type": "function",
+                  "function": {
+                    "name": "retrieve_evidence",
+                    "arguments": "{\"artifact_id\": \"evaluator-only-tool-boundary-fixture\"}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 25,
+          "completion_tokens": 8,
+          "total_tokens": 33,
+          "cost": 0.0001
+        }
+      }
+    },
+    {
+      "case": "allowed_reference",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+          },
+          {
+            "role": "user",
+            "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"allowed_reference\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"bcbede6cb4ad55c1121b883e4eded6655913c794c16abacc2d8268c87ba6ab54\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+          }
+        ],
+        "model": "mock/operational",
+        "max_tokens": 128,
+        "temperature": 0,
+        "tool_choice": "auto",
+        "tools": [
+          {
+            "type": "function",
+            "function": {
+              "name": "reference_sequence",
+              "description": "Retrieve at most 240 actual GRCh38 reference bases within the frozen selected-candidate window; offset is relative to candidate start, orientation is plus.",
+              "parameters": {
+                "additionalProperties": false,
+                "properties": {
+                  "cell_context": {
+                    "default": "H1",
+                    "enum": [
+                      "H1",
+                      "H9"
+                    ],
+                    "title": "Cell Context",
+                    "type": "string"
+                  },
+                  "offset": {
+                    "default": 0,
+                    "maximum": 2000,
+                    "minimum": -100,
+                    "title": "Offset",
+                    "type": "integer"
+                  },
+                  "length": {
+                    "default": 120,
+                    "maximum": 240,
+                    "minimum": 1,
+                    "title": "Length",
+                    "type": "integer"
+                  }
+                },
+                "title": "SequenceArguments",
+                "type": "object"
+              }
+            }
+          },
+          {
+            "type": "function",
+            "function": {
+              "name": "retrieve_evidence",
+              "description": "Retrieve an exact immutable evidence artifact from this task's manifest only. Use pointer to select a JSON subtree, offset/limit for arrays. No arbitrary files, URLs, evaluator data or other runs.",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "artifact_id": {
+                    "type": "string"
+                  },
+                  "pointer": {
+                    "type": "string",
+                    "description": "JSON pointer, e.g. /calculation/nearest_de_genes"
+                  },
+                  "offset": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 20
+                  }
+                },
+                "required": [
+                  "artifact_id"
+                ],
+                "additionalProperties": false
+              }
+            }
+          }
+        ],
+        "provider": {},
+        "plugins": []
+      },
+      "synthetic_response": {
+        "id": "mock-allowed_reference-response-1",
+        "object": "chat.completion",
+        "created": 1790451847,
+        "model": "mock/operational",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": null,
+              "tool_calls": [
+                {
+                  "id": "mock-allowed_reference",
+                  "type": "function",
+                  "function": {
+                    "name": "reference_sequence",
+                    "arguments": "{\"offset\": 0, \"length\": 40}"
+                  }
+                }
+              ]
+            },
+            "finish_reason": "tool_calls"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 25,
+          "completion_tokens": 8,
+          "total_tokens": 33,
+          "cost": 0.0001
+        }
+      }
+    },
+    {
+      "case": "allowed_reference",
+      "request": {
+        "messages": [
+          {
+            "role": "system",
+            "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+          },
+          {
+            "role": "user",
+            "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"allowed_reference\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"bcbede6cb4ad55c1121b883e4eded6655913c794c16abacc2d8268c87ba6ab54\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+          },
+          {
+            "role": "assistant",
+            "tool_calls": [
+              {
+                "id": "mock-allowed_reference",
+                "function": {
+                  "arguments": "{\"offset\": 0, \"length\": 40}",
+                  "name": "reference_sequence"
+                },
+                "type": "function"
+              }
+            ]
+          },
+          {
+            "role": "tool",
+            "tool_call_id": "mock-allowed_reference",
+            "content": "{\"tool_name\": \"reference_sequence\", \"candidate_id\": \"pansio-1\", \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"evidence_ids\": [\"source:reference:pansio-1\"], \"source_hashes\": {\"pansio-1-hg38-sequence.json\": \"c8808f778839f10ffec55b22a2700a93bf5a2e9e2d921b70a2a17e04e7ff0f2e\"}, \"calculation\": {\"status\": \"computed\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340000, \"sequence\": \"gtggatgaatgaataaagatgatgtggtatgtacatacaa\", \"coordinate_system\": \"zero_based_half_open\", \"orientation\": \"reference_plus\", \"display_coordinate_note\": \"One-based display base labels are internal position + 1.\", \"length\": 40, \"sequence_sha256\": \"66c13e93d250cf9b5f37d78c63e5335979e666966dbdac0d850ff787e6594ae7\", \"frozen_window_sha256\": \"3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2\", \"limitations\": [\"GRCh38 reference sequence, not a personalized H1 genome; no insertion or variant is inferred.\"]}, \"limitations\": [\"GRCh38 reference sequence, not a personalized H1 genome; no insertion or variant is inferred.\"], \"input_read_set\": [{\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}, {\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}], \"provenance\": {\"mode\": \"real_data\", \"calculation_type\": \"deterministic_scientific\", \"criteria_sha256\": \"33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd\", \"runtime_requirement\": \"Replace query-scope version 1 with the current ledger version before dispatch/acceptance; ledger state governs availability.\", \"parameters\": {\"cell_context\": \"H1\", \"offset\": 0, \"length\": 40}, \"tool_implementation\": \"safe_harbor.science.reference_sequence\"}}"
+          }
+        ],
+        "model": "mock/operational",
+        "max_tokens": 128,
+        "response_format": {
+          "type": "json_object"
+        },
+        "temperature": 0,
+        "provider": {},
+        "plugins": []
+      },
+      "synthetic_response": {
+        "id": "mock-allowed_reference-response-2",
+        "object": "chat.completion",
+        "created": 1790451847,
+        "model": "mock/operational",
+        "choices": [
+          {
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "{\"mode\": \"mock\", \"conclusion\": \"Synthetic transport acknowledgement; no biological assessment.\", \"limitations\": [\"No model inference occurred.\"]}"
+            },
+            "finish_reason": "stop"
+          }
+        ],
+        "usage": {
+          "prompt_tokens": 25,
+          "completion_tokens": 8,
+          "total_tokens": 33,
+          "cost": 0.0001
+        }
+      }
+    }
+  ]
+}

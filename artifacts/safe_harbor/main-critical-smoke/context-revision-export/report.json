@@ -1,0 +1,45 @@
+{
+  "started_at": "2026-09-26T19:38:35.373538+00:00",
+  "database": "safe_harbor_operational_1790451515",
+  "mode": "deterministic_operational",
+  "harness_mode": "developer_authored_fixed_baseline",
+  "biological_results": "Real numerical source calculations; no model interpretation",
+  "model_calls": 0,
+  "cases": [
+    {
+      "case": "bounded_context_scoped_retrieval_validation_and_export",
+      "run_id": "run-8364e7c2d03c42fb8809d0d7907219d0",
+      "other_run_id": "run-ab64035124d54448bf28245f23e450ea",
+      "passed": true,
+      "context_bytes": 39369,
+      "ancestor_hash_dependency": "artifact-d0dcd32f4b534f1c9837a37014d9df11",
+      "denied": [
+        "evaluator-only",
+        "unknown manifest ID",
+        "other run",
+        "withdrawn historical control artifact"
+      ],
+      "validation_mode": "deterministic_validation",
+      "valid_fixture_accepted": true,
+      "incorrect_numeric_rejected": true,
+      "unsupported_citation_rejected": true,
+      "H9_context_rejected": true,
+      "missing_control_claim_rejected": true,
+      "historical_snapshot_unchanged": true,
+      "export_reconstructs_snapshot": true,
+      "export": "artifacts/safe_harbor/main-critical-smoke/context-revision-export/run-8364e7c2d03c42fb8809d0d7907219d0.json"
+    }
+  ],
+  "processes": [
+    {
+      "pid": 6757,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/main-critical-smoke/context-revision-export/process-1.log",
+      "started_at": "2026-09-26T19:38:35.378077+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:38:40.989480+00:00"
+    }
+  ],
+  "passed": true,
+  "finished_at": "2026-09-26T19:38:40.989698+00:00"
+}

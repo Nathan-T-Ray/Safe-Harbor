@@ -9,6 +9,35 @@ const record = (value: unknown): SavedRecord => value && typeof value === 'objec
 const records = (value: unknown): SavedRecord[] => Array.isArray(value) ? value.map(record) : [];
 const number = (value: unknown, suffix=''): string => typeof value === 'number' ? `${value.toLocaleString(undefined,{maximumFractionDigits:4})}${suffix}` : 'Unknown';
 const money = (value: unknown): string => typeof value === 'number' ? `$${value.toFixed(6)}` : 'Unknown';
+const words = (value: unknown): string => String(value ?? '').replaceAll('_',' ');
+
+function LiveProposal({experiment}: {experiment:SavedRecord}) {
+  const optimizer=record(experiment.optimizer), promotion=record(experiment.promotion);
+  const operations=records(record(optimizer.patch).operations), results=records(experiment.results);
+  const hasProposal=Object.keys(optimizer).length>0, hasDecision=Object.keys(promotion).length>0;
+  const compiled=optimizer.status==='candidate_ready'&&typeof optimizer.candidate_hash==='string';
+  const h1Runs=results.filter(item=>item.arm==='H1'&&typeof item.run_id==='string'&&item.run_id.length>0);
+  const execution=h1Runs.length?'H1 run recorded — inspect its execution':compiled?'Compiled, execution pending':'No executable H1 recorded';
+  const usage=record(optimizer.usage);
+  return <section className="comparison-report live-proposal" aria-label="Live harness proposal">
+    <div className="artifact-heading"><h3>Saved proposal & execution</h3><span className="pill">{words(experiment.mode)}</span></div>
+    <div className="notice"><strong>{hasProposal?`Optimizer: ${words(optimizer.status)}`:'Awaiting saved optimizer proposal'}</strong><p className="proposal-execution">{execution}</p><p className="proposal-selection">{hasDecision?`Saved selection decision: ${words(promotion.status)}`:'Validation / promotion pending — no saved decision.'}</p>
+      {hasDecision&&<p>{Array.isArray(promotion.reasons)?promotion.reasons.join(' '):String(promotion.reason??'')}</p>}
+      {typeof optimizer.error==='string'&&<p>{optimizer.error}</p>}{typeof optimizer.reason==='string'&&<p>{optimizer.reason}</p>}
+    </div>
+    {typeof optimizer.rationale==='string'&&<><h3>Why the optimizer proposed this</h3><p className="report-limitation proposal-rationale">{optimizer.rationale}</p></>}
+    {operations.length>0&&<><h3>Exact proposed changes</h3><ol className="patch-list">{operations.map((operation,index)=>{
+      const role=record(operation.role), splitRoles=records(operation.roles);
+      const description=operation.op==='insert_reviewer'?`Insert reviewer ${String(role.role_id)} after ${String(operation.after_role_id)}`:operation.op==='split_role'?`Split ${String(operation.role_id)} into ${splitRoles.map(item=>String(item.role_id)).join(' → ')}`:operation.op==='change_context'?`${String(operation.role_id)} context: ${words(operation.context_policy)}`:operation.op==='reassign_tools'?`Move ${Array.isArray(operation.tools)?operation.tools.join(', '):'saved tools'} from ${String(operation.from_role_id)} to ${String(operation.to_role_id)}`:words(operation.op);
+      return <li key={index}><strong>{description}</strong>{(operation.op==='insert_reviewer'?[role]:splitRoles).map((item,roleIndex)=><div className="report-limitation" key={roleIndex}><b>{String(item.role_id)}</b> · {words(item.kind)}<p>{String(item.question??'')}</p><p>Tools: {Array.isArray(item.allowed_tools)?item.allowed_tools.join(', ')||'Synthesis only':'See exact operation'} · Context: {words(item.context_policy)||'Inherited default'}</p></div>)}<JsonRecord value={operation} label="Exact executable operation"/></li>;
+    })}</ol></>}
+    {typeof optimizer.parent_hash==='string'&&<p className="hash-line">Parent: {optimizer.parent_hash}</p>}
+    {typeof optimizer.candidate_hash==='string'&&<p className="hash-line">Candidate: {optimizer.candidate_hash}</p>}
+    {hasProposal&&<p className="report-limitation">Saved optimizer usage: {number(usage.tokens)} tokens · {number(usage.model_calls)} calls · {money(usage.cost_usd)}. {usage.usage_complete===true?'Usage complete.':'Usage incomplete or pending.'}</p>}
+    <p className="small muted">Compilation is not execution or promotion. A recorded run's completion is workflow state; required-answer quality remains a separate saved evaluation.</p>
+    {results.length>0&&<><h3>Assigned case progress</h3><div className="table-scroll"><table aria-label="Live assigned case results"><thead><tr><th>Case / split</th><th>Arm</th><th>Saved outcome</th><th>Stored run</th></tr></thead><tbody>{results.map((item,index)=><tr key={`${String(item.arm)}:${String(item.case_id)}:${index}`} data-arm={String(item.arm)}><td>{String(item.case_id)}<br/>{words(item.split)}</td><td>{String(item.arm)}</td><td>{words(item.status)}</td><td>{typeof item.run_id==='string'&&item.run_id.length>0?<a href={`/?run=${encodeURIComponent(item.run_id)}`}>Inspect {String(item.arm)} run ↗</a>:'No run recorded'}</td></tr>)}</tbody></table></div></>}
+  </section>;
+}
 
 function ComparisonReport({report}: {report:SavedRecord}) {
   const promotion=record(report.promotion), optimizer=record(report.optimizer);
@@ -49,6 +78,7 @@ export function Harness({versions,evaluations,hash,onClose}:{versions:HarnessVer
     <div className="drawer-head"><div><span className="eyebrow">The workflow is part of the experiment</span><h2>Harness evolution</h2></div><button onClick={onClose} aria-label="Close harness comparison">×</button></div>
     <p className="muted">Versions are frozen per run. A real model proposes one bounded structural patch from development traces. Validation selects or rejects it; final cases stay outside selection.</p>
     <section className="experiment-controls"><div className="artifact-heading"><h3>Comparison experiment</h3><span className="pill live">Separate live record</span></div><p className="small muted">H0: competent fixed agent · R0: all checks + synthesis · H1: automatic proposal. This experiment record is separate from the investigation replay position.</p><div className="experiment-actions"><select aria-label="Experiment execution mode" value={mode} onChange={event=>setMode(event.target.value as 'real_model'|'deterministic')}><option value="real_model">Real model comparison</option><option value="deterministic">Deterministic operational only</option></select><button disabled={busy} onClick={()=>void start()}>{busy?'Starting…':'Start comparison'}</button></div><form className="experiment-actions" onSubmit={event=>{event.preventDefault();openExperiment(openId);}}><input aria-label="Saved experiment ID" placeholder="Open a saved experiment ID" value={openId} onChange={event=>setOpenId(event.target.value)}/><button disabled={!openId.trim()}>Open</button></form>{error&&<p role="alert" className="notice amber">{error}</p>}{experiment&&<div className="notice"><strong>{String(experiment.status??'Pending').replaceAll('_',' ')}</strong><p>{String(experiment.blocked_reason??experiment.reason??(Array.isArray(experiment.blockers)?experiment.blockers.join(' '):'Every assigned case and actual usage remains inspectable.'))}</p><span className="hash-line">{experimentId}</span></div>}</section>
+    {experiment&&!Object.keys(liveReport).length&&<LiveProposal experiment={experiment}/>}
     {Object.keys(liveReport).length>0&&<ComparisonReport report={liveReport}/>}
     {acceptedReports.filter(report=>!liveReport.experiment_id||report.experiment_id!==liveReport.experiment_id).map((report,index)=><ComparisonReport key={index} report={report}/>)}
     {availableVersions.length?availableVersions.map(version=><section className="harness-version" key={version.harness_hash}><div className="artifact-heading"><h3>{version.name}</h3><span className="pill">{version.harness_hash===hash?'This run':'Saved experiment version'}</span></div><p className="small">Proposal: {version.proposal_mode} · {version.roles.length} executable roles</p><div className="harness-roles">{version.roles.map(role=><div key={role.role_id}><strong>{role.role_id}</strong><span>{role.kind.replaceAll('_',' ')}</span><small>After: {role.depends_on.join(', ')||'Start'}</small><small>Context: {role.context_policy}</small><small>Tools: {role.allowed_tools.join(', ')||'Synthesis only'}</small></div>)}</div>{version.patch?<JsonRecord value={version.patch} label="Exact structural patch"/>:<p className="small muted">Fixed baseline · no proposed patch</p>}<JsonRecord value={version.immutable_constraints} label="Frozen scientific and evaluation constraints"/><div className="hash-line">{version.harness_hash}</div></section>):<p className="empty-state">No committed harness specification at this event or in the selected experiment.</p>}

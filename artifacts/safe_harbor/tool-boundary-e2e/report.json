@@ -1,0 +1,122 @@
+{
+  "mode": "mock",
+  "execution": "deterministic_operational_http_provider",
+  "provider_responses": "synthetic",
+  "real_model_inference_calls": 0,
+  "paid_calls": 0,
+  "actual_cost_usd": 0,
+  "database": "safe_harbor_tool_boundary_1790451844",
+  "api_pid": 8907,
+  "api_port": 51598,
+  "provider_port": 51597,
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "cases": [
+    {
+      "case": "prohibited_science",
+      "passed": true,
+      "run_id": "mock-tool-boundary-99b7c357bb7c435681df41bcc08d3501",
+      "task_id": "mock-tool-boundary-99b7c357bb7c435681df41bcc08d3501:pansio-1:prohibited_science:r0",
+      "advertised_tools": [
+        "reference_sequence",
+        "retrieve_evidence"
+      ],
+      "synthetic_http_response_count": 1,
+      "synthetic_usage_only": {
+        "token_limit": 200000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 33,
+        "tool_calls": 0,
+        "model_calls": 1,
+        "cost_usd": 0.0001,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "ordered_event_count": 6,
+      "no_evaluator_value_exposed": true,
+      "rejected_before_tool_execution": true,
+      "error": "LedgerError: Tool control_overlap is not allowed for role prohibited_science",
+      "failure_artifact_id": "artifact-94f52db476f9483890e218f147e9393c",
+      "raw_request_preserved": true
+    },
+    {
+      "case": "evaluator_retrieval",
+      "passed": true,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+      "advertised_tools": [
+        "reference_sequence",
+        "retrieve_evidence"
+      ],
+      "synthetic_http_response_count": 1,
+      "synthetic_usage_only": {
+        "token_limit": 200000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 33,
+        "tool_calls": 0,
+        "model_calls": 1,
+        "cost_usd": 0.0001,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "ordered_event_count": 6,
+      "no_evaluator_value_exposed": true,
+      "rejected_before_tool_execution": true,
+      "error": "LedgerError: Artifact is outside the task's same-run ancestor manifest",
+      "failure_artifact_id": "artifact-4f824075e7c841699b0359ab310e8ee9",
+      "raw_request_preserved": true
+    },
+    {
+      "case": "allowed_reference",
+      "passed": true,
+      "run_id": "mock-tool-boundary-696b42dadedc40148b9b16ea2a480901",
+      "task_id": "mock-tool-boundary-696b42dadedc40148b9b16ea2a480901:pansio-1:allowed_reference:r0",
+      "advertised_tools": [
+        "reference_sequence",
+        "retrieve_evidence"
+      ],
+      "synthetic_http_response_count": 2,
+      "synthetic_usage_only": {
+        "token_limit": 200000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 66,
+        "tool_calls": 1,
+        "model_calls": 2,
+        "cost_usd": 0.0002,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "ordered_event_count": 7,
+      "no_evaluator_value_exposed": true,
+      "real_tool_result_accepted": true,
+      "artifact_id": "artifact-c1714081682348cc82d9b7f279e29cad",
+      "reference_interval": [
+        113339960,
+        113340000
+      ],
+      "sequence_sha256": "66c13e93d250cf9b5f37d78c63e5335979e666966dbdac0d850ff787e6594ae7",
+      "frozen_window_hash": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2"
+    }
+  ],
+  "passed": true,
+  "started_at": "2026-09-26T19:44:05.009319+00:00",
+  "limitations": [
+    "Provider content and all recorded provider token/cost units are synthetic accounting fixtures, not measured model usage.",
+    "A mock harness is bootstrapped through the real application ledger, then executed by the real API/coordinator/worker process.",
+    "Only the OpenAI HTTP base URL is redirected to localhost; no tool or acceptance code is replaced.",
+    "No biological assessment, model reasoning or improvement is evaluated."
+  ],
+  "total_synthetic_http_responses": 4,
+  "actual_scientific_tool_calls": 1,
+  "finished_at": "2026-09-26T19:44:07.538454+00:00",
+  "api_exit_code": -15,
+  "provider_fixture_errors": []
+}

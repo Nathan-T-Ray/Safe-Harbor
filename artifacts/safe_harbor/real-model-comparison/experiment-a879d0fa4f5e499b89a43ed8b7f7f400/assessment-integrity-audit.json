@@ -1,0 +1,50 @@
+{
+  "audit_kind": "read_only_actual_accepted_assessment_integrity",
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "experiment_status": "running_development",
+  "complete_experiment_audit": false,
+  "accepted_assessments_checked": 3,
+  "valid_model_proposals": 1,
+  "findings": [],
+  "passed_so_far": true,
+  "assessments": [
+    {
+      "case_id": "pansio-1--full_sources",
+      "arm": "H0",
+      "run_id": "run-650b0b7901da47e4a4400d87243a2111",
+      "assessment_id": "run-650b0b7901da47e4a4400d87243a2111:pansio-1:assessment:1",
+      "model_proposal_accepted": true,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "case_id": "pansio-1--full_sources",
+      "arm": "H0",
+      "run_id": "run-650b0b7901da47e4a4400d87243a2111",
+      "assessment_id": "run-650b0b7901da47e4a4400d87243a2111:pansio-1:assessment:2",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    },
+    {
+      "case_id": "pansio-1--full_sources",
+      "arm": "R0",
+      "run_id": "run-c8aa19556f5d4108892146cc99802237",
+      "assessment_id": "run-c8aa19556f5d4108892146cc99802237:pansio-1:assessment:1",
+      "model_proposal_accepted": false,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "independently_expected_aggregation": "incomplete",
+      "errors": []
+    }
+  ],
+  "scope": "Independent seven-criterion aggregation, context, own-run dependency/source IDs, evidence versions, independent raw-file numerical references and rejected-proposal fallback. No production validator or arithmetic tool imported.",
+  "limitations": [
+    "No complete semantic audit of freeform prose.",
+    "Does not demonstrate that the internal Ledger.accept interface rejects forged outputs; that separate release boundary is being repaired after this frozen comparison."
+  ]
+}

@@ -1,0 +1,1834 @@
+{
+  "schema_version": 1,
+  "exported_at": "2026-09-26T19:44:07.016634+00:00",
+  "through_sequence": 6,
+  "mode": "mock",
+  "authoritative_store": "MongoDB application ledger",
+  "snapshot": {
+    "schema_version": 1,
+    "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+    "through_sequence": 6,
+    "run": {
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "schema_version": 1,
+      "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+      "mode": "mock",
+      "status": "blocked",
+      "candidate_ids": [
+        "pansio-1"
+      ],
+      "assembly": "GRCh38",
+      "cell_context": "H1 human embryonic stem cells",
+      "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+      "run_revision": 6,
+      "through_sequence": 6,
+      "coordinator_epoch": 1,
+      "budget": {
+        "token_limit": 200000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 33,
+        "tool_calls": 0,
+        "model_calls": 1,
+        "cost_usd": 0.0001,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "created_at": "2026-09-26T19:44:04.993157+00:00",
+      "evidence_versions": {
+        "criteria:v1": 1,
+        "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "scope:pansio-1:catalog": 1,
+        "scope:pansio-1:expression": 1,
+        "scope:pansio-1:annotation": 1,
+        "scope:pansio-1:sequence": 1,
+        "artifact:artifact-4f824075e7c841699b0359ab310e8ee9": "de4f90f33fd75ef976822fbb420089b8483185e00a43d9065b2c091754b1ba93"
+      },
+      "evidence_availability": {
+        "pansio-1": {
+          "control_evidence": true
+        }
+      },
+      "operational_fixture": true,
+      "model_id": "mock/operational",
+      "model_provider": "mock_http_server",
+      "model_settings": {
+        "max_output_tokens": 128,
+        "temperature": 0
+      },
+      "model_pricing": {
+        "pricing_hash": "mock-pricing-not-a-price-quote",
+        "prompt_usd_per_token_bound": 1e-06,
+        "completion_usd_per_token_bound": 1e-06,
+        "request_usd_bound": 0,
+        "provider_routing": {}
+      },
+      "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+      "lease_updated_at": "2026-09-26T19:44:06.910724+00:00",
+      "lease_expires_at": 0,
+      "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+      "completed_at": "2026-09-26T19:44:06.963910+00:00"
+    },
+    "candidates": [
+      {
+        "candidate_id": "pansio-1",
+        "name": "Pansio-1",
+        "assembly": "GRCh38",
+        "chromosome": "chr1",
+        "start": 113339960,
+        "end": 113340514,
+        "coordinate_system": "zero_based_half_open",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "group_id": "autio-chr1-113000001-114000000",
+        "source_coordinates": {
+          "assembly": "GRCh38",
+          "chromosome": "1",
+          "start": 113339961,
+          "end": 113340514,
+          "width": 554,
+          "coordinate_system": "one_based_closed",
+          "conversion": "internal_start = source_start - 1; internal_end = source_end",
+          "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+          "source_id": "elife-79592-supp1.xlsx",
+          "sheet": "overlap safe-active",
+          "row": 5,
+          "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+        },
+        "evidence_ids": [
+          "source:supp1",
+          "source:supp5:pansio-1"
+        ],
+        "origin": "publication-derived candidate shortlist",
+        "publication_blat_ratio": 0.26895306859205775
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+        "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+        "candidate_id": "pansio-1",
+        "kind": "inspect_evidence",
+        "question": "evaluator_retrieval",
+        "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "evaluator_retrieval",
+        "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+        "allowed_tools": [
+          "reference_sequence"
+        ],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "failed",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+        "plan_revision": 0,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "started_at": "2026-09-26T19:44:06.916980+00:00",
+        "coordinator_epoch": 1,
+        "failure_artifact_ids": [
+          "artifact-4f824075e7c841699b0359ab310e8ee9"
+        ],
+        "failed_attempt_usage": {
+          "tokens": 33,
+          "tool_calls": 0,
+          "model_calls": 1,
+          "cost_usd": 0.0001,
+          "duration_seconds": 0.0254
+        },
+        "error": "LedgerError: Artifact is outside the task's same-run ancestor manifest",
+        "failed_at": "2026-09-26T19:44:06.956347+00:00"
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": "artifact-4f824075e7c841699b0359ab310e8ee9",
+        "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+        "kind": "worker_failure_trace",
+        "revision": 1,
+        "content_hash": "de4f90f33fd75ef976822fbb420089b8483185e00a43d9065b2c091754b1ba93",
+        "data": {
+          "mode": "mock",
+          "status": "failed",
+          "error": "LedgerError: Artifact is outside the task's same-run ancestor manifest",
+          "role_id": "evaluator_retrieval",
+          "context_packet": {
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "question": "evaluator_retrieval",
+            "candidate": {
+              "candidate_id": "pansio-1",
+              "name": "Pansio-1",
+              "assembly": "GRCh38",
+              "chromosome": "chr1",
+              "start": 113339960,
+              "end": 113340514,
+              "coordinate_system": "zero_based_half_open",
+              "cell_context": "H1 human embryonic stem cells",
+              "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "group_id": "autio-chr1-113000001-114000000",
+              "source_coordinates": {
+                "assembly": "GRCh38",
+                "chromosome": "1",
+                "start": 113339961,
+                "end": 113340514,
+                "width": 554,
+                "coordinate_system": "one_based_closed",
+                "conversion": "internal_start = source_start - 1; internal_end = source_end",
+                "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+                "source_id": "elife-79592-supp1.xlsx",
+                "sheet": "overlap safe-active",
+                "row": 5,
+                "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+              },
+              "evidence_ids": [
+                "source:supp1",
+                "source:supp5:pansio-1"
+              ],
+              "origin": "publication-derived candidate shortlist",
+              "publication_blat_ratio": 0.26895306859205775
+            },
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "criteria": {
+              "criteria_version": "safe-harbor-criteria-v1",
+              "immutable_to_harness_optimizer": true,
+              "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+              "source_section": "Materials and methods: In silico search for putative GSH",
+              "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+              "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+              "criteria": [
+                {
+                  "criterion_id": "outside_gene_body",
+                  "required": true,
+                  "comparison": "overlap_count == 0",
+                  "inputs": [
+                    "candidate_interval",
+                    "GENCODE_v36_transcript_spans"
+                  ],
+                  "description": "Candidate interval does not overlap an annotated transcription unit.",
+                  "missing_data": "incomplete"
+                },
+                {
+                  "criterion_id": "tss_distance",
+                  "required": true,
+                  "comparison": "distance_bp > 50000",
+                  "threshold_bp": 50000,
+                  "inputs": [
+                    "candidate_interval",
+                    "GENCODE_v36_transcript_TSS"
+                  ],
+                  "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+                  "missing_data": "incomplete",
+                  "distance_metric": "nearest_reference_base_distance_bp"
+                },
+                {
+                  "criterion_id": "mirna_distance",
+                  "required": true,
+                  "comparison": "distance_bp > 300000",
+                  "threshold_bp": 300000,
+                  "inputs": [
+                    "candidate_interval",
+                    "GENCODE_v36_miRNA_gene_spans"
+                  ],
+                  "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+                  "missing_data": "incomplete",
+                  "distance_metric": "nearest_reference_base_distance_bp"
+                },
+                {
+                  "criterion_id": "lncrna_distance",
+                  "required": true,
+                  "comparison": "distance_bp > 100000",
+                  "threshold_bp": 100000,
+                  "inputs": [
+                    "candidate_interval",
+                    "GENCODE_v36_lncRNA_gene_spans"
+                  ],
+                  "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+                  "missing_data": "incomplete",
+                  "distance_metric": "nearest_reference_base_distance_bp"
+                },
+                {
+                  "criterion_id": "cancer_gene_distance",
+                  "required": true,
+                  "comparison": "distance_bp > 300000",
+                  "threshold_bp": 300000,
+                  "inputs": [
+                    "candidate_interval",
+                    "licensed_cancer_gene_coordinates"
+                  ],
+                  "availability": "unavailable",
+                  "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+                  "missing_data": "incomplete",
+                  "distance_metric": "nearest_reference_base_distance_bp"
+                },
+                {
+                  "criterion_id": "outside_dhs_buffer",
+                  "required": true,
+                  "comparison": "overlap_count == 0",
+                  "buffer_bp": 2000,
+                  "inputs": [
+                    "candidate_interval",
+                    "ENCFF503GCK_with_assembly_provenance"
+                  ],
+                  "availability": "unavailable",
+                  "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+                  "missing_data": "incomplete"
+                },
+                {
+                  "criterion_id": "outside_ultraconserved_regions",
+                  "required": true,
+                  "comparison": "overlap_count == 0",
+                  "inputs": [
+                    "candidate_interval",
+                    "versioned_GRCh38_ultraconserved_regions"
+                  ],
+                  "availability": "unavailable",
+                  "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+                  "missing_data": "incomplete"
+                }
+              ],
+              "experimental_endpoints": [
+                {
+                  "endpoint_id": "transcriptome_perturbation",
+                  "assay": "RNA-seq, DEseq2",
+                  "cell_context": "H1 human embryonic stem cells",
+                  "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+                  "gene_unit": "unique versioned Ensembl gene ID",
+                  "thresholds": {
+                    "abs_log2_fold_change_gte": 1,
+                    "fdr_lte": 0.01
+                  },
+                  "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+                  "exclusion_threshold": null,
+                  "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+                },
+                {
+                  "endpoint_id": "nearest_gene_expression",
+                  "assay": "qPCR",
+                  "cell_context": "H1 human embryonic stem cells",
+                  "genes": [
+                    "MAGI3",
+                    "TXNL1",
+                    "ZNRF4"
+                  ],
+                  "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+                  "exclusion_threshold": null,
+                  "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+                }
+              ],
+              "evidence_rules": {
+                "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+                "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+                "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+                "H9": "Separate cell context, not automatically applicable to H1."
+              },
+              "distance_convention": {
+                "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+                "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+                "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+              }
+            },
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:sequence",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "evidence": [],
+            "omitted_artifact_ids": [],
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "runtime_tools": [
+              "retrieve_evidence"
+            ],
+            "evidence_manifest": [],
+            "case_context": {},
+            "context_policy": "relevant_evidence",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "context_selection_trace": {
+              "policy": "relevant_evidence",
+              "max_characters": 28000,
+              "selected_characters": 0,
+              "available_count": 0,
+              "included_artifact_ids": [],
+              "omitted_artifact_ids": []
+            },
+            "remaining_budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0,
+              "reserved_tools": 1,
+              "reserved_cost_usd": 0.0
+            },
+            "evidence_availability": {
+              "control_evidence": true
+            },
+            "task_limits": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2,
+              "tool_allowance_includes": "Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance."
+            },
+            "limitations": [
+              "Only the publication-derived shortlist is investigated.",
+              "GRCh38 is a reference assembly, not a newly sequenced H1 genome.",
+              "Control overlap and proximity cannot establish biological safety or causality."
+            ],
+            "context_limit_bytes": 60000
+          },
+          "messages": [
+            {
+              "role": "system",
+              "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+            },
+            {
+              "role": "user",
+              "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"evaluator_retrieval\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+            },
+            {
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "id": "mock-evaluator_retrieval",
+                  "function": {
+                    "arguments": "{\"artifact_id\": \"evaluator-only-tool-boundary-fixture\"}",
+                    "name": "retrieve_evidence"
+                  },
+                  "type": "function"
+                }
+              ]
+            }
+          ],
+          "tool_calls": [],
+          "provider_responses": [
+            {
+              "call_index": 0,
+              "response": {
+                "id": "mock-evaluator_retrieval-response-1",
+                "choices": [
+                  {
+                    "finish_reason": "tool_calls",
+                    "index": 0,
+                    "logprobs": null,
+                    "message": {
+                      "content": null,
+                      "refusal": null,
+                      "role": "assistant",
+                      "annotations": null,
+                      "audio": null,
+                      "function_call": null,
+                      "tool_calls": [
+                        {
+                          "id": "mock-evaluator_retrieval",
+                          "function": {
+                            "arguments": "{\"artifact_id\": \"evaluator-only-tool-boundary-fixture\"}",
+                            "name": "retrieve_evidence"
+                          },
+                          "type": "function"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "created": 1790451846,
+                "model": "mock/operational",
+                "object": "chat.completion",
+                "metadata": null,
+                "moderation": null,
+                "service_tier": null,
+                "system_fingerprint": null,
+                "usage": {
+                  "completion_tokens": 8,
+                  "prompt_tokens": 25,
+                  "total_tokens": 33,
+                  "completion_tokens_details": null,
+                  "prompt_tokens_details": null,
+                  "cost": 0.0001
+                }
+              }
+            }
+          ],
+          "request_token_bounds": [
+            {
+              "call_index": 0,
+              "input_utf8_bytes": 11135,
+              "input_bound": 15743,
+              "output_cap": 128,
+              "cumulative_reserved_tokens": 15871,
+              "call_cost_bound_usd": 0.015871,
+              "pricing_hash": "mock-pricing-not-a-price-quote"
+            }
+          ],
+          "usage": {
+            "tokens": 33,
+            "tool_calls": 0,
+            "model_calls": 1,
+            "cost_usd": 0.0001,
+            "duration_seconds": 0.0254
+          },
+          "tokens_uncertain": false,
+          "cost_uncertain": false,
+          "request_in_flight": false
+        },
+        "evidence_ids": [],
+        "input_read_set": [
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "provenance": {
+          "mode": "mock",
+          "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+          "role_id": "evaluator_retrieval",
+          "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+          "adapter": "openrouter",
+          "model_id": "mock/operational"
+        },
+        "created_at": "2026-09-26T19:44:06.951930+00:00"
+      }
+    ],
+    "assessments": [],
+    "harness_versions": [
+      {
+        "name": "Mock HTTP tool-boundary fixture: evaluator_retrieval",
+        "mode": "mock",
+        "proposal_mode": "mock",
+        "roles": [
+          {
+            "role_id": "evaluator_retrieval",
+            "kind": "inspect_evidence",
+            "question": "evaluator_retrieval",
+            "depends_on": [],
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "max_tool_calls": 4,
+            "max_model_calls": 2,
+            "instructions": "Operational synthetic provider fixture; no biological conclusion."
+          }
+        ],
+        "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc"
+      }
+    ],
+    "evaluations": []
+  },
+  "events": [
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 1,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:1",
+      "operation_id": "create:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "occurred_at": "2026-09-26T19:44:04.993744+00:00",
+      "type": "state.committed",
+      "cause": "run.created",
+      "run_revision": 1,
+      "upserts": {
+        "candidates": [
+          {
+            "candidate_id": "pansio-1",
+            "name": "Pansio-1",
+            "assembly": "GRCh38",
+            "chromosome": "chr1",
+            "start": 113339960,
+            "end": 113340514,
+            "coordinate_system": "zero_based_half_open",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "group_id": "autio-chr1-113000001-114000000",
+            "source_coordinates": {
+              "assembly": "GRCh38",
+              "chromosome": "1",
+              "start": 113339961,
+              "end": 113340514,
+              "width": 554,
+              "coordinate_system": "one_based_closed",
+              "conversion": "internal_start = source_start - 1; internal_end = source_end",
+              "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+              "source_id": "elife-79592-supp1.xlsx",
+              "sheet": "overlap safe-active",
+              "row": 5,
+              "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+            },
+            "evidence_ids": [
+              "source:supp1",
+              "source:supp5:pansio-1"
+            ],
+            "origin": "publication-derived candidate shortlist",
+            "publication_blat_ratio": 0.26895306859205775
+          }
+        ],
+        "tasks": [
+          {
+            "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "candidate_id": "pansio-1",
+            "kind": "inspect_evidence",
+            "question": "evaluator_retrieval",
+            "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [],
+            "role_id": "evaluator_retrieval",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "queued",
+            "attempt": 0,
+            "context_policy": "relevant_evidence",
+            "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ]
+          }
+        ],
+        "harness_versions": [
+          {
+            "name": "Mock HTTP tool-boundary fixture: evaluator_retrieval",
+            "mode": "mock",
+            "proposal_mode": "mock",
+            "roles": [
+              {
+                "role_id": "evaluator_retrieval",
+                "kind": "inspect_evidence",
+                "question": "evaluator_retrieval",
+                "depends_on": [],
+                "allowed_tools": [
+                  "reference_sequence"
+                ],
+                "max_tool_calls": 4,
+                "max_model_calls": 2,
+                "instructions": "Operational synthetic provider fixture; no biological conclusion."
+              }
+            ],
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc"
+          }
+        ],
+        "artifacts": [],
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "queued",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 1,
+            "through_sequence": 1,
+            "coordinator_epoch": 0,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 2,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:2",
+      "operation_id": "claim-b46fab5fe0f14bdcad4b388e5825b2a7",
+      "occurred_at": "2026-09-26T19:44:06.905292+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 2,
+      "upserts": {
+        "tasks": [],
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 2,
+            "through_sequence": 2,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            },
+            "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+            "lease_updated_at": "2026-09-26T19:44:06.904958+00:00",
+            "lease_expires_at": 1790451858.904961
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 3,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:3",
+      "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de",
+      "occurred_at": "2026-09-26T19:44:06.917063+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 3,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "candidate_id": "pansio-1",
+            "kind": "inspect_evidence",
+            "question": "evaluator_retrieval",
+            "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:sequence",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "evaluator_retrieval",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "running",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ],
+            "started_at": "2026-09-26T19:44:06.916980+00:00",
+            "coordinator_epoch": 1,
+            "reservation": {
+              "tokens": 0,
+              "tools": 1,
+              "cost_usd": 0.0,
+              "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 3,
+            "through_sequence": 3,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0,
+              "reserved_tools": 1,
+              "reserved_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            },
+            "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+            "lease_updated_at": "2026-09-26T19:44:06.910724+00:00",
+            "lease_expires_at": 1790451858.910723
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 4,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:4",
+      "operation_id": "extend-reservation-302984700b074fa38bbd1a09bfa80302",
+      "occurred_at": "2026-09-26T19:44:06.945156+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 4,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "candidate_id": "pansio-1",
+            "kind": "inspect_evidence",
+            "question": "evaluator_retrieval",
+            "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:sequence",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "evaluator_retrieval",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "running",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ],
+            "started_at": "2026-09-26T19:44:06.916980+00:00",
+            "coordinator_epoch": 1,
+            "reservation": {
+              "tokens": 15871,
+              "tools": 1,
+              "cost_usd": 0.015871,
+              "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 4,
+            "through_sequence": 4,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 15871,
+              "uncertain_tokens": 0,
+              "reserved_tools": 1,
+              "reserved_cost_usd": 0.015871
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            },
+            "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+            "lease_updated_at": "2026-09-26T19:44:06.910724+00:00",
+            "lease_expires_at": 1790451858.910723
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 5,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:5",
+      "operation_id": "failure-5a263594d97f4b69b53fa967cd8adf66",
+      "occurred_at": "2026-09-26T19:44:06.956619+00:00",
+      "type": "state.committed",
+      "cause": "task.failed",
+      "run_revision": 5,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "candidate_id": "pansio-1",
+            "kind": "inspect_evidence",
+            "question": "evaluator_retrieval",
+            "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:sequence",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "evaluator_retrieval",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "failed",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ],
+            "started_at": "2026-09-26T19:44:06.916980+00:00",
+            "coordinator_epoch": 1,
+            "failure_artifact_ids": [
+              "artifact-4f824075e7c841699b0359ab310e8ee9"
+            ],
+            "failed_attempt_usage": {
+              "tokens": 33,
+              "tool_calls": 0,
+              "model_calls": 1,
+              "cost_usd": 0.0001,
+              "duration_seconds": 0.0254
+            },
+            "error": "LedgerError: Artifact is outside the task's same-run ancestor manifest",
+            "failed_at": "2026-09-26T19:44:06.956347+00:00"
+          }
+        ],
+        "artifacts": [
+          {
+            "artifact_id": "artifact-4f824075e7c841699b0359ab310e8ee9",
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "kind": "worker_failure_trace",
+            "revision": 1,
+            "content_hash": "de4f90f33fd75ef976822fbb420089b8483185e00a43d9065b2c091754b1ba93",
+            "data": {
+              "mode": "mock",
+              "status": "failed",
+              "error": "LedgerError: Artifact is outside the task's same-run ancestor manifest",
+              "role_id": "evaluator_retrieval",
+              "context_packet": {
+                "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+                "question": "evaluator_retrieval",
+                "candidate": {
+                  "candidate_id": "pansio-1",
+                  "name": "Pansio-1",
+                  "assembly": "GRCh38",
+                  "chromosome": "chr1",
+                  "start": 113339960,
+                  "end": 113340514,
+                  "coordinate_system": "zero_based_half_open",
+                  "cell_context": "H1 human embryonic stem cells",
+                  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                  "group_id": "autio-chr1-113000001-114000000",
+                  "source_coordinates": {
+                    "assembly": "GRCh38",
+                    "chromosome": "1",
+                    "start": 113339961,
+                    "end": 113340514,
+                    "width": 554,
+                    "coordinate_system": "one_based_closed",
+                    "conversion": "internal_start = source_start - 1; internal_end = source_end",
+                    "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+                    "source_id": "elife-79592-supp1.xlsx",
+                    "sheet": "overlap safe-active",
+                    "row": 5,
+                    "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+                  },
+                  "evidence_ids": [
+                    "source:supp1",
+                    "source:supp5:pansio-1"
+                  ],
+                  "origin": "publication-derived candidate shortlist",
+                  "publication_blat_ratio": 0.26895306859205775
+                },
+                "assembly": "GRCh38",
+                "cell_context": "H1 human embryonic stem cells",
+                "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "criteria": {
+                  "criteria_version": "safe-harbor-criteria-v1",
+                  "immutable_to_harness_optimizer": true,
+                  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+                  "source_section": "Materials and methods: In silico search for putative GSH",
+                  "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+                  "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+                  "criteria": [
+                    {
+                      "criterion_id": "outside_gene_body",
+                      "required": true,
+                      "comparison": "overlap_count == 0",
+                      "inputs": [
+                        "candidate_interval",
+                        "GENCODE_v36_transcript_spans"
+                      ],
+                      "description": "Candidate interval does not overlap an annotated transcription unit.",
+                      "missing_data": "incomplete"
+                    },
+                    {
+                      "criterion_id": "tss_distance",
+                      "required": true,
+                      "comparison": "distance_bp > 50000",
+                      "threshold_bp": 50000,
+                      "inputs": [
+                        "candidate_interval",
+                        "GENCODE_v36_transcript_TSS"
+                      ],
+                      "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+                      "missing_data": "incomplete",
+                      "distance_metric": "nearest_reference_base_distance_bp"
+                    },
+                    {
+                      "criterion_id": "mirna_distance",
+                      "required": true,
+                      "comparison": "distance_bp > 300000",
+                      "threshold_bp": 300000,
+                      "inputs": [
+                        "candidate_interval",
+                        "GENCODE_v36_miRNA_gene_spans"
+                      ],
+                      "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+                      "missing_data": "incomplete",
+                      "distance_metric": "nearest_reference_base_distance_bp"
+                    },
+                    {
+                      "criterion_id": "lncrna_distance",
+                      "required": true,
+                      "comparison": "distance_bp > 100000",
+                      "threshold_bp": 100000,
+                      "inputs": [
+                        "candidate_interval",
+                        "GENCODE_v36_lncRNA_gene_spans"
+                      ],
+                      "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+                      "missing_data": "incomplete",
+                      "distance_metric": "nearest_reference_base_distance_bp"
+                    },
+                    {
+                      "criterion_id": "cancer_gene_distance",
+                      "required": true,
+                      "comparison": "distance_bp > 300000",
+                      "threshold_bp": 300000,
+                      "inputs": [
+                        "candidate_interval",
+                        "licensed_cancer_gene_coordinates"
+                      ],
+                      "availability": "unavailable",
+                      "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+                      "missing_data": "incomplete",
+                      "distance_metric": "nearest_reference_base_distance_bp"
+                    },
+                    {
+                      "criterion_id": "outside_dhs_buffer",
+                      "required": true,
+                      "comparison": "overlap_count == 0",
+                      "buffer_bp": 2000,
+                      "inputs": [
+                        "candidate_interval",
+                        "ENCFF503GCK_with_assembly_provenance"
+                      ],
+                      "availability": "unavailable",
+                      "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+                      "missing_data": "incomplete"
+                    },
+                    {
+                      "criterion_id": "outside_ultraconserved_regions",
+                      "required": true,
+                      "comparison": "overlap_count == 0",
+                      "inputs": [
+                        "candidate_interval",
+                        "versioned_GRCh38_ultraconserved_regions"
+                      ],
+                      "availability": "unavailable",
+                      "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+                      "missing_data": "incomplete"
+                    }
+                  ],
+                  "experimental_endpoints": [
+                    {
+                      "endpoint_id": "transcriptome_perturbation",
+                      "assay": "RNA-seq, DEseq2",
+                      "cell_context": "H1 human embryonic stem cells",
+                      "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+                      "gene_unit": "unique versioned Ensembl gene ID",
+                      "thresholds": {
+                        "abs_log2_fold_change_gte": 1,
+                        "fdr_lte": 0.01
+                      },
+                      "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+                      "exclusion_threshold": null,
+                      "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+                    },
+                    {
+                      "endpoint_id": "nearest_gene_expression",
+                      "assay": "qPCR",
+                      "cell_context": "H1 human embryonic stem cells",
+                      "genes": [
+                        "MAGI3",
+                        "TXNL1",
+                        "ZNRF4"
+                      ],
+                      "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+                      "exclusion_threshold": null,
+                      "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+                    }
+                  ],
+                  "evidence_rules": {
+                    "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+                    "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+                    "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+                    "H9": "Separate cell context, not automatically applicable to H1."
+                  },
+                  "distance_convention": {
+                    "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+                    "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+                    "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+                  }
+                },
+                "input_read_set": [
+                  {
+                    "key": "criteria:v1",
+                    "version": 1,
+                    "kind": "criteria"
+                  },
+                  {
+                    "key": "scope:pansio-1:catalog",
+                    "version": 1,
+                    "kind": "query_scope"
+                  },
+                  {
+                    "key": "scope:pansio-1:sequence",
+                    "version": 1,
+                    "kind": "query_scope"
+                  },
+                  {
+                    "key": "source:data_version",
+                    "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                    "kind": "artifact"
+                  }
+                ],
+                "evidence": [],
+                "omitted_artifact_ids": [],
+                "allowed_tools": [
+                  "reference_sequence"
+                ],
+                "runtime_tools": [
+                  "retrieve_evidence"
+                ],
+                "evidence_manifest": [],
+                "case_context": {},
+                "context_policy": "relevant_evidence",
+                "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+                "context_selection_trace": {
+                  "policy": "relevant_evidence",
+                  "max_characters": 28000,
+                  "selected_characters": 0,
+                  "available_count": 0,
+                  "included_artifact_ids": [],
+                  "omitted_artifact_ids": []
+                },
+                "remaining_budget": {
+                  "token_limit": 200000,
+                  "tool_limit": 40,
+                  "cost_limit_usd": 5.0,
+                  "tokens_used": 0,
+                  "tool_calls": 0,
+                  "model_calls": 0,
+                  "cost_usd": null,
+                  "reserved_tokens": 0,
+                  "uncertain_tokens": 0,
+                  "reserved_tools": 1,
+                  "reserved_cost_usd": 0.0
+                },
+                "evidence_availability": {
+                  "control_evidence": true
+                },
+                "task_limits": {
+                  "max_tool_calls": 4,
+                  "max_model_calls": 2,
+                  "tool_allowance_includes": "Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance."
+                },
+                "limitations": [
+                  "Only the publication-derived shortlist is investigated.",
+                  "GRCh38 is a reference assembly, not a newly sequenced H1 genome.",
+                  "Control overlap and proximity cannot establish biological safety or causality."
+                ],
+                "context_limit_bytes": 60000
+              },
+              "messages": [
+                {
+                  "role": "system",
+                  "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Operational synthetic provider fixture; no biological conclusion."
+                },
+                {
+                  "role": "user",
+                  "content": "{\"objective\": \"Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.\", \"question\": \"evaluator_retrieval\", \"candidate\": {\"candidate_id\": \"pansio-1\", \"name\": \"Pansio-1\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr1\", \"start\": 113339960, \"end\": 113340514, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr1-113000001-114000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"1\", \"start\": 113339961, \"end\": 113340514, \"width\": 554, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 5, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:pansio-1\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.26895306859205775}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:pansio-1:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:pansio-1:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [], \"case_context\": {}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 200000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 0, \"uncertain_tokens\": 0, \"reserved_tools\": 1, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": true}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+                },
+                {
+                  "role": "assistant",
+                  "tool_calls": [
+                    {
+                      "id": "mock-evaluator_retrieval",
+                      "function": {
+                        "arguments": "{\"artifact_id\": \"evaluator-only-tool-boundary-fixture\"}",
+                        "name": "retrieve_evidence"
+                      },
+                      "type": "function"
+                    }
+                  ]
+                }
+              ],
+              "tool_calls": [],
+              "provider_responses": [
+                {
+                  "call_index": 0,
+                  "response": {
+                    "id": "mock-evaluator_retrieval-response-1",
+                    "choices": [
+                      {
+                        "finish_reason": "tool_calls",
+                        "index": 0,
+                        "logprobs": null,
+                        "message": {
+                          "content": null,
+                          "refusal": null,
+                          "role": "assistant",
+                          "annotations": null,
+                          "audio": null,
+                          "function_call": null,
+                          "tool_calls": [
+                            {
+                              "id": "mock-evaluator_retrieval",
+                              "function": {
+                                "arguments": "{\"artifact_id\": \"evaluator-only-tool-boundary-fixture\"}",
+                                "name": "retrieve_evidence"
+                              },
+                              "type": "function"
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "created": 1790451846,
+                    "model": "mock/operational",
+                    "object": "chat.completion",
+                    "metadata": null,
+                    "moderation": null,
+                    "service_tier": null,
+                    "system_fingerprint": null,
+                    "usage": {
+                      "completion_tokens": 8,
+                      "prompt_tokens": 25,
+                      "total_tokens": 33,
+                      "completion_tokens_details": null,
+                      "prompt_tokens_details": null,
+                      "cost": 0.0001
+                    }
+                  }
+                }
+              ],
+              "request_token_bounds": [
+                {
+                  "call_index": 0,
+                  "input_utf8_bytes": 11135,
+                  "input_bound": 15743,
+                  "output_cap": 128,
+                  "cumulative_reserved_tokens": 15871,
+                  "call_cost_bound_usd": 0.015871,
+                  "pricing_hash": "mock-pricing-not-a-price-quote"
+                }
+              ],
+              "usage": {
+                "tokens": 33,
+                "tool_calls": 0,
+                "model_calls": 1,
+                "cost_usd": 0.0001,
+                "duration_seconds": 0.0254
+              },
+              "tokens_uncertain": false,
+              "cost_uncertain": false,
+              "request_in_flight": false
+            },
+            "evidence_ids": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:sequence",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "provenance": {
+              "mode": "mock",
+              "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+              "role_id": "evaluator_retrieval",
+              "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+              "adapter": "openrouter",
+              "model_id": "mock/operational"
+            },
+            "created_at": "2026-09-26T19:44:06.951930+00:00"
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 5,
+            "through_sequence": 5,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 33,
+              "tool_calls": 0,
+              "model_calls": 1,
+              "cost_usd": 0.0001,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0,
+              "reserved_tools": 0,
+              "reserved_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "artifact:artifact-4f824075e7c841699b0359ab310e8ee9": "de4f90f33fd75ef976822fbb420089b8483185e00a43d9065b2c091754b1ba93"
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            },
+            "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+            "lease_updated_at": "2026-09-26T19:44:06.910724+00:00",
+            "lease_expires_at": 1790451858.910723
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "sequence": 6,
+      "event_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:6",
+      "operation_id": "finish-4fb88626810643b394948fe16a4a8b7a",
+      "occurred_at": "2026-09-26T19:44:06.963963+00:00",
+      "type": "state.committed",
+      "cause": "run.stopped",
+      "run_revision": 6,
+      "upserts": {
+        "runs": [
+          {
+            "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+            "schema_version": 1,
+            "objective": "Exercise actual worker tool boundaries using synthetic HTTP responses; no real model inference.",
+            "mode": "mock",
+            "status": "blocked",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+            "run_revision": 6,
+            "through_sequence": 6,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 200000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 33,
+              "tool_calls": 0,
+              "model_calls": 1,
+              "cost_usd": 0.0001,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0,
+              "reserved_tools": 0,
+              "reserved_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T19:44:04.993157+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "artifact:artifact-4f824075e7c841699b0359ab310e8ee9": "de4f90f33fd75ef976822fbb420089b8483185e00a43d9065b2c091754b1ba93"
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "model_id": "mock/operational",
+            "model_provider": "mock_http_server",
+            "model_settings": {
+              "max_output_tokens": 128,
+              "temperature": 0
+            },
+            "model_pricing": {
+              "pricing_hash": "mock-pricing-not-a-price-quote",
+              "prompt_usd_per_token_bound": 1e-06,
+              "completion_usd_per_token_bound": 1e-06,
+              "request_usd_bound": 0,
+              "provider_routing": {}
+            },
+            "coordinator_owner": "coordinator-897c15a0599847e0a4f1faf1e633d050",
+            "lease_updated_at": "2026-09-26T19:44:06.910724+00:00",
+            "lease_expires_at": 0,
+            "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+            "completed_at": "2026-09-26T19:44:06.963910+00:00"
+          }
+        ]
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation_id": "create:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "09d2789702adb0d3ae3a1fc7fd3a632e44f51a77c8daa5417875e7a35aa16579",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:04.995025+00:00",
+      "accepted_result": {
+        "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+        "sequence": 1
+      }
+    },
+    {
+      "operation_id": "claim-b46fab5fe0f14bdcad4b388e5825b2a7",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "1678bc0b2a1b4fc7b4648167625f6af7bff6c630c5effec513b130ff505d5a11",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:06.905829+00:00",
+      "accepted_result": {
+        "epoch": 1
+      }
+    },
+    {
+      "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "68123b6208f368b281e50dd28fccd146005a440a942a2db126040a838981bec6",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:06.918006+00:00",
+      "accepted_result": {
+        "task_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0",
+        "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+        "candidate_id": "pansio-1",
+        "kind": "inspect_evidence",
+        "question": "evaluator_retrieval",
+        "canonical_question_key": "pansio-1:evaluator_retrieval:inspect_evidence:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "evaluator_retrieval",
+        "harness_hash": "95980c4a3e9b3b9d8f22149440133def6b3560e9caa188ce7a8fe989b1fb19cc",
+        "allowed_tools": [
+          "reference_sequence"
+        ],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "running",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Operational synthetic provider fixture; no biological conclusion.",
+        "plan_revision": 0,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "started_at": "2026-09-26T19:44:06.916980+00:00",
+        "coordinator_epoch": 1,
+        "reservation": {
+          "tokens": 0,
+          "tools": 1,
+          "cost_usd": 0.0,
+          "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de"
+        }
+      }
+    },
+    {
+      "operation_id": "extend-reservation-302984700b074fa38bbd1a09bfa80302",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "46fdbd119766733e591fa2e74107638739f61ea14414ce579488a020416a6860",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:06.946167+00:00",
+      "accepted_result": {
+        "tokens": 15871,
+        "tools": 1,
+        "cost_usd": 0.015871,
+        "operation_id": "reserve:mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc:pansio-1:evaluator_retrieval:r0:1:attempt-a3dd7bf236004cabb07905faf613f2de"
+      }
+    },
+    {
+      "operation_id": "failure-5a263594d97f4b69b53fa967cd8adf66",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "25b9a96ef485c51733b1dd82cb6d598428c1007aaef778403f134ea407e655bf",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:06.958604+00:00",
+      "accepted_result": {
+        "sequence": 5
+      }
+    },
+    {
+      "operation_id": "finish-4fb88626810643b394948fe16a4a8b7a",
+      "run_id": "mock-tool-boundary-49b5c10203d6446e9078bd2de067fbcc",
+      "payload_hash": "79d3144f5330ec060f18f6b7520120125f9c9cf46caf5595bd2130b02d653798",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:44:06.964578+00:00",
+      "accepted_result": {
+        "sequence": 6,
+        "status": "blocked"
+      }
+    }
+  ],
+  "immutable_assessment_revisions": [],
+  "source_manifests": [],
+  "reference_assets": [],
+  "limitations": [
+    "Runtime checkpoints are separate from application acceptance transactions.",
+    "Genome base counts are not model token counts.",
+    "Original experimental workbooks remain external immutable artifacts identified by their recorded URLs and byte hashes."
+  ]
+}

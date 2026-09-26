@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "model": {
+    "provider": "openrouter",
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "temperature": 0,
+    "max_output_tokens": 8192,
+    "context_limit_bytes": 60000,
+    "reasoning": {
+      "effort": "low"
+    },
+    "model_pricing": {
+      "model_id": "deepseek/deepseek-v4.1-flash",
+      "provider_slug": "deepinfra/fp8",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash/endpoints",
+      "frozen_at": "2026-09-26T19:38:39.595515+00:00",
+      "pricing": {
+        "prompt": "0.00000014",
+        "completion": "0.00000042",
+        "input_cache_read": "0.0000000042",
+        "discount": 0.3
+      },
+      "prompt_usd_per_token_bound": 1.4e-07,
+      "completion_usd_per_token_bound": 4.2e-07,
+      "request_usd_bound": 0.0,
+      "provider_routing": {
+        "only": [
+          "deepinfra/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0.14,
+          "completion": 0.42,
+          "request": 0.0
+        }
+      },
+      "policy": "Text-only calls, fixed endpoint, provider price ceilings, no server plugins or automatic fallback; unreported usage remains uncertain.",
+      "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607"
+    },
+    "cache_policy": "no_application_answer_cache; provider caching is not controlled and usage remains provisional"
+  },
+  "budget": {
+    "token_limit": 400000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0
+  },
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "source_hashes": {
+    "elife-79592-supp1.xlsx": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc",
+    "elife-79592-supp3.xlsx": "69255bad50a51039ad97e5111fcd4c9a80e6a3f87e78f24160e71b0e14419db1",
+    "elife-79592-supp4.xlsx": "641891f65518c735b553e1d28e36dd4fdd15a139b7d8177df01775274e6c538e",
+    "elife-79592-supp5.xlsx": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667",
+    "elife-79592-supp6.xlsx": "821d20d8b48f14ed1aa3686570d985d4a250614a2caa50b047e43384f4a168d1",
+    "wgEncodeGencodeCompV36.sql": "7164106eb072b95e7a9499a4b153f9c7b0bb0e0b1bbbe00a79723707d5bf3256",
+    "wgEncodeGencodeAttrsV36.sql": "5c238ca6074985eabebe572b0f182382c965221439108c727c9668c3ca3dac22",
+    "wgEncodeGencodePseudoGeneV36.sql": "f9989b977626f808454082b78d852dc5a6f91055d1aca9d2998f0998b7c63704",
+    "wgEncodeGencodeCompV36.txt.gz": "843c434ede93314d09d78cfe498784942122bfa3e0c8d7a8bd096f1fd880be9a",
+    "wgEncodeGencodeAttrsV36.txt.gz": "2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be",
+    "wgEncodeGencodePseudoGeneV36.txt.gz": "67a06659d5836a49abfd64498a45e25de55c82fbbf5223ae410412f71ba92739",
+    "chromInfo.txt.gz": "6788b62a18f994c9357b1afb132a832a7377106e4f542f9e84b4f6d63b131d97",
+    "pansio-1-hg38-sequence.json": "c8808f778839f10ffec55b22a2700a93bf5a2e9e2d921b70a2a17e04e7ff0f2e",
+    "olonne-18-hg38-sequence.json": "a2a2a1c7224c190ac38a8fef4e77d744dc098b7b05d23f1df1d99d368c94b83c",
+    "keppel-19-hg38-sequence.json": "89070a660f36dbf70dadf7996d08c55c3e65aaaf031804b75451af0967a149e1"
+  },
+  "criteria_sha256": "33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd",
+  "split_hash": "1625d702df69d274fa4c9ab3596ae70f352100feb1b946db7bc12e5b4f175361",
+  "case_ids": [
+    "pansio-1--full_sources",
+    "pansio-1--controls_withheld",
+    "pansio-1--h1_context_only",
+    "olonne-18--full_sources",
+    "olonne-18--controls_withheld",
+    "olonne-18--h1_context_only",
+    "keppel-19--full_sources",
+    "keppel-19--controls_withheld",
+    "keppel-19--h1_context_only"
+  ],
+  "case_manifest_sha256": "48e506c84ded3750c50c7c652c266bdafada5117306c4ba22a3e3c8fec09cc4a",
+  "answer_contract_sha256": "1fd62a7cb29db23006074d7489954b36be0e0046221ede676f9ecc6df2199ab5",
+  "evaluation_fingerprints": {
+    "reference_answers_sha256": "304b9ec595a6e695614a522bfc588aa43fcf8dcef0cd8bef92a8550b99bc4617",
+    "scoring_implementation_sha256": "0da23d1c5186740c27404692b52a1e8b755d6cc35f41fa1d2418585d95d188f1",
+    "case_manifest_sha256": "48e506c84ded3750c50c7c652c266bdafada5117306c4ba22a3e3c8fec09cc4a",
+    "production_implementation_sha256": {
+      "backend/safe_harbor/api.py": "14ab015d3cda2ccf5e35746a9c25c5aa51fc61d3895a1511732be44e5c92e36a",
+      "backend/safe_harbor/harness/__init__.py": "63126f8fb894d201b7426995cd30bf43447e9565d8b9bfdfbf606f4a32777cfe",
+      "backend/safe_harbor/harness/specification.py": "c5bce5c8f77eff93189ebda7060a11cbc3f797319f1e1f78d457b5c875f2180a",
+      "backend/safe_harbor/runtime/__init__.py": "c426b050f1c4ba5aad5b4b451c75a008c316087984f8f82193dfb05df4cbaaef",
+      "backend/safe_harbor/runtime/assessments.py": "49de97782c7672e14715e39d5f34acf92b16d0250afd60a884765361b8dc2534",
+      "backend/safe_harbor/runtime/compiler.py": "fcf4b02ee2c953f788f673fdff0cbfe7a7cc3d5557bf8881bc23fb578d6e28b0",
+      "backend/safe_harbor/runtime/context.py": "1eb90ab054d08bdf74e94aa7ffa676eb7b5488d23e56ca28bcd19f27868272cb",
+      "backend/safe_harbor/runtime/coordinator.py": "cb4d8e9a53414bbf656699f8e10442e43ca7223af191d7245c8c01a4b65fb5be",
+      "backend/safe_harbor/runtime/ledger.py": "a7b13646057fbaecdd633d7d0950615f8a5581e9e99f2be2d4289d251dc7721d",
+      "backend/safe_harbor/runtime/model_settings.py": "e3f36e9cbd115d04277e44a67f8f9b29a9b3d860aa91c11573537dc4a7b34d93",
+      "backend/safe_harbor/runtime/pricing.py": "75bc0054890bcf362735895537c34097ed96ecf55994f6328274a12adb6361fd",
+      "backend/safe_harbor/runtime/revisions.py": "5f9e2d7884aeb7472dedfc38a1e01ab7f45f52d05b3caf9d3492bd5d072a0e1e",
+      "backend/safe_harbor/runtime/worker.py": "bcccfc777c3f6b4e64f8b5c4f2308d5f87088e84036bfd13d030ac7fee2193b0",
+      "backend/safe_harbor/science/__init__.py": "7c2e0b822fbf7de520d2a0d43cf92e40c521a7962a70a751c8f3ee1025cd80e5",
+      "backend/safe_harbor/science/calculations.py": "d95e7ece0774479f695d6088842e89b8257fce0df38e583c68dd799e95454ed0",
+      "backend/safe_harbor/science/catalog.py": "7ff93458b18a45c40d7c12f8688fe0bdc8201fef21ca910daa95f6d72957f958",
+      "backend/safe_harbor/science/expression_tools.py": "4c53b56e517d3bd2e11655208778cbc89aed780e8619ca6e1e9c125cb19ec1a8",
+      "backend/safe_harbor/science/tools.py": "1cc90efebfba30fca58ae14074a570906c344f3a248ab03bf018604c7fbdb917",
+      "shared/contracts.py": "37cb0580a2bc2971a29802cb5d805990c150fbaac32f9dd22048a660beb6e142"
+    }
+  },
+  "promotion_rule": {
+    "schema_version": 1,
+    "no_decline": [
+      "required_answer_accuracy",
+      "support",
+      "coverage"
+    ],
+    "additional_benefit": "more correct required decisions OR >=15% provider-reported cost reduction at equal quality",
+    "cost_reduction_fraction": 0.15,
+    "require_complete_usage_for_cost": true,
+    "deterministic_runs_eligible_for_model_improvement": false,
+    "single_paired_cost_result": "provisional",
+    "split_hash": "1625d702df69d274fa4c9ab3596ae70f352100feb1b946db7bc12e5b4f175361",
+    "comparison_scope": "paired assigned validation cases; no per-case accuracy, support, coverage, or completion regression",
+    "candidate_completion_required": true,
+    "benefit_scope": "required decision count, or complete actual provider-reported inference cost at equal quality; optimizer overhead reported separately",
+    "rule_hash": "4027d3e1e1eb6cb91949f1b88deb982e97ad4ae462badb033541f11196eb0dc6"
+  },
+  "baselines": {
+    "H0": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "R0": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383"
+  },
+  "isolation": "Fresh run ID per case and arm; only that run's ancestors are retrievable; no derived answers shared across arms.",
+  "paired_repetitions": 1,
+  "case_timeout_seconds": 900.0,
+  "order": "H0/R0 alternate by case; candidate H1 added only after development proposal; final after selection",
+  "optimizer_budget": {
+    "token_limit": 40000,
+    "tool_limit": 0,
+    "cost_limit_usd": 1.0
+  }
+}

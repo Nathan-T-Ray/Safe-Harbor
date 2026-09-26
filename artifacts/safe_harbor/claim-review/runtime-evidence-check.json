@@ -1,0 +1,60 @@
+{
+  "mode": "read_only_data_integrity_review",
+  "as_of": "2026-09-26T19:40:55.473685+00:00",
+  "production_imports": false,
+  "model_calls": 0,
+  "database_writes": 0,
+  "history_database": "safe_harbor_history_1790451481",
+  "history_run_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab",
+  "through_sequence": 52,
+  "ordered_events_verified": true,
+  "stored_run_complete": true,
+  "context_packets": [
+    {
+      "task": "recall_declared",
+      "context_chars": 45503,
+      "context_utf8_bytes": 45503,
+      "objective_preserved": true,
+      "trace_hash_verified": true,
+      "originals": [
+        {
+          "artifact_id": "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "content_hash": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+          "data_hash_verified": true
+        },
+        {
+          "artifact_id": "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "content_hash": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+          "data_hash_verified": true
+        }
+      ]
+    },
+    {
+      "task": "recall_chain_only",
+      "context_chars": 44321,
+      "context_utf8_bytes": 44321,
+      "objective_preserved": true,
+      "trace_hash_verified": true,
+      "originals": [
+        {
+          "artifact_id": "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "content_hash": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+          "data_hash_verified": true
+        },
+        {
+          "artifact_id": "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "content_hash": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+          "data_hash_verified": true
+        }
+      ]
+    }
+  ],
+  "scope_isolation_export": "artifacts/safe_harbor/main-critical-smoke/context-revision-export/run-8364e7c2d03c42fb8809d0d7907219d0.json",
+  "export_entities_reconstructed_exactly": true,
+  "export_artifact_hashes_verified": 44,
+  "limitations": [
+    "This independently checks stored bytes, metadata and event reconstruction. HTTP denial/process death assertions are taken from the separately reviewed actual-service E2E and its source.",
+    "No model retrieval-quality or broad-security inference."
+  ],
+  "passed": true
+}
