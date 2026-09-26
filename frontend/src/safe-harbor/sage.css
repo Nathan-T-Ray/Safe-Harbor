@@ -214,3 +214,41 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .now-zoom .genome-panel>*{flex:none}
 .now-zoom .genome-canvas{flex:1 1 auto!important;height:auto!important;min-height:0;overflow:auto}
 .sage-right .tree-panel{min-height:760px;box-sizing:border-box}
+
+/* ---- Light-theme legibility: remap legacy dark-theme tokens to the sage palette ---- */
+.sage-app{--c-bg:#fff;--c-surface:#fff;--c-surface-2:#f6f8f5;--c-surface-3:#eef2ec;--c-border:#cad2c5;--c-border-strong:#84a98c;--c-text:#2f3e46;--c-text-muted:#354f52;--c-cyan:#52796f;--c-cyan-soft:#eef2ec;--c-amber:#354f52;--c-amber-soft:#eef2ec;--c-danger:#2f3e46;--cyan:#52796f;--amber:#354f52;--muted:#354f52;--line:#cad2c5;--panel:#fff;--shadow-1:none;--shadow-2:0 8px 24px rgba(47,62,70,.12)}
+/* Body text and values: charcoal; secondary text: slate (both ≥ 7:1 on white) */
+.sage-app p,.sage-app li,.sage-app td,.sage-app th,.sage-app label,.sage-app summary,.sage-app strong,.sage-app .conclusion-text,.sage-app .coordinate-value,.sage-app .artifact-id,.sage-app .mono,.sage-app code{color:#2f3e46}
+.sage-app .muted,.sage-app .small,.sage-app .at-dep,.sage-app .at-meter-label,.sage-app .timeline-event,.sage-app .sequence-count,.sage-app .follow-camera,.sage-app .final-dossier-stage,.sage-app .scientific-footnote,.sage-app .tree-foot,.sage-app .now-question,.sage-app .endpoint span{color:#354f52}
+/* Headings, eyebrows and kickers */
+.sage-app h1,.sage-app h2,.sage-app h3,.sage-app h4{color:#2f3e46}
+.sage-app .eyebrow,.sage-app .at-kicker,.sage-app .at-caret{color:#52796f}
+.sage-app .eyebrow{font-size:11px;font-weight:700;letter-spacing:.08em}
+/* Status words: dark text, shape/icon still carries the state */
+.sage-app .at-status,.sage-app .at-status.complete,.sage-app .at-status.queued,.sage-app .at-status.running{color:#2f3e46}
+.sage-app .at-status.complete{color:#354f52}
+/* Numbers in meters/stats */
+.sage-app .at-meter strong,.sage-app .status-axes strong,.sage-app .now-numbers strong{color:#2f3e46}
+/* Stage labels / step numbers in the legacy graph */
+.sage-app .stage-label,.sage-app .stage-label span,.sage-app .graph-stage span,.sage-app i{color:#354f52}
+/* Timeline controls */
+.sage-app .sage-timeline button.active,.sage-app .sage-timeline button{color:#2f3e46;border-color:#cad2c5}
+.sage-app .sage-timeline .pill,.sage-app .sage-timeline .pill.live,.sage-app .sage-timeline .pill.recorded,.sage-app .pill.recorded{background:#354f52;color:#fff;border-color:#354f52}
+.sage-app .sage-timeline input[type=range]{accent-color:#52796f}
+/* Disabled controls stay legible (state conveyed by cursor + text) */
+.sage-app button:disabled{opacity:1;color:#52796f;background:#f6f8f5;border-color:#cad2c5;cursor:not-allowed}
+.sage-app .now-state{color:#354f52}
+
+/* Header controls share one height and baseline (fixes the offset "New run" button) */
+.sage-app .header-actions{display:flex;align-items:center;gap:8px}
+.sage-app .header-actions>select,.sage-app .header-actions>button,.sage-app .header-actions>details>summary{height:36px;box-sizing:border-box;margin:0;padding:0 14px;display:inline-flex;align-items:center;font-size:14px;line-height:1;vertical-align:middle}
+.sage-app .header-actions>details{display:inline-flex;align-items:center;margin:0}
+.sage-app .header-actions>select{padding:0 10px}
+.sage-app .question-callout{border-left:3px solid #84a98c}
+.sage-app .question-callout .eyebrow{color:#52796f;font-size:11px}
+.sage-app .question-callout p{color:#2f3e46;font-size:14px;line-height:1.6}
+.sage-app .stage-labels{color:#2f3e46;font-size:13px}
+.sage-app .stage-labels i{color:#354f52;border-color:#84a98c;font-size:11px}
+.sage-app .pill.live{background:#eef2ec;color:#2f3e46;border-color:#84a98c}
+.sage-app .graph-legend,.sage-app .graph-legend span,.sage-app .secondary-details .graph-panel span{color:#354f52}
+.sage-app .graph-footer{color:#354f52;font-size:12px}
