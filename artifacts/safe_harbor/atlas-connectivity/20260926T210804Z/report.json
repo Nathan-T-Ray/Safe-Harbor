@@ -1,0 +1,143 @@
+{
+  "journey": "atlas_connectivity",
+  "started_at": "2026-09-26T21:08:04.519374+00:00",
+  "target": {
+    "scheme": "mongodb+srv",
+    "host": "cluster0.rbzk7k.mongodb.net",
+    "kind": "atlas",
+    "database": "safe_harbor",
+    "uri": "mongodb+srv://<credentials>@cluster0.rbzk7k.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    "is_atlas": true
+  },
+  "stand_in": false,
+  "label": "MongoDB Atlas connectivity proof",
+  "scratch_databases": [
+    "sh_e2e_atlas_1790456884_05da42_txn",
+    "sh_e2e_atlas_1790456884_05da42_api"
+  ],
+  "api_port": 8096,
+  "mode": "deterministic",
+  "model_calls": 0,
+  "latency": {
+    "ping_ms": {
+      "samples": [
+        1018.4,
+        82.5,
+        81.86,
+        83.81,
+        83.32
+      ],
+      "min": 81.86,
+      "median": 83.32
+    },
+    "transaction_commit_ms": 467.96,
+    "transaction_abort_ms": 302.99,
+    "api_startup_ms": 4473.49,
+    "run_duration_ms": 40606.2
+  },
+  "checks": [
+    {
+      "id": "target_is_atlas",
+      "passed": true,
+      "host": "cluster0.rbzk7k.mongodb.net",
+      "kind": "atlas",
+      "allowed_stand_in": false
+    },
+    {
+      "id": "ping",
+      "passed": true,
+      "median_ms": 83.32
+    },
+    {
+      "id": "transaction_capable_deployment",
+      "passed": true,
+      "set_name": "atlas-spd2nd-shard-0"
+    },
+    {
+      "id": "transaction_commit",
+      "passed": true,
+      "read_own_write": true,
+      "invisible_outside_before_commit": true,
+      "both_visible_after_commit": true,
+      "write_concern": "majority"
+    },
+    {
+      "id": "transaction_abort",
+      "passed": true,
+      "both_discarded": true
+    },
+    {
+      "id": "api_started_against_target",
+      "passed": true,
+      "pid": 92505,
+      "health": {
+        "status": "ok",
+        "database": "sh_e2e_atlas_1790456884_05da42_api",
+        "mongodb": {
+          "scheme": "mongodb+srv",
+          "host": "cluster0.rbzk7k.mongodb.net",
+          "kind": "atlas",
+          "database": "sh_e2e_atlas_1790456884_05da42_api"
+        },
+        "authoritative_store": "MongoDB",
+        "model_available": false,
+        "coordinator_available": true,
+        "schema_version": 1
+      },
+      "exit_code": null,
+      "log": "artifacts/safe_harbor/atlas-connectivity/20260926T210804Z/api.log"
+    },
+    {
+      "id": "run_created",
+      "passed": true,
+      "http_status": 201,
+      "run_id": "run-5bb51630e7164b8684583172232c031e",
+      "body": null
+    },
+    {
+      "id": "run_complete",
+      "passed": true,
+      "run_id": "run-5bb51630e7164b8684583172232c031e",
+      "status": "complete",
+      "through_sequence": 15,
+      "tasks": 6
+    },
+    {
+      "id": "events_ordered_gap_free",
+      "passed": true,
+      "events": 15,
+      "through_sequence": 15,
+      "first": [
+        1
+      ],
+      "last": [
+        15
+      ]
+    },
+    {
+      "id": "ledger_events_in_target",
+      "passed": true,
+      "ledger_events": 15,
+      "api_events": 15
+    },
+    {
+      "id": "langgraph_checkpoints_in_target",
+      "passed": true,
+      "runtime_checkpoints": 18,
+      "runtime_checkpoint_writes": 36,
+      "checkpoints_for_run_threads": 18,
+      "database": "sh_e2e_atlas_1790456884_05da42_api"
+    }
+  ],
+  "deployment": {
+    "set_name": "atlas-spd2nd-shard-0",
+    "max_wire_version": 25,
+    "is_writable_primary": true
+  },
+  "api_exit_code": -15,
+  "scratch_databases_dropped": true,
+  "passed": true,
+  "atlas_verified": true,
+  "failed_checks": [],
+  "finished_at": "2026-09-26T21:08:56.688876+00:00"
+}
