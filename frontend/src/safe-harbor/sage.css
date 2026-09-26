@@ -174,3 +174,24 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .sage-app,.sage-app button,.sage-app input,.sage-app select,.sage-app textarea{font-family:var(--sage-body)}
 .sage-app h1,.sage-app h2,.sage-app h3,.sage-app .brand span,.sage-app .panel-head h2,.now-head h1,.tree-panel h2,.sage-app .drawer-head h2,.sage-app .rail-heading h1{font-family:var(--sage-display);font-optical-sizing:auto;letter-spacing:-.01em;font-weight:600}
 .sage-app code,.sage-app pre,.sage-app .sequence-row code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+/* Readability on white: legacy dark-theme tokens and hard-coded pale text were leaking into the sage theme. */
+.sage-app{--c-bg:var(--sage-surface);--c-surface:var(--sage-surface);--c-surface-2:var(--tint);--c-surface-3:var(--tint2);--c-border:var(--s1);--c-border-strong:var(--s2);--c-cyan-soft:var(--tint2);--c-amber-soft:#f6eedf;--panel:var(--sage-surface);--line:var(--s1);--c-text:var(--s5);--c-text-muted:var(--s4);--muted:var(--s4);--c-cyan:var(--s3);--cyan:var(--s3);--sage-amber:#83560f;--c-amber:var(--sage-amber);--amber:var(--sage-amber);--c-danger:#a23a22}
+.sage-app .conclusion-text,.sage-app .coordinate-value,.sage-app .question-callout p,.sage-app .criteria-details strong{color:var(--s5)}
+.sage-app .stage-labels,.sage-app .stage-labels i,.sage-app .task-question,.sage-app .timeline-event,.sage-app .sequence-count,.sage-app .criteria-details,.sage-app .graph-footer,.sage-app .artifact-id,.sage-app .at-dep,.sage-app .endpoint span{color:var(--s4)}
+.sage-app .question-callout .eyebrow{color:var(--sage-amber)}
+.sage-app .at-status.complete{color:var(--s3)}
+.sage-app .pill.live{background:var(--tint)}
+/* Header controls share one height; "New run" no longer inherits the legacy full-width .primary layout. */
+.sage-top .header-actions>select,.sage-top .header-actions>button,.sage-top .header-actions .more-menu summary{box-sizing:border-box;height:34px;display:inline-flex;align-items:center;margin:0;line-height:1}
+.sage-top .header-actions>button.primary{width:auto;padding:7px 14px;justify-content:center;font-weight:600}
+/* Drawer and detail panels still carried dark navy fills under the sage text colors. */
+.sage-app .artifact-card,.sage-app .harness-version,.sage-app .evaluation-card,.sage-app .experiment-controls,.sage-app .comparison-report{background:var(--sage-surface);border-color:var(--s1);color:var(--s5)}
+.sage-app .metric-grid>div,.sage-app .harness-roles>div,.sage-app .comparison-overhead>div,.sage-app .raw-record pre,.sage-app .shared-evidence-node,.sage-app .at-agent.running,.sage-app .task-node.complete{background:var(--tint);border-color:var(--s1);color:var(--s5)}
+.sage-app .notice{background:var(--tint2);border-color:var(--s1);color:var(--s5)}
+.sage-app .notice.amber,.sage-app .pill.recorded{background:#f6eedf;border-color:#e3cfa6;color:var(--sage-amber)}
+.sage-app .raw-record,.sage-app .source-table{color:var(--s4)}
+.sage-app td{color:var(--s5)}
+.sage-app th,.sage-app .artifact-heading span,.sage-app .metric-grid dt,.sage-app .evidence-ids,.sage-app .hash-line,.sage-app .harness-roles small{color:var(--s4)}
+.sage-app .at-running-chip.on{color:var(--s4)}
+.sage-app .task-state.complete{color:var(--s3)}
+.sage-app .harness-roles strong{color:var(--s5)}
