@@ -1,0 +1,388 @@
+{
+  "journey": "revision",
+  "started_at": "2026-09-26T19:30:27.206120+00:00",
+  "database": "sh_e2e_revision_1790451026_c573d6",
+  "api_port": 8072,
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "labels": {
+    "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
+    "fault_injection": "operational crash hooks / delays / token reservations are fault-injection only and never reported as model usage",
+    "biological_claims": "none; these journeys test runtime persistence and control flow only"
+  },
+  "checks": [
+    {
+      "check": "revision:applied_through_api_while_affected_task_running",
+      "passed": true,
+      "evidence": {
+        "http_status": 200,
+        "response": {
+          "run_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5",
+          "sequence": 13,
+          "fixture_id": "withhold-control-evidence",
+          "affected_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0"
+          ],
+          "successor_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1"
+          ],
+          "unchanged_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assess:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:compare:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:inspect:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:report:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:review:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:screen:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0"
+          ]
+        },
+        "task_states_when_revision_posted": {
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assess:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:compare:r0": "running",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:inspect:r0": "complete",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:report:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:review:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:screen:r0": "complete",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0": "running",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0": "complete",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0": "queued",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0": "complete"
+        },
+        "sequence_before_revision": 12
+      }
+    },
+    {
+      "check": "revision:stale_acceptance_rejected",
+      "passed": true,
+      "evidence": {
+        "rejection_records": [
+          {
+            "operation_id": "rejected:accept:e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:1:1:821ad4ee7bc9878b4c8e5b9560f008129f5fe81e9c8f5e5c972dd5d35315f5d4",
+            "occurred_at": "2026-09-26T19:30:41.908471+00:00",
+            "original_operation_id": "accept:e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:1:1",
+            "payload_hash": "821ad4ee7bc9878b4c8e5b9560f008129f5fe81e9c8f5e5c972dd5d35315f5d4",
+            "reason": "Consumed evidence changed: scope:pansio-1:expression",
+            "run_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5",
+            "status": "rejected"
+          }
+        ],
+        "superseded_task": {
+          "status": "superseded",
+          "superseded_by": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "attempt": 1
+        },
+        "artifacts_accepted_from_stale_attempt": 0
+      }
+    },
+    {
+      "check": "revision:successors_ran_on_new_evidence_version",
+      "passed": true,
+      "evidence": {
+        "final_status": "complete",
+        "successors": {
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "plan_revision": 1,
+            "supersedes": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0",
+            "expression_scope_version": 2,
+            "depends_on": [
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0",
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0:revision1"
+            ]
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "plan_revision": 1,
+            "supersedes": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0",
+            "expression_scope_version": 2,
+            "depends_on": []
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "plan_revision": 1,
+            "supersedes": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0",
+            "expression_scope_version": 2,
+            "depends_on": []
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "plan_revision": 1,
+            "supersedes": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0",
+            "expression_scope_version": 2,
+            "depends_on": [
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0:revision1",
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1"
+            ]
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "plan_revision": 1,
+            "supersedes": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0",
+            "expression_scope_version": 2,
+            "depends_on": [
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0",
+              "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:revision1"
+            ]
+          }
+        },
+        "successor_control_overlap": [
+          {
+            "status": "unavailable",
+            "reason": "Original control evidence is unavailable under this prepared operational evidence revision."
+          }
+        ]
+      }
+    },
+    {
+      "check": "revision:successor_saw_withheld_control_evidence_as_unavailable",
+      "passed": true,
+      "evidence": {
+        "control_overlap_calculations": [
+          {
+            "status": "unavailable",
+            "reason": "Original control evidence is unavailable under this prepared operational evidence revision."
+          }
+        ]
+      }
+    },
+    {
+      "check": "revision:old_results_remain_inspectable",
+      "passed": true,
+      "evidence": {
+        "superseded_task": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0",
+        "old_artifacts": [
+          "artifact-2d0868e1f5b942c394e7e5f30123f580",
+          "artifact-90cdeca10b9a4236ba0c2b30659db4cf",
+          "artifact-db04c7f47ac44c2a89995ea1daf6809c",
+          "artifact-e82779318bb249598d5b86c4fa5e5ce5"
+        ],
+        "http_statuses": [
+          200,
+          200,
+          200,
+          200
+        ],
+        "historical_snapshot_sequence": 12,
+        "historical_status": "complete"
+      }
+    },
+    {
+      "check": "revision:unrelated_work_remains_valid",
+      "passed": true,
+      "evidence": {
+        "unrelated": {
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assess:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:compare:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:inspect:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:report:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:review:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:screen:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          },
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0": {
+            "status": "complete",
+            "attempt": 1,
+            "accepts": 1,
+            "successor": false,
+            "artifacts_unchanged": true
+          }
+        },
+        "second_candidate_assessments": [
+          {
+            "assessment_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assessment:1",
+            "freshness": "current"
+          },
+          {
+            "assessment_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assessment:2",
+            "freshness": "current"
+          }
+        ]
+      }
+    },
+    {
+      "check": "revision:interrupted_reservation_recorded_as_uncertain",
+      "passed": true,
+      "evidence": {
+        "final_budget": {
+          "token_limit": 200000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 25,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 200,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        },
+        "note": "The superseded compare attempt held an operational reservation; revision moved it to uncertain, not refunded."
+      }
+    },
+    {
+      "check": "revision:worker_cap",
+      "passed": true,
+      "evidence": {
+        "max_concurrent_running": 2
+      }
+    },
+    {
+      "check": "revision:assessments_marked_stale_and_old_revisions_retained",
+      "passed": true,
+      "evidence": {
+        "http_status": 200,
+        "response": {
+          "run_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5",
+          "sequence": 32,
+          "fixture_id": "restore-control-evidence",
+          "affected_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0:revision1",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1"
+          ],
+          "successor_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assess:r0:revision1:revision2",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:revision1:revision2",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:inspect:r0:revision1:revision2",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:report:r0:revision1:revision2",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1:revision2"
+          ],
+          "unchanged_task_ids": [
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assess:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:compare:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:inspect:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:report:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:review:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:screen:r0",
+            "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:screen:r0"
+          ]
+        },
+        "freshness_at_revision_event": {
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assessment:1": "current",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assessment:1": "stale",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:olonne-18:assessment:2": "current",
+          "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assessment:2": "stale"
+        },
+        "immutable_old_revisions_unchanged": true
+      }
+    },
+    {
+      "check": "revision:second_revision_successors_complete",
+      "passed": false,
+      "evidence": {
+        "final_status": "blocked",
+        "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+        "new_assessment_revisions": [
+          {
+            "assessment_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:assessment:3",
+            "assessment_revision": 3,
+            "freshness": "current"
+          }
+        ],
+        "failed_tasks": [
+          {
+            "task_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1:revision2",
+            "kind": "review_candidate",
+            "error": "LedgerError: Immutable assessment revision reused with different content"
+          }
+        ],
+        "rejected_operations": [
+          {
+            "operation_id": "rejected:accept:e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:compare:r0:1:1:821ad4ee7bc9878b4c8e5b9560f008129f5fe81e9c8f5e5c972dd5d35315f5d4",
+            "reason": "Consumed evidence changed: scope:pansio-1:expression"
+          },
+          {
+            "operation_id": "rejected:accept:e2e-revision-9b795316f06e46d7902047d18f649eb5:pansio-1:review:r0:revision1:revision2:2:1:dbc7cbf226e87e72c28dd66fa5b52211b5c57809c3d7804cdf27431",
+            "reason": "Immutable assessment revision reused with different content"
+          }
+        ],
+        "task_nodes": 22,
+        "replan_rounds": 2,
+        "max_concurrent_running": 2,
+        "note": "In this topology assess and review of one candidate are independent, so both may run concurrently under the two-worker cap."
+      }
+    }
+  ],
+  "processes": [
+    {
+      "pid": 81173,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "4",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "200"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/revision/20260926T153026/process-1.log",
+      "started_at": "2026-09-26T19:30:27.231973+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:31:07.501790+00:00"
+    }
+  ],
+  "runs": {
+    "revision_during_active_work": {
+      "run_id": "e2e-revision-9b795316f06e46d7902047d18f649eb5",
+      "harness_hash": "03bb6cc0591095f91f0e8cf51d53b070c18ce7a83eb40619167597da1c20adcb",
+      "export": "/Users/dmytro/Downloads/MangoDB26-wt-reverify/artifacts/safe_harbor/revision/20260926T153026/e2e-revision-9b795316f06e46d7902047d18f649eb5.export.json"
+    }
+  },
+  "finished_at": "2026-09-26T19:31:07.505161+00:00",
+  "passed": false,
+  "summary": {
+    "checks": 10,
+    "failed": [
+      "revision:second_revision_successors_complete"
+    ]
+  }
+}
