@@ -9,6 +9,7 @@ import { request } from './client';
 import { reconstruct, type RecordState } from './record';
 import { CUE_STEPS, cueStepLabel, type Cue } from './cues';
 import './presentation.css';
+import { useDialogFocus } from './dialogFocus';
 
 export interface RunExport {
   schema_version: 1; exported_at: string; mode: Mode | string; authoritative_store: string;
@@ -52,6 +53,26 @@ export function modeWords(mode: string | undefined): { word: string; note: strin
   return { word: mode ? `UNRECOGNISED MODE: ${mode.toUpperCase()}` : 'NO RUN OPEN', note: mode ? 'Mode is not one of the v1 contract modes.' : 'Open or start an investigation to present its record.', tone: 'unknown' };
 }
 const human = (value: string) => value.replaceAll('_', ' ');
+/** An earlier replay dossier contains only records committed through its cursor. */
+function exportAt(exported: RunExport | null, runId: string | null, cursor: number | null): RunExport | null {
+  if (!exported || exported.snapshot.run.run_id !== runId || cursor === 0) return null;
+  if (cursor === null || cursor >= exported.snapshot.through_sequence) return exported;
+  const events = exported.events.filter(event => event.sequence <= cursor);
+  const state = reconstruct(events, cursor);
+  if (!state.run) return null;
+  const operationIds = new Set(events.map(event => event.operation_id));
+  return {
+    schema_version: 1, exported_at: exported.exported_at, mode: state.run.mode,
+    authoritative_store: exported.authoritative_store,
+    snapshot: { ...state, schema_version: 1, run_id: state.run.run_id, run: state.run },
+    through_sequence: cursor, events,
+    operations: exported.operations.filter(operation => operationIds.has(String(operation.operation_id))),
+    immutable_assessment_revisions: state.assessments,
+    source_manifests: state.artifacts.filter(artifact => artifact.kind === 'source_manifest'),
+    reference_assets: state.artifacts.filter(artifact => artifact.kind === 'reference_assets'),
+    limitations: [...exported.limitations, `Historical replay dossier reconstructed through commit ${cursor}; later records are excluded.`],
+  };
+}
 function latestByCandidate(assessments: readonly Assessment[]): Map<string, Assessment> {
   const out = new Map<string, Assessment>();
   for (const a of assessments) { const prev = out.get(a.candidate_id); if (!prev || a.assessment_revision > prev.assessment_revision) out.set(a.candidate_id, a); }
@@ -89,6 +110,7 @@ function usePreload(active: boolean, runId: string | null, events: readonly Comm
   useEffect(() => {
     if (!active || !runId || lastSequence === 0) { setPreload(p => ({ ...p, state: 'idle' })); return; }
     let cancelled = false;
+    setExported(null); setExportError(null);
     setPreload(p => ({ ...p, state: 'loading' }));
     (async () => {
       try {
@@ -113,6 +135,7 @@ function usePreload(active: boolean, runId: string | null, events: readonly Comm
 }
 
 function Dossier({ runId, exported, error, events, run, onClose, onRetry }: { runId: string; exported: RunExport | null; error: string | null; events: readonly CommitEvent[]; run?: Run; onClose: () => void; onRetry: () => void }) {
+  const focusRef=useDialogFocus<HTMLElement>();
   const checks = useMemo(() => exported ? agreement(exported, events, run) : [], [exported, events, run]);
   const latest = useMemo(() => exported ? [...latestByCandidate(exported.snapshot.assessments).values()] : [], [exported]);
   const names = useMemo(() => new Map(exported?.snapshot.candidates.map(c => [c.candidate_id, c.name]) ?? []), [exported]);
@@ -129,7 +152,7 @@ function Dossier({ runId, exported, error, events, run, onClose, onRetry }: { ru
   const words = modeWords(exported?.mode);
   return <div className="shp-dossier-layer" role="dialog" aria-modal="true" aria-labelledby="shp-dossier-title">
     <button className="shp-scrim" aria-label="Close dossier" onClick={onClose} />
-    <section className="shp-dossier">
+    <section ref={focusRef} className="shp-dossier">
       <header className="shp-dossier-head">
         <div><span className="shp-eyebrow">Versioned dossier · read from the MongoDB ledger</span><h2 id="shp-dossier-title">Run {runId}</h2></div>
         <button ref={closeRef} className="shp-icon" onClick={onClose} aria-label="Close dossier">×</button>
@@ -168,6 +191,8 @@ function Dossier({ runId, exported, error, events, run, onClose, onRetry }: { ru
 export function Presentation({ runId, run, events, cursor, lastSequence, activeCue, onReset, onExit, playing, onTogglePlay }: PresentationProps) {
   const [dossierOpen, setDossierOpen] = useState(false);
   const [preload, exported, exportError, retry] = usePreload(true, runId, events, lastSequence);
+  const visibleExport = useMemo(() => exportAt(exported, runId, cursor), [exported, runId, cursor]);
+  useEffect(() => { if (cursor === 0) setDossierOpen(false); }, [cursor]);
   // A run's mode is frozen at creation; at replay position 0 the reconstructed run is empty, so read the committed run record.
   const words = modeWords(run?.mode ?? events[0]?.upserts.runs?.[0]?.mode);
   const live = cursor === null;
@@ -186,12 +211,12 @@ export function Presentation({ runId, run, events, cursor, lastSequence, activeC
         <span className={`shp-preload ${preload.state}`} title={preload.error ?? ''}>{preload.state === 'ready' ? `✓ ${preload.events} events · ${preload.artifacts} artifacts ready` : preload.state === 'loading' ? '◌ Preloading replay…' : preload.state === 'error' ? '! Preload incomplete' : '○ Nothing to preload'}</span>
         {onTogglePlay && <button onClick={onTogglePlay} disabled={!runId || !events.length} aria-label={playing ? 'Pause presentation replay' : 'Play presentation replay'}>{playing ? 'Ⅱ Pause' : '▶ Play'}</button>}
         <button onClick={onReset} disabled={!runId || !events.length} aria-label="Reset presentation to start">↤ Reset to start</button>
-        <button onClick={() => setDossierOpen(true)} disabled={!runId}>Dossier</button>
+        <button onClick={() => setDossierOpen(true)} disabled={!runId || cursor === 0} title={cursor === 0 ? 'No dossier exists before the first committed event.' : undefined}>{cursor === null ? 'Dossier' : 'Dossier at this commit'}</button>
         <button onClick={onExit}>Exit presentation</button>
       </div>
       <p className="shp-cue" key={activeCue?.key ?? 'none'}>{activeCue ? <>{cueStepLabel[activeCue.step]} · {activeCue.label}<small> · cue keyed to commit {activeCue.sequence}{activeCue.source === 'server' ? ' (recorded cue)' : ''}</small></> : <small>{live ? 'Camera follows recorded replay only; the live view stays where you put it.' : 'No camera cue yet at this commit.'}</small>}</p>
       <p className="shp-note">{words.note}{!live ? ' Replay rebuilds stored history; later data never appears in earlier frames.' : ''}</p>
     </section>
-    {dossierOpen && runId && <Dossier runId={runId} exported={exported} error={exportError} events={events} run={run} onClose={() => setDossierOpen(false)} onRetry={retry} />}
+    {dossierOpen && runId && <Dossier runId={runId} exported={visibleExport} error={exportError} events={events} run={run} onClose={() => setDossierOpen(false)} onRetry={retry} />}
   </>;
 }

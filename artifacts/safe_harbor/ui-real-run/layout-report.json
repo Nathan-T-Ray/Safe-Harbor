@@ -1,0 +1,20 @@
+{
+  "journey": "1280×720 compact real-stage summary, intact scrollable conclusion and keyboard graph inspection",
+  "run_id": "run-61c1f8d4a138477abc0a5dfe20ce9342",
+  "mode": "deterministic_operational_record_inspection",
+  "model_calls": 0,
+  "mock_transport": false,
+  "bounds": {
+    "graph_top": 322,
+    "conclusion_top": 590,
+    "conclusion_bottom": 715,
+    "conclusion_px": 20,
+    "document_width": 1280
+  },
+  "conclusion_text_unchanged": true,
+  "actual_task_expansion": true,
+  "graph_enter_opens_inspector": true,
+  "dialog_focus_trapped_and_restored": true,
+  "browser_errors": [],
+  "passed": true
+}

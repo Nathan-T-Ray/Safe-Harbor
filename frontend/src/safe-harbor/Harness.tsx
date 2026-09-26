@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Evaluation, HarnessVersion } from '../../../shared/contracts';
 import { request } from './client';
+import { useDialogFocus } from './dialogFocus';
 import { JsonRecord } from './Inspector';
 
 type SavedRecord = Record<string, unknown>;
@@ -43,7 +44,8 @@ export function Harness({versions,evaluations,hash,onClose}:{versions:HarnessVer
   const availableVersions=[...new Map([...versions,...liveVersions].map(version=>[version.harness_hash,version])).values()];
   const acceptedReports=evaluations.filter(evaluation=>evaluation.type==='harness_comparison_report').map(evaluation=>record(evaluation.report));
   const liveReport=record(experiment?.report);
-  return <aside className="harness-drawer" role="dialog" aria-modal="true" aria-label="Harness evolution">
+  const focusRef=useDialogFocus<HTMLElement>();
+  return <aside ref={focusRef} className="harness-drawer" role="dialog" aria-modal="true" aria-label="Harness evolution">
     <div className="drawer-head"><div><span className="eyebrow">The workflow is part of the experiment</span><h2>Harness evolution</h2></div><button onClick={onClose} aria-label="Close harness comparison">×</button></div>
     <p className="muted">Versions are frozen per run. A real model proposes one bounded structural patch from development traces. Validation selects or rejects it; final cases stay outside selection.</p>
     <section className="experiment-controls"><div className="artifact-heading"><h3>Comparison experiment</h3><span className="pill live">Separate live record</span></div><p className="small muted">H0: competent fixed agent · R0: all checks + synthesis · H1: automatic proposal. This experiment record is separate from the investigation replay position.</p><div className="experiment-actions"><select aria-label="Experiment execution mode" value={mode} onChange={event=>setMode(event.target.value as 'real_model'|'deterministic')}><option value="real_model">Real model comparison</option><option value="deterministic">Deterministic operational only</option></select><button disabled={busy} onClick={()=>void start()}>{busy?'Starting…':'Start comparison'}</button></div><form className="experiment-actions" onSubmit={event=>{event.preventDefault();openExperiment(openId);}}><input aria-label="Saved experiment ID" placeholder="Open a saved experiment ID" value={openId} onChange={event=>setOpenId(event.target.value)}/><button disabled={!openId.trim()}>Open</button></form>{error&&<p role="alert" className="notice amber">{error}</p>}{experiment&&<div className="notice"><strong>{String(experiment.status??'Pending').replaceAll('_',' ')}</strong><p>{String(experiment.blocked_reason??experiment.reason??(Array.isArray(experiment.blockers)?experiment.blockers.join(' '):'Every assigned case and actual usage remains inspectable.'))}</p><span className="hash-line">{experimentId}</span></div>}</section>

@@ -1,0 +1,42 @@
+// Inspection of an existing genuine-model run. This journey dispatches no work.
+import { chromium } from '../../frontend/node_modules/playwright/index.mjs';
+import assert from 'node:assert/strict';
+import { mkdir, writeFile } from 'node:fs/promises';
+const base=process.env.SAFE_HARBOR_UI_URL??'http://127.0.0.1:5176';
+const runId=process.env.SAFE_HARBOR_RUN_ID??'run-152fa7ce5acd4449a90dd77269ada8d4';
+const response=await fetch(`${base}/api/runs/${runId}/snapshot`);assert.ok(response.ok);
+const snapshot=await response.json(),run=snapshot.run;
+assert.equal(run.mode,'real_model');assert.equal(run.status,'blocked');
+const reportTask=snapshot.tasks.find(t=>t.kind==='publish_shortlist'&&t.status==='failed');assert.ok(reportTask);
+const assessment=[...snapshot.assessments].sort((a,b)=>b.assessment_revision-a.assessment_revision)[0];assert.ok(assessment);
+const out='artifacts/safe_harbor/ui-real-run';await mkdir(out,{recursive:true});
+const browser=await chromium.launch({headless:true}),page=await browser.newPage({viewport:{width:1280,height:720},reducedMotion:'reduce'}),errors=[];
+page.on('pageerror',error=>errors.push(error.message));
+try{
+ await page.goto(`${base}/?run=${runId}`);
+ await page.locator('.mode-word').getByText('REAL MODEL',{exact:true}).waitFor();
+ assert.match(await page.locator('.run-status-notice').textContent(),/Investigation blocked · report incomplete/);
+ assert.ok((await page.locator('.run-status-notice').textContent()).includes(reportTask.error));
+ assert.match(await page.locator('.run-status-notice').textContent(),/unfinished investigation record/);
+ assert.equal(await page.getByRole('link',{name:'Export saved record ↓',exact:true}).count(),1);
+ assert.equal(await page.locator('.conclusion-text').textContent(),assessment.conclusion);
+ assert.ok((await page.locator('.run-progress').textContent()).includes(`${run.budget.tokens_used.toLocaleString()} known tokens`));
+ assert.ok((await page.locator('.run-progress').textContent()).includes(`${run.budget.model_calls} recorded model calls`));
+ assert.ok((await page.locator('.run-progress').textContent()).includes(`${run.budget.uncertain_tokens.toLocaleString()} tokens`));
+ const node=page.locator(`.react-flow__node[data-id="${reportTask.task_id}"]`);
+ await node.click();
+ const drawer=page.getByRole('dialog',{name:'Evidence inspection'});
+ assert.ok((await drawer.locator('.notice.amber').textContent()).includes(reportTask.error));
+ await page.getByRole('button',{name:'Close evidence inspector'}).click();
+ await page.screenshot({path:`${out}/blocked-genuine-run.png`,fullPage:true});
+ const exported=await fetch(`${base}/api/runs/${runId}/export`);assert.ok(exported.ok);const dossier=await exported.json();
+ assert.equal(dossier.snapshot.run.status,'blocked');assert.equal(dossier.snapshot.run.budget.uncertain_tokens,run.budget.uncertain_tokens);
+ await page.getByRole('button',{name:'Reset replay to start',exact:true}).click();
+ await page.locator('.mode-word').getByText('CATALOG PREVIEW',{exact:true}).waitFor();
+ assert.equal(await page.locator('.run-status-notice').count(),0);
+ assert.notEqual(await page.locator('.conclusion-text').textContent(),assessment.conclusion);
+ assert.equal(await page.locator('.task-failure').count(),0);
+ assert.deepEqual(errors,[]);
+ const result={journey:'Genuine-model blocked run is presented as unfinished, with accepted assessment and unsettled expenditure',mode:'real_model_record_inspection',mock_transport:false,model_calls_by_this_inspection:0,run_id:runId,through_sequence:snapshot.through_sequence,status:run.status,failed_task_id:reportTask.task_id,failure:reportTask.error,accepted_assessment_id:assessment.assessment_id,known_tokens:run.budget.tokens_used,uncertain_tokens:run.budget.uncertain_tokens,known_cost_usd:run.budget.cost_usd,uncertain_cost_usd:run.budget.uncertain_cost_usd,exact_export_matches:true,seek_zero_leaks_no_result_or_failure:true,browser_errors:errors,passed:true};
+ await writeFile(`${out}/report.json`,JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}finally{await browser.close();}

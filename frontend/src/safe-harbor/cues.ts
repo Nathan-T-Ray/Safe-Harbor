@@ -134,7 +134,7 @@ export function deriveCues(events: readonly CommitEvent[]): readonly Cue[] {
 
 function merge(target: CameraTarget, next: CameraTarget): CameraTarget {
   const out: { -readonly [K in keyof CameraTarget]: CameraTarget[K] } = { ...target };
-  if (next.candidate_id !== undefined && next.candidate_id !== target.candidate_id) { out.assessment_id = null; }
+  if (next.candidate_id !== undefined && next.candidate_id !== target.candidate_id) { out.assessment_id = null; out.task_id = null; }
   for (const key of Object.keys(next) as (keyof CameraTarget)[]) if (next[key] !== undefined) (out as Record<string, unknown>)[key] = next[key];
   return out;
 }

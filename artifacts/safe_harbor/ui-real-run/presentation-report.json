@@ -1,0 +1,20 @@
+{
+  "journey": "External presentation/camera integration uses only actual committed events and historical dossiers",
+  "source_pr": 63,
+  "source_commits": [
+    "22521e9",
+    "6c708cf"
+  ],
+  "run_id": "run-152fa7ce5acd4449a90dd77269ada8d4",
+  "mode": "real_model_record_inspection",
+  "model_calls_by_inspection": 0,
+  "ledger_writes": 0,
+  "sequence_cue_event": "run-152fa7ce5acd4449a90dd77269ada8d4:9",
+  "historical_dossier_watermark": 1,
+  "historical_dossier_assessments": 0,
+  "parent_event_stream_unchanged": true,
+  "follow_toggle_honored": true,
+  "known_budget_caps_visible": true,
+  "browser_errors": [],
+  "passed": true
+}

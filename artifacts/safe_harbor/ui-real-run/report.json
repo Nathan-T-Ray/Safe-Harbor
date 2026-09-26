@@ -1,0 +1,20 @@
+{
+  "journey": "Genuine-model blocked run is presented as unfinished, with accepted assessment and unsettled expenditure",
+  "mode": "real_model_record_inspection",
+  "mock_transport": false,
+  "model_calls_by_this_inspection": 0,
+  "run_id": "run-152fa7ce5acd4449a90dd77269ada8d4",
+  "through_sequence": 26,
+  "status": "blocked",
+  "failed_task_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:report:r0",
+  "failure": "LedgerError: Model exceeded bounded tool allowance",
+  "accepted_assessment_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:assessment:2",
+  "known_tokens": 138967,
+  "uncertain_tokens": 57825,
+  "known_cost_usd": 0.0075574100000000005,
+  "uncertain_cost_usd": 0.002788875,
+  "exact_export_matches": true,
+  "seek_zero_leaks_no_result_or_failure": true,
+  "browser_errors": [],
+  "passed": true
+}
