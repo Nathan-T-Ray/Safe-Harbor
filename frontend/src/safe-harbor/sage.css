@@ -252,3 +252,4 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .sage-app .pill.live{background:#eef2ec;color:#2f3e46;border-color:#84a98c}
 .sage-app .graph-legend,.sage-app .graph-legend span,.sage-app .secondary-details .graph-panel span{color:#354f52}
 .sage-app .graph-footer{color:#354f52;font-size:12px}
+.sage-app .readonly-chip{display:inline-flex;align-items:center;height:36px;padding:0 14px;border:1px solid #84a98c;border-radius:999px;background:#f6f8f5;color:#2f3e46;font-size:13px;font-weight:600;white-space:nowrap}

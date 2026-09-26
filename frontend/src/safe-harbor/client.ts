@@ -6,6 +6,7 @@ export async function request<T>(path: string, body?: unknown): Promise<T> {
 }
 export const api = {
   catalog: () => request<Catalog>('/catalog'),
+  health: () => request<{status:string;read_only?:boolean;default_run_id?:string|null}>('/health'),
   create: (body: CreateRun) => request<{run_id:string}>('/runs', body),
   snapshot: (id:string) => request<Snapshot>(`/runs/${encodeURIComponent(id)}/snapshot`),
   events: (id:string, after:number) => request<EventPage>(`/runs/${encodeURIComponent(id)}/events?after_sequence=${after}`),

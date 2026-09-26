@@ -122,6 +122,19 @@ async def schema_error(request, exc):
     return JSONResponse(status_code=422, content={"detail": "Record failed schema validation", "errors": exc.errors(include_context=False)})
 
 
+def default_run_id() -> str | None:
+    """Run a read-only deployment opens when no ?run= is given: SAFE_HARBOR_DEFAULT_RUN, else the
+    most recent completed run (real-model preferred). Only ever a stored run; nothing is created."""
+    configured = os.getenv("SAFE_HARBOR_DEFAULT_RUN")
+    if configured:
+        return configured
+    for query in ({"status": "complete", "mode": "real_model"}, {"status": "complete"}):
+        record = ledger.db.runs.find_one(query, {"_id": 0, "run_id": 1}, sort=[("created_at", -1)])
+        if record:
+            return record["run_id"]
+    return None
+
+
 @app.get("/health")
 def health():
     if mongo_configuration_error is not None:
@@ -131,7 +144,7 @@ def health():
         ledger.client.admin.command("ping")
     except PyMongoError as exc:
         return JSONResponse(status_code=503, content={"status": "unavailable", "detail": f"MongoDB is unreachable ({type(exc).__name__}); check the Atlas network access list and credentials.", "mongodb": target, "authoritative_store": "MongoDB", "schema_version": 1})
-    return {"status": "ok", "database": ledger.db.name, "mongodb": target, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "read_only": READ_ONLY, "schema_version": 1}
+    return {"status": "ok", "database": ledger.db.name, "mongodb": target, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "read_only": READ_ONLY, "default_run_id": default_run_id() if READ_ONLY else None, "schema_version": 1}
 
 
 @app.get("/catalog")
