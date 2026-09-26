@@ -26,7 +26,9 @@ function ToolIcon({ kind }: { kind: 'tool' | 'model' | 'none' }) {
   return <svg {...p}><circle cx="12" cy="12" r="8" strokeDasharray="2 3" /></svg>;
 }
 
-export function NowPanel({ tasks, artifacts, candidates, cueTaskId, genome, footer }: { tasks: Task[]; artifacts: Artifact[]; candidates: Candidate[]; cueTaskId?: string | null; genome: ReactNode; footer: ReactNode }) {
+type RunTotals = { tool_calls: number; model_calls?: number; tokens_used: number };
+
+export function NowPanel({ tasks, artifacts, candidates, cueTaskId, genome, footer, runTotals }: { tasks: Task[]; artifacts: Artifact[]; candidates: Candidate[]; cueTaskId?: string | null; genome: ReactNode; footer: ReactNode; runTotals?: RunTotals }) {
   const wanted = pickFocus(tasks, cueTaskId);
   const [shownId, setShownId] = useState<string | undefined>(wanted?.task_id);
   const last = useRef(0);
@@ -48,7 +50,16 @@ export function NowPanel({ tasks, artifacts, candidates, cueTaskId, genome, foot
       <h1 aria-live="polite">{headline}</h1>
       {task?.question && <p className="now-question">{task.question}</p>}
       <div className="now-tool"><span className="now-tool-icon"><ToolIcon kind={lastCall?.kind ?? 'none'} /></span><div><strong>{lastCall ? (lastCall.kind === 'model' ? 'Model call' : lastCall.label) : task?.status === 'running' ? 'Call in flight — recorded on completion' : 'No call recorded yet'}</strong><span>{lastCall?.detail ?? (cand ? `${cand.chromosome}:${(cand.start + 1).toLocaleString()} · GRCh38` : 'GRCh38 · H1')}</span></div></div>
-      <div className="now-numbers"><div><strong>{agent?.hasTrace ? agent.tools : '—'}</strong><span>tool calls</span></div><div><strong>{agent?.hasTrace ? agent.models : '—'}</strong><span>model calls</span></div><div><strong>{agent?.hasTrace ? agent.tokens.toLocaleString() : '—'}</strong><span>tokens</span></div></div>
+      {(() => {
+        // A finished agent shows its own committed trace; while it is still working (usage commits on
+        // completion) the row shows the whole run's committed totals so far, labelled as such.
+        const own = !!agent?.hasTrace;
+        const values = own ? { tools: agent!.tools, models: agent!.models, tokens: agent!.tokens } : { tools: runTotals?.tool_calls ?? 0, models: runTotals?.model_calls ?? 0, tokens: runTotals?.tokens_used ?? 0 };
+        return <div className="now-numbers-block">
+          <span className="now-numbers-scope">{own ? 'This agent' : 'Whole run so far'}</span>
+          <div className="now-numbers"><div><strong>{values.tools.toLocaleString()}</strong><span>tool calls</span></div><div><strong>{values.models.toLocaleString()}</strong><span>model calls</span></div><div><strong>{values.tokens.toLocaleString()}</strong><span>tokens</span></div></div>
+        </div>;
+      })()}
     </div>
     <div className="now-zoom">{genome}</div>
     {footer}
