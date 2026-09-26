@@ -174,3 +174,43 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .sage-app,.sage-app button,.sage-app input,.sage-app select,.sage-app textarea{font-family:var(--sage-body)}
 .sage-app h1,.sage-app h2,.sage-app h3,.sage-app .brand span,.sage-app .panel-head h2,.now-head h1,.tree-panel h2,.sage-app .drawer-head h2,.sage-app .rail-heading h1{font-family:var(--sage-display);font-optical-sizing:auto;letter-spacing:-.01em;font-weight:600}
 .sage-app code,.sage-app pre,.sage-app .sequence-row code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* Map-pin candidate markers */
+.sage-app .genome-canvas .marker .map-pin-body{fill:#52796f;stroke:#fff;stroke-width:1.2}
+.sage-app .genome-canvas .marker .map-pin.selected .map-pin-body{fill:#2f3e46}
+.sage-app .genome-canvas .marker .map-pin-hole{fill:#fff;stroke:none}
+.sage-app .genome-canvas .marker .map-pin.selected .map-pin-hole{fill:#cad2c5}
+.sage-app .genome-canvas .marker{cursor:pointer}
+.sage-app .genome-canvas .marker:focus-visible .map-pin-body{stroke:#2f3e46;stroke-width:2}
+
+/* Tool/model call bubbles fill in one at a time (tree only; presentation-only) */
+.tnode.l3 .tg circle{animation:call-fill .7s cubic-bezier(.4,0,.2,1) both;animation-delay:var(--fill-delay,0s)}
+.tnode.l3 .tg path{animation:call-mark .5s ease both;animation-delay:calc(var(--fill-delay,0s) + .45s)}
+.tnode.l3 .tnode-in{animation-delay:var(--fill-delay,0s)}
+@keyframes call-fill{from{fill-opacity:0;stroke-opacity:.35}to{fill-opacity:1;stroke-opacity:1}}
+@keyframes call-mark{from{opacity:0}to{opacity:1}}
+
+/* Stutter-free left column: fixed reserved heights, opacity-only crossfades, no layout shift */
+.now-panel{overflow-anchor:none}
+.now-head{min-height:290px;display:flex;flex-direction:column;animation:now-cross 1.4s cubic-bezier(.4,0,.2,1) both}
+.now-head h1{min-height:2.4em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.now-question{min-height:3em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.now-tool{min-height:64px;box-sizing:border-box}
+.now-tool strong,.now-tool span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block;max-width:100%}
+.now-numbers{min-height:52px}
+.now-zoom .genome-canvas{height:420px;overflow:auto;animation:now-cross 1.4s cubic-bezier(.4,0,.2,1) both;transform:none}
+@keyframes now-cross{from{opacity:.2}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.tnode.l3 .tg circle,.tnode.l3 .tg path{animation:none}}
+/* Header never re-wraps when LIVE/RECORDED or mode labels change (prevents vertical jumps). */
+.sage-top{flex-wrap:nowrap!important;height:64px;min-height:64px;box-sizing:border-box;overflow:visible}
+.sage-top>*{flex-shrink:0}
+.sage-top .data-version{flex:0 1 auto;min-width:0;max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sage-top .pill{min-width:88px;text-align:center;justify-content:center}
+.sage-top .cand-chips{margin-left:auto}
+@media (max-width:1380px){.sage-top .data-version{display:none}}
+@media (max-width:1240px){.sage-top .ctx{display:none}}
+/* Genome card keeps one fixed height across genome/chromosome/locus/sequence zooms. */
+.now-zoom .genome-panel{height:590px;box-sizing:border-box;display:flex;flex-direction:column;overflow:hidden}
+.now-zoom .genome-panel>*{flex:none}
+.now-zoom .genome-canvas{flex:1 1 auto!important;height:auto!important;min-height:0;overflow:auto}
+.sage-right .tree-panel{min-height:760px;box-sizing:border-box}

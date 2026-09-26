@@ -48,7 +48,7 @@ export function NowPanel({ tasks, artifacts, candidates, cueTaskId, genome, foot
       <h1 aria-live="polite">{headline}</h1>
       {task?.question && <p className="now-question">{task.question}</p>}
       <div className="now-tool"><span className="now-tool-icon"><ToolIcon kind={lastCall?.kind ?? 'none'} /></span><div><strong>{lastCall ? (lastCall.kind === 'model' ? 'Model call' : lastCall.label) : task?.status === 'running' ? 'Call in flight — recorded on completion' : 'No call recorded yet'}</strong><span>{lastCall?.detail ?? (cand ? `${cand.chromosome}:${(cand.start + 1).toLocaleString()} · GRCh38` : 'GRCh38 · H1')}</span></div></div>
-      {agent?.hasTrace && <div className="now-numbers"><div><strong>{agent.tools}</strong><span>tool calls</span></div><div><strong>{agent.models}</strong><span>model calls</span></div><div><strong>{agent.tokens.toLocaleString()}</strong><span>tokens</span></div></div>}
+      <div className="now-numbers"><div><strong>{agent?.hasTrace ? agent.tools : '—'}</strong><span>tool calls</span></div><div><strong>{agent?.hasTrace ? agent.models : '—'}</strong><span>model calls</span></div><div><strong>{agent?.hasTrace ? agent.tokens.toLocaleString() : '—'}</strong><span>tokens</span></div></div>
     </div>
     <div className="now-zoom">{genome}</div>
     {footer}

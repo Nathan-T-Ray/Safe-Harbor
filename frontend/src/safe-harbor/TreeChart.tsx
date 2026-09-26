@@ -9,7 +9,7 @@ import { deriveBranches } from './AgentTree';
 import { taskName } from './Graph';
 
 type Status = 'complete' | 'running' | 'queued' | 'planned' | 'failed' | 'blocked' | 'reopened' | 'superseded';
-interface TNode { id: string; level: number; label: string; sub?: string; status: Status; tip: string; children: TNode[]; act?: () => void; x: number; y: number; w: number }
+interface TNode { id: string; level: number; label: string; sub?: string; status: Status; tip: string; children: TNode[]; act?: () => void; x: number; y: number; w: number; order?: number }
 const MAX_CALLS = 5;
 const statusWord: Record<Status, string> = { complete: 'Complete', running: 'Running', queued: 'Queued', planned: 'Not started', failed: 'Failed', blocked: 'Blocked', reopened: 'Reopened', superseded: 'Superseded' };
 const trunc = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
@@ -51,7 +51,7 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
       const agents: TNode[] = b.agents.map(a => {
         const t = a.task;
         const shown = a.calls.slice(0, MAX_CALLS);
-        const calls: TNode[] = shown.map(c => ({ id: `c:${c.id}`, level: 3, label: c.kind === 'model' ? 'model' : trunc(c.label, 14), status: 'complete' as Status, tip: `${c.kind === 'model' ? 'Model call' : 'Tool call'} · ${c.label} · ${c.detail}`, children: [], x: 0, y: 0, w: 30, act: () => { const art = artifacts.find(x => x.artifact_id === c.artifactId); if (art) onSelectArtifact(art); else onSelectTask(t); } }));
+        const calls: TNode[] = shown.map((c, order) => ({ id: `c:${c.id}`, level: 3, order, label: c.kind === 'model' ? 'model' : trunc(c.label, 14), status: 'complete' as Status, tip: `${c.kind === 'model' ? 'Model call' : 'Tool call'} · ${c.label} · ${c.detail}`, children: [], x: 0, y: 0, w: 30, act: () => { const art = artifacts.find(x => x.artifact_id === c.artifactId); if (art) onSelectArtifact(art); else onSelectTask(t); } }));
         if (a.calls.length > MAX_CALLS) calls.push({ id: `c:${t.task_id}:more`, level: 3, label: `+${a.calls.length - MAX_CALLS}`, status: 'complete', tip: `${a.calls.length - MAX_CALLS} more recorded calls · open inspector`, children: [], x: 0, y: 0, w: 30, act: () => onSelectTask(t) });
         const status = t.status as Status;
         return { id: `a:${t.task_id}`, level: 2, label: taskName[t.kind as keyof typeof taskName] ?? t.kind, sub: `${t.role_id} · ${statusWord[status] ?? t.status}`, status, tip: `${taskName[t.kind as keyof typeof taskName] ?? t.kind} · ${statusWord[status] ?? t.status} · ${t.question}`, children: calls, x: 0, y: 0, w: 118, act: () => onSelectTask(t) };
@@ -95,7 +95,7 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
         <svg ref={svgRef} role="tree" aria-label="Coordinator, candidates, agent tasks and recorded calls" viewBox={`-10 0 ${width + 20} ${height}`} preserveAspectRatio="xMidYMin meet" onKeyDown={onKey}>
           <g className="tree-edges">{edges.map(([a, b]) => <line key={`${a.id}:${b.id}`} data-dependency-source={a.level===2&&b.level===2?a.id.slice(2):undefined} data-dependency-target={a.level===2&&b.level===2?b.id.slice(2):undefined} x1={a.x} y1={a.y} x2={b.x} y2={b.y} className={`edge ${b.status}`} />)}</g>
           {flat.map(n => <g key={n.id} data-node={n.id} role="treeitem" aria-level={n.level + 1} aria-label={n.tip} aria-selected={selectedTask !== undefined && n.id === `a:${selectedTask}`} tabIndex={active === n.id ? 0 : -1}
-            className={`tnode l${n.level} ${n.id === `a:${selectedTask}` ? 'selected' : ''}`} style={{ transform: `translate(${n.x}px, ${n.y}px)` }}
+            className={`tnode l${n.level} ${n.id === `a:${selectedTask}` ? 'selected' : ''}`} style={{ transform: `translate(${n.x}px, ${n.y}px)`, ['--fill-delay' as string]: `${(n.order ?? 0) * 0.45 + 0.3}s` }}
             onFocus={() => { setFocusId(n.id); setHover(n); }} onBlur={() => setHover(null)} onMouseEnter={() => setHover(n)} onMouseLeave={() => setHover(null)} onClick={() => { setFocusId(n.id); n.act?.(); }}>
             <g className="tnode-in"><NodeGlyph status={n.status} r={radius[n.level]} />
               {n.level < 3 ? n.level === 2 ? <><text x={20} y={-2} className="tlabel">{trunc(n.label, 22)}</text><text x={20} y={14} className="tsub">{n.sub}</text></> : <><text y={-radius[n.level] - (n.level ? 22 : 10)} textAnchor="middle" className="tlabel">{trunc(n.label, 22)}</text>{n.sub && <text y={-radius[n.level] - (n.level ? 7 : -48)} textAnchor="middle" className="tsub">{n.sub}</text>}</>
