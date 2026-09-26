@@ -1,0 +1,139 @@
+{
+  "criteria_version": "safe-harbor-criteria-v1",
+  "immutable_to_harness_optimizer": true,
+  "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+  "source_section": "Materials and methods: In silico search for putative GSH",
+  "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+  "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+  "criteria": [
+    {
+      "criterion_id": "outside_gene_body",
+      "required": true,
+      "comparison": "overlap_count == 0",
+      "inputs": [
+        "candidate_interval",
+        "GENCODE_v36_transcript_spans"
+      ],
+      "description": "Candidate interval does not overlap an annotated transcription unit.",
+      "missing_data": "incomplete"
+    },
+    {
+      "criterion_id": "tss_distance",
+      "required": true,
+      "comparison": "distance_bp > 50000",
+      "threshold_bp": 50000,
+      "inputs": [
+        "candidate_interval",
+        "GENCODE_v36_transcript_TSS"
+      ],
+      "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+      "missing_data": "incomplete",
+      "distance_metric": "nearest_reference_base_distance_bp"
+    },
+    {
+      "criterion_id": "mirna_distance",
+      "required": true,
+      "comparison": "distance_bp > 300000",
+      "threshold_bp": 300000,
+      "inputs": [
+        "candidate_interval",
+        "GENCODE_v36_miRNA_gene_spans"
+      ],
+      "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+      "missing_data": "incomplete",
+      "distance_metric": "nearest_reference_base_distance_bp"
+    },
+    {
+      "criterion_id": "lncrna_distance",
+      "required": true,
+      "comparison": "distance_bp > 100000",
+      "threshold_bp": 100000,
+      "inputs": [
+        "candidate_interval",
+        "GENCODE_v36_lncRNA_gene_spans"
+      ],
+      "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+      "missing_data": "incomplete",
+      "distance_metric": "nearest_reference_base_distance_bp"
+    },
+    {
+      "criterion_id": "cancer_gene_distance",
+      "required": true,
+      "comparison": "distance_bp > 300000",
+      "threshold_bp": 300000,
+      "inputs": [
+        "candidate_interval",
+        "licensed_cancer_gene_coordinates"
+      ],
+      "availability": "unavailable",
+      "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+      "missing_data": "incomplete",
+      "distance_metric": "nearest_reference_base_distance_bp"
+    },
+    {
+      "criterion_id": "outside_dhs_buffer",
+      "required": true,
+      "comparison": "overlap_count == 0",
+      "buffer_bp": 2000,
+      "inputs": [
+        "candidate_interval",
+        "ENCFF503GCK_with_assembly_provenance"
+      ],
+      "availability": "unavailable",
+      "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+      "missing_data": "incomplete"
+    },
+    {
+      "criterion_id": "outside_ultraconserved_regions",
+      "required": true,
+      "comparison": "overlap_count == 0",
+      "inputs": [
+        "candidate_interval",
+        "versioned_GRCh38_ultraconserved_regions"
+      ],
+      "availability": "unavailable",
+      "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+      "missing_data": "incomplete"
+    }
+  ],
+  "experimental_endpoints": [
+    {
+      "endpoint_id": "transcriptome_perturbation",
+      "assay": "RNA-seq, DEseq2",
+      "cell_context": "H1 human embryonic stem cells",
+      "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+      "gene_unit": "unique versioned Ensembl gene ID",
+      "thresholds": {
+        "abs_log2_fold_change_gte": 1,
+        "fdr_lte": 0.01
+      },
+      "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+      "exclusion_threshold": null,
+      "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+    },
+    {
+      "endpoint_id": "nearest_gene_expression",
+      "assay": "qPCR",
+      "cell_context": "H1 human embryonic stem cells",
+      "genes": [
+        "MAGI3",
+        "TXNL1",
+        "ZNRF4"
+      ],
+      "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+      "exclusion_threshold": null,
+      "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+    }
+  ],
+  "evidence_rules": {
+    "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+    "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+    "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+    "H9": "Separate cell context, not automatically applicable to H1."
+  },
+  "distance_convention": {
+    "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+    "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+    "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+  }
+}

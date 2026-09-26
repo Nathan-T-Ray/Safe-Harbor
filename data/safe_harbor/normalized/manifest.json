@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "data_version": "autio-79592-v2-gencode36-2026-09-26",
+  "mode": "real_data",
+  "assembly": "GRCh38",
+  "cell_context": "H1 human embryonic stem cells",
+  "study_url": "https://elifesciences.org/articles/79592",
+  "sources": [
+    {
+      "source_id": "elife-79592-supp1.xlsx",
+      "url": "https://cdn.elifesciences.org/articles/79592/elife-79592-supp1-v2.xlsx",
+      "path": "data/safe_harbor/raw/elife-79592-supp1.xlsx",
+      "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc",
+      "bytes": 480763,
+      "license": "CC BY 4.0",
+      "attribution": "Autio et al., eLife 2024;13:e79592",
+      "source_version": "v2"
+    },
+    {
+      "source_id": "elife-79592-supp3.xlsx",
+      "url": "https://cdn.elifesciences.org/articles/79592/elife-79592-supp3-v2.xlsx",
+      "path": "data/safe_harbor/raw/elife-79592-supp3.xlsx",
+      "sha256": "69255bad50a51039ad97e5111fcd4c9a80e6a3f87e78f24160e71b0e14419db1",
+      "bytes": 30243,
+      "license": "CC BY 4.0",
+      "attribution": "Autio et al., eLife 2024;13:e79592",
+      "source_version": "v2"
+    },
+    {
+      "source_id": "elife-79592-supp4.xlsx",
+      "url": "https://cdn.elifesciences.org/articles/79592/elife-79592-supp4-v2.xlsx",
+      "path": "data/safe_harbor/raw/elife-79592-supp4.xlsx",
+      "sha256": "641891f65518c735b553e1d28e36dd4fdd15a139b7d8177df01775274e6c538e",
+      "bytes": 16676,
+      "license": "CC BY 4.0",
+      "attribution": "Autio et al., eLife 2024;13:e79592",
+      "source_version": "v2"
+    },
+    {
+      "source_id": "elife-79592-supp5.xlsx",
+      "url": "https://cdn.elifesciences.org/articles/79592/elife-79592-supp5-v2.xlsx",
+      "path": "data/safe_harbor/raw/elife-79592-supp5.xlsx",
+      "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667",
+      "bytes": 84692,
+      "license": "CC BY 4.0",
+      "attribution": "Autio et al., eLife 2024;13:e79592",
+      "source_version": "v2"
+    },
+    {
+      "source_id": "elife-79592-supp6.xlsx",
+      "url": "https://cdn.elifesciences.org/articles/79592/elife-79592-supp6-v2.xlsx",
+      "path": "data/safe_harbor/raw/elife-79592-supp6.xlsx",
+      "sha256": "821d20d8b48f14ed1aa3686570d985d4a250614a2caa50b047e43384f4a168d1",
+      "bytes": 42421,
+      "license": "CC BY 4.0",
+      "attribution": "Autio et al., eLife 2024;13:e79592",
+      "source_version": "v2"
+    },
+    {
+      "source_id": "wgEncodeGencodeCompV36.sql",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodeCompV36.sql",
+      "path": "data/safe_harbor/raw/wgEncodeGencodeCompV36.sql",
+      "sha256": "7164106eb072b95e7a9499a4b153f9c7b0bb0e0b1bbbe00a79723707d5bf3256",
+      "bytes": 2030,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "wgEncodeGencodeAttrsV36.sql",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodeAttrsV36.sql",
+      "path": "data/safe_harbor/raw/wgEncodeGencodeAttrsV36.sql",
+      "sha256": "5c238ca6074985eabebe572b0f182382c965221439108c727c9668c3ca3dac22",
+      "bytes": 2119,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "wgEncodeGencodeCompV36.txt.gz",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodeCompV36.txt.gz",
+      "path": "data/safe_harbor/raw/wgEncodeGencodeCompV36.txt.gz",
+      "sha256": "843c434ede93314d09d78cfe498784942122bfa3e0c8d7a8bd096f1fd880be9a",
+      "bytes": 9723332,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "wgEncodeGencodeAttrsV36.txt.gz",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodeAttrsV36.txt.gz",
+      "path": "data/safe_harbor/raw/wgEncodeGencodeAttrsV36.txt.gz",
+      "sha256": "2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be",
+      "bytes": 5504036,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "chromInfo.txt.gz",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/chromInfo.txt.gz",
+      "path": "data/safe_harbor/raw/chromInfo.txt.gz",
+      "sha256": "6788b62a18f994c9357b1afb132a832a7377106e4f542f9e84b4f6d63b131d97",
+      "bytes": 6159,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "pansio-1-hg38-sequence.json",
+      "url": "https://api.genome.ucsc.edu/getData/sequence?genome=hg38;chrom=chr1;start=113339860;end=113340614",
+      "path": "data/safe_harbor/raw/pansio-1-hg38-sequence.json",
+      "sha256": "c8808f778839f10ffec55b22a2700a93bf5a2e9e2d921b70a2a17e04e7ff0f2e",
+      "bytes": 914
+    },
+    {
+      "source_id": "olonne-18-hg38-sequence.json",
+      "url": "https://api.genome.ucsc.edu/getData/sequence?genome=hg38;chrom=chr18;start=56534674;end=56536539",
+      "path": "data/safe_harbor/raw/olonne-18-hg38-sequence.json",
+      "sha256": "a2a2a1c7224c190ac38a8fef4e77d744dc098b7b05d23f1df1d99d368c94b83c",
+      "bytes": 2024
+    },
+    {
+      "source_id": "keppel-19-hg38-sequence.json",
+      "url": "https://api.genome.ucsc.edu/getData/sequence?genome=hg38;chrom=chr19;start=5400660;end=5402239",
+      "path": "data/safe_harbor/raw/keppel-19-hg38-sequence.json",
+      "sha256": "89070a660f36dbf70dadf7996d08c55c3e65aaaf031804b75451af0967a149e1",
+      "bytes": 1736
+    }
+  ],
+  "input_contract": {
+    "expression_tables": "significant-only DEseq2 results, not raw counts or all measured genes",
+    "gene_unit": "unique versioned Ensembl gene identifier; version-stripped counts also reported",
+    "thresholds": {
+      "abs_log2_fold_change_gte": 1,
+      "fdr_lte": 0.01
+    },
+    "comparison": "targeted clone or independent untargeted culture versus reference untargeted cells of same H1/H9 context",
+    "h9_policy": "Separate biological context; no automatic generalization to H1",
+    "interpretive_conclusions": "Excluded from worker inputs; only tables, methods metadata and annotations are provided"
+  },
+  "unavailable": [
+    "COSMIC cancer-gene data/licensing",
+    "DHS exclusion track",
+    "ultraconserved interval track",
+    "H1 cCRE child asset"
+  ]
+}

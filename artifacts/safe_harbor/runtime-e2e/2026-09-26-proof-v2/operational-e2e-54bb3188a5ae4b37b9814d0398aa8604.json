@@ -1,0 +1,754 @@
+{
+  "schema_version": 1,
+  "exported_at": "2026-09-26T18:37:25.722161+00:00",
+  "mode": "deterministic",
+  "authoritative_store": "MongoDB application ledger",
+  "snapshot": {
+    "schema_version": 1,
+    "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+    "through_sequence": 5,
+    "run": {
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "schema_version": 1,
+      "objective": "Operational E2E; no biological inference or model execution.",
+      "mode": "deterministic",
+      "status": "budget_exhausted",
+      "candidate_ids": [
+        "pansio-1"
+      ],
+      "assembly": "GRCh38",
+      "cell_context": "H1 human embryonic stem cells",
+      "data_version": "autio-79592-v2-gencode36-2026-09-26",
+      "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+      "run_revision": 5,
+      "through_sequence": 5,
+      "coordinator_epoch": 2,
+      "budget": {
+        "token_limit": 512,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": null,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 512,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0,
+        "uncertain_cost_usd": 0.0
+      },
+      "created_at": "2026-09-26T18:37:12.481458+00:00",
+      "evidence_versions": {
+        "criteria:v1": 1,
+        "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+        "scope:pansio-1:expression": 1,
+        "scope:pansio-1:annotation": 1,
+        "scope:pansio-1:sequence": 1,
+        "scope:pansio-1:catalog": 1
+      },
+      "evidence_availability": {
+        "pansio-1": {
+          "control_evidence": true
+        }
+      },
+      "replan_rounds": 0,
+      "operational_fixture": true,
+      "coordinator_owner": "coordinator-b52e457d595b4563a85c5b7bcb0787ad",
+      "lease_updated_at": "2026-09-26T18:37:25.679183+00:00",
+      "lease_expires_at": 0,
+      "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+      "completed_at": "2026-09-26T18:37:25.691714+00:00"
+    },
+    "candidates": [
+      {
+        "candidate_id": "pansio-1",
+        "name": "Pansio-1",
+        "assembly": "GRCh38",
+        "chromosome": "chr1",
+        "start": 113339960,
+        "end": 113340514,
+        "coordinate_system": "zero_based_half_open",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-2026-09-26",
+        "group_id": "autio-chr1-113000001-114000000",
+        "source_coordinates": {
+          "assembly": "GRCh38",
+          "chromosome": "1",
+          "start": 113339961,
+          "end": 113340514,
+          "width": 554,
+          "coordinate_system": "one_based_closed",
+          "conversion": "internal_start = source_start - 1; internal_end = source_end",
+          "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+          "source_id": "elife-79592-supp1.xlsx",
+          "sheet": "overlap safe-active",
+          "row": 5,
+          "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+        },
+        "evidence_ids": [
+          "source:supp1",
+          "source:supp5:pansio-1"
+        ],
+        "origin": "publication-derived candidate shortlist",
+        "publication_blat_ratio": 0.26895306859205775
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0",
+        "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+        "candidate_id": "pansio-1",
+        "kind": "screen_regions",
+        "question": "Exercise operational persistence; do not infer a biological conclusion.",
+        "canonical_question_key": "pansio-1:reserved_work:screen_regions:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "reserved_work",
+        "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+        "allowed_tools": [],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "queued",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Explicit mock harness used only for deterministic operational E2E.",
+        "plan_revision": 0,
+        "started_at": "2026-09-26T18:37:13.625257+00:00",
+        "coordinator_epoch": 1,
+        "reservation": {},
+        "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+      }
+    ],
+    "artifacts": [],
+    "assessments": [],
+    "harness_versions": [
+      {
+        "name": "Mock interrupted reservation fixture",
+        "parent_hash": null,
+        "roles": [
+          {
+            "role_id": "reserved_work",
+            "kind": "screen_regions",
+            "question": "Exercise operational persistence; do not infer a biological conclusion.",
+            "depends_on": [],
+            "allowed_tools": [],
+            "context_policy": "relevant_evidence",
+            "instructions": "Explicit mock harness used only for deterministic operational E2E."
+          }
+        ],
+        "patch": null,
+        "proposal_mode": "mock",
+        "mode": "mock",
+        "immutable_constraints": {
+          "purpose": "Operational E2E only; no scientific conclusion"
+        },
+        "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29"
+      }
+    ],
+    "evaluations": []
+  },
+  "events": [
+    {
+      "schema_version": 1,
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "sequence": 1,
+      "event_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:1",
+      "operation_id": "create:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "occurred_at": "2026-09-26T18:37:12.482994+00:00",
+      "type": "state.committed",
+      "cause": "run.created",
+      "run_revision": 1,
+      "upserts": {
+        "candidates": [
+          {
+            "candidate_id": "pansio-1",
+            "name": "Pansio-1",
+            "assembly": "GRCh38",
+            "chromosome": "chr1",
+            "start": 113339960,
+            "end": 113340514,
+            "coordinate_system": "zero_based_half_open",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "group_id": "autio-chr1-113000001-114000000",
+            "source_coordinates": {
+              "assembly": "GRCh38",
+              "chromosome": "1",
+              "start": 113339961,
+              "end": 113340514,
+              "width": 554,
+              "coordinate_system": "one_based_closed",
+              "conversion": "internal_start = source_start - 1; internal_end = source_end",
+              "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+              "source_id": "elife-79592-supp1.xlsx",
+              "sheet": "overlap safe-active",
+              "row": 5,
+              "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+            },
+            "evidence_ids": [
+              "source:supp1",
+              "source:supp5:pansio-1"
+            ],
+            "origin": "publication-derived candidate shortlist",
+            "publication_blat_ratio": 0.26895306859205775
+          }
+        ],
+        "tasks": [
+          {
+            "task_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0",
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "candidate_id": "pansio-1",
+            "kind": "screen_regions",
+            "question": "Exercise operational persistence; do not infer a biological conclusion.",
+            "canonical_question_key": "pansio-1:reserved_work:screen_regions:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [],
+            "role_id": "reserved_work",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "allowed_tools": [],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "queued",
+            "attempt": 0,
+            "context_policy": "relevant_evidence",
+            "instructions": "Explicit mock harness used only for deterministic operational E2E.",
+            "plan_revision": 0
+          }
+        ],
+        "harness_versions": [
+          {
+            "name": "Mock interrupted reservation fixture",
+            "parent_hash": null,
+            "roles": [
+              {
+                "role_id": "reserved_work",
+                "kind": "screen_regions",
+                "question": "Exercise operational persistence; do not infer a biological conclusion.",
+                "depends_on": [],
+                "allowed_tools": [],
+                "context_policy": "relevant_evidence",
+                "instructions": "Explicit mock harness used only for deterministic operational E2E."
+              }
+            ],
+            "patch": null,
+            "proposal_mode": "mock",
+            "mode": "mock",
+            "immutable_constraints": {
+              "purpose": "Operational E2E only; no scientific conclusion"
+            },
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29"
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "schema_version": 1,
+            "objective": "Operational E2E; no biological inference or model execution.",
+            "mode": "deterministic",
+            "status": "queued",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "run_revision": 1,
+            "through_sequence": 1,
+            "coordinator_epoch": 0,
+            "budget": {
+              "token_limit": 512,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T18:37:12.481458+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "scope:pansio-1:catalog": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "replan_rounds": 0,
+            "operational_fixture": true
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "sequence": 2,
+      "event_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:2",
+      "operation_id": "claim-b4ff66322daf4d8cb112c25335c084e2",
+      "occurred_at": "2026-09-26T18:37:13.613751+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 2,
+      "upserts": {
+        "tasks": [],
+        "runs": [
+          {
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "schema_version": 1,
+            "objective": "Operational E2E; no biological inference or model execution.",
+            "mode": "deterministic",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "run_revision": 2,
+            "through_sequence": 2,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 512,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T18:37:12.481458+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "scope:pansio-1:catalog": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "replan_rounds": 0,
+            "operational_fixture": true,
+            "coordinator_owner": "coordinator-8b8240056a4b49f69bd0b3915f2bccb9",
+            "lease_updated_at": "2026-09-26T18:37:13.613418+00:00",
+            "lease_expires_at": 1790447845.613424
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "sequence": 3,
+      "event_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:3",
+      "operation_id": "reserve:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0:1:attempt-1f9327fc765046139cb0c39824bad692",
+      "occurred_at": "2026-09-26T18:37:13.625330+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 3,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0",
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "candidate_id": "pansio-1",
+            "kind": "screen_regions",
+            "question": "Exercise operational persistence; do not infer a biological conclusion.",
+            "canonical_question_key": "pansio-1:reserved_work:screen_regions:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "reserved_work",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "allowed_tools": [],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "running",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "Explicit mock harness used only for deterministic operational E2E.",
+            "plan_revision": 0,
+            "started_at": "2026-09-26T18:37:13.625257+00:00",
+            "coordinator_epoch": 1,
+            "reservation": {
+              "tokens": 512,
+              "tools": 0,
+              "cost_usd": 0.0,
+              "operation_id": "reserve:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0:1:attempt-1f9327fc765046139cb0c39824bad692"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "schema_version": 1,
+            "objective": "Operational E2E; no biological inference or model execution.",
+            "mode": "deterministic",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "run_revision": 3,
+            "through_sequence": 3,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 512,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 512,
+              "uncertain_tokens": 0,
+              "reserved_tools": 0,
+              "reserved_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T18:37:12.481458+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "scope:pansio-1:catalog": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "replan_rounds": 0,
+            "operational_fixture": true,
+            "coordinator_owner": "coordinator-8b8240056a4b49f69bd0b3915f2bccb9",
+            "lease_updated_at": "2026-09-26T18:37:13.619655+00:00",
+            "lease_expires_at": 1790447845.619654
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "sequence": 4,
+      "event_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:4",
+      "operation_id": "claim-3d103ae51e8047a594bcc80504358947",
+      "occurred_at": "2026-09-26T18:37:25.669729+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 4,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0",
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "candidate_id": "pansio-1",
+            "kind": "screen_regions",
+            "question": "Exercise operational persistence; do not infer a biological conclusion.",
+            "canonical_question_key": "pansio-1:reserved_work:screen_regions:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "reserved_work",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "allowed_tools": [],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 4,
+              "max_model_calls": 2
+            },
+            "status": "queued",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "Explicit mock harness used only for deterministic operational E2E.",
+            "plan_revision": 0,
+            "started_at": "2026-09-26T18:37:13.625257+00:00",
+            "coordinator_epoch": 1,
+            "reservation": {},
+            "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "schema_version": 1,
+            "objective": "Operational E2E; no biological inference or model execution.",
+            "mode": "deterministic",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "run_revision": 4,
+            "through_sequence": 4,
+            "coordinator_epoch": 2,
+            "budget": {
+              "token_limit": 512,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 512,
+              "reserved_tools": 0,
+              "reserved_cost_usd": 0,
+              "uncertain_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T18:37:12.481458+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "scope:pansio-1:catalog": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "replan_rounds": 0,
+            "operational_fixture": true,
+            "coordinator_owner": "coordinator-b52e457d595b4563a85c5b7bcb0787ad",
+            "lease_updated_at": "2026-09-26T18:37:25.668823+00:00",
+            "lease_expires_at": 1790447857.6688561
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "sequence": 5,
+      "event_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:5",
+      "operation_id": "finish-e5a69799429148caada0a70d849be994",
+      "occurred_at": "2026-09-26T18:37:25.691809+00:00",
+      "type": "state.committed",
+      "cause": "run.stopped",
+      "run_revision": 5,
+      "upserts": {
+        "runs": [
+          {
+            "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+            "schema_version": 1,
+            "objective": "Operational E2E; no biological inference or model execution.",
+            "mode": "deterministic",
+            "status": "budget_exhausted",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-2026-09-26",
+            "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+            "run_revision": 5,
+            "through_sequence": 5,
+            "coordinator_epoch": 2,
+            "budget": {
+              "token_limit": 512,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 512,
+              "reserved_tools": 0,
+              "reserved_cost_usd": 0,
+              "uncertain_cost_usd": 0.0
+            },
+            "created_at": "2026-09-26T18:37:12.481458+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-2026-09-26",
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:sequence": 1,
+              "scope:pansio-1:catalog": 1
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "replan_rounds": 0,
+            "operational_fixture": true,
+            "coordinator_owner": "coordinator-b52e457d595b4563a85c5b7bcb0787ad",
+            "lease_updated_at": "2026-09-26T18:37:25.679183+00:00",
+            "lease_expires_at": 0,
+            "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+            "completed_at": "2026-09-26T18:37:25.691714+00:00"
+          }
+        ]
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation_id": "create:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "payload_hash": "3109c69d44573c0040def150be3a8b7e2a41d77e0e7c730d9ae83906de68e87f",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T18:37:12.484710+00:00",
+      "accepted_result": {
+        "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+        "sequence": 1
+      }
+    },
+    {
+      "operation_id": "claim-b4ff66322daf4d8cb112c25335c084e2",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "payload_hash": "9b3ca4c0afc884089e42d38e343844a8d2d059b2720f335f14d2db21d309be46",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T18:37:13.614489+00:00",
+      "accepted_result": {
+        "epoch": 1
+      }
+    },
+    {
+      "operation_id": "reserve:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0:1:attempt-1f9327fc765046139cb0c39824bad692",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "payload_hash": "04a7a815aedfa78ac5ec98746d61e3e290f3ce3b5298236bb6f74ba7b772ba1f",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T18:37:13.626263+00:00",
+      "accepted_result": {
+        "task_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0",
+        "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+        "candidate_id": "pansio-1",
+        "kind": "screen_regions",
+        "question": "Exercise operational persistence; do not infer a biological conclusion.",
+        "canonical_question_key": "pansio-1:reserved_work:screen_regions:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "reserved_work",
+        "harness_hash": "bdc0be180ed50894f1ad6782ea973f64d53ffcf879e2169bcb58e884cc7f6a29",
+        "allowed_tools": [],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "running",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Explicit mock harness used only for deterministic operational E2E.",
+        "plan_revision": 0,
+        "started_at": "2026-09-26T18:37:13.625257+00:00",
+        "coordinator_epoch": 1,
+        "reservation": {
+          "tokens": 512,
+          "tools": 0,
+          "cost_usd": 0.0,
+          "operation_id": "reserve:operational-e2e-54bb3188a5ae4b37b9814d0398aa8604:pansio-1:reserved_work:r0:1:attempt-1f9327fc765046139cb0c39824bad692"
+        }
+      }
+    },
+    {
+      "operation_id": "claim-3d103ae51e8047a594bcc80504358947",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "payload_hash": "ab9668fe185b599a3496851171bbf59ae6012432c8fe7d9568bbd4b000c0c5ca",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T18:37:25.673147+00:00",
+      "accepted_result": {
+        "epoch": 2
+      }
+    },
+    {
+      "operation_id": "finish-e5a69799429148caada0a70d849be994",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "payload_hash": "d25a420b3c151136b1d167224a7320326c57ed90bf8ac0da549e625bc93c00a3",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T18:37:25.692997+00:00",
+      "accepted_result": {
+        "sequence": 5,
+        "status": "budget_exhausted"
+      }
+    }
+  ],
+  "immutable_assessment_revisions": [],
+  "limitations": [
+    "Runtime checkpoints are separate from application acceptance transactions.",
+    "Genome base counts are not model token counts."
+  ]
+}

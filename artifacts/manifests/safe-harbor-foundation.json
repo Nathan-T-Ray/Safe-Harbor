@@ -1,0 +1,47 @@
+{
+  "journey": "foundation browser/API/MongoDB + actual reference zoom",
+  "mode": "deterministic_operational",
+  "mock_transport": false,
+  "model_calls": 0,
+  "biological_interpretation_tested": false,
+  "base": "http://127.0.0.1:5175",
+  "health": {
+    "status": "ok",
+    "database": "safe_harbor",
+    "authoritative_store": "MongoDB",
+    "model_available": false,
+    "coordinator_available": true,
+    "schema_version": 1
+  },
+  "checks": [
+    {
+      "candidate_id": "pansio-1",
+      "interval": [
+        113339960,
+        113340514
+      ],
+      "sequence_start": 113339940,
+      "reference_bases_verified": 100
+    },
+    {
+      "candidate_id": "olonne-18",
+      "interval": [
+        56534774,
+        56536439
+      ],
+      "sequence_start": 56534754,
+      "reference_bases_verified": 100
+    },
+    {
+      "candidate_id": "keppel-19",
+      "interval": [
+        5400760,
+        5402139
+      ],
+      "sequence_start": 5400740,
+      "reference_bases_verified": 100
+    }
+  ],
+  "browser_errors": [],
+  "duration_ms": 2850
+}

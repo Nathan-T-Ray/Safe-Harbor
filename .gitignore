@@ -1,0 +1,29 @@
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+dist/
+coverage/
+*.log
+
+# Living Atlas generated/private files
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+data/raw/
+data/cache/
+artifacts/private/
+.env
+.env.*
+!.env.example
+
+# Safe Harbor local services and downloaded sources
+.env
+.venv/
+data/safe_harbor/raw/
+data/safe_harbor/reference/
+data/safe_harbor/mongo/
+artifacts/private/
+*.pid

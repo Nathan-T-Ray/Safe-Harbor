@@ -1,0 +1,207 @@
+[
+  {
+    "id": "U01",
+    "title": "Build the application shell and mode indicators",
+    "owner": "UI",
+    "depends_on": [
+      "F02"
+    ],
+    "work": "Create the context bar, candidate rail, genome area, task graph area and evidence drawer. Build against labeled fixtures immediately.",
+    "done": "Assembly, cell context, selected candidate and LIVE / RECORDED / MOCK status remain visible throughout navigation.",
+    "paths": [
+      "frontend/src/safe-harbor/App.tsx",
+      "frontend/src/safe-harbor/styles.css",
+      "frontend/src/main.tsx"
+    ]
+  },
+  {
+    "id": "U02",
+    "title": "Build the coordinate-correct genome overview",
+    "owner": "UI",
+    "depends_on": [
+      "D03",
+      "D04"
+    ],
+    "work": "Render chromosome bars from actual lengths and candidate markers from actual intervals. Use neutral unexplored background and clear selection.",
+    "done": "Marker placement is mathematically tied to genomic position, not decorative spacing. Selecting a marker selects the same candidate everywhere.",
+    "paths": [
+      "frontend/src/safe-harbor/Genome.tsx"
+    ]
+  },
+  {
+    "id": "U03",
+    "title": "Integrate the locus browser",
+    "owner": "UI",
+    "depends_on": [
+      "D04",
+      "D05"
+    ],
+    "work": "Use igv.js for candidate boundaries, the exact annotation release and computed features. Verify reference configuration, offsets and asset access early.",
+    "done": "Displayed coordinates and features match backend calculations. Convenient default annotations must not silently replace the computed release.",
+    "paths": [
+      "frontend/src/safe-harbor/Genome.tsx"
+    ]
+  },
+  {
+    "id": "U04",
+    "title": "Build the reference-base strip",
+    "owner": "UI",
+    "depends_on": [
+      "D04"
+    ],
+    "work": "Render a short frozen sequence window with coordinate ticks, readable bases and candidate highlighting. Preserve reference orientation and label strand-specific transformations explicitly.",
+    "done": "Displayed bases match the artifact bytes and genomic offsets. No decorative random DNA appears in a scientific view.",
+    "paths": [
+      "frontend/src/safe-harbor/Genome.tsx"
+    ]
+  },
+  {
+    "id": "U05",
+    "title": "Connect overview, chromosome, locus and sequence zoom",
+    "owner": "UI",
+    "depends_on": [
+      "U02",
+      "U03",
+      "U04"
+    ],
+    "work": "Create a shared viewport state containing assembly, chromosome, interval, selection and zoom level. Transition between representations without losing the selected locus.",
+    "done": "Users can zoom in and back out with consistent coordinates and breadcrumbs. Respect available data boundaries.",
+    "paths": [
+      "frontend/src/safe-harbor/Genome.tsx",
+      "frontend/src/safe-harbor/App.tsx"
+    ]
+  },
+  {
+    "id": "U06",
+    "title": "Build candidate conclusions and comparison cards",
+    "owner": "UI",
+    "depends_on": [
+      "U01",
+      "R11"
+    ],
+    "work": "Show criterion status, endpoint support, freshness and the most consequential unresolved question. Keep workflow progress separate from scientific interpretation.",
+    "done": "A viewer understands the current conclusion without reading genomic tracks. No unexplained safety score or fake precision appears.",
+    "paths": [
+      "frontend/src/safe-harbor/App.tsx"
+    ]
+  },
+  {
+    "id": "U07",
+    "title": "Build the stable investigation DAG",
+    "owner": "UI",
+    "depends_on": [
+      "U01",
+      "R04"
+    ],
+    "work": "Use React Flow in read-only mode. Group tasks into readable stages, preserve positions through updates and expand on demand.",
+    "done": "Real dependencies, shared inputs and reopened work are visible. Node interactions reveal actual task records.",
+    "paths": [
+      "frontend/src/safe-harbor/Graph.tsx"
+    ]
+  },
+  {
+    "id": "U08",
+    "title": "Build evidence and numerical-result inspection",
+    "owner": "UI",
+    "depends_on": [
+      "R03",
+      "U03"
+    ],
+    "work": "Show source versions, biological context, original table rows, calculations, supporting assessments and limitations. Link a result back to its genomic location.",
+    "done": "A judge can move from conclusion to evidence to original numeric input within a few clicks.",
+    "paths": [
+      "frontend/src/safe-harbor/Inspector.tsx"
+    ]
+  },
+  {
+    "id": "U09",
+    "title": "Implement the event reducer and reconnect behavior",
+    "owner": "UI",
+    "depends_on": [
+      "U01",
+      "R03"
+    ],
+    "work": "Apply ordered upserts, deduplicate event IDs and recover sequence gaps using snapshots or missing event pages.",
+    "done": "Refresh, reconnect and duplicate delivery do not corrupt state or invent task completion.",
+    "paths": [
+      "frontend/src/safe-harbor/record.ts",
+      "frontend/src/safe-harbor/client.ts"
+    ]
+  },
+  {
+    "id": "U10",
+    "title": "Implement deterministic timeline replay",
+    "owner": "UI",
+    "depends_on": [
+      "U09",
+      "R12"
+    ],
+    "work": "Support play, pause, seek, speed control and meaningful-event navigation. Rebuild state from events or versioned replay snapshots.",
+    "done": "Seeking backward restores earlier assessments and source versions. Final results never leak into an earlier replay frame.",
+    "paths": [
+      "frontend/src/safe-harbor/record.ts",
+      "frontend/src/safe-harbor/Timeline.tsx"
+    ]
+  },
+  {
+    "id": "U11",
+    "title": "Add cinematic genome-follow cues",
+    "owner": "UI",
+    "depends_on": [
+      "U05",
+      "U10"
+    ],
+    "work": "Create a separate cue file keyed to actual event sequences: focus chromosome, zoom locus, show bases, highlight a result, then reveal the relevant graph branch.",
+    "done": "Playback is smooth and synchronized with real events. Pausing or disabling camera follow leaves the application usable. Cues cannot change scientific state.",
+    "paths": [
+      "frontend/src/safe-harbor/cues.ts"
+    ]
+  },
+  {
+    "id": "U12",
+    "title": "Build the harness-change comparison drawer",
+    "owner": "UI",
+    "depends_on": [
+      "H08",
+      "U07"
+    ],
+    "work": "Show parent and candidate architecture, a readable policy diff, validation results and promotion/rejection.",
+    "done": "Judges can identify what changed in execution and what happened to measured performance. Display actual values, including failures.",
+    "paths": [
+      "frontend/src/safe-harbor/Harness.tsx"
+    ]
+  },
+  {
+    "id": "U13",
+    "title": "Build the presentation and dossier flow",
+    "owner": "UI",
+    "depends_on": [
+      "U06",
+      "U08",
+      "U12",
+      "R12"
+    ],
+    "work": "Provide a clean presentation mode, a reset-to-start action and access to the final versioned dossier. Preload the selected replay assets.",
+    "done": "The entire story can be demonstrated predictably and the exported result agrees with the screen.",
+    "paths": [
+      "frontend/src/safe-harbor/Presentation.tsx",
+      "frontend/src/safe-harbor/presentation.css"
+    ]
+  },
+  {
+    "id": "U14",
+    "title": "Verify projection readability and motion behavior",
+    "owner": "UI/E2E",
+    "depends_on": [
+      "U05",
+      "U07",
+      "U11"
+    ],
+    "work": "Check a 1280\u00d7720 presentation viewport, large conclusions, readable stage labels, keyboard interaction, reduced motion and text alternatives to tracks.",
+    "done": "No critical content requires microscopic text, color discrimination or continuous animation to understand.",
+    "paths": [
+      "e2e/safe_harbor/readability.mjs",
+      "docs/safe-harbor/READABILITY.md"
+    ]
+  }
+]

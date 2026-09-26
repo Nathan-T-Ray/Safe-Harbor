@@ -1,0 +1,148 @@
+[
+  {
+    "id": "D01",
+    "title": "Freeze scientific criteria and result semantics",
+    "owner": "Data",
+    "depends_on": [
+      "F02"
+    ],
+    "work": "Specify each criterion’s source, threshold, inputs and missing-data behavior. Separate gene-body distance from transcription-start distance and experimental endpoints from computational screens.",
+    "done": "Every eventual verdict can identify its governing criterion. The harness optimizer cannot alter these criteria.",
+    "paths": [
+      "data/safe_harbor/normalized/criteria.json",
+      "backend/safe_harbor/science/ingest.py"
+    ]
+  },
+  {
+    "id": "D02",
+    "title": "Ingest the compact experimental source pack",
+    "owner": "Data",
+    "depends_on": [
+      "F04"
+    ],
+    "work": "Download the five supplements, hash actual bytes, inventory sheets/columns, and preserve original files alongside normalized data. Identify cell lines, comparisons, thresholds and whether tables contain only significant results.",
+    "done": "Every normalized row points back to a real file, sheet and row. Re-ingestion is reproducible.",
+    "paths": [
+      "backend/safe_harbor/science/ingest.py",
+      "data/safe_harbor/normalized/"
+    ]
+  },
+  {
+    "id": "D03",
+    "title": "Import and normalize candidate regions",
+    "owner": "Data",
+    "depends_on": [
+      "D02"
+    ],
+    "work": "Import the published candidate coordinates, beginning with the three named demonstration loci. Preserve original notation, confirm assembly and interval widths, and convert explicitly to internal coordinates.",
+    "done": "Candidate names resolve to verified intervals; no coordinate was guessed. Nearby or related candidates have grouping IDs for evaluation splitting.",
+    "paths": [
+      "backend/safe_harbor/science/catalog.py",
+      "data/safe_harbor/normalized/candidates.json"
+    ]
+  },
+  {
+    "id": "D04",
+    "title": "Freeze reference windows and annotation coverage",
+    "owner": "Data",
+    "depends_on": [
+      "D03"
+    ],
+    "work": "Fetch bounded reference sequence and sufficient GENCODE annotation neighborhoods. Record chromosome lengths, available genomic ranges and source versions.",
+    "done": "Sequence lengths match coordinates, hashes exist, and the UI can request actual bases. Empty annotation results distinguish complete coverage from missing coverage.",
+    "paths": [
+      "backend/safe_harbor/science/ingest.py",
+      "backend/safe_harbor/science/verify_data.py",
+      "data/safe_harbor/normalized/reference_assets.json"
+    ]
+  },
+  {
+    "id": "D05",
+    "title": "Implement deterministic genomic calculations",
+    "owner": "Data",
+    "depends_on": [
+      "D01",
+      "D04"
+    ],
+    "work": "Use Bioframe for overlap, nearest-feature and distance calculations. Handle strand when computing transcription-start positions. Record tool versions, parameters and input hashes.",
+    "done": "A real candidate produces independently checkable numeric artifacts. No model performs interval arithmetic or invents eligibility thresholds.",
+    "paths": [
+      "backend/safe_harbor/science/calculations.py"
+    ]
+  },
+  {
+    "id": "D06",
+    "title": "Implement expression/control/proximity calculations",
+    "owner": "Data",
+    "depends_on": [
+      "D02",
+      "D04",
+      "D05"
+    ],
+    "work": "Identify exact contrasts, count the defined gene units, compute control overlaps with explicit denominators, and locate relevant genes relative to candidates.",
+    "done": "Outputs reproduce reported counts or preserve diagnosed discrepancies. Duplicate and unmapped identifiers are visible. Computed values are never overwritten to match a paper.",
+    "paths": [
+      "backend/safe_harbor/science/expression_tools.py"
+    ]
+  },
+  {
+    "id": "D07",
+    "title": "Publish bounded worker tools",
+    "owner": "Data with Runtime",
+    "depends_on": [
+      "D05",
+      "D06",
+      "F02"
+    ],
+    "work": "Expose typed candidate inspection, evidence listing, table slices, expression comparison, control overlap and gene-proximity tools. Assessment submission is a validated proposal to the runtime.",
+    "done": "Tools accept scoped IDs, return bounded results and reject arbitrary URLs, paths and unknown artifacts.",
+    "paths": [
+      "backend/safe_harbor/science/tools.py"
+    ]
+  },
+  {
+    "id": "D08",
+    "title": "Independently establish reference answers",
+    "owner": "Evaluator",
+    "depends_on": [
+      "D05",
+      "D06"
+    ],
+    "work": "Recompute expected numerical outputs independently of the production tool path. Write source-backed interpretation rubrics and record actual reviewer status.",
+    "done": "Expected results include justification and tolerances where appropriate. Do not label answers “human-reviewed” until a human has reviewed them.",
+    "paths": [
+      "backend/safe_harbor/evaluation/reference_answers.py",
+      "data/safe_harbor/evaluator/"
+    ]
+  },
+  {
+    "id": "D09",
+    "title": "Freeze cases, grouping and evaluation splits",
+    "owner": "Evaluator",
+    "depends_on": [
+      "D08"
+    ],
+    "work": "Target twelve audit cases, provisionally four development, four validation and four final. Keep related loci/scenario variants grouped; use a smaller feasible split if necessary.",
+    "done": "Case definitions and split hashes are frozen before model comparisons. Disclose their shared-source nature.",
+    "paths": [
+      "backend/safe_harbor/evaluation/cases.py",
+      "data/safe_harbor/evaluator/splits.json"
+    ]
+  },
+  {
+    "id": "D10",
+    "title": "Package provenance, attribution and optional tracks",
+    "owner": "Data",
+    "depends_on": [
+      "D02",
+      "D03",
+      "D04"
+    ],
+    "work": "Prepare source manifests, licenses, limitations and track metadata. Optional regulatory tracks must identify real files, assembly and coverage before inclusion.",
+    "done": "Each displayed or computed feature has provenance. Core execution works without optional large downloads.",
+    "paths": [
+      "docs/safe-harbor/PROVENANCE.md",
+      "data/safe_harbor/normalized/manifest.json"
+    ]
+  }
+]

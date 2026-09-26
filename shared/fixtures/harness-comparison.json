@@ -1,0 +1,32 @@
+{
+  "mode": "mock",
+  "parent": {
+    "harness_hash": "mock-h0",
+    "name": "MOCK contract harness",
+    "parent_hash": null,
+    "roles": [
+      {
+        "role_id": "inspect",
+        "kind": "inspect_evidence",
+        "question": "Inspect the published source table",
+        "depends_on": [],
+        "allowed_tools": [
+          "expression_comparison"
+        ],
+        "context_policy": "relevant_evidence",
+        "instructions": "Mock contract record; no model execution."
+      }
+    ],
+    "patch": null,
+    "proposal_mode": "mock",
+    "immutable_constraints": {
+      "assembly": "GRCh38",
+      "cell_context": "H1 human embryonic stem cells"
+    }
+  },
+  "candidate": null,
+  "patch": null,
+  "evaluations": [],
+  "decision": "not_evaluated",
+  "limitation": "No model-generated patch or improvement measurement exists in this contract fixture."
+}

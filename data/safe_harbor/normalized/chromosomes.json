@@ -1,0 +1,102 @@
+[
+  {
+    "chromosome": "chr1",
+    "length": 248956422
+  },
+  {
+    "chromosome": "chr2",
+    "length": 242193529
+  },
+  {
+    "chromosome": "chr3",
+    "length": 198295559
+  },
+  {
+    "chromosome": "chr4",
+    "length": 190214555
+  },
+  {
+    "chromosome": "chr5",
+    "length": 181538259
+  },
+  {
+    "chromosome": "chr6",
+    "length": 170805979
+  },
+  {
+    "chromosome": "chr7",
+    "length": 159345973
+  },
+  {
+    "chromosome": "chr8",
+    "length": 145138636
+  },
+  {
+    "chromosome": "chr9",
+    "length": 138394717
+  },
+  {
+    "chromosome": "chr10",
+    "length": 133797422
+  },
+  {
+    "chromosome": "chr11",
+    "length": 135086622
+  },
+  {
+    "chromosome": "chr12",
+    "length": 133275309
+  },
+  {
+    "chromosome": "chr13",
+    "length": 114364328
+  },
+  {
+    "chromosome": "chr14",
+    "length": 107043718
+  },
+  {
+    "chromosome": "chr15",
+    "length": 101991189
+  },
+  {
+    "chromosome": "chr16",
+    "length": 90338345
+  },
+  {
+    "chromosome": "chr17",
+    "length": 83257441
+  },
+  {
+    "chromosome": "chr18",
+    "length": 80373285
+  },
+  {
+    "chromosome": "chr19",
+    "length": 58617616
+  },
+  {
+    "chromosome": "chr20",
+    "length": 64444167
+  },
+  {
+    "chromosome": "chr21",
+    "length": 46709983
+  },
+  {
+    "chromosome": "chr22",
+    "length": 50818468
+  },
+  {
+    "chromosome": "chrX",
+    "length": 156040895
+  },
+  {
+    "chromosome": "chrY",
+    "length": 57227415
+  },
+  {
+    "chromosome": "chrM",
+    "length": 16569
+  }
+]

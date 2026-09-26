@@ -1,0 +1,98 @@
+[
+  {
+    "candidate_id": "pansio-1",
+    "name": "Pansio-1",
+    "assembly": "GRCh38",
+    "chromosome": "chr1",
+    "start": 113339960,
+    "end": 113340514,
+    "coordinate_system": "zero_based_half_open",
+    "cell_context": "H1 human embryonic stem cells",
+    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "group_id": "autio-chr1-113000001-114000000",
+    "source_coordinates": {
+      "assembly": "GRCh38",
+      "chromosome": "1",
+      "start": 113339961,
+      "end": 113340514,
+      "width": 554,
+      "coordinate_system": "one_based_closed",
+      "conversion": "internal_start = source_start - 1; internal_end = source_end",
+      "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+      "source_id": "elife-79592-supp1.xlsx",
+      "sheet": "overlap safe-active",
+      "row": 5,
+      "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+    },
+    "evidence_ids": [
+      "source:supp1",
+      "source:supp5:pansio-1"
+    ],
+    "origin": "publication-derived candidate shortlist",
+    "publication_blat_ratio": 0.26895306859205775
+  },
+  {
+    "candidate_id": "olonne-18",
+    "name": "Olônne-18",
+    "assembly": "GRCh38",
+    "chromosome": "chr18",
+    "start": 56534774,
+    "end": 56536439,
+    "coordinate_system": "zero_based_half_open",
+    "cell_context": "H1 human embryonic stem cells",
+    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "group_id": "autio-chr18-56000001-57000000",
+    "source_coordinates": {
+      "assembly": "GRCh38",
+      "chromosome": "18",
+      "start": 56534775,
+      "end": 56536439,
+      "width": 1665,
+      "coordinate_system": "one_based_closed",
+      "conversion": "internal_start = source_start - 1; internal_end = source_end",
+      "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+      "source_id": "elife-79592-supp1.xlsx",
+      "sheet": "overlap safe-active",
+      "row": 54,
+      "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+    },
+    "evidence_ids": [
+      "source:supp1",
+      "source:supp5:olonne-18"
+    ],
+    "origin": "publication-derived candidate shortlist",
+    "publication_blat_ratio": 0.15615615615615616
+  },
+  {
+    "candidate_id": "keppel-19",
+    "name": "Keppel-19",
+    "assembly": "GRCh38",
+    "chromosome": "chr19",
+    "start": 5400760,
+    "end": 5402139,
+    "coordinate_system": "zero_based_half_open",
+    "cell_context": "H1 human embryonic stem cells",
+    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "group_id": "autio-chr19-5000001-6000000",
+    "source_coordinates": {
+      "assembly": "GRCh38",
+      "chromosome": "19",
+      "start": 5400761,
+      "end": 5402139,
+      "width": 1379,
+      "coordinate_system": "one_based_closed",
+      "conversion": "internal_start = source_start - 1; internal_end = source_end",
+      "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+      "source_id": "elife-79592-supp1.xlsx",
+      "sheet": "overlap safe-active",
+      "row": 55,
+      "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+    },
+    "evidence_ids": [
+      "source:supp1",
+      "source:supp5:keppel-19"
+    ],
+    "origin": "publication-derived candidate shortlist",
+    "publication_blat_ratio": 0.1791153009427121
+  }
+]

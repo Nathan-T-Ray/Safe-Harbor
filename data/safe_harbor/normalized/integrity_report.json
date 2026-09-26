@@ -1,0 +1,31 @@
+{
+  "check_type": "data_integrity",
+  "status": "passed",
+  "sources_verified": 13,
+  "candidate_count": 3,
+  "canonical_chromosomes": 25,
+  "expression_counts": {
+    "H1": {
+      "pansio-1": 96,
+      "olonne-18": 111,
+      "keppel-19": 139,
+      "untargeted": 260
+    },
+    "H9": {
+      "pansio-1": 60,
+      "olonne-18": 51,
+      "keppel-19": 91,
+      "untargeted": 15
+    }
+  },
+  "discrepancies": [
+    {
+      "candidate_id": "keppel-19",
+      "context": "H1",
+      "workbook_count": 139,
+      "article_reported_count": 119,
+      "status": "unresolved",
+      "diagnosis": "139 nonempty unique versioned Ensembl gene IDs; all satisfy abs(log2FC)>=1 and FDR<=0.01. No rows removed to match article text."
+    }
+  ]
+}

@@ -1,0 +1,174 @@
+[
+  {
+    "id": "R01",
+    "title": "Create MongoDB collections and indexes",
+    "owner": "Runtime",
+    "depends_on": [
+      "F02",
+      "F04"
+    ],
+    "work": "Implement collections and uniqueness constraints for runs, artifact IDs, harness hashes, operation IDs and event sequences. Keep immutable artifacts separate from mutable current pointers.",
+    "done": "Initialization is repeatable and a restarted API retrieves identical stored records.",
+    "paths": [
+      "backend/safe_harbor/runtime/ledger.py"
+    ]
+  },
+  {
+    "id": "R02",
+    "title": "Implement transactional result acceptance",
+    "owner": "Runtime",
+    "depends_on": [
+      "R01"
+    ],
+    "work": "Validate operation hash, coordinator epoch and consumed evidence versions. Commit accepted output, task state, assessment pointers, budget changes and event atomically.",
+    "done": "Duplicate identical submission returns the existing result; conflicting reuse fails without modifying state. External calls occur outside transactions.",
+    "paths": [
+      "backend/safe_harbor/runtime/ledger.py"
+    ]
+  },
+  {
+    "id": "R03",
+    "title": "Implement API, snapshots and ordered polling",
+    "owner": "Runtime",
+    "depends_on": [
+      "R02"
+    ],
+    "work": "Build the specified endpoints. Return consistent snapshot watermarks and bounded ascending event pages. Scope artifact access to the run.",
+    "done": "A client loads a snapshot, catches up during concurrent commits and reaches the correct state without gaps.",
+    "paths": [
+      "backend/safe_harbor/api.py",
+      "backend/safe_harbor/runtime/ledger.py"
+    ]
+  },
+  {
+    "id": "R04",
+    "title": "Build the typed DAG compiler",
+    "owner": "Runtime",
+    "depends_on": [
+      "F02",
+      "D07"
+    ],
+    "work": "Validate node kinds, dependency references, tools, output references, acyclicity and size limits. Use standard topological sorting. Validate complete proposed plans before dispatch.",
+    "done": "Invalid plans fail before work begins and valid independent branches can share upstream evidence.",
+    "paths": [
+      "backend/safe_harbor/runtime/compiler.py"
+    ]
+  },
+  {
+    "id": "R05",
+    "title": "Implement bounded scheduling and deduplication",
+    "owner": "Runtime",
+    "depends_on": [
+      "R02",
+      "R04"
+    ],
+    "work": "Select ready tasks, enforce two-worker concurrency and use canonical question keys. Stop on completion, no useful action or exhausted limits.",
+    "done": "Dependencies are respected, repeated questions cannot create an infinite investigation, and remaining uncertainty is preserved.",
+    "paths": [
+      "backend/safe_harbor/runtime/coordinator.py"
+    ]
+  },
+  {
+    "id": "R06",
+    "title": "Build genuine and deterministic execution adapters",
+    "owner": "Runtime",
+    "depends_on": [
+      "R05",
+      "D07"
+    ],
+    "work": "Support the actual model provider and a clearly labeled deterministic adapter for operational E2Es. Enforce role tool allowlists and record attempts, inputs, outputs and usage.",
+    "done": "One actual model investigation calls a real genomic tool; prohibited tool requests fail at the interface boundary.",
+    "paths": [
+      "backend/safe_harbor/runtime/worker.py"
+    ]
+  },
+  {
+    "id": "R07",
+    "title": "Implement durable budget accounting",
+    "owner": "Runtime",
+    "depends_on": [
+      "R02",
+      "R06"
+    ],
+    "work": "Reserve resources before dispatch, settle actual usage after responses and retain uncertain expenditure after interruption. Record retries and tool/model costs separately.",
+    "done": "Exhausted budgets prevent further work, and a crashed call is not silently counted as free.",
+    "paths": [
+      "backend/safe_harbor/runtime/ledger.py",
+      "backend/safe_harbor/runtime/coordinator.py"
+    ]
+  },
+  {
+    "id": "R08",
+    "title": "Implement checkpoints and fresh-process recovery",
+    "owner": "Runtime",
+    "depends_on": [
+      "R05",
+      "R06",
+      "R07"
+    ],
+    "work": "Integrate MongoDBSaver. Reconcile checkpoints against accepted operations. Use coordinator epochs and leases so obsolete processes cannot commit results after replacement.",
+    "done": "Killing the process after acceptance but before checkpoint does not duplicate accepted output on restart.",
+    "paths": [
+      "backend/safe_harbor/runtime/coordinator.py"
+    ]
+  },
+  {
+    "id": "R09",
+    "title": "Implement evidence revisions and selective invalidation",
+    "owner": "Runtime",
+    "depends_on": [
+      "R02",
+      "R04",
+      "R08"
+    ],
+    "work": "Track the complete input read set, including evidence-query scopes. Version updated artifacts, mark affected assessments stale and create successor tasks without deleting history.",
+    "done": "An affected in-flight result is rejected, affected branches reopen and unrelated valid work remains usable.",
+    "paths": [
+      "backend/safe_harbor/runtime/revisions.py",
+      "backend/safe_harbor/runtime/ledger.py"
+    ]
+  },
+  {
+    "id": "R10",
+    "title": "Assemble bounded context packets",
+    "owner": "Runtime",
+    "depends_on": [
+      "R06",
+      "D07"
+    ],
+    "work": "Include the question, objective, criteria, selected evidence, relevant contradictions, metadata, allowed tools and remaining budget. Preserve IDs for omitted material.",
+    "done": "Workers can retrieve original evidence directly, active context stays bounded, and mandatory metadata survives policy changes.",
+    "paths": [
+      "backend/safe_harbor/runtime/context.py"
+    ]
+  },
+  {
+    "id": "R11",
+    "title": "Produce versioned assessments and shortlists",
+    "owner": "Runtime",
+    "depends_on": [
+      "R10",
+      "D01"
+    ],
+    "work": "Validate criterion-level outputs and evidence references. Aggregate using frozen rules. Separate current conclusions, unresolved questions and historical assessments.",
+    "done": "A complete case and an insufficient-evidence case produce correct distinct states, visible in the API and export.",
+    "paths": [
+      "backend/safe_harbor/runtime/assessments.py"
+    ]
+  },
+  {
+    "id": "R12",
+    "title": "Export complete, replayable investigations",
+    "owner": "Runtime",
+    "depends_on": [
+      "R03",
+      "R09",
+      "R11"
+    ],
+    "work": "Export manifests, immutable evidence, tasks, events, assessments, harness references and measured usage. Include the assets needed for the selected demonstration views.",
+    "done": "A fresh client reconstructs the run and can inspect historical evidence without relying on the original worker\u2019s memory.",
+    "paths": [
+      "backend/safe_harbor/runtime/export.py"
+    ]
+  }
+]

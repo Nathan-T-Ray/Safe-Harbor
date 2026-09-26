@@ -1,0 +1,88 @@
+{
+  "started_at": "2026-09-26T18:36:57.070028+00:00",
+  "database": "safe_harbor_operational_1790447816",
+  "mode": "deterministic_operational",
+  "harness_mode": "mock",
+  "biological_results": 0,
+  "model_calls": 0,
+  "cases": [
+    {
+      "case": "ordered_events_idempotency_and_history",
+      "run_id": "operational-e2e-ecd2ec8aae2b499d9a4a970830acec74",
+      "passed": true,
+      "events": 5,
+      "export": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/operational-e2e-ecd2ec8aae2b499d9a4a970830acec74.json"
+    },
+    {
+      "case": "process_death_after_accept_before_checkpoint",
+      "run_id": "operational-e2e-dfcdd0fa5d17440d90211c38e21b3892",
+      "passed": true,
+      "crash_exit_code": 86,
+      "checkpoints_before_restart": 2,
+      "accepted_outputs_after_restart": 2,
+      "recovered_epoch": 2,
+      "export": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/operational-e2e-dfcdd0fa5d17440d90211c38e21b3892.json"
+    },
+    {
+      "case": "process_death_after_reservation",
+      "run_id": "operational-e2e-54bb3188a5ae4b37b9814d0398aa8604",
+      "passed": true,
+      "crash_exit_code": 87,
+      "uncertain_tokens": 512,
+      "status": "budget_exhausted",
+      "usage_note": "512 artificial operational reservation units; no actual model call or measured model usage",
+      "export": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/operational-e2e-54bb3188a5ae4b37b9814d0398aa8604.json"
+    }
+  ],
+  "processes": [
+    {
+      "pid": 82803,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/process-1.log",
+      "started_at": "2026-09-26T18:36:57.073387+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T18:36:58.910518+00:00"
+    },
+    {
+      "pid": 82807,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_ACCEPT": "screen_regions"
+      },
+      "log": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/process-2.log",
+      "started_at": "2026-09-26T18:36:58.950037+00:00",
+      "exit_code": 86,
+      "ended_at": "2026-09-26T18:36:59.997513+00:00"
+    },
+    {
+      "pid": 82841,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/process-3.log",
+      "started_at": "2026-09-26T18:36:59.999621+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T18:37:12.461744+00:00"
+    },
+    {
+      "pid": 82919,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "512"
+      },
+      "log": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/process-4.log",
+      "started_at": "2026-09-26T18:37:12.494165+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T18:37:13.645358+00:00"
+    },
+    {
+      "pid": 82921,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "512"
+      },
+      "log": "artifacts/safe_harbor/runtime-e2e/2026-09-26-proof-v2/process-5.log",
+      "started_at": "2026-09-26T18:37:13.651279+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T18:37:25.907638+00:00"
+    }
+  ],
+  "passed": true,
+  "finished_at": "2026-09-26T18:37:25.907981+00:00"
+}
