@@ -11,6 +11,7 @@ const rec = (v: unknown): Rec => (v && typeof v === 'object' && !Array.isArray(v
 const num = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? v : 0);
 const stageOrder: Record<string, number> = { screen_regions: 0, inspect_evidence: 1, compute_features: 2, assess_candidate: 3, review_candidate: 4, publish_shortlist: 5 };
 const statusWord: Record<string, string> = { queued: 'Queued', running: 'Running', complete: 'Complete', failed: 'Failed', blocked: 'Blocked', reopened: 'Reopened', superseded: 'Superseded' };
+const canonical = (value: unknown): string => JSON.stringify(value, (_key, v: unknown) => v && typeof v === 'object' && !Array.isArray(v) ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v);
 
 export interface CallLeaf { id: string; kind: 'model' | 'tool'; label: string; detail: string; tokens?: number; cost?: number | null; artifactId?: string }
 interface Agent { task: Task; calls: CallLeaf[]; tokens: number; tools: number; models: number; cost: number | null; hasTrace: boolean; deps: string[] }
@@ -31,23 +32,34 @@ function buildAgent(task: Task, artifacts: Artifact[], tasks: Task[]): Agent {
   traces.forEach((trace, t) => {
     const d = rec(trace.data), usage = rec(d.usage);
     tokens += num(usage.tokens); models += num(usage.model_calls);
-    if (typeof usage.cost_usd === 'number' && cost !== null) cost += usage.cost_usd; else if (usage.cost_usd === null) cost = null;
+    if (typeof usage.cost_usd === 'number' && Number.isFinite(usage.cost_usd) && cost !== null) cost += usage.cost_usd; else cost = null;
     const responses = Array.isArray(d.provider_responses) ? d.provider_responses.map(rec) : [];
-    responses.forEach((r, i) => {
-      const resp = rec(r.response), u = rec(resp.usage);
-      calls.push({ id: `${trace.artifact_id}:m${i}`, kind: 'model', label: `Model call ${num(r.call_index) + 1}`, detail: `${String(resp.model ?? 'model')} · ${num(u.prompt_tokens).toLocaleString()} in / ${num(u.completion_tokens).toLocaleString()} out`, tokens: num(u.total_tokens), cost: typeof u.cost === 'number' ? u.cost : null });
-    });
     const toolCalls = Array.isArray(d.tool_calls) ? d.tool_calls.map(rec) : [];
-    const used = new Set<string>();
-    toolCalls.forEach((c, i) => {
+    const used = new Set<string>(), linked = new Set<number>();
+    const addTool = (c: Rec, i: number, ordering: string) => {
       tools += 1;
       const name = String(c.tool_name ?? 'tool');
-      const match = results.find(a => !used.has(a.artifact_id) && a.data.tool_name === name);
+      // Repeated calls to one tool may use different arguments/results. Link
+      // only an exact committed result; otherwise inspect the original trace.
+      const match = results.find(a => !used.has(a.artifact_id) && a.data.tool_name === name && canonical(a.data) === canonical(c.result));
       if (match) used.add(match.artifact_id);
-      calls.push({ id: `${trace.artifact_id}:t${i}`, kind: 'tool', label: name.replaceAll('_', ' '), detail: `${argsSummary(c.arguments)}${traces.length > 1 ? ` · trace ${t + 1}` : ''}`, artifactId: match?.artifact_id });
+      calls.push({ id: `${trace.artifact_id}:t${i}`, kind: 'tool', label: name.replaceAll('_', ' '), detail: `${argsSummary(c.arguments)} · ${ordering}${traces.length > 1 ? ` · trace ${t + 1}` : ''}`, artifactId: match?.artifact_id ?? trace.artifact_id });
+    };
+    responses.forEach((r, i) => {
+      const resp = rec(r.response), u = rec(resp.usage), callNumber = num(r.call_index) + 1;
+      calls.push({ id: `${trace.artifact_id}:m${i}`, kind: 'model', label: `Model call ${callNumber}`, detail: `${String(resp.model ?? 'model')} · ${num(u.prompt_tokens).toLocaleString()} in / ${num(u.completion_tokens).toLocaleString()} out${traces.length > 1 ? ` · trace ${t + 1}` : ''}`, tokens: num(u.total_tokens), cost: typeof u.cost === 'number' ? u.cost : null, artifactId: trace.artifact_id });
+      const choices = Array.isArray(resp.choices) ? resp.choices.map(rec) : [];
+      const requested = choices.flatMap(choice => {const list=rec(choice.message).tool_calls; return Array.isArray(list) ? list.map(rec) : [];});
+      const ids = new Set(requested.map(call => call.id).filter((id): id is string => typeof id === 'string'));
+      toolCalls.forEach((call, index) => {
+        if (!linked.has(index) && typeof call.model_call_id === 'string' && ids.has(call.model_call_id)) {
+          linked.add(index); addTool(call, index, `requested by model call ${callNumber}`);
+        }
+      });
     });
+    toolCalls.forEach((call, index) => {if (!linked.has(index)) addTool(call,index,responses.length ? 'provider link unavailable; relative order unrecorded' : 'recorded tool order; no model response');});
   });
-  const deps = task.depends_on.map(id => tasks.find(x => x.task_id === id)).filter(Boolean).map(x => `${taskName[x!.kind]}${x!.candidate_id !== task.candidate_id ? ` (${x!.candidate_id ?? 'run'})` : ''}`);
+  const deps = task.depends_on.map(id => tasks.find(x => x.task_id === id)).filter(Boolean).map(x => `${taskName[x!.kind]} [${x!.role_id}]${x!.candidate_id !== task.candidate_id ? ` (${x!.candidate_id ?? 'run'})` : ''}`);
   return { task, calls, tokens, tools, models, cost: traces.length ? cost : null, hasTrace: traces.length > 0, deps };
 }
 
@@ -71,11 +83,17 @@ export function AgentTree({ run, tasks, artifacts, candidates, selectedTask, cur
   const [focusId, setFocusId] = useState('root');
   const treeRef = useRef<HTMLDivElement>(null);
   const branches = useMemo<Branch[]>(() => {
+    const byId = new Map(tasks.map(task => [task.task_id,task])), depths = new Map<string,number>();
+    const depth = (task: Task): number => {
+      const saved=depths.get(task.task_id); if(saved !== undefined) return saved;
+      const parents=task.depends_on.map(id=>byId.get(id)).filter((parent): parent is Task=>Boolean(parent));
+      const value=parents.length ? Math.max(...parents.map(depth))+1 : 0; depths.set(task.task_id,value); return value;
+    };
     const ids = [...new Set([...(run?.candidate_ids ?? []), ...tasks.map(t => t.candidate_id ?? '__run')])];
     return ids.map(id => {
       const c = candidates.find(x => x.candidate_id === id);
       const agents = tasks.filter(t => (t.candidate_id ?? '__run') === id)
-        .sort((a, b) => (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
+        .sort((a, b) => depth(a) - depth(b) || (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
         .map(t => buildAgent(t, artifacts, tasks));
       return { id, name: id === '__run' ? 'Run-wide' : c?.name ?? id, interval: c ? `${c.chromosome}:${(c.start + 1).toLocaleString()}` : undefined, agents };
     }).filter(b => b.agents.length || b.id !== '__run');
@@ -162,6 +180,6 @@ export function AgentTree({ run, tasks, artifacts, candidates, selectedTask, cur
           </div>; })}
         </div>
       </div>}
-    <p className="at-footnote">Built only from committed tasks and worker traces{cursor === null ? '' : ` through commit ${cursor}; later work is not shown`}. Usage per agent comes from its recorded trace. Arrow keys move, Right/Left expand or collapse, Enter inspects.</p>
+    <p className="at-footnote">Built only from committed tasks and worker traces{cursor === null ? '' : ` through commit ${cursor}; later work is not shown`}. Tasks follow dependency order, not wall-clock chronology. Tool calls follow their recorded provider request IDs; missing links are labeled. Usage per agent comes from its recorded trace; absent cost stays unreported. Arrow keys move, Right/Left expand or collapse, Enter inspects.</p>
   </section>;
 }

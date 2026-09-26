@@ -19,6 +19,8 @@
 body{background:radial-gradient(1200px 500px at 70% -10%,#10284066,transparent),var(--c-bg)}
 .safe-harbor-app{background:transparent}
 .topbar{position:sticky;top:0;z-index:30;height:64px;background:color-mix(in srgb,var(--c-surface) 92%,transparent);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--c-border)}
+.drawer-scrim{z-index:31}
+.inspector-drawer,.harness-drawer{z-index:32}
 .brand-mark{font:inherit;color:var(--c-cyan);background:var(--c-cyan-soft);height:38px;width:38px;border-radius:var(--radius-md)}
 .panel{background:linear-gradient(180deg,var(--c-surface-2),var(--c-surface));border:1px solid var(--c-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-1)}
 button,.button{border-radius:var(--radius-sm);transition:background .18s var(--ease),border-color .18s var(--ease),transform .18s var(--ease)}

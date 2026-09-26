@@ -16,8 +16,10 @@ The live board marks accepted work DONE and shows the remaining automatic-harnes
 
 GRCh38 reference, H1 context, publication-derived Pansio-1, Olônne-18 and Keppel-19. Real source tables, hashes, reference sequence and GENCODE v36 annotations are ingested. React genome/graph/evidence/replay UI, FastAPI/MongoDB transactional ledger, LangGraph checkpoints, scoped calculations and saved executable harness are implemented and being integrated.
 
-A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim or model-improvement result is made. The configured real-model investigation and fair comparison are being verified; no improvement result is claimed.
+A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim is made.
 
-A genuine R0 investigation completed with18/18 required outputs and verified browser/replay state. Other model runs have made errors; this is a successful core trial, not a demonstrated improvement. See [the ready baseline walkthrough](docs/safe-harbor/DEMO.md), [actual process/revision proof](docs/safe-harbor/CONTINUITY_DEMO.md), and [current status](docs/safe-harbor/STATUS.md).
+A genuine R0 investigation completed with 18/18 required outputs and verified browser/replay state. A real model also proposed an executable structural change: it added an upstream reviewer and moved a tool. Validation rejected that version for support/completion regressions; the system retained and reused the original saved workflow. This demonstrates tested adaptation and honest selection, without a measured improvement. Final comparison cases are still running.
+
+See [the baseline walkthrough](docs/safe-harbor/DEMO.md), [automatic change and rejection](docs/safe-harbor/AUTOMATIC_HARNESS_DEMO.md), [actual process/revision proof](docs/safe-harbor/CONTINUITY_DEMO.md), [comparison limitations](docs/safe-harbor/COMPARISON_LIMITATIONS.md), and [current status](docs/safe-harbor/STATUS.md).
 
 **NO UNIT TESTS. NO COMPONENT TESTS. E2E ONLY.** Build, type, syntax, schema and data-integrity checks are permitted.

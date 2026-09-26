@@ -1,0 +1,177 @@
+{
+  "passed": true,
+  "mode": "recorded_replay_of_real_model_H1",
+  "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+  "url": "http://127.0.0.1:5176/?run=run-5134783b07da40f2b6ac5c6b053bf901",
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+  "observed_experiment_status": "running_final",
+  "observed_promotion": {
+    "status": "rejected",
+    "promoted": false,
+    "parent_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "candidate_harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+    "selected_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "selection_split": "validation",
+    "rule": {
+      "schema_version": 1,
+      "no_decline": [
+        "required_answer_accuracy",
+        "support",
+        "coverage"
+      ],
+      "additional_benefit": "more correct required decisions OR >=15% provider-reported cost reduction at equal quality",
+      "cost_reduction_fraction": 0.15,
+      "require_complete_usage_for_cost": true,
+      "deterministic_runs_eligible_for_model_improvement": false,
+      "single_paired_cost_result": "provisional",
+      "split_hash": "1625d702df69d274fa4c9ab3596ae70f352100feb1b946db7bc12e5b4f175361",
+      "comparison_scope": "paired assigned validation cases; no per-case accuracy, support, coverage, or completion regression",
+      "candidate_completion_required": true,
+      "benefit_scope": "required decision count, or complete actual provider-reported inference cost at equal quality; optimizer overhead reported separately",
+      "rule_hash": "4027d3e1e1eb6cb91949f1b88deb982e97ad4ae462badb033541f11196eb0dc6"
+    },
+    "decided_at": "2026-09-26T19:59:24.410037+00:00",
+    "reasons": [
+      "olonne-18--h1_context_only: evidence support declined",
+      "olonne-18--h1_context_only: completion declined"
+    ],
+    "mode": "real_model",
+    "model_improvement_demonstrated": false,
+    "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+    "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+    "per_case": [
+      {
+        "case_id": "olonne-18--controls_withheld",
+        "parent_required_accuracy": 0,
+        "candidate_required_accuracy": 0,
+        "parent_coverage": 0,
+        "candidate_coverage": 0,
+        "regressions": []
+      },
+      {
+        "case_id": "olonne-18--full_sources",
+        "parent_required_accuracy": 0.6666666666666666,
+        "candidate_required_accuracy": 1,
+        "parent_coverage": 0.7222222222222222,
+        "candidate_coverage": 1,
+        "regressions": []
+      },
+      {
+        "case_id": "olonne-18--h1_context_only",
+        "parent_required_accuracy": 1,
+        "candidate_required_accuracy": 1,
+        "parent_coverage": 1,
+        "candidate_coverage": 1,
+        "regressions": [
+          "evidence support declined",
+          "completion declined"
+        ]
+      }
+    ],
+    "regressions": [
+      "olonne-18--h1_context_only: evidence support declined",
+      "olonne-18--h1_context_only: completion declined"
+    ],
+    "required_decision_gain": 0,
+    "parent_validation_usage": {
+      "cost_usd": 0.064791776,
+      "usage_complete": true,
+      "known_cost_usd": 0.064791776
+    },
+    "candidate_validation_usage": {
+      "cost_usd": 0.0681468648,
+      "usage_complete": true,
+      "known_cost_usd": 0.0681468648
+    },
+    "cost_reduction_fraction": -0.05178263364782597,
+    "cost_win": false,
+    "equal_quality": false,
+    "cost_conclusion_provisional": false,
+    "cost_interpretation": "One paired comparison is provisional; optimizer and full evaluation overhead are excluded from inference-cost reduction and reported separately."
+  },
+  "through_sequence": 32,
+  "viewport": "1280x720",
+  "assessment_commits": [
+    15,
+    23,
+    27
+  ],
+  "recorded_start": "2026-09-26T19:50:18.086668+00:00",
+  "recorded_end": "2026-09-26T19:52:35.151201+00:00",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "actual_run_usage": {
+    "token_limit": 400000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5,
+    "tokens_used": 228113,
+    "tool_calls": 22,
+    "model_calls": 14,
+    "cost_usd": 0.0341092472,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0
+  },
+  "model_calls_by_verification": 0,
+  "ledger_writes": 0,
+  "checks": [
+    {
+      "check": "Reset starts before evidence; event 1 reconstructs seven queued real H1 tasks",
+      "passed": true
+    },
+    {
+      "check": "All four zooms preserve actual Olonne-18 position, frozen annotations and exact bases",
+      "passed": true,
+      "sequence_sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+      "reference_artifact_id": "run-5134783b07da40f2b6ac5c6b053bf901:reference:olonne-18"
+    },
+    {
+      "check": "Event 15 exposes the executed inserted reviewer and its actual schema failure",
+      "passed": true
+    },
+    {
+      "check": "Agent tree orders actual dependencies and links tools to their requesting provider response",
+      "passed": true,
+      "review_call_order": [
+        "Model call 1",
+        "control overlap",
+        "retrieve evidence",
+        "Model call 2"
+      ],
+      "review_trace_cost_usd": 0.0030692704
+    },
+    {
+      "check": "Event 23 restores accepted intermediate revision 2; downloaded dossier excludes future revision 3",
+      "passed": true
+    },
+    {
+      "check": "Terminal replay and dossier preserve failed latest review; workflow completion does not imply accepted science",
+      "passed": true
+    },
+    {
+      "check": "Repeated backward seeking restores the correct revision and removes all assessments before event 15",
+      "passed": true
+    },
+    {
+      "check": "Saved experiment distinguishes correct required outputs from failed support/completion",
+      "passed": true,
+      "required_correct": 18,
+      "required_total": 18,
+      "support_ok": false,
+      "completed": false,
+      "promotion_status": "rejected"
+    },
+    {
+      "check": "Read-only verification leaves committed state unchanged and makes no model calls",
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "limitations": [
+    "This verifies actual changed execution and truthful historical views, not model quality, promotion or improvement.",
+    "The latest candidate assessment is unresolved after schema validation failure; an earlier accepted revision is historical only.",
+    "Comparison and selection must be read from the experiment, independently of this replay cursor.",
+    "The separate Pansio R0 preflight is not a paired comparator for this Olonne validation case."
+  ]
+}

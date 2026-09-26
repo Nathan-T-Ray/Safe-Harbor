@@ -1,0 +1,10 @@
+{
+  "passed": false,
+  "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+  "observed_failure": "Actual browser click on Close evidence inspector timed out: sticky topbar intercepted pointer events.",
+  "cause": "New topbar z-index 30 painted over original drawer z-index 20.",
+  "repair": "Drawer scrim raised to 31 and drawers to 32; subsequent actual H1 replay closed the inspector normally.",
+  "evidence": "drawer-overlay.png",
+  "paid_calls": 0,
+  "production_writes": 0
+}
