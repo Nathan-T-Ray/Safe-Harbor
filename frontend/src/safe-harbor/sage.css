@@ -126,3 +126,11 @@ html,body{background:#fff;color:var(--s5)}
 @media (max-width:1000px){.sage-main{grid-template-columns:1fr}.sage-right{position:static}}
 @media (prefers-reduced-motion:reduce){.sage-app .genome-canvas{animation:sage-cross .6s linear both}.now-head{animation:sage-cross .6s linear both}.tnode{transition:none}.tnode-in{animation:sage-cross .4s linear both}.halo,.now-state.running i{animation:none}}
 @keyframes sage-cross{from{opacity:0}to{opacity:1}}
+body,#root,.safe-harbor-app.sage-app{background:#fff !important}
+.sage-top .header-actions button{width:auto;flex:none}
+.sage-top .data-version{max-width:140px}
+.sage-app .genome-breadcrumb button.active,.sage-app .genome-breadcrumb button[aria-current]{background:none;color:var(--s5)}
+.sage-timeline *{background-color:transparent;color:var(--s5);border-color:var(--s1)}
+.sage-timeline button,.sage-timeline select{background:#fff;border:1px solid var(--s1);color:var(--s5)}
+.sage-timeline .pill,.sage-timeline [class*=live]{background:var(--tint2);color:var(--s4)}
+.tree-canvas svg{max-height:none}

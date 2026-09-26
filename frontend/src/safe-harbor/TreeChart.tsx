@@ -10,7 +10,6 @@ import { taskName } from './Graph';
 
 type Status = 'complete' | 'running' | 'queued' | 'planned' | 'failed' | 'blocked' | 'reopened' | 'superseded';
 interface TNode { id: string; level: number; label: string; sub?: string; status: Status; tip: string; children: TNode[]; act?: () => void; x: number; y: number; w: number }
-const LEVEL_Y = [40, 150, 270, 380];
 const MAX_CALLS = 5;
 const statusWord: Record<Status, string> = { complete: 'Complete', running: 'Running', queued: 'Queued', planned: 'Forming', failed: 'Failed', blocked: 'Blocked', reopened: 'Reopened', superseded: 'Superseded' };
 const trunc = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
@@ -46,7 +45,7 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
   const [hover, setHover] = useState<TNode | null>(null);
   const [focusId, setFocusId] = useState('root');
   const svgRef = useRef<SVGSVGElement>(null);
-  const { root, flat, width } = useMemo(() => {
+  const { flat, width, height } = useMemo(() => {
     const branches = deriveBranches(run, tasks, artifacts, candidates);
     const cands: TNode[] = branches.map(b => {
       const agents: TNode[] = b.agents.map(a => {
@@ -62,13 +61,15 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
     });
     const runStatus: Status = !run ? 'planned' : run.status === 'complete' ? 'complete' : ['failed', 'blocked', 'budget_exhausted'].includes(run.status) ? 'failed' : 'running';
     const root: TNode = { id: 'root', level: 0, label: 'Coordinator', sub: run ? String(run.status).replaceAll('_', ' ') : 'not started', status: runStatus, tip: run ? `Coordinator · ${run.run_id} · epoch ${run.coordinator_epoch}` : 'No run', children: cands, x: 0, y: 0, w: 160 };
-    const measure = (n: TNode): number => { const cw = n.children.reduce((s, c) => s + measure(c), 0); n.w = Math.max(n.w, cw); return n.w; };
-    const place = (n: TNode, left: number) => { n.y = LEVEL_Y[n.level]; let x = left + (n.w - n.children.reduce((s, c) => s + c.w, 0)) / 2; for (const c of n.children) { place(c, x); x += c.w; } n.x = n.children.length ? (n.children[0].x + n.children[n.children.length - 1].x) / 2 : left + n.w / 2; };
-    measure(root); place(root, 0);
+    // Candidates spread across; each candidate's tasks form a vertical dependency chain (depth-first reading order).
+    const colW = 220; root.x = (cands.length * colW) / 2; root.y = 34;
+    cands.forEach((c, i) => { c.x = i * colW + 40; c.y = 120; c.children.forEach((a, j) => { a.x = c.x; a.y = 200 + j * 64; a.children.forEach((k, m) => { k.x = a.x + 26 + m * 15; k.y = a.y + 32; }); }); });
+    root.w = cands.length * colW;
     const flat: TNode[] = []; const walk = (n: TNode) => { flat.push(n); n.children.forEach(walk); }; walk(root);
-    return { root, flat, width: Math.max(root.w, 480) };
+    const height = Math.max(260, ...flat.map(n => n.y + 40));
+    return { root, flat, width: Math.max(root.w, 480), height };
   }, [run, tasks, artifacts, candidates, onSelectArtifact, onSelectTask]);
-  const edges: [TNode, TNode][] = []; flat.forEach(n => n.children.forEach(c => edges.push([n, c])));
+  const edges: [TNode, TNode][] = []; flat.forEach(n => { if (n.level === 1) n.children.forEach((c, i) => edges.push([i ? n.children[i - 1] : n, c])); else n.children.forEach(c => edges.push([n, c])); });
   const active = flat.some(n => n.id === focusId) ? focusId : 'root';
   const onKey = (e: KeyboardEvent) => {
     const i = flat.findIndex(n => n.id === active); let next: TNode | undefined;
@@ -81,18 +82,18 @@ export function TreeChart({ run, tasks, artifacts, candidates, selectedTask, cur
     <div className="tree-head"><div><span className="eyebrow">Who is doing the work · {cursor === null ? 'live' : `replay through commit ${cursor}`}</span><h2>Investigation tree</h2></div><TreeLegend /></div>
     {!run ? <div className="empty-state">Start or open an investigation to grow the tree.</div> :
       <div className="tree-canvas">
-        <svg ref={svgRef} role="tree" aria-label="Coordinator, candidates, agent tasks and recorded calls" viewBox={`-10 0 ${width + 20} 430`} preserveAspectRatio="xMidYMin meet" onKeyDown={onKey}>
+        <svg ref={svgRef} role="tree" aria-label="Coordinator, candidates, agent tasks and recorded calls" viewBox={`-10 0 ${width + 20} ${height}`} preserveAspectRatio="xMidYMin meet" onKeyDown={onKey}>
           <g className="tree-edges">{edges.map(([a, b]) => <line key={b.id} x1={a.x} y1={a.y} x2={b.x} y2={b.y} className={`edge ${b.status}`} />)}</g>
           {flat.map(n => <g key={n.id} data-node={n.id} role="treeitem" aria-level={n.level + 1} aria-label={n.tip} aria-selected={selectedTask !== undefined && n.id === `a:${selectedTask}`} tabIndex={active === n.id ? 0 : -1}
             className={`tnode l${n.level} ${n.id === `a:${selectedTask}` ? 'selected' : ''}`} style={{ transform: `translate(${n.x}px, ${n.y}px)` }}
             onFocus={() => { setFocusId(n.id); setHover(n); }} onBlur={() => setHover(null)} onMouseEnter={() => setHover(n)} onMouseLeave={() => setHover(null)} onClick={() => { setFocusId(n.id); n.act?.(); }}>
             <g className="tnode-in"><NodeGlyph status={n.status} r={radius[n.level]} />
-              {n.level < 3 ? <><text y={radius[n.level] + 20} textAnchor="middle" className="tlabel">{trunc(n.label, 18)}</text>{n.sub && <text y={radius[n.level] + 37} textAnchor="middle" className="tsub">{n.sub}</text>}</>
+              {n.level < 3 ? n.level === 2 ? <><text x={20} y={-2} className="tlabel">{trunc(n.label, 22)}</text><text x={20} y={14} className="tsub">{n.sub}</text></> : <><text y={-radius[n.level] - (n.level ? 22 : 10)} textAnchor="middle" className="tlabel">{trunc(n.label, 22)}</text>{n.sub && <text y={-radius[n.level] - (n.level ? 7 : -48)} textAnchor="middle" className="tsub">{n.sub}</text>}</>
                 : <text y={20} textAnchor="middle" className="tcall">{n.label.startsWith('+') ? n.label : ''}</text>}
             </g>
           </g>)}
         </svg>
-        {hover && <div className="tree-tip" role="status" style={{ left: `${(hover.x + 10) / (width + 20) * 100}%`, top: `${hover.y / 430 * 100}%` }}>{hover.tip}</div>}
+        {hover && <div className="tree-tip" role="status" style={{ left: `${(hover.x + 10) / (width + 20) * 100}%`, top: `${hover.y / height * 100}%` }}>{hover.tip}</div>}
       </div>}
     <p className="tree-foot">Built only from committed tasks and traces{cursor === null ? '' : ` through commit ${cursor}`}. Arrow keys move · Enter inspects.</p>
   </section>;
