@@ -288,7 +288,7 @@ class ScienceJourney:
                   "cell_context": "H1 human embryonic stem cells", "screen_status": "pass", "evidence_status": "unknown",
                   "criterion_results": facts["criterion_results"], "experimental_endpoint_results": [], "evidence_ids": facts["evidence_ids"],
                   "unresolved_questions": [], "limitations": ["Forged by SH-Q02 E2E to probe the acceptance boundary."], "assessment_revision": 1,
-                  "freshness": "current", "input_read_set": reads}
+                  "freshness": "current", "conclusion": "Forged aggregate pass; the only defect is screen_status versus incomplete criteria.", "input_read_set": reads}
         payload = {"run_id": run_id, "task_id": task["task_id"], "epoch": epoch, "attempt": task["attempt"], "input_read_set": reads, "artifacts": [], "assessments": [forged], "usage": {"tokens": 0, "tool_calls": 0, "model_calls": 0}}
         try:
             self.ledger.accept(f"accept:{task['task_id']}:{epoch}:{task['attempt']}", payload)
@@ -300,6 +300,7 @@ class ScienceJourney:
         self.check("forged_pass_over_incomplete_rejected_by_ledger", rejected, run_id=run_id, harness_mode="mock", incomplete_criteria=incomplete, reason=reason)
 
     def execute(self):
+        error = None
         try:
             self.start()
             health = self.request("/health")
@@ -316,15 +317,19 @@ class ScienceJourney:
                 self.withhold_controls(run_id, candidate_id, snapshot)
             self.stop()
             self.forged_passing_screen(candidates[0])
+        except Exception as exc:
+            # An aborted journey is a failure; never report unexecuted checks as passing.
+            error = f"{exc.__class__.__name__}: {exc}"
+            raise
         finally:
             self.stop()
             outcomes = [item["passed"] for item in self.report["cases"] + self.report["checks"]] + [item["rejected_by_evaluation"] for item in self.report["negative_controls"]]
-            self.report.update(finished_at=now(), passed=bool(outcomes) and all(outcomes),
+            self.report.update(finished_at=now(), error=error, passed=error is None and bool(outcomes) and all(outcomes),
                                summary={"cases_passed": sum(c["passed"] for c in self.report["cases"]), "cases": len(self.report["cases"]),
                                         "negative_controls_rejected": sum(n["rejected_by_evaluation"] for n in self.report["negative_controls"]), "negative_controls": len(self.report["negative_controls"]),
                                         "checks_passed": sum(c["passed"] for c in self.report["checks"]), "checks": len(self.report["checks"]),
                                         "failed": [item.get("case_id") or item.get("check") for item in self.report["cases"] + self.report["checks"] if not item["passed"]]
-                                        + [f"negative control not rejected: {n['corruption']}" for n in self.report["negative_controls"] if not n["rejected_by_evaluation"]]})
+                                        + [f"negative control not rejected: {n['corruption']}" for n in self.report["negative_controls"] if not n["rejected_by_evaluation"]] + ([f"aborted: {error}"] if error else [])})
             (self.output / "report.json").write_text(json.dumps(self.report, indent=2, ensure_ascii=False))
             print(json.dumps(self.report["summary"], indent=2))
             print(f"report: {self.output / 'report.json'}")
