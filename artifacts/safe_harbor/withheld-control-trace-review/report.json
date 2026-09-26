@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-26T19:57:04.777488+00:00",
+  "inspection_mode": "read_only_real_model_recorded_trace_review",
+  "model_calls_by_this_inspection": 0,
+  "ledger_writes": 0,
+  "evaluator_invocations": 0,
+  "full_run_exports_duplicated": false,
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+  "experiment_status_at_inspection": "running_validation",
+  "optimizer_rationale_verbatim": "Development traces show H0 failed on controls_withheld because the inspect role failed after revision, while R0 completed; H0 also had unsupported_count 3 on full_sources. The failure appears tied to inspect attempting to resolve control availability and missing evidence. Splitting inspect into a pure evidence-inventory role and an upstream evidence-review role that explicitly handles missing controls should reduce failure risk and improve completeness. Validation could disprove this if the new topology does not improve completion on controls_withheld or increases unsupported_count.",
+  "runs": {
+    "optimizer_development_h0": {
+      "label": "optimizer_development_h0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "mode": "real_model",
+      "run_status": "blocked",
+      "through_sequence": 12,
+      "run_created_at": "2026-09-26T19:42:21.029298+00:00",
+      "case_context": {
+        "case_id": "pansio-1--controls_withheld",
+        "candidate_id": "pansio-1",
+        "scenario_id": "controls_withheld",
+        "assembly": "GRCh38",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "objective": "Do these measured expression changes justify excluding this candidate region?",
+        "question": "Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "instructions": "The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "controls_available": false,
+        "evidence_revision_fixture": "withhold-control-evidence"
+      },
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "source_export_url": "http://127.0.0.1:8016/runs/run-dc78b257a27a4d7b967d7814cc7259f5/export",
+      "export_canonical_sha256": "60a431622202e176f2ae92344e9462378c1c758e192722c6e275c28159f6e97c",
+      "failure_artifact_id": "artifact-9e516ec939284fa1a92c05b48b924927",
+      "failure_artifact_created_at": "2026-09-26T19:42:25.540129+00:00",
+      "failure_artifact_hash_valid": true,
+      "failed_task": {
+        "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+        "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+        "candidate_id": "pansio-1",
+        "kind": "inspect_evidence",
+        "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+        "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+            "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "kind": "artifact"
+          },
+          {
+            "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+            "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "kind": "artifact"
+          },
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:annotation",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:expression",
+            "version": 2,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "inspect",
+        "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+        "allowed_tools": [
+          "list_evidence",
+          "table_slice",
+          "reference_sequence"
+        ],
+        "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "failed",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+        "plan_revision": 1,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+        "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+        "result_artifact_ids": [],
+        "started_at": "2026-09-26T19:42:21.129590+00:00",
+        "coordinator_epoch": 1,
+        "failure_artifact_ids": [
+          "artifact-9e516ec939284fa1a92c05b48b924927"
+        ],
+        "failed_attempt_usage": {
+          "tokens": 4579,
+          "tool_calls": 2,
+          "model_calls": 1,
+          "cost_usd": 0.0006215384,
+          "duration_seconds": 4.3977
+        },
+        "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+        "failed_at": "2026-09-26T19:42:25.549493+00:00"
+      },
+      "failure_usage": {
+        "tokens": 4579,
+        "tool_calls": 2,
+        "model_calls": 1,
+        "cost_usd": 0.0006215384,
+        "duration_seconds": 4.3977
+      },
+      "run_usage": {
+        "token_limit": 400000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 24412,
+        "tool_calls": 6,
+        "model_calls": 3,
+        "cost_usd": 0.0040416992,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "context_availability": {
+        "control_evidence": false
+      },
+      "context_policy": "relevant_evidence",
+      "context_expression_scope": [
+        {
+          "key": "scope:pansio-1:expression",
+          "version": 2,
+          "kind": "query_scope"
+        }
+      ],
+      "provider_tool_requests": [
+        {
+          "call_index": 0,
+          "provider_response_id": "gen-1790451741-v0kJTOM3AIeqIPUepzVV",
+          "created": 1790451741,
+          "finish_reason": "tool_calls",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-8da3ecc37a226f5f",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\"}",
+                "name": "list_evidence"
+              },
+              "type": "function",
+              "index": 0
+            },
+            {
+              "id": "chatcmpl-tool-bd61585be4a6d672",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"candidate\", \"limit\": 20, \"offset\": 0}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 1
+            },
+            {
+              "id": "chatcmpl-tool-a9a6abbc39be6999",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 2
+            },
+            {
+              "id": "chatcmpl-tool-9a95260a1ae0d399",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"length\": 240, \"offset\": 0}",
+                "name": "reference_sequence"
+              },
+              "type": "function",
+              "index": 3
+            }
+          ]
+        }
+      ],
+      "completed_tool_results": [
+        {
+          "tool_name": "list_evidence",
+          "arguments": {
+            "cell_context": "H1"
+          },
+          "model_call_id": "chatcmpl-tool-8da3ecc37a226f5f",
+          "result_hash": "f588a88dddcdfc1353e867e5662dea70e3fb20569bfcebd80089be3d019146cf"
+        },
+        {
+          "tool_name": "table_slice",
+          "arguments": {
+            "cell_context": "H1",
+            "contrast": "candidate",
+            "limit": 20,
+            "offset": 0
+          },
+          "model_call_id": "chatcmpl-tool-bd61585be4a6d672",
+          "result_hash": "c867c29a950c3baaa981e2e207ae11729e461597dd1a6f9665bc9c9d40bf2a81"
+        }
+      ],
+      "unavailable_evidence_inventory": [
+        {
+          "evidence_id": "source:supp5:untargeted",
+          "kind": "independent_untargeted_expression_table",
+          "cell_context": "H1",
+          "availability": "unavailable",
+          "row_count": null
+        }
+      ],
+      "unavailable_contrast_requests": [
+        {
+          "id": "chatcmpl-tool-a9a6abbc39be6999",
+          "function": {
+            "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+            "name": "table_slice"
+          },
+          "type": "function",
+          "index": 2
+        }
+      ],
+      "unapproved_tool_names_requested": [],
+      "completed_role_ids": [
+        "screen"
+      ],
+      "new_reviewer_task_records": [],
+      "new_reviewer_started": false,
+      "assessment_count": 0,
+      "versioned_dossier_count": 0,
+      "exact_failure_artifact_file": {
+        "path": "run-dc78b257a27a4d7b967d7814cc7259f5.failure-artifact.json",
+        "sha256": "ec1fc58b9d1caeb528b12e0e80c30d862d4adbda3b9edfa6439cc3cac93617c4"
+      },
+      "event_task_projection_file": {
+        "path": "run-dc78b257a27a4d7b967d7814cc7259f5.events-tasks.json",
+        "sha256": "129e45b899e3fc2f82ce6260c89d18bd6fb1ace78ba48eaa0ad6daa6e3832168"
+      }
+    },
+    "matched_validation_h0": {
+      "label": "matched_validation_h0",
+      "run_id": "run-d6e1befd83154d239fdfeab61b2eaefe",
+      "mode": "real_model",
+      "run_status": "blocked",
+      "through_sequence": 12,
+      "run_created_at": "2026-09-26T19:53:33.086298+00:00",
+      "case_context": {
+        "case_id": "olonne-18--controls_withheld",
+        "candidate_id": "olonne-18",
+        "scenario_id": "controls_withheld",
+        "assembly": "GRCh38",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "objective": "Do these measured expression changes justify excluding this candidate region?",
+        "question": "Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "instructions": "The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "controls_available": false,
+        "evidence_revision_fixture": "withhold-control-evidence"
+      },
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "source_export_url": "http://127.0.0.1:8016/runs/run-d6e1befd83154d239fdfeab61b2eaefe/export",
+      "export_canonical_sha256": "e1eb08fda6a59df4abf27789c0e004f7a52f6353110a465f3b4fd5ec647caffa",
+      "failure_artifact_id": "artifact-f7651b767b9240d5a30b63e4d67bdd67",
+      "failure_artifact_created_at": "2026-09-26T19:53:41.336305+00:00",
+      "failure_artifact_hash_valid": true,
+      "failed_task": {
+        "task_id": "run-d6e1befd83154d239fdfeab61b2eaefe:olonne-18:inspect:r0:revision1",
+        "run_id": "run-d6e1befd83154d239fdfeab61b2eaefe",
+        "candidate_id": "olonne-18",
+        "kind": "inspect_evidence",
+        "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+        "canonical_question_key": "olonne-18:inspect:inspect_evidence:r0:revision1",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18",
+            "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "kind": "artifact"
+          },
+          {
+            "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest",
+            "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "kind": "artifact"
+          },
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:olonne-18:annotation",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:expression",
+            "version": 2,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "inspect",
+        "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+        "allowed_tools": [
+          "list_evidence",
+          "table_slice",
+          "reference_sequence"
+        ],
+        "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "failed",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+        "plan_revision": 1,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+        "supersedes_task_id": "run-d6e1befd83154d239fdfeab61b2eaefe:olonne-18:inspect:r0",
+        "result_artifact_ids": [],
+        "started_at": "2026-09-26T19:53:33.181342+00:00",
+        "coordinator_epoch": 1,
+        "failure_artifact_ids": [
+          "artifact-f7651b767b9240d5a30b63e4d67bdd67"
+        ],
+        "failed_attempt_usage": {
+          "tokens": 5089,
+          "tool_calls": 2,
+          "model_calls": 1,
+          "cost_usd": 0.0008379784,
+          "duration_seconds": 8.1444
+        },
+        "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+        "failed_at": "2026-09-26T19:53:41.350537+00:00"
+      },
+      "failure_usage": {
+        "tokens": 5089,
+        "tool_calls": 2,
+        "model_calls": 1,
+        "cost_usd": 0.0008379784,
+        "duration_seconds": 8.1444
+      },
+      "run_usage": {
+        "token_limit": 400000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 20590,
+        "tool_calls": 5,
+        "model_calls": 3,
+        "cost_usd": 0.0036412768,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "context_availability": {
+        "control_evidence": false
+      },
+      "context_policy": "relevant_evidence",
+      "context_expression_scope": [
+        {
+          "key": "scope:olonne-18:expression",
+          "version": 2,
+          "kind": "query_scope"
+        }
+      ],
+      "provider_tool_requests": [
+        {
+          "call_index": 0,
+          "provider_response_id": "gen-1790452413-NA6OGz2z4b1GHiVQTJmD",
+          "created": 1790452413,
+          "finish_reason": "tool_calls",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-aa7783e90f84a3a5",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\"}",
+                "name": "list_evidence"
+              },
+              "type": "function",
+              "index": 0
+            },
+            {
+              "id": "chatcmpl-tool-b9af5f40b5e3dde2",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"candidate\", \"limit\": 20, \"offset\": 0}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 1
+            },
+            {
+              "id": "chatcmpl-tool-aacd84f25b4df1f5",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 2
+            },
+            {
+              "id": "chatcmpl-tool-9967e547370630b5",
+              "function": {
+                "arguments": "{\"artifact_id\": \"run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18\"}",
+                "name": "retrieve_evidence"
+              },
+              "type": "function",
+              "index": 3
+            }
+          ]
+        }
+      ],
+      "completed_tool_results": [
+        {
+          "tool_name": "list_evidence",
+          "arguments": {
+            "cell_context": "H1"
+          },
+          "model_call_id": "chatcmpl-tool-aa7783e90f84a3a5",
+          "result_hash": "04db55aa73d3ccfdc1660b3141dfffd85e1fc32371ba1ad3142669715aebf327"
+        },
+        {
+          "tool_name": "table_slice",
+          "arguments": {
+            "cell_context": "H1",
+            "contrast": "candidate",
+            "limit": 20,
+            "offset": 0
+          },
+          "model_call_id": "chatcmpl-tool-b9af5f40b5e3dde2",
+          "result_hash": "c2e03c613083cdfca33bd162b65a19f41a4121a329abf2ecc1cfc5f177975282"
+        }
+      ],
+      "unavailable_evidence_inventory": [
+        {
+          "evidence_id": "source:supp5:untargeted",
+          "kind": "independent_untargeted_expression_table",
+          "cell_context": "H1",
+          "availability": "unavailable",
+          "row_count": null
+        }
+      ],
+      "unavailable_contrast_requests": [
+        {
+          "id": "chatcmpl-tool-aacd84f25b4df1f5",
+          "function": {
+            "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+            "name": "table_slice"
+          },
+          "type": "function",
+          "index": 2
+        }
+      ],
+      "unapproved_tool_names_requested": [],
+      "completed_role_ids": [
+        "screen"
+      ],
+      "new_reviewer_task_records": [],
+      "new_reviewer_started": false,
+      "assessment_count": 0,
+      "versioned_dossier_count": 0,
+      "exact_failure_artifact_file": {
+        "path": "run-d6e1befd83154d239fdfeab61b2eaefe.failure-artifact.json",
+        "sha256": "ee888a931b527170b5e0ba3f4ffc2e07c5760490faf17a1283096158e761fce8"
+      },
+      "event_task_projection_file": {
+        "path": "run-d6e1befd83154d239fdfeab61b2eaefe.events-tasks.json",
+        "sha256": "59d821b634e37759616ec9efba15ef28069e3cf44afe6631b95e434b3473ac75"
+      }
+    },
+    "matched_validation_h1": {
+      "label": "matched_validation_h1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "mode": "real_model",
+      "run_status": "blocked",
+      "through_sequence": 12,
+      "run_created_at": "2026-09-26T19:53:53.477149+00:00",
+      "case_context": {
+        "case_id": "olonne-18--controls_withheld",
+        "candidate_id": "olonne-18",
+        "scenario_id": "controls_withheld",
+        "assembly": "GRCh38",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "objective": "Do these measured expression changes justify excluding this candidate region?",
+        "question": "Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "instructions": "The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "controls_available": false,
+        "evidence_revision_fixture": "withhold-control-evidence"
+      },
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "source_export_url": "http://127.0.0.1:8016/runs/run-e9b7d35c48e245a7ace4dce1f77e10d2/export",
+      "export_canonical_sha256": "685f2cedaf0fdc13b29d8728230c7f3b5f675061e257998c0ac59c5db71d0654",
+      "failure_artifact_id": "artifact-d1ca9578501a41d6a2c660c60ebf0b8e",
+      "failure_artifact_created_at": "2026-09-26T19:53:56.872069+00:00",
+      "failure_artifact_hash_valid": true,
+      "failed_task": {
+        "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+        "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+        "candidate_id": "olonne-18",
+        "kind": "inspect_evidence",
+        "question": "What expression tables, methods, source rows, and reference evidence are available?",
+        "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+        "decision_target": "evidence_inventory",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+            "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "kind": "artifact"
+          },
+          {
+            "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+            "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "kind": "artifact"
+          },
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:olonne-18:annotation",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:expression",
+            "version": 2,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:olonne-18:sequence",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "inspect_evidence",
+        "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+        "allowed_tools": [
+          "list_evidence",
+          "table_slice"
+        ],
+        "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+        "budget": {
+          "max_tool_calls": 4,
+          "max_model_calls": 2
+        },
+        "status": "failed",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+        "plan_revision": 1,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+        "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+        "result_artifact_ids": [],
+        "started_at": "2026-09-26T19:53:53.704764+00:00",
+        "coordinator_epoch": 1,
+        "failure_artifact_ids": [
+          "artifact-d1ca9578501a41d6a2c660c60ebf0b8e"
+        ],
+        "failed_attempt_usage": {
+          "tokens": 4211,
+          "tool_calls": 2,
+          "model_calls": 1,
+          "cost_usd": 0.0005672632,
+          "duration_seconds": 3.1561
+        },
+        "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+        "failed_at": "2026-09-26T19:53:56.883226+00:00"
+      },
+      "failure_usage": {
+        "tokens": 4211,
+        "tool_calls": 2,
+        "model_calls": 1,
+        "cost_usd": 0.0005672632,
+        "duration_seconds": 3.1561
+      },
+      "run_usage": {
+        "token_limit": 400000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 17294,
+        "tool_calls": 5,
+        "model_calls": 3,
+        "cost_usd": 0.0020998880000000003,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0.0
+      },
+      "context_availability": {
+        "control_evidence": false
+      },
+      "context_policy": "relevant_evidence",
+      "context_expression_scope": [
+        {
+          "key": "scope:olonne-18:expression",
+          "version": 2,
+          "kind": "query_scope"
+        }
+      ],
+      "provider_tool_requests": [
+        {
+          "call_index": 0,
+          "provider_response_id": "gen-1790452433-rWfKtIpyKL4Jts7xm3ba",
+          "created": 1790452433,
+          "finish_reason": "tool_calls",
+          "tool_calls": [
+            {
+              "id": "chatcmpl-tool-b2d9873cf4f5265b",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\"}",
+                "name": "list_evidence"
+              },
+              "type": "function",
+              "index": 0
+            },
+            {
+              "id": "chatcmpl-tool-94925165f5eefcd7",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"candidate\", \"offset\": 0, \"limit\": 20}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 1
+            },
+            {
+              "id": "chatcmpl-tool-8c4208bbd3a8999c",
+              "function": {
+                "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"offset\": 0, \"limit\": 20}",
+                "name": "table_slice"
+              },
+              "type": "function",
+              "index": 2
+            }
+          ]
+        }
+      ],
+      "completed_tool_results": [
+        {
+          "tool_name": "list_evidence",
+          "arguments": {
+            "cell_context": "H1"
+          },
+          "model_call_id": "chatcmpl-tool-b2d9873cf4f5265b",
+          "result_hash": "04db55aa73d3ccfdc1660b3141dfffd85e1fc32371ba1ad3142669715aebf327"
+        },
+        {
+          "tool_name": "table_slice",
+          "arguments": {
+            "cell_context": "H1",
+            "contrast": "candidate",
+            "offset": 0,
+            "limit": 20
+          },
+          "model_call_id": "chatcmpl-tool-94925165f5eefcd7",
+          "result_hash": "c2e03c613083cdfca33bd162b65a19f41a4121a329abf2ecc1cfc5f177975282"
+        }
+      ],
+      "unavailable_evidence_inventory": [
+        {
+          "evidence_id": "source:supp5:untargeted",
+          "kind": "independent_untargeted_expression_table",
+          "cell_context": "H1",
+          "availability": "unavailable",
+          "row_count": null
+        }
+      ],
+      "unavailable_contrast_requests": [
+        {
+          "id": "chatcmpl-tool-8c4208bbd3a8999c",
+          "function": {
+            "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"offset\": 0, \"limit\": 20}",
+            "name": "table_slice"
+          },
+          "type": "function",
+          "index": 2
+        }
+      ],
+      "unapproved_tool_names_requested": [],
+      "completed_role_ids": [
+        "screen"
+      ],
+      "new_reviewer_task_records": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+          "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0:revision1",
+          "decision_target": "evidence_availability",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "evidence_review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "control_overlap",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "contradictions_first",
+          "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        }
+      ],
+      "new_reviewer_started": false,
+      "assessment_count": 0,
+      "versioned_dossier_count": 0,
+      "exact_failure_artifact_file": {
+        "path": "run-e9b7d35c48e245a7ace4dce1f77e10d2.failure-artifact.json",
+        "sha256": "178940bb563a0b2c14b83666c0401f0dd877e4d971b5f5368482d5fa8d5053a3"
+      },
+      "event_task_projection_file": {
+        "path": "run-e9b7d35c48e245a7ace4dce1f77e10d2.events-tasks.json",
+        "sha256": "19f4a0b4ffbaea769ab296cd12b947fb22ba83f5f3316dd34d7e9471c158af2c"
+      }
+    }
+  },
+  "matched_case_conditions": {
+    "same_case_context": true,
+    "same_model_id": true,
+    "same_model_settings": true,
+    "same_pricing_hash": true,
+    "same_data_version": true,
+    "same_scientific_criteria_source_and_query_versions": true,
+    "same_evidence_availability": true,
+    "same_assigned_limits": true,
+    "distinct_frozen_harnesses": true
+  },
+  "evidence_version_scope_note": "Scientific criteria/source/query versions are compared. Full application evidence-version maps differ because derived artifacts and immutable run-specific artifact IDs belong to separate runs; this is expected isolation, not shared derived-answer reuse.",
+  "findings": [
+    "The development H0 failure cited by the optimizer occurred: inspect requested an unavailable untargeted table and the task failed with PermissionError.",
+    "Matched validation H0 and H1 both repeated that path. Each initial context already stated control_evidence=false and expression scope version 2.",
+    "Each first provider response batched list_evidence, candidate table_slice, and untargeted table_slice. The inventory and candidate slice completed; the unavailable contrast request failed. The list_evidence result was therefore not a later model observation before the same batched request was chosen.",
+    "All requested tool names were allowed. The refused operation was an unavailable contrast of table_slice, not an unapproved tool and not a fabricated negative biological result.",
+    "In H1, inspect_evidence failed before evidence_review could start; the new reviewer was upstream of downstream comparison but downstream of the failed inventory. No assessment or dossier was produced for either matched validation arm.",
+    "The saved topology changed, but this observed matched case did not show the intended missing-control failure being avoided. This is a trace-level observation, not a rescore, promotion decision, or estimate of average performance."
+  ],
+  "causal_limits": [
+    "The proximate exception and dependency stop are recorded; these observations do not establish why the model selected the unavailable request.",
+    "One paired validation scenario cannot isolate the causal effect of role splitting, instruction text, provider stochasticity, or tool-error policy.",
+    "The literal shared-instruction markers were preserved in H1; this review does not attribute the failure to those markers.",
+    "The model proposed unavailable-table retrieval in its first response; do not claim it ignored a previously returned inventory result in a later turn.",
+    "Complete proposed-call batches and failed-call usage remain recorded; no actual successful result exists for the denied untargeted lookup."
+  ],
+  "verdict": {
+    "status": "terminal_observed_failure_repeated",
+    "h1_behavior_change_avoided_targeted_failure": false,
+    "final_answer_quality": "No final assessment or dossier exists in either matched arm; quality is not inferred from workflow topology.",
+    "model_improvement_claim": false,
+    "promotion_decision_made_by_this_review": false
+  }
+}

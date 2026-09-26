@@ -1,0 +1,2440 @@
+{
+  "projection_note": "Exact event envelopes/task upserts; large artifact payloads referenced by immutable ID/hash. Full run export is not duplicated.",
+  "snapshot_tasks": [
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "screen_regions",
+      "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+      "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [],
+      "input_read_set": [
+        {
+          "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+          "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+          "kind": "artifact"
+        },
+        {
+          "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+          "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "kind": "artifact"
+        },
+        {
+          "key": "criteria:v1",
+          "version": 1,
+          "kind": "criteria"
+        },
+        {
+          "key": "scope:olonne-18:annotation",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:catalog",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:sequence",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "source:data_version",
+          "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "kind": "artifact"
+        }
+      ],
+      "role_id": "screen",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "inspect_candidate",
+        "screen_candidate"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "complete",
+      "attempt": 1,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "started_at": "2026-09-26T19:53:53.548119+00:00",
+      "coordinator_epoch": 1,
+      "reservation": {},
+      "completed_at": "2026-09-26T19:53:57.951895+00:00",
+      "result_artifact_ids": [
+        "artifact-dca9006fdb784a90b4faf7b2048d473e",
+        "artifact-7c3936d9f1fd4f46bb3e45f7e6d0fd35",
+        "artifact-28e047f691a44978b70b89efe9fc6333",
+        "artifact-f818f80283104dd19ed065bfeeb29156"
+      ]
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "inspect_evidence",
+      "question": "What expression tables, methods, source rows, and reference evidence are available?",
+      "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0",
+      "decision_target": "evidence_inventory",
+      "depends_on": [],
+      "input_read_set": [],
+      "role_id": "inspect_evidence",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice"
+      ],
+      "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "review_candidate",
+      "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+      "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0",
+      "decision_target": "evidence_availability",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "evidence_review",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "control_overlap",
+        "reference_sequence"
+      ],
+      "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "contradictions_first",
+      "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "compute_features",
+      "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+      "canonical_question_key": "olonne-18:compare:compute_features:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "compare",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "expression_comparison",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "assess_candidate",
+      "question": "Do these measured expression changes justify excluding this candidate region?",
+      "canonical_question_key": "olonne-18:assess:assess_candidate:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "assess",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "review_candidate",
+      "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+      "canonical_question_key": "olonne-18:review:review_candidate:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "review",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "screen_candidate",
+        "control_overlap"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "publish_shortlist",
+      "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+      "canonical_question_key": "olonne-18:report:publish_shortlist:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "report",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "assess_candidate",
+      "question": "Do these measured expression changes justify excluding this candidate region?",
+      "canonical_question_key": "olonne-18:assess:assess_candidate:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "assess",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "compute_features",
+      "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+      "canonical_question_key": "olonne-18:compare:compute_features:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "compare",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "expression_comparison",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "review_candidate",
+      "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+      "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0:revision1",
+      "decision_target": "evidence_availability",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "evidence_review",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "control_overlap",
+        "reference_sequence"
+      ],
+      "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "contradictions_first",
+      "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "inspect_evidence",
+      "question": "What expression tables, methods, source rows, and reference evidence are available?",
+      "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+      "decision_target": "evidence_inventory",
+      "depends_on": [],
+      "input_read_set": [
+        {
+          "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+          "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+          "kind": "artifact"
+        },
+        {
+          "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+          "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "kind": "artifact"
+        },
+        {
+          "key": "criteria:v1",
+          "version": 1,
+          "kind": "criteria"
+        },
+        {
+          "key": "scope:olonne-18:annotation",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:catalog",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:expression",
+          "version": 2,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:sequence",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "source:data_version",
+          "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "kind": "artifact"
+        }
+      ],
+      "role_id": "inspect_evidence",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice"
+      ],
+      "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "failed",
+      "attempt": 1,
+      "context_policy": "relevant_evidence",
+      "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+      "result_artifact_ids": [],
+      "started_at": "2026-09-26T19:53:53.704764+00:00",
+      "coordinator_epoch": 1,
+      "failure_artifact_ids": [
+        "artifact-d1ca9578501a41d6a2c660c60ebf0b8e"
+      ],
+      "failed_attempt_usage": {
+        "tokens": 4211,
+        "tool_calls": 2,
+        "model_calls": 1,
+        "cost_usd": 0.0005672632,
+        "duration_seconds": 3.1561
+      },
+      "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+      "failed_at": "2026-09-26T19:53:56.883226+00:00"
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "publish_shortlist",
+      "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+      "canonical_question_key": "olonne-18:report:publish_shortlist:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "report",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "candidate_id": "olonne-18",
+      "kind": "review_candidate",
+      "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+      "canonical_question_key": "olonne-18:review:review_candidate:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+        "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "review",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "allowed_tools": [
+        "screen_candidate",
+        "control_overlap"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    }
+  ],
+  "events": [
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 1,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:1",
+      "operation_id": "create:run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "occurred_at": "2026-09-26T19:53:53.484518+00:00",
+      "type": "state.committed",
+      "cause": "run.created",
+      "run_revision": 1,
+      "complete_event_canonical_sha256": "598ab5dc8645918962d6389288cc6d244b3ce6af249b89fd79a3ca575d034508",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "screen",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+          "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0",
+          "decision_target": "evidence_availability",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "evidence_review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "control_overlap",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "contradictions_first",
+          "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "olonne-18:compare:compute_features:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "olonne-18:assess:assess_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "olonne-18:review:review_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "olonne-18:report:publish_shortlist:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+          "kind": "reference_assets",
+          "content_hash": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba"
+        },
+        {
+          "artifact_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+          "kind": "source_manifest",
+          "content_hash": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "queued",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 1,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": true
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 2,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:2",
+      "operation_id": "bind-case:run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "occurred_at": "2026-09-26T19:53:53.505850+00:00",
+      "type": "state.committed",
+      "cause": "evaluation.case_bound",
+      "run_revision": 2,
+      "complete_event_canonical_sha256": "c4709d6bd9b8ec8d8745908a8a564b27a1285c99dd2d5433875c477b8c4acf32",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "queued",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 1,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": true
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 3,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:3",
+      "operation_id": "evidence-revision-cdf1e4a50fae4b58ab2d9aebbbe95c01",
+      "occurred_at": "2026-09-26T19:53:53.511708+00:00",
+      "type": "state.committed",
+      "cause": "evidence.revised",
+      "run_revision": 3,
+      "complete_event_canonical_sha256": "35ed54977d8790f7e2f8b23c6319cdc94486ec606fc5274406fef97d1a716594",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "olonne-18:assess:assess_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "olonne-18:assess:assess_candidate:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "olonne-18:compare:compute_features:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "olonne-18:compare:compute_features:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "expression_comparison",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+          "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0",
+          "decision_target": "evidence_availability",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "evidence_review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "control_overlap",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "contradictions_first",
+          "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+          "canonical_question_key": "olonne-18:evidence_review:review_candidate:r0:revision1",
+          "decision_target": "evidence_availability",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "evidence_review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "control_overlap",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "contradictions_first",
+          "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "olonne-18:report:publish_shortlist:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "olonne-18:report:publish_shortlist:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:report:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "olonne-18:review:review_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "olonne-18:review:review_candidate:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:evidence_review:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:compare:r0:revision1",
+            "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:assess:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:review:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65",
+          "kind": "evidence_revision",
+          "content_hash": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "revising",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 4,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:4",
+      "operation_id": "claim-75b0a71444484d91b004de2466aaa707",
+      "occurred_at": "2026-09-26T19:53:53.535261+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 4,
+      "complete_event_canonical_sha256": "ecfeafe4cefa50b2d87c3f6d20bec3e2526a58332eda55d2a2cd6bf1393665eb",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 5,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:5",
+      "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0:1:attempt-1aa30c136d284f25afa72c205320706f",
+      "occurred_at": "2026-09-26T19:53:53.548260+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 5,
+      "complete_event_canonical_sha256": "dcdd6d9773e86d20ae3d0d02edcc83d301ef5f13cbc09e0eb1d35a396a1697d0",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:53:53.548119+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 12000,
+            "tools": 4,
+            "cost_usd": 0.0,
+            "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0:1:attempt-1aa30c136d284f25afa72c205320706f"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 12000,
+            "uncertain_tokens": 0,
+            "reserved_tools": 4,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 6,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:6",
+      "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1:1:attempt-04b2f75a3e824ae2afb1386b62e53cd6",
+      "occurred_at": "2026-09-26T19:53:53.704918+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 6,
+      "complete_event_canonical_sha256": "1117eb4f0a01d4f5eb4d7106096eae2cc9000df2106b9406b89d43c917a04ee1",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "result_artifact_ids": [],
+          "reservation": {
+            "tokens": 12000,
+            "tools": 4,
+            "cost_usd": 0.0,
+            "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1:1:attempt-04b2f75a3e824ae2afb1386b62e53cd6"
+          },
+          "started_at": "2026-09-26T19:53:53.704764+00:00",
+          "coordinator_epoch": 1
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 24000,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 7,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:7",
+      "operation_id": "extend-reservation-6bafa71e94144445b049480f49c4ab0d",
+      "occurred_at": "2026-09-26T19:53:53.732273+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 7,
+      "complete_event_canonical_sha256": "01f8d47a2e88f5f27b4a043b06713fccdc9ff20c11a1bb729979a9f6c2b154a2",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:53:53.548119+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 26963,
+            "tools": 4,
+            "cost_usd": 0.0060685800000000005,
+            "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0:1:attempt-1aa30c136d284f25afa72c205320706f"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 38963,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.0060685800000000005
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 8,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:8",
+      "operation_id": "extend-reservation-0d30fdc8d7fa4dffa1e73c6d57a19b91",
+      "occurred_at": "2026-09-26T19:53:53.745754+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 8,
+      "complete_event_canonical_sha256": "9f20fbcaec3b3cc5173a4e0cad5da62e527d071f3747ecbf8bd30d91b9bc595d",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "result_artifact_ids": [],
+          "reservation": {
+            "tokens": 27028,
+            "tools": 4,
+            "cost_usd": 0.00607768,
+            "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1:1:attempt-04b2f75a3e824ae2afb1386b62e53cd6"
+          },
+          "started_at": "2026-09-26T19:53:53.704764+00:00",
+          "coordinator_epoch": 1
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 53991,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.01214626
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 9,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:9",
+      "operation_id": "extend-reservation-c0c75c4d710a42b991ef4aa217ad7c1a",
+      "occurred_at": "2026-09-26T19:53:55.951876+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 9,
+      "complete_event_canonical_sha256": "ff2ccb45b51c5f11e8fcba587f6404fd2015d50c93663e17910d4bd24d0820ba",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:53:53.548119+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 51476,
+            "tools": 4,
+            "cost_usd": 0.015013040000000002,
+            "operation_id": "reserve:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0:1:attempt-1aa30c136d284f25afa72c205320706f"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 78504,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.02109072
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 10,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:10",
+      "operation_id": "failure-34eed1b726434562aa9dc3e400535cfa",
+      "occurred_at": "2026-09-26T19:53:56.884584+00:00",
+      "type": "state.committed",
+      "cause": "task.failed",
+      "run_revision": 10,
+      "complete_event_canonical_sha256": "7f4e5293006a8127e524705c1b2b5a035fb955a83da57d2f1b82e5658fb3cf31",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0:revision1",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, and reference evidence are available?",
+          "canonical_question_key": "olonne-18:inspect_evidence:inspect_evidence:r0:revision1",
+          "decision_target": "evidence_inventory",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect_evidence",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "failed",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:inspect_evidence:r0",
+          "result_artifact_ids": [],
+          "started_at": "2026-09-26T19:53:53.704764+00:00",
+          "coordinator_epoch": 1,
+          "failure_artifact_ids": [
+            "artifact-d1ca9578501a41d6a2c660c60ebf0b8e"
+          ],
+          "failed_attempt_usage": {
+            "tokens": 4211,
+            "tool_calls": 2,
+            "model_calls": 1,
+            "cost_usd": 0.0005672632,
+            "duration_seconds": 3.1561
+          },
+          "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+          "failed_at": "2026-09-26T19:53:56.883226+00:00"
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "artifact-d1ca9578501a41d6a2c660c60ebf0b8e",
+          "kind": "worker_failure_trace",
+          "content_hash": "240d2a36e8d27a2194955ef8ec246d086d51daec425e70ba1194f1a846034b34"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f",
+            "artifact:artifact-d1ca9578501a41d6a2c660c60ebf0b8e": "240d2a36e8d27a2194955ef8ec246d086d51daec425e70ba1194f1a846034b34"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 4211,
+            "tool_calls": 2,
+            "model_calls": 1,
+            "cost_usd": 0.0005672632,
+            "reserved_tokens": 51476,
+            "uncertain_tokens": 0,
+            "reserved_tools": 4,
+            "reserved_cost_usd": 0.01501304
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 11,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:11",
+      "operation_id": "accept:run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0:1:1",
+      "occurred_at": "2026-09-26T19:53:57.952683+00:00",
+      "type": "state.committed",
+      "cause": "task.completed",
+      "run_revision": 11,
+      "complete_event_canonical_sha256": "cf58065446c39603b395abb5f6c65d460eeaf2c68caeca180ec17ee0ea68b378",
+      "task_upserts": [
+        {
+          "task_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:olonne-18:screen:r0",
+          "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+          "candidate_id": "olonne-18",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "olonne-18:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18",
+              "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "complete",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:53:53.548119+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {},
+          "completed_at": "2026-09-26T19:53:57.951895+00:00",
+          "result_artifact_ids": [
+            "artifact-dca9006fdb784a90b4faf7b2048d473e",
+            "artifact-7c3936d9f1fd4f46bb3e45f7e6d0fd35",
+            "artifact-28e047f691a44978b70b89efe9fc6333",
+            "artifact-f818f80283104dd19ed065bfeeb29156"
+          ]
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "artifact-dca9006fdb784a90b4faf7b2048d473e",
+          "kind": "scientific_tool_result",
+          "content_hash": "f40f2061121ce2a7726ffae39864aac0412441a1de0d4b94b561b7a8a8d846cf"
+        },
+        {
+          "artifact_id": "artifact-7c3936d9f1fd4f46bb3e45f7e6d0fd35",
+          "kind": "scientific_tool_result",
+          "content_hash": "c624c7dcb87f9ad7541444eccc1abdc69ca835b71a942da4f259eb09a4ac32b9"
+        },
+        {
+          "artifact_id": "artifact-28e047f691a44978b70b89efe9fc6333",
+          "kind": "scientific_tool_result",
+          "content_hash": "6f9eddfdef7811b6d630cefed314e112cc1e96ea1f1d8bbe909e502fefdd2a05"
+        },
+        {
+          "artifact_id": "artifact-f818f80283104dd19ed065bfeeb29156",
+          "kind": "worker_trace",
+          "content_hash": "3d5fb6626c2b2ac609e2a94811178716abe1038c07abe1406caa0703bc155500"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f",
+            "artifact:artifact-d1ca9578501a41d6a2c660c60ebf0b8e": "240d2a36e8d27a2194955ef8ec246d086d51daec425e70ba1194f1a846034b34",
+            "artifact:artifact-dca9006fdb784a90b4faf7b2048d473e": "f40f2061121ce2a7726ffae39864aac0412441a1de0d4b94b561b7a8a8d846cf",
+            "artifact:artifact-7c3936d9f1fd4f46bb3e45f7e6d0fd35": "c624c7dcb87f9ad7541444eccc1abdc69ca835b71a942da4f259eb09a4ac32b9",
+            "artifact:artifact-28e047f691a44978b70b89efe9fc6333": "6f9eddfdef7811b6d630cefed314e112cc1e96ea1f1d8bbe909e502fefdd2a05",
+            "artifact:artifact-f818f80283104dd19ed065bfeeb29156": "3d5fb6626c2b2ac609e2a94811178716abe1038c07abe1406caa0703bc155500"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 17294,
+            "tool_calls": 5,
+            "model_calls": 3,
+            "cost_usd": 0.0020998880000000003,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0,
+            "reserved_tools": 0,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "sequence": 12,
+      "event_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2:12",
+      "operation_id": "finish-aee0bfa9d56149858c0b1878d3b34753",
+      "occurred_at": "2026-09-26T19:53:57.969887+00:00",
+      "type": "state.committed",
+      "cause": "run.stopped",
+      "run_revision": 12,
+      "complete_event_canonical_sha256": "bfe7daae92253fdf4c244e503dc73e1da2207ed1c2e51f318eeb0761bc66720d",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "blocked",
+          "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:olonne-18:expression": 2,
+            "scope:olonne-18:annotation": 1,
+            "scope:olonne-18:sequence": 1,
+            "scope:olonne-18:catalog": 1,
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:reference:olonne-18": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+            "artifact:run-e9b7d35c48e245a7ace4dce1f77e10d2:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-8cb2b64dfb4b43f2abf3c2739fbd2b65": "41ace87ae72a01041a5a9a2763e8cb5113bd7f3a96d12df0e6ec0b6f4849452f",
+            "artifact:artifact-d1ca9578501a41d6a2c660c60ebf0b8e": "240d2a36e8d27a2194955ef8ec246d086d51daec425e70ba1194f1a846034b34",
+            "artifact:artifact-dca9006fdb784a90b4faf7b2048d473e": "f40f2061121ce2a7726ffae39864aac0412441a1de0d4b94b561b7a8a8d846cf",
+            "artifact:artifact-7c3936d9f1fd4f46bb3e45f7e6d0fd35": "c624c7dcb87f9ad7541444eccc1abdc69ca835b71a942da4f259eb09a4ac32b9",
+            "artifact:artifact-28e047f691a44978b70b89efe9fc6333": "6f9eddfdef7811b6d630cefed314e112cc1e96ea1f1d8bbe909e502fefdd2a05",
+            "artifact:artifact-f818f80283104dd19ed065bfeeb29156": "3d5fb6626c2b2ac609e2a94811178716abe1038c07abe1406caa0703bc155500"
+          },
+          "evidence_availability": {
+            "olonne-18": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 17294,
+            "tool_calls": 5,
+            "model_calls": 3,
+            "cost_usd": 0.0020998880000000003,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0,
+            "reserved_tools": 0,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

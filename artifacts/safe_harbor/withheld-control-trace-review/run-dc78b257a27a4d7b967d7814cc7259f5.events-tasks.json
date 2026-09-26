@@ -1,0 +1,2288 @@
+{
+  "projection_note": "Exact event envelopes/task upserts; large artifact payloads referenced by immutable ID/hash. Full run export is not duplicated.",
+  "snapshot_tasks": [
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "screen_regions",
+      "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+      "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [],
+      "input_read_set": [
+        {
+          "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+          "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+          "kind": "artifact"
+        },
+        {
+          "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+          "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "kind": "artifact"
+        },
+        {
+          "key": "criteria:v1",
+          "version": 1,
+          "kind": "criteria"
+        },
+        {
+          "key": "scope:pansio-1:annotation",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:pansio-1:catalog",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:pansio-1:sequence",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "source:data_version",
+          "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "kind": "artifact"
+        }
+      ],
+      "role_id": "screen",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "inspect_candidate",
+        "screen_candidate"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "complete",
+      "attempt": 1,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "started_at": "2026-09-26T19:42:21.099864+00:00",
+      "coordinator_epoch": 1,
+      "reservation": {},
+      "completed_at": "2026-09-26T19:42:56.919638+00:00",
+      "result_artifact_ids": [
+        "artifact-70de77f1ff664347a6acb0147361fe4e",
+        "artifact-746556caaa604852ade5d2b1d8a0f0c5",
+        "artifact-8617d8e066da47c5840ad018d9ccbb4c",
+        "artifact-fcbc5f94b8184392a03efdc937826218",
+        "artifact-20671955b7a1412e992a8a8d87791d7d"
+      ]
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "inspect_evidence",
+      "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+      "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [],
+      "input_read_set": [],
+      "role_id": "inspect",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice",
+        "reference_sequence"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "compute_features",
+      "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+      "canonical_question_key": "pansio-1:compare:compute_features:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "compare",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "assess_candidate",
+      "question": "Do these measured expression changes justify excluding this candidate region?",
+      "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "assess",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "review_candidate",
+      "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+      "canonical_question_key": "pansio-1:review:review_candidate:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "review",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "screen_candidate",
+        "control_overlap"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "publish_shortlist",
+      "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+      "canonical_question_key": "pansio-1:report:publish_shortlist:r0",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0"
+      ],
+      "input_read_set": [],
+      "role_id": "report",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "superseded",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 0,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0:revision1",
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "assess_candidate",
+      "question": "Do these measured expression changes justify excluding this candidate region?",
+      "canonical_question_key": "pansio-1:assess:assess_candidate:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "assess",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "compute_features",
+      "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+      "canonical_question_key": "pansio-1:compare:compute_features:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "compare",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "inspect_evidence",
+      "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+      "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [],
+      "input_read_set": [
+        {
+          "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+          "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+          "kind": "artifact"
+        },
+        {
+          "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+          "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "kind": "artifact"
+        },
+        {
+          "key": "criteria:v1",
+          "version": 1,
+          "kind": "criteria"
+        },
+        {
+          "key": "scope:pansio-1:annotation",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:pansio-1:catalog",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:pansio-1:expression",
+          "version": 2,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:pansio-1:sequence",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "source:data_version",
+          "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "kind": "artifact"
+        }
+      ],
+      "role_id": "inspect",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice",
+        "reference_sequence"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "failed",
+      "attempt": 1,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+      "result_artifact_ids": [],
+      "started_at": "2026-09-26T19:42:21.129590+00:00",
+      "coordinator_epoch": 1,
+      "failure_artifact_ids": [
+        "artifact-9e516ec939284fa1a92c05b48b924927"
+      ],
+      "failed_attempt_usage": {
+        "tokens": 4579,
+        "tool_calls": 2,
+        "model_calls": 1,
+        "cost_usd": 0.0006215384,
+        "duration_seconds": 4.3977
+      },
+      "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+      "failed_at": "2026-09-26T19:42:25.549493+00:00"
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0:revision1",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "publish_shortlist",
+      "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+      "canonical_question_key": "pansio-1:report:publish_shortlist:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "report",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    },
+    {
+      "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "candidate_id": "pansio-1",
+      "kind": "review_candidate",
+      "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+      "canonical_question_key": "pansio-1:review:review_candidate:r0:revision1",
+      "decision_target": "expression_exclusion_concern",
+      "depends_on": [
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+        "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1"
+      ],
+      "input_read_set": [],
+      "role_id": "review",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "allowed_tools": [
+        "screen_candidate",
+        "control_overlap"
+      ],
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "budget": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2
+      },
+      "status": "reopened",
+      "attempt": 0,
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "plan_revision": 1,
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+      "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0",
+      "result_artifact_ids": [],
+      "reservation": {}
+    }
+  ],
+  "events": [
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 1,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:1",
+      "operation_id": "create:run-dc78b257a27a4d7b967d7814cc7259f5",
+      "occurred_at": "2026-09-26T19:42:21.037629+00:00",
+      "type": "state.committed",
+      "cause": "run.created",
+      "run_revision": 1,
+      "complete_event_canonical_sha256": "42fac4b1a1b49deda79f9c687c7468bfd1d235279c149438b61d84283f2bd01c",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "screen",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "pansio-1:compare:compute_features:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "pansio-1:review:review_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "pansio-1:report:publish_shortlist:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "queued",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ]
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+          "kind": "reference_assets",
+          "content_hash": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554"
+        },
+        {
+          "artifact_id": "run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+          "kind": "source_manifest",
+          "content_hash": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "queued",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 1,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": true
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 2,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:2",
+      "operation_id": "bind-case:run-dc78b257a27a4d7b967d7814cc7259f5",
+      "occurred_at": "2026-09-26T19:42:21.059341+00:00",
+      "type": "state.committed",
+      "cause": "evaluation.case_bound",
+      "run_revision": 2,
+      "complete_event_canonical_sha256": "380316da0e283af183f1c4e4e72ca5f444d45e8a192af439abfa86fd7c0c9327",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "queued",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 1,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": true
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 3,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:3",
+      "operation_id": "evidence-revision-77ed6b81efe9463d88e943b570bad3aa",
+      "occurred_at": "2026-09-26T19:42:21.066695+00:00",
+      "type": "state.committed",
+      "cause": "evidence.revised",
+      "run_revision": 3,
+      "complete_event_canonical_sha256": "1b9dcf5cf6cb2da1938f2426b8bab29454a7b0c0cfb10c5bc791be5017040b67",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "assess_candidate",
+          "question": "Do these measured expression changes justify excluding this candidate region?",
+          "canonical_question_key": "pansio-1:assess:assess_candidate:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "assess",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "pansio-1:compare:compute_features:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "compute_features",
+          "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+          "canonical_question_key": "pansio-1:compare:compute_features:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "compare",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "pansio-1:report:publish_shortlist:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "publish_shortlist",
+          "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+          "canonical_question_key": "pansio-1:report:publish_shortlist:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "report",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:report:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "pansio-1:review:review_candidate:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "superseded",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "superseded_by": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1",
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "reservation": {}
+        },
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "review_candidate",
+          "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+          "canonical_question_key": "pansio-1:review:review_candidate:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:compare:r0:revision1",
+            "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:assess:r0:revision1"
+          ],
+          "input_read_set": [],
+          "role_id": "review",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "reopened",
+          "attempt": 0,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:review:r0",
+          "result_artifact_ids": [],
+          "reservation": {}
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "evidence-availability-ae6f793e53024943bca12b815feeaff0",
+          "kind": "evidence_revision",
+          "content_hash": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "revising",
+          "stop_reason": null,
+          "coordinator_epoch": 0,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 4,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:4",
+      "operation_id": "claim-67bad40e48bb49f08d04d377c4c57e20",
+      "occurred_at": "2026-09-26T19:42:21.086474+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 4,
+      "complete_event_canonical_sha256": "941fd53e3cd5703f50ea9749d9c095dda31d16208dd30b6ef8a7925d18baa324",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 5,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:5",
+      "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0:1:attempt-3f76ad509d0447938ba3bf707b62c139",
+      "occurred_at": "2026-09-26T19:42:21.100013+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 5,
+      "complete_event_canonical_sha256": "ca9f572b8e8cd1e7dad635f690edeb8fc6db87fd5c1eb385f4fd7bdc5a5d1178",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:42:21.099864+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 12000,
+            "tools": 4,
+            "cost_usd": 0.0,
+            "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0:1:attempt-3f76ad509d0447938ba3bf707b62c139"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 12000,
+            "uncertain_tokens": 0,
+            "reserved_tools": 4,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 6,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:6",
+      "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1:1:attempt-a89d89697cb6443281149406dce3baed",
+      "occurred_at": "2026-09-26T19:42:21.129748+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 6,
+      "complete_event_canonical_sha256": "2d1a5359560d1532d443324f479adaadf0ee9869e3c1153e79bdf7c6c3e1bd80",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "result_artifact_ids": [],
+          "reservation": {
+            "tokens": 12000,
+            "tools": 4,
+            "cost_usd": 0.0,
+            "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1:1:attempt-a89d89697cb6443281149406dce3baed"
+          },
+          "started_at": "2026-09-26T19:42:21.129590+00:00",
+          "coordinator_epoch": 1
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 24000,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 7,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:7",
+      "operation_id": "extend-reservation-4cfc81464e79493a941cf26e6c684d22",
+      "occurred_at": "2026-09-26T19:42:21.159800+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 7,
+      "complete_event_canonical_sha256": "7aee0a6e3aaee78fc38bf2123d8a0527bd1865446ee2f1493662d74e40418d49",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:42:21.099864+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 26953,
+            "tools": 4,
+            "cost_usd": 0.00606718,
+            "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0:1:attempt-3f76ad509d0447938ba3bf707b62c139"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 38953,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.00606718
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 8,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:8",
+      "operation_id": "extend-reservation-bf8f9be7a479461f987e182690545495",
+      "occurred_at": "2026-09-26T19:42:21.175730+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 8,
+      "complete_event_canonical_sha256": "b8475148013a74bec7f644224d1dd58d7322894caa169c10a3fb176620fd4d0e",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "result_artifact_ids": [],
+          "reservation": {
+            "tokens": 28053,
+            "tools": 4,
+            "cost_usd": 0.00622118,
+            "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1:1:attempt-a89d89697cb6443281149406dce3baed"
+          },
+          "started_at": "2026-09-26T19:42:21.129590+00:00",
+          "coordinator_epoch": 1
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 55006,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.01228836
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 9,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:9",
+      "operation_id": "extend-reservation-92c7668a555d4fd496677b1f7f53a5d7",
+      "occurred_at": "2026-09-26T19:42:23.617148+00:00",
+      "type": "state.committed",
+      "cause": "task.reservation_extended",
+      "run_revision": 9,
+      "complete_event_canonical_sha256": "b4af5bbad46cb31916f762babe703543a4dffd96f7dde700416e44a5143e871b",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "running",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:42:21.099864+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {
+            "tokens": 66017,
+            "tools": 4,
+            "cost_usd": 0.01704178,
+            "operation_id": "reserve:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0:1:attempt-3f76ad509d0447938ba3bf707b62c139"
+          }
+        }
+      ],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 0,
+            "tool_calls": 0,
+            "model_calls": 0,
+            "cost_usd": null,
+            "reserved_tokens": 94070,
+            "uncertain_tokens": 0,
+            "reserved_tools": 8,
+            "reserved_cost_usd": 0.02326296
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 10,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:10",
+      "operation_id": "failure-ac2ce282d8624d9382f2029becac1781",
+      "occurred_at": "2026-09-26T19:42:25.550456+00:00",
+      "type": "state.committed",
+      "cause": "task.failed",
+      "run_revision": 10,
+      "complete_event_canonical_sha256": "31e25e667309d6185c8e35155a88ca6eb59414468c42ac3463c19a6bf6f98f5b",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0:revision1",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "inspect_evidence",
+          "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+          "canonical_question_key": "pansio-1:inspect:inspect_evidence:r0:revision1",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "inspect",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "failed",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context.",
+          "plan_revision": 1,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "reopen_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered.",
+          "supersedes_task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:inspect:r0",
+          "result_artifact_ids": [],
+          "started_at": "2026-09-26T19:42:21.129590+00:00",
+          "coordinator_epoch": 1,
+          "failure_artifact_ids": [
+            "artifact-9e516ec939284fa1a92c05b48b924927"
+          ],
+          "failed_attempt_usage": {
+            "tokens": 4579,
+            "tool_calls": 2,
+            "model_calls": 1,
+            "cost_usd": 0.0006215384,
+            "duration_seconds": 4.3977
+          },
+          "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+          "failed_at": "2026-09-26T19:42:25.549493+00:00"
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "artifact-9e516ec939284fa1a92c05b48b924927",
+          "kind": "worker_failure_trace",
+          "content_hash": "08385aaf12d38ea8d8c3491c56387fa69b6c31b021b5e4b8deab604ddc456161"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d",
+            "artifact:artifact-9e516ec939284fa1a92c05b48b924927": "08385aaf12d38ea8d8c3491c56387fa69b6c31b021b5e4b8deab604ddc456161"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 4579,
+            "tool_calls": 2,
+            "model_calls": 1,
+            "cost_usd": 0.0006215384,
+            "reserved_tokens": 66017,
+            "uncertain_tokens": 0,
+            "reserved_tools": 4,
+            "reserved_cost_usd": 0.01704178
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 11,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:11",
+      "operation_id": "accept:run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0:1:1",
+      "occurred_at": "2026-09-26T19:42:56.921060+00:00",
+      "type": "state.committed",
+      "cause": "task.completed",
+      "run_revision": 11,
+      "complete_event_canonical_sha256": "8aae4f81d4ecdd10e4b3e9489ed30ce4a4b7519b927b2c3b388a508d03faafaf",
+      "task_upserts": [
+        {
+          "task_id": "run-dc78b257a27a4d7b967d7814cc7259f5:pansio-1:screen:r0",
+          "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+          "candidate_id": "pansio-1",
+          "kind": "screen_regions",
+          "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+          "canonical_question_key": "pansio-1:screen:screen_regions:r0",
+          "decision_target": "expression_exclusion_concern",
+          "depends_on": [],
+          "input_read_set": [
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1",
+              "version": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+              "kind": "artifact"
+            },
+            {
+              "key": "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest",
+              "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:pansio-1:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:pansio-1:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            }
+          ],
+          "role_id": "screen",
+          "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+          "allowed_tools": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+          "budget": {
+            "max_tool_calls": 4,
+            "max_model_calls": 2
+          },
+          "status": "complete",
+          "attempt": 1,
+          "context_policy": "relevant_evidence",
+          "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+          "plan_revision": 0,
+          "runtime_tools": [
+            "retrieve_evidence"
+          ],
+          "started_at": "2026-09-26T19:42:21.099864+00:00",
+          "coordinator_epoch": 1,
+          "reservation": {},
+          "completed_at": "2026-09-26T19:42:56.919638+00:00",
+          "result_artifact_ids": [
+            "artifact-70de77f1ff664347a6acb0147361fe4e",
+            "artifact-746556caaa604852ade5d2b1d8a0f0c5",
+            "artifact-8617d8e066da47c5840ad018d9ccbb4c",
+            "artifact-fcbc5f94b8184392a03efdc937826218",
+            "artifact-20671955b7a1412e992a8a8d87791d7d"
+          ]
+        }
+      ],
+      "artifact_upserts": [
+        {
+          "artifact_id": "artifact-70de77f1ff664347a6acb0147361fe4e",
+          "kind": "scientific_tool_result",
+          "content_hash": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13"
+        },
+        {
+          "artifact_id": "artifact-746556caaa604852ade5d2b1d8a0f0c5",
+          "kind": "scientific_tool_result",
+          "content_hash": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9"
+        },
+        {
+          "artifact_id": "artifact-8617d8e066da47c5840ad018d9ccbb4c",
+          "kind": "scientific_tool_result",
+          "content_hash": "50dbf5ab22899ecbe870ee7b2f79d73bdce2bed2196d71945de26e57c737f205"
+        },
+        {
+          "artifact_id": "artifact-fcbc5f94b8184392a03efdc937826218",
+          "kind": "scientific_tool_result",
+          "content_hash": "ba3110cdc7e5165270d9ad452356e2d40013469d78fa26a83593f2b22b774587"
+        },
+        {
+          "artifact_id": "artifact-20671955b7a1412e992a8a8d87791d7d",
+          "kind": "worker_trace",
+          "content_hash": "9d5b756419a25115c9a2993929160ae1a92cc0830a227f5b0da0b8cae00cd312"
+        }
+      ],
+      "run_upserts": [
+        {
+          "status": "running",
+          "stop_reason": null,
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d",
+            "artifact:artifact-9e516ec939284fa1a92c05b48b924927": "08385aaf12d38ea8d8c3491c56387fa69b6c31b021b5e4b8deab604ddc456161",
+            "artifact:artifact-70de77f1ff664347a6acb0147361fe4e": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+            "artifact:artifact-746556caaa604852ade5d2b1d8a0f0c5": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+            "artifact:artifact-8617d8e066da47c5840ad018d9ccbb4c": "50dbf5ab22899ecbe870ee7b2f79d73bdce2bed2196d71945de26e57c737f205",
+            "artifact:artifact-fcbc5f94b8184392a03efdc937826218": "ba3110cdc7e5165270d9ad452356e2d40013469d78fa26a83593f2b22b774587",
+            "artifact:artifact-20671955b7a1412e992a8a8d87791d7d": "9d5b756419a25115c9a2993929160ae1a92cc0830a227f5b0da0b8cae00cd312"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 24412,
+            "tool_calls": 6,
+            "model_calls": 3,
+            "cost_usd": 0.0040416992,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0,
+            "reserved_tools": 0,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "schema_version": 1,
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "sequence": 12,
+      "event_id": "run-dc78b257a27a4d7b967d7814cc7259f5:12",
+      "operation_id": "finish-eaf4f61ef6034b4bba6bbb47720c2152",
+      "occurred_at": "2026-09-26T19:42:56.958356+00:00",
+      "type": "state.committed",
+      "cause": "run.stopped",
+      "run_revision": 12,
+      "complete_event_canonical_sha256": "3a07f33289b9e4280ea31ea636b6a45ba8766eaa0469194c98ed5c5a925c9d4c",
+      "task_upserts": [],
+      "artifact_upserts": [],
+      "run_upserts": [
+        {
+          "status": "blocked",
+          "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+          "coordinator_epoch": 1,
+          "evidence_versions": {
+            "criteria:v1": 1,
+            "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "scope:pansio-1:expression": 2,
+            "scope:pansio-1:annotation": 1,
+            "scope:pansio-1:sequence": 1,
+            "scope:pansio-1:catalog": 1,
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:reference:pansio-1": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+            "artifact:run-dc78b257a27a4d7b967d7814cc7259f5:source-manifest": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+            "artifact:evidence-availability-ae6f793e53024943bca12b815feeaff0": "68a443d826eac367d86a74e8b53720b928d381cd34f44d990f7e48884511d88d",
+            "artifact:artifact-9e516ec939284fa1a92c05b48b924927": "08385aaf12d38ea8d8c3491c56387fa69b6c31b021b5e4b8deab604ddc456161",
+            "artifact:artifact-70de77f1ff664347a6acb0147361fe4e": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+            "artifact:artifact-746556caaa604852ade5d2b1d8a0f0c5": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+            "artifact:artifact-8617d8e066da47c5840ad018d9ccbb4c": "50dbf5ab22899ecbe870ee7b2f79d73bdce2bed2196d71945de26e57c737f205",
+            "artifact:artifact-fcbc5f94b8184392a03efdc937826218": "ba3110cdc7e5165270d9ad452356e2d40013469d78fa26a83593f2b22b774587",
+            "artifact:artifact-20671955b7a1412e992a8a8d87791d7d": "9d5b756419a25115c9a2993929160ae1a92cc0830a227f5b0da0b8cae00cd312"
+          },
+          "evidence_availability": {
+            "pansio-1": {
+              "control_evidence": false
+            }
+          },
+          "budget": {
+            "token_limit": 400000,
+            "tool_limit": 40,
+            "cost_limit_usd": 5.0,
+            "tokens_used": 24412,
+            "tool_calls": 6,
+            "model_calls": 3,
+            "cost_usd": 0.0040416992,
+            "reserved_tokens": 0,
+            "uncertain_tokens": 0,
+            "reserved_tools": 0,
+            "reserved_cost_usd": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}

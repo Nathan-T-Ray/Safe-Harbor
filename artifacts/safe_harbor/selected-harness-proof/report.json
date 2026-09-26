@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-26T19:56:53.341882+00:00",
+  "mode": "read_only_actual_api_and_mongodb_real_model_records",
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "experiment_status": "running_validation",
+  "status": "pending",
+  "checks": [
+    {
+      "name": "API experiment has identical frozen manifest to MongoDB",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Experiment records genuine model mode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Automatic proposal produced the recorded H1 version",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "Candidate harness is durably saved",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "pending": [
+    "Validation selection has not been committed."
+  ],
+  "evidence": {
+    "proposal_candidate_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+    "selection": null,
+    "selected_run": null
+  },
+  "model_calls_by_inspection": 0,
+  "ledger_writes": 0,
+  "scoring_recomputed": false,
+  "limitations": [
+    "Structural execution and selected-version reuse do not establish improvement.",
+    "A rejected proposal remains a rejection; subsequent parent reuse is reported as such.",
+    "This reads the actual experiment; it never substitutes synthetic promotion or run records."
+  ]
+}

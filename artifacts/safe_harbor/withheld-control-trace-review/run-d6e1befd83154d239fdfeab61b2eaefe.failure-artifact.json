@@ -1,0 +1,1146 @@
+{
+  "artifact_id": "artifact-f7651b767b9240d5a30b63e4d67bdd67",
+  "run_id": "run-d6e1befd83154d239fdfeab61b2eaefe",
+  "kind": "worker_failure_trace",
+  "revision": 2,
+  "content_hash": "b3b2770fcfd527ad279ec8abf07e1dcc30c42781f23cd7be40984d08614c4926",
+  "data": {
+    "mode": "real_model",
+    "status": "failed",
+    "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision",
+    "role_id": "inspect",
+    "context_packet": {
+      "objective": "Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+      "question": "What expression tables, methods, source rows, control comparisons, and reference evidence are available?",
+      "candidate": {
+        "candidate_id": "olonne-18",
+        "name": "Olônne-18",
+        "assembly": "GRCh38",
+        "chromosome": "chr18",
+        "start": 56534774,
+        "end": 56536439,
+        "coordinate_system": "zero_based_half_open",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "group_id": "autio-chr18-56000001-57000000",
+        "source_coordinates": {
+          "assembly": "GRCh38",
+          "chromosome": "18",
+          "start": 56534775,
+          "end": 56536439,
+          "width": 1665,
+          "coordinate_system": "one_based_closed",
+          "conversion": "internal_start = source_start - 1; internal_end = source_end",
+          "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+          "source_id": "elife-79592-supp1.xlsx",
+          "sheet": "overlap safe-active",
+          "row": 54,
+          "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+        },
+        "evidence_ids": [
+          "source:supp1",
+          "source:supp5:olonne-18"
+        ],
+        "origin": "publication-derived candidate shortlist",
+        "publication_blat_ratio": 0.15615615615615616
+      },
+      "assembly": "GRCh38",
+      "cell_context": "H1 human embryonic stem cells",
+      "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "criteria": {
+        "criteria_version": "safe-harbor-criteria-v1",
+        "immutable_to_harness_optimizer": true,
+        "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+        "source_section": "Materials and methods: In silico search for putative GSH",
+        "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+        "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+        "criteria": [
+          {
+            "criterion_id": "outside_gene_body",
+            "required": true,
+            "comparison": "overlap_count == 0",
+            "inputs": [
+              "candidate_interval",
+              "GENCODE_v36_transcript_spans"
+            ],
+            "description": "Candidate interval does not overlap an annotated transcription unit.",
+            "missing_data": "incomplete"
+          },
+          {
+            "criterion_id": "tss_distance",
+            "required": true,
+            "comparison": "distance_bp > 50000",
+            "threshold_bp": 50000,
+            "inputs": [
+              "candidate_interval",
+              "GENCODE_v36_transcript_TSS"
+            ],
+            "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+            "missing_data": "incomplete",
+            "distance_metric": "nearest_reference_base_distance_bp"
+          },
+          {
+            "criterion_id": "mirna_distance",
+            "required": true,
+            "comparison": "distance_bp > 300000",
+            "threshold_bp": 300000,
+            "inputs": [
+              "candidate_interval",
+              "GENCODE_v36_miRNA_gene_spans"
+            ],
+            "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+            "missing_data": "incomplete",
+            "distance_metric": "nearest_reference_base_distance_bp"
+          },
+          {
+            "criterion_id": "lncrna_distance",
+            "required": true,
+            "comparison": "distance_bp > 100000",
+            "threshold_bp": 100000,
+            "inputs": [
+              "candidate_interval",
+              "GENCODE_v36_lncRNA_gene_spans"
+            ],
+            "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+            "missing_data": "incomplete",
+            "distance_metric": "nearest_reference_base_distance_bp"
+          },
+          {
+            "criterion_id": "cancer_gene_distance",
+            "required": true,
+            "comparison": "distance_bp > 300000",
+            "threshold_bp": 300000,
+            "inputs": [
+              "candidate_interval",
+              "licensed_cancer_gene_coordinates"
+            ],
+            "availability": "unavailable",
+            "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+            "missing_data": "incomplete",
+            "distance_metric": "nearest_reference_base_distance_bp"
+          },
+          {
+            "criterion_id": "outside_dhs_buffer",
+            "required": true,
+            "comparison": "overlap_count == 0",
+            "buffer_bp": 2000,
+            "inputs": [
+              "candidate_interval",
+              "ENCFF503GCK_with_assembly_provenance"
+            ],
+            "availability": "unavailable",
+            "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+            "missing_data": "incomplete"
+          },
+          {
+            "criterion_id": "outside_ultraconserved_regions",
+            "required": true,
+            "comparison": "overlap_count == 0",
+            "inputs": [
+              "candidate_interval",
+              "versioned_GRCh38_ultraconserved_regions"
+            ],
+            "availability": "unavailable",
+            "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+            "missing_data": "incomplete"
+          }
+        ],
+        "experimental_endpoints": [
+          {
+            "endpoint_id": "transcriptome_perturbation",
+            "assay": "RNA-seq, DEseq2",
+            "cell_context": "H1 human embryonic stem cells",
+            "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+            "gene_unit": "unique versioned Ensembl gene ID",
+            "thresholds": {
+              "abs_log2_fold_change_gte": 1,
+              "fdr_lte": 0.01
+            },
+            "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+            "exclusion_threshold": null,
+            "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+          },
+          {
+            "endpoint_id": "nearest_gene_expression",
+            "assay": "qPCR",
+            "cell_context": "H1 human embryonic stem cells",
+            "genes": [
+              "MAGI3",
+              "TXNL1",
+              "ZNRF4"
+            ],
+            "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+            "exclusion_threshold": null,
+            "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+          }
+        ],
+        "evidence_rules": {
+          "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+          "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+          "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+          "H9": "Separate cell context, not automatically applicable to H1."
+        },
+        "distance_convention": {
+          "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+          "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+          "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+        }
+      },
+      "input_read_set": [
+        {
+          "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18",
+          "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+          "kind": "artifact"
+        },
+        {
+          "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest",
+          "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "kind": "artifact"
+        },
+        {
+          "key": "criteria:v1",
+          "version": 1,
+          "kind": "criteria"
+        },
+        {
+          "key": "scope:olonne-18:annotation",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:catalog",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:expression",
+          "version": 2,
+          "kind": "query_scope"
+        },
+        {
+          "key": "scope:olonne-18:sequence",
+          "version": 1,
+          "kind": "query_scope"
+        },
+        {
+          "key": "source:data_version",
+          "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "kind": "artifact"
+        }
+      ],
+      "evidence": [],
+      "omitted_artifact_ids": [],
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice",
+        "reference_sequence"
+      ],
+      "runtime_tools": [
+        "retrieve_evidence"
+      ],
+      "evidence_manifest": [
+        {
+          "artifact_id": "run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18",
+          "kind": "reference_assets",
+          "content_hash": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+          "revision": 1
+        },
+        {
+          "artifact_id": "run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest",
+          "kind": "source_manifest",
+          "content_hash": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+          "revision": 1
+        }
+      ],
+      "case_context": {
+        "case_id": "olonne-18--controls_withheld",
+        "candidate_id": "olonne-18",
+        "scenario_id": "controls_withheld",
+        "assembly": "GRCh38",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "objective": "Do these measured expression changes justify excluding this candidate region?",
+        "question": "Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "instructions": "The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.",
+        "controls_available": false,
+        "evidence_revision_fixture": "withhold-control-evidence"
+      },
+      "context_policy": "relevant_evidence",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "context_selection_trace": {
+        "policy": "relevant_evidence",
+        "max_characters": 28000,
+        "selected_characters": 0,
+        "available_count": 0,
+        "included_artifact_ids": [],
+        "omitted_artifact_ids": []
+      },
+      "remaining_budget": {
+        "token_limit": 400000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": null,
+        "reserved_tokens": 24000,
+        "uncertain_tokens": 0,
+        "reserved_tools": 8,
+        "reserved_cost_usd": 0.0
+      },
+      "evidence_availability": {
+        "control_evidence": false
+      },
+      "task_limits": {
+        "max_tool_calls": 4,
+        "max_model_calls": 2,
+        "tool_allowance_includes": "Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance."
+      },
+      "limitations": [
+        "Only the publication-derived shortlist is investigated.",
+        "GRCh38 is a reference assembly, not a newly sequenced H1 genome.",
+        "Control overlap and proximity cannot establish biological safety or causality."
+      ],
+      "context_limit_bytes": 60000
+    },
+    "messages": [
+      {
+        "role": "system",
+        "content": "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. This task permits at most 4 total tool calls, including retrieve_evidence, and 2 model responses. You may request several independent approved tools together within that task allowance; do not request more. A control overlap or distance cannot establish safety or causality. No global safe label. Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. Do not quote the paper's interpretive conclusion. Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. H9 is a different biological context."
+      },
+      {
+        "role": "user",
+        "content": "{\"objective\": \"Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.\", \"question\": \"What expression tables, methods, source rows, control comparisons, and reference evidence are available?\", \"candidate\": {\"candidate_id\": \"olonne-18\", \"name\": \"Olônne-18\", \"assembly\": \"GRCh38\", \"chromosome\": \"chr18\", \"start\": 56534774, \"end\": 56536439, \"coordinate_system\": \"zero_based_half_open\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"group_id\": \"autio-chr18-56000001-57000000\", \"source_coordinates\": {\"assembly\": \"GRCh38\", \"chromosome\": \"18\", \"start\": 56534775, \"end\": 56536439, \"width\": 1665, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 54, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}, \"evidence_ids\": [\"source:supp1\", \"source:supp5:olonne-18\"], \"origin\": \"publication-derived candidate shortlist\", \"publication_blat_ratio\": 0.15615615615615616}, \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"criteria\": {\"criteria_version\": \"safe-harbor-criteria-v1\", \"immutable_to_harness_optimizer\": true, \"source_url\": \"https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4\", \"source_section\": \"Materials and methods: In silico search for putative GSH\", \"annotation_analysis\": \"GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.\", \"aggregate_rule\": \"Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.\", \"criteria\": [{\"criterion_id\": \"outside_gene_body\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_spans\"], \"description\": \"Candidate interval does not overlap an annotated transcription unit.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"tss_distance\", \"required\": true, \"comparison\": \"distance_bp > 50000\", \"threshold_bp\": 50000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_transcript_TSS\"], \"description\": \"Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"mirna_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_miRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated miRNA gene exceeds 300 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"lncrna_distance\", \"required\": true, \"comparison\": \"distance_bp > 100000\", \"threshold_bp\": 100000, \"inputs\": [\"candidate_interval\", \"GENCODE_v36_lncRNA_gene_spans\"], \"description\": \"Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"cancer_gene_distance\", \"required\": true, \"comparison\": \"distance_bp > 300000\", \"threshold_bp\": 300000, \"inputs\": [\"candidate_interval\", \"licensed_cancer_gene_coordinates\"], \"availability\": \"unavailable\", \"description\": \"Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.\", \"missing_data\": \"incomplete\", \"distance_metric\": \"nearest_reference_base_distance_bp\"}, {\"criterion_id\": \"outside_dhs_buffer\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"buffer_bp\": 2000, \"inputs\": [\"candidate_interval\", \"ENCFF503GCK_with_assembly_provenance\"], \"availability\": \"unavailable\", \"description\": \"Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.\", \"missing_data\": \"incomplete\"}, {\"criterion_id\": \"outside_ultraconserved_regions\", \"required\": true, \"comparison\": \"overlap_count == 0\", \"inputs\": [\"candidate_interval\", \"versioned_GRCh38_ultraconserved_regions\"], \"availability\": \"unavailable\", \"description\": \"Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.\", \"missing_data\": \"incomplete\"}], \"experimental_endpoints\": [{\"endpoint_id\": \"transcriptome_perturbation\", \"assay\": \"RNA-seq, DEseq2\", \"cell_context\": \"H1 human embryonic stem cells\", \"comparison\": \"Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control\", \"gene_unit\": \"unique versioned Ensembl gene ID\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"table_coverage\": \"Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.\", \"exclusion_threshold\": null, \"interpretation\": \"No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions.\"}, {\"endpoint_id\": \"nearest_gene_expression\", \"assay\": \"qPCR\", \"cell_context\": \"H1 human embryonic stem cells\", \"genes\": [\"MAGI3\", \"TXNL1\", \"ZNRF4\"], \"comparison\": \"Targeted and independent untargeted H1 cultures versus reference untargeted H1\", \"exclusion_threshold\": null, \"interpretation\": \"Numerical replicate values are provided; significance alone is not a safety or causality claim.\"}], \"evidence_rules\": {\"supported_for_endpoint\": \"Only a named endpoint, assay and matching cell context can receive experimental support.\", \"conflicting\": \"Contradictory applicable results must be exposed and reconciled.\", \"unknown\": \"Missing results or insufficient justification remain unknown; absence of a result is not a negative result.\", \"H9\": \"Separate cell context, not automatically applicable to H1.\"}, \"distance_convention\": {\"interval_gap_bp\": \"Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.\", \"nearest_reference_base_distance_bp\": \"Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.\", \"criterion_metric\": \"The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis.\"}}, \"input_read_set\": [{\"key\": \"artifact:run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18\", \"version\": \"cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba\", \"kind\": \"artifact\"}, {\"key\": \"artifact:run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest\", \"version\": \"36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b\", \"kind\": \"artifact\"}, {\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:olonne-18:annotation\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:expression\", \"version\": 2, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:sequence\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}], \"evidence\": [], \"omitted_artifact_ids\": [], \"allowed_tools\": [\"list_evidence\", \"table_slice\", \"reference_sequence\"], \"runtime_tools\": [\"retrieve_evidence\"], \"evidence_manifest\": [{\"artifact_id\": \"run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18\", \"kind\": \"reference_assets\", \"content_hash\": \"cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba\", \"revision\": 1}, {\"artifact_id\": \"run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest\", \"kind\": \"source_manifest\", \"content_hash\": \"36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b\", \"revision\": 1}], \"case_context\": {\"case_id\": \"olonne-18--controls_withheld\", \"candidate_id\": \"olonne-18\", \"scenario_id\": \"controls_withheld\", \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"objective\": \"Do these measured expression changes justify excluding this candidate region?\", \"question\": \"Do these measured expression changes justify excluding this candidate region? The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.\", \"instructions\": \"The original untargeted-control evidence is unavailable under a prepared availability revision. Missing control results are not zero biological changes. Investigate the remaining H1 evidence and preserve uncertainty.\", \"controls_available\": false, \"evidence_revision_fixture\": \"withhold-control-evidence\"}, \"context_policy\": \"relevant_evidence\", \"harness_hash\": \"2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d\", \"context_selection_trace\": {\"policy\": \"relevant_evidence\", \"max_characters\": 28000, \"selected_characters\": 0, \"available_count\": 0, \"included_artifact_ids\": [], \"omitted_artifact_ids\": []}, \"remaining_budget\": {\"token_limit\": 400000, \"tool_limit\": 40, \"cost_limit_usd\": 5.0, \"tokens_used\": 0, \"tool_calls\": 0, \"model_calls\": 0, \"cost_usd\": null, \"reserved_tokens\": 24000, \"uncertain_tokens\": 0, \"reserved_tools\": 8, \"reserved_cost_usd\": 0.0}, \"evidence_availability\": {\"control_evidence\": false}, \"task_limits\": {\"max_tool_calls\": 4, \"max_model_calls\": 2, \"tool_allowance_includes\": \"Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance.\"}, \"limitations\": [\"Only the publication-derived shortlist is investigated.\", \"GRCh38 is a reference assembly, not a newly sequenced H1 genome.\", \"Control overlap and proximity cannot establish biological safety or causality.\"], \"context_limit_bytes\": 60000}"
+      },
+      {
+        "content": "I'll gather the available evidence in one batch: source metadata, both H1 expression tables, and the reference artifact.\n\n",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "chatcmpl-tool-aa7783e90f84a3a5",
+            "function": {
+              "arguments": "{\"cell_context\": \"H1\"}",
+              "name": "list_evidence"
+            },
+            "type": "function",
+            "index": 0
+          },
+          {
+            "id": "chatcmpl-tool-b9af5f40b5e3dde2",
+            "function": {
+              "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"candidate\", \"limit\": 20, \"offset\": 0}",
+              "name": "table_slice"
+            },
+            "type": "function",
+            "index": 1
+          },
+          {
+            "id": "chatcmpl-tool-aacd84f25b4df1f5",
+            "function": {
+              "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+              "name": "table_slice"
+            },
+            "type": "function",
+            "index": 2
+          },
+          {
+            "id": "chatcmpl-tool-9967e547370630b5",
+            "function": {
+              "arguments": "{\"artifact_id\": \"run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18\"}",
+              "name": "retrieve_evidence"
+            },
+            "type": "function",
+            "index": 3
+          }
+        ],
+        "reasoning": "Let me start by listing evidence and reading tables. I have max 4 tool calls total.\n\nLet me plan: \n1. list_evidence (H1) + table_slice candidate H1 + table_slice untargeted H1 + reference_sequence — that's 4 calls in one block. But I also want retrieve_evidence for the reference artifact. Hmm, budget 4 total.\n\nLet me do a combined first block: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. That's 4 calls. Then I have 0 left. But I might want retrieve_evidence for the reference artifact to get annotation distances. Hmm.\n\nActually the question asks: \"What expression tables, methods, source rows, control comparisons, and reference evidence are available?\" So focus on evidence availability. Let me use list_evidence first to see what's available, then decide.\n\nBut tool limit is 4 total. Let me be efficient: do list_evidence + table_slice candidate + table_slice untargeted + reference_sequence in one block (4 calls). Then answer.\n\nActually retrieve_evidence could give the reference artifact with annotation distances (gene body, TSS, miRNA, lncRNA). That's valuable. But I can only do 4 calls. Let me prioritize: list_evidence (metadata), table_slice candidate H1, table_slice untargeted H1, retrieve_evidence reference artifact. Hmm, but reference_sequence gives actual bases.\n\nThe question emphasizes expression tables, methods, source rows, control comparisons, reference evidence. Let me do list_evidence + 2 table_slices + retrieve_evidence(reference artifact). Actually reference_sequence is a scientific tool for GRCh38 bases.\n\nLet me just do 4 calls: list_evidence, table_slice(candidate,H1), table_slice(untargeted,H1), retrieve_evidence(reference artifact). Then final answer.\n\nHmm, but I don't know the pointer structure of the reference artifact. Let me first do list_evidence to understand. But that costs a call. With 4 calls and 2 model responses, I can do: response 1 = list_evidence + table_slice candidate + table_slice untargeted + reference_sequence. Then response 2 = final answer. That uses 4 calls.\n\nAlternatively response 1 = list_evidence only, response 2 = 3 calls + answer? No, answer must be in a model response; tool calls and answer can be in same response? The final answer is a model response. I have 2 model responses. So response 1: tool calls. Response 2: final answer (can also include tool calls? probably not needed).\n\nLet me do response 1 with 4 tool calls: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. Then response 2 final answer.\n\nActually, I'd rather get the reference artifact via retrieve_evidence since it likely contains annotation distances (gene body, TSS, miRNA, lncRNA) which are key. But reference_sequence gives bases. The question is about expression tables and reference evidence availability. Let me include retrieve_evidence for the reference artifact instead of reference_sequence? Hmm.\n\nLet me do: list_evidence, table_slice candidate, table_slice untargeted, retrieve_evidence(reference artifact). That covers expression tables + reference evidence. Good.\n\nLet me go.",
+        "reasoning_details": [
+          {
+            "type": "reasoning.text",
+            "text": "Let me start by listing evidence and reading tables. I have max 4 tool calls total.\n\nLet me plan: \n1. list_evidence (H1) + table_slice candidate H1 + table_slice untargeted H1 + reference_sequence — that's 4 calls in one block. But I also want retrieve_evidence for the reference artifact. Hmm, budget 4 total.\n\nLet me do a combined first block: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. That's 4 calls. Then I have 0 left. But I might want retrieve_evidence for the reference artifact to get annotation distances. Hmm.\n\nActually the question asks: \"What expression tables, methods, source rows, control comparisons, and reference evidence are available?\" So focus on evidence availability. Let me use list_evidence first to see what's available, then decide.\n\nBut tool limit is 4 total. Let me be efficient: do list_evidence + table_slice candidate + table_slice untargeted + reference_sequence in one block (4 calls). Then answer.\n\nActually retrieve_evidence could give the reference artifact with annotation distances (gene body, TSS, miRNA, lncRNA). That's valuable. But I can only do 4 calls. Let me prioritize: list_evidence (metadata), table_slice candidate H1, table_slice untargeted H1, retrieve_evidence reference artifact. Hmm, but reference_sequence gives actual bases.\n\nThe question emphasizes expression tables, methods, source rows, control comparisons, reference evidence. Let me do list_evidence + 2 table_slices + retrieve_evidence(reference artifact). Actually reference_sequence is a scientific tool for GRCh38 bases.\n\nLet me just do 4 calls: list_evidence, table_slice(candidate,H1), table_slice(untargeted,H1), retrieve_evidence(reference artifact). Then final answer.\n\nHmm, but I don't know the pointer structure of the reference artifact. Let me first do list_evidence to understand. But that costs a call. With 4 calls and 2 model responses, I can do: response 1 = list_evidence + table_slice candidate + table_slice untargeted + reference_sequence. Then response 2 = final answer. That uses 4 calls.\n\nAlternatively response 1 = list_evidence only, response 2 = 3 calls + answer? No, answer must be in a model response; tool calls and answer can be in same response? The final answer is a model response. I have 2 model responses. So response 1: tool calls. Response 2: final answer (can also include tool calls? probably not needed).\n\nLet me do response 1 with 4 tool calls: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. Then response 2 final answer.\n\nActually, I'd rather get the reference artifact via retrieve_evidence since it likely contains annotation distances (gene body, TSS, miRNA, lncRNA) which are key. But reference_sequence gives bases. The question is about expression tables and reference evidence availability. Let me include retrieve_evidence for the reference artifact instead of reference_sequence? Hmm.\n\nLet me do: list_evidence, table_slice candidate, table_slice untargeted, retrieve_evidence(reference artifact). That covers expression tables + reference evidence. Good.\n\nLet me go.",
+            "format": "unknown",
+            "index": 0
+          }
+        ]
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-aa7783e90f84a3a5",
+        "content": "{\"tool_name\": \"list_evidence\", \"candidate_id\": \"olonne-18\", \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"evidence_ids\": [\"source:supp1\", \"source:supp5:olonne-18\", \"source:gencode-v36:olonne-18\", \"source:reference:olonne-18\", \"source:supp4\"], \"source_hashes\": {\"elife-79592-supp1.xlsx\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\", \"elife-79592-supp4.xlsx\": \"641891f65518c735b553e1d28e36dd4fdd15a139b7d8177df01775274e6c538e\", \"elife-79592-supp5.xlsx\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\", \"wgEncodeGencodeCompV36.sql\": \"7164106eb072b95e7a9499a4b153f9c7b0bb0e0b1bbbe00a79723707d5bf3256\", \"wgEncodeGencodeAttrsV36.sql\": \"5c238ca6074985eabebe572b0f182382c965221439108c727c9668c3ca3dac22\", \"wgEncodeGencodePseudoGeneV36.sql\": \"f9989b977626f808454082b78d852dc5a6f91055d1aca9d2998f0998b7c63704\", \"wgEncodeGencodeCompV36.txt.gz\": \"843c434ede93314d09d78cfe498784942122bfa3e0c8d7a8bd096f1fd880be9a\", \"wgEncodeGencodeAttrsV36.txt.gz\": \"2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be\", \"wgEncodeGencodePseudoGeneV36.txt.gz\": \"67a06659d5836a49abfd64498a45e25de55c82fbbf5223ae410412f71ba92739\", \"olonne-18-hg38-sequence.json\": \"a2a2a1c7224c190ac38a8fef4e77d744dc098b7b05d23f1df1d99d368c94b83c\"}, \"calculation\": {\"status\": \"complete_catalog_query\", \"query_scope\": {\"candidate_id\": \"olonne-18\", \"cell_context\": \"H1\"}, \"evidence\": [{\"evidence_id\": \"source:supp1\", \"kind\": \"published_candidate_interval\", \"availability\": \"available\", \"source\": {\"assembly\": \"GRCh38\", \"chromosome\": \"18\", \"start\": 56534775, \"end\": 56536439, \"width\": 1665, \"coordinate_system\": \"one_based_closed\", \"conversion\": \"internal_start = source_start - 1; internal_end = source_end\", \"basis\": \"Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods\", \"source_id\": \"elife-79592-supp1.xlsx\", \"sheet\": \"overlap safe-active\", \"row\": 54, \"sha256\": \"faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc\"}}, {\"evidence_id\": \"source:supp5:olonne-18\", \"kind\": \"expression_table\", \"availability\": \"available\", \"cell_context\": \"H1\", \"row_count\": 111, \"coverage\": \"significant-only\"}, {\"evidence_id\": \"source:supp5:untargeted\", \"kind\": \"independent_untargeted_expression_table\", \"cell_context\": \"H1\", \"availability\": \"unavailable\", \"row_count\": null}, {\"evidence_id\": \"source:supp4\", \"kind\": \"qPCR_replicate_table\", \"cell_context\": \"H1\", \"availability\": \"available\"}, {\"evidence_id\": \"source:gencode-v36:olonne-18\", \"kind\": \"reference_annotation\", \"availability\": \"available\", \"coverage\": {\"chromosome\": \"chr18\", \"start\": 55534774, \"end\": 57536439, \"complete\": true, \"tables\": [\"wgEncodeGencodeCompV36\", \"wgEncodeGencodePseudoGeneV36\"], \"completeness_definition\": \"All overlapping rows from both frozen UCSC v36 transcript tables; canonical chromosomes only.\"}, \"release\": \"GENCODE v36\"}, {\"evidence_id\": \"source:reference:olonne-18\", \"kind\": \"reference_sequence\", \"availability\": \"available\", \"start\": 56534674, \"end\": 56536539}], \"unavailable_required\": [\"COSMIC cancer-gene data/licensing\", \"DHS exclusion track\", \"ultraconserved interval track\", \"H1 cCRE child asset\"], \"methods\": {\"expression_tables\": \"significant-only DEseq2 results, not raw counts or all measured genes\", \"gene_unit\": \"unique versioned Ensembl gene identifier; version-stripped counts also reported\", \"thresholds\": {\"abs_log2_fold_change_gte\": 1, \"fdr_lte\": 0.01}, \"comparison\": \"targeted clone or independent untargeted culture versus reference untargeted cells of same H1/H9 context\", \"h9_policy\": \"Separate biological context; no automatic generalization to H1\", \"interpretive_conclusions\": \"Excluded from worker inputs; only tables, methods metadata and annotations are provided\"}, \"limitations\": [\"A complete evidence-catalog query can return unavailable requirements; unavailable is not a negative result.\"]}, \"limitations\": [\"A complete evidence-catalog query can return unavailable requirements; unavailable is not a negative result.\"], \"input_read_set\": [{\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}, {\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:olonne-18:catalog\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:expression\", \"version\": 2, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:annotation\", \"version\": 1, \"kind\": \"query_scope\"}, {\"key\": \"scope:olonne-18:sequence\", \"version\": 1, \"kind\": \"query_scope\"}], \"provenance\": {\"mode\": \"real_data\", \"calculation_type\": \"deterministic_scientific\", \"criteria_sha256\": \"33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd\", \"runtime_requirement\": \"Replace query-scope version 1 with the current ledger version before dispatch/acceptance; ledger state governs availability.\", \"parameters\": {\"cell_context\": \"H1\", \"controls_available\": false}, \"tool_implementation\": \"safe_harbor.science.list_evidence\"}}"
+      },
+      {
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-b9af5f40b5e3dde2",
+        "content": "{\"tool_name\": \"table_slice\", \"candidate_id\": \"olonne-18\", \"assembly\": \"GRCh38\", \"cell_context\": \"H1 human embryonic stem cells\", \"data_version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"evidence_ids\": [\"source:supp5:olonne-18\"], \"source_hashes\": {\"elife-79592-supp5.xlsx\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}, \"calculation\": {\"status\": \"computed\", \"cell_context\": \"H1\", \"contrast\": \"candidate\", \"table_coverage\": \"significant-only\", \"offset\": 0, \"limit\": 20, \"total_rows\": 111, \"returned_rows\": 20, \"next_offset\": 20, \"rows\": [{\"gene_id_version\": \"ENSG00000132906.18\", \"gene_id\": \"ENSG00000132906\", \"gene_name\": \"CASP9\", \"log2_fold_change\": 2.76616179164633, \"p_value\": 4.21752719320974e-39, \"fdr\": 1.06467256465387e-34, \"source_chromosome\": \"1\", \"source_start\": 15490832, \"source_end\": 15526534, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 2, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000198865.10\", \"gene_id\": \"ENSG00000198865\", \"gene_name\": \"CCDC152\", \"log2_fold_change\": -2.72328381422512, \"p_value\": 8.68376092041136e-32, \"fdr\": 1.09606430337432e-27, \"source_chromosome\": \"5\", \"source_start\": 42756818, \"source_end\": 42802439, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 3, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000197181.12\", \"gene_id\": \"ENSG00000197181\", \"gene_name\": \"PIWIL2\", \"log2_fold_change\": -1.97966706520265, \"p_value\": 1.95987864461078e-27, \"fdr\": 1.64917255015182e-23, \"source_chromosome\": \"8\", \"source_start\": 22275316, \"source_end\": 22357568, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 4, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000215146.6\", \"gene_id\": \"ENSG00000215146\", \"gene_name\": null, \"log2_fold_change\": -1.79511521771727, \"p_value\": 1.03532134627017e-26, \"fdr\": 6.53391301631103e-23, \"source_chromosome\": \"10\", \"source_start\": 42254072, \"source_end\": 42367993, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 5, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000129317.15\", \"gene_id\": \"ENSG00000129317\", \"gene_name\": \"PUS7L\", \"log2_fold_change\": -1.46308844766815, \"p_value\": 1.06714406131605e-25, \"fdr\": 5.38779693677247e-22, \"source_chromosome\": \"12\", \"source_start\": 43718992, \"source_end\": 43758793, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 6, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000162892.16\", \"gene_id\": \"ENSG00000162892\", \"gene_name\": \"IL24\", \"log2_fold_change\": -21.2324829824265, \"p_value\": 9.95660015904637e-22, \"fdr\": 4.18907357358278e-18, \"source_chromosome\": \"1\", \"source_start\": 206897443, \"source_end\": 206904139, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 7, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000180938.6\", \"gene_id\": \"ENSG00000180938\", \"gene_name\": \"ZNF572\", \"log2_fold_change\": -5.93455260488553, \"p_value\": 9.0176758405667e-21, \"fdr\": 3.25203155598951e-17, \"source_chromosome\": \"8\", \"source_start\": 124973295, \"source_end\": 124979389, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 8, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000257896.1\", \"gene_id\": \"ENSG00000257896\", \"gene_name\": null, \"log2_fold_change\": -9.07753107452208, \"p_value\": 8.79398484296413e-20, \"fdr\": 2.77494191719733e-16, \"source_chromosome\": \"12\", \"source_start\": 43736628, \"source_end\": 43741067, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 9, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000120675.6\", \"gene_id\": \"ENSG00000120675\", \"gene_name\": \"DNAJC15\", \"log2_fold_change\": -2.98031587202472, \"p_value\": 2.83378908677615e-19, \"fdr\": 7.94846352295302e-16, \"source_chromosome\": \"13\", \"source_start\": 43023203, \"source_end\": 43114213, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 10, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000156253.7\", \"gene_id\": \"ENSG00000156253\", \"gene_name\": \"RWDD2B\", \"log2_fold_change\": -2.60142264917166, \"p_value\": 4.3585908297933e-18, \"fdr\": 1.10028266907302e-14, \"source_chromosome\": \"21\", \"source_start\": 29004384, \"source_end\": 29019360, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 11, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000227852.1\", \"gene_id\": \"ENSG00000227852\", \"gene_name\": \"RPS29P17\", \"log2_fold_change\": -20.943934361593, \"p_value\": 6.98982318171614e-17, \"fdr\": 1.60410087635675e-13, \"source_chromosome\": \"9\", \"source_start\": 35592786, \"source_end\": 35592951, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 12, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000258993.1\", \"gene_id\": \"ENSG00000258993\", \"gene_name\": null, \"log2_fold_change\": 18.364387741269, \"p_value\": 1.0942696504357e-16, \"fdr\": 2.30197858796656e-13, \"source_chromosome\": \"14\", \"source_start\": 53023055, \"source_end\": 53023597, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 13, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000240253.6\", \"gene_id\": \"ENSG00000240253\", \"gene_name\": \"FAR2P3\", \"log2_fold_change\": -1.77052257802237, \"p_value\": 1.57192279042391e-16, \"fdr\": 3.05243222472778e-13, \"source_chromosome\": \"2\", \"source_start\": 130690133, \"source_end\": 130718831, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 14, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000198001.16\", \"gene_id\": \"ENSG00000198001\", \"gene_name\": \"IRAK4\", \"log2_fold_change\": -1.53553908654671, \"p_value\": 2.1996273465308e-15, \"fdr\": 3.96624233827311e-12, \"source_chromosome\": \"12\", \"source_start\": 43758944, \"source_end\": 43798307, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 15, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000284655.1\", \"gene_id\": \"ENSG00000284655\", \"gene_name\": null, \"log2_fold_change\": 19.105969219666, \"p_value\": 2.05081792392155e-13, \"fdr\": 3.45138984476504e-10, \"source_chromosome\": \"8\", \"source_start\": 7680309, \"source_end\": 7680526, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 16, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000198889.5\", \"gene_id\": \"ENSG00000198889\", \"gene_name\": \"DCAF12L1\", \"log2_fold_change\": -7.06032917242531, \"p_value\": 2.30088400872679e-13, \"fdr\": 3.63021974476869e-10, \"source_chromosome\": \"X\", \"source_start\": 126549383, \"source_end\": 126552814, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 17, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000275386.1\", \"gene_id\": \"ENSG00000275386\", \"gene_name\": null, \"log2_fold_change\": 18.849117552579, \"p_value\": 2.76087343666431e-12, \"fdr\": 4.09973464912669e-09, \"source_chromosome\": \"8\", \"source_start\": 93974671, \"source_end\": 93974776, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 18, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000205362.11\", \"gene_id\": \"ENSG00000205362\", \"gene_name\": \"MT1A\", \"log2_fold_change\": -21.462182117737, \"p_value\": 4.1914163751172e-12, \"fdr\": 5.87822860963659e-09, \"source_chromosome\": \"16\", \"source_start\": 56638666, \"source_end\": 56640087, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 19, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000263563.7\", \"gene_id\": \"ENSG00000263563\", \"gene_name\": \"UBBP4\", \"log2_fold_change\": -1.44240203370399, \"p_value\": 6.82858610530577e-12, \"fdr\": 9.07267513907047e-09, \"source_chromosome\": \"17\", \"source_start\": 22090743, \"source_end\": 22205156, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 20, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}, {\"gene_id_version\": \"ENSG00000271378.1\", \"gene_id\": \"ENSG00000271378\", \"gene_name\": \"RBISP2\", \"log2_fold_change\": -19.7440749520393, \"p_value\": 8.18539318213125e-12, \"fdr\": 1.03316032744861e-08, \"source_chromosome\": \"5\", \"source_start\": 37130430, \"source_end\": 37130700, \"source\": {\"source_id\": \"elife-79592-supp5.xlsx\", \"sheet\": \"Olônne-18 (56534775-56536439)\", \"row\": 21, \"sha256\": \"9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667\"}}], \"omitted_source_columns\": \"Precomputed overlap flags are excluded; use control_overlap to compute them from original gene sets.\", \"limitations\": [\"No raw counts or nonsignificant rows are supplied in this source table.\"]}, \"limitations\": [\"No raw counts or nonsignificant rows are supplied in this source table.\"], \"input_read_set\": [{\"key\": \"source:data_version\", \"version\": \"autio-79592-v2-gencode36-comp-pseudo-2026-09-26\", \"kind\": \"artifact\"}, {\"key\": \"criteria:v1\", \"version\": 1, \"kind\": \"criteria\"}, {\"key\": \"scope:olonne-18:expression\", \"version\": 2, \"kind\": \"query_scope\"}], \"provenance\": {\"mode\": \"real_data\", \"calculation_type\": \"deterministic_scientific\", \"criteria_sha256\": \"33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd\", \"runtime_requirement\": \"Replace query-scope version 1 with the current ledger version before dispatch/acceptance; ledger state governs availability.\", \"parameters\": {\"cell_context\": \"H1\", \"controls_available\": false, \"contrast\": \"candidate\", \"offset\": 0, \"limit\": 20}, \"tool_implementation\": \"safe_harbor.science.table_slice\"}}"
+      }
+    ],
+    "tool_calls": [
+      {
+        "tool_name": "list_evidence",
+        "arguments": {
+          "cell_context": "H1"
+        },
+        "result": {
+          "tool_name": "list_evidence",
+          "candidate_id": "olonne-18",
+          "assembly": "GRCh38",
+          "cell_context": "H1 human embryonic stem cells",
+          "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "evidence_ids": [
+            "source:supp1",
+            "source:supp5:olonne-18",
+            "source:gencode-v36:olonne-18",
+            "source:reference:olonne-18",
+            "source:supp4"
+          ],
+          "source_hashes": {
+            "elife-79592-supp1.xlsx": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc",
+            "elife-79592-supp4.xlsx": "641891f65518c735b553e1d28e36dd4fdd15a139b7d8177df01775274e6c538e",
+            "elife-79592-supp5.xlsx": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667",
+            "wgEncodeGencodeCompV36.sql": "7164106eb072b95e7a9499a4b153f9c7b0bb0e0b1bbbe00a79723707d5bf3256",
+            "wgEncodeGencodeAttrsV36.sql": "5c238ca6074985eabebe572b0f182382c965221439108c727c9668c3ca3dac22",
+            "wgEncodeGencodePseudoGeneV36.sql": "f9989b977626f808454082b78d852dc5a6f91055d1aca9d2998f0998b7c63704",
+            "wgEncodeGencodeCompV36.txt.gz": "843c434ede93314d09d78cfe498784942122bfa3e0c8d7a8bd096f1fd880be9a",
+            "wgEncodeGencodeAttrsV36.txt.gz": "2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be",
+            "wgEncodeGencodePseudoGeneV36.txt.gz": "67a06659d5836a49abfd64498a45e25de55c82fbbf5223ae410412f71ba92739",
+            "olonne-18-hg38-sequence.json": "a2a2a1c7224c190ac38a8fef4e77d744dc098b7b05d23f1df1d99d368c94b83c"
+          },
+          "calculation": {
+            "status": "complete_catalog_query",
+            "query_scope": {
+              "candidate_id": "olonne-18",
+              "cell_context": "H1"
+            },
+            "evidence": [
+              {
+                "evidence_id": "source:supp1",
+                "kind": "published_candidate_interval",
+                "availability": "available",
+                "source": {
+                  "assembly": "GRCh38",
+                  "chromosome": "18",
+                  "start": 56534775,
+                  "end": 56536439,
+                  "width": 1665,
+                  "coordinate_system": "one_based_closed",
+                  "conversion": "internal_start = source_start - 1; internal_end = source_end",
+                  "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+                  "source_id": "elife-79592-supp1.xlsx",
+                  "sheet": "overlap safe-active",
+                  "row": 54,
+                  "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+                }
+              },
+              {
+                "evidence_id": "source:supp5:olonne-18",
+                "kind": "expression_table",
+                "availability": "available",
+                "cell_context": "H1",
+                "row_count": 111,
+                "coverage": "significant-only"
+              },
+              {
+                "evidence_id": "source:supp5:untargeted",
+                "kind": "independent_untargeted_expression_table",
+                "cell_context": "H1",
+                "availability": "unavailable",
+                "row_count": null
+              },
+              {
+                "evidence_id": "source:supp4",
+                "kind": "qPCR_replicate_table",
+                "cell_context": "H1",
+                "availability": "available"
+              },
+              {
+                "evidence_id": "source:gencode-v36:olonne-18",
+                "kind": "reference_annotation",
+                "availability": "available",
+                "coverage": {
+                  "chromosome": "chr18",
+                  "start": 55534774,
+                  "end": 57536439,
+                  "complete": true,
+                  "tables": [
+                    "wgEncodeGencodeCompV36",
+                    "wgEncodeGencodePseudoGeneV36"
+                  ],
+                  "completeness_definition": "All overlapping rows from both frozen UCSC v36 transcript tables; canonical chromosomes only."
+                },
+                "release": "GENCODE v36"
+              },
+              {
+                "evidence_id": "source:reference:olonne-18",
+                "kind": "reference_sequence",
+                "availability": "available",
+                "start": 56534674,
+                "end": 56536539
+              }
+            ],
+            "unavailable_required": [
+              "COSMIC cancer-gene data/licensing",
+              "DHS exclusion track",
+              "ultraconserved interval track",
+              "H1 cCRE child asset"
+            ],
+            "methods": {
+              "expression_tables": "significant-only DEseq2 results, not raw counts or all measured genes",
+              "gene_unit": "unique versioned Ensembl gene identifier; version-stripped counts also reported",
+              "thresholds": {
+                "abs_log2_fold_change_gte": 1,
+                "fdr_lte": 0.01
+              },
+              "comparison": "targeted clone or independent untargeted culture versus reference untargeted cells of same H1/H9 context",
+              "h9_policy": "Separate biological context; no automatic generalization to H1",
+              "interpretive_conclusions": "Excluded from worker inputs; only tables, methods metadata and annotations are provided"
+            },
+            "limitations": [
+              "A complete evidence-catalog query can return unavailable requirements; unavailable is not a negative result."
+            ]
+          },
+          "limitations": [
+            "A complete evidence-catalog query can return unavailable requirements; unavailable is not a negative result."
+          ],
+          "input_read_set": [
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:catalog",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:expression",
+              "version": 2,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:annotation",
+              "version": 1,
+              "kind": "query_scope"
+            },
+            {
+              "key": "scope:olonne-18:sequence",
+              "version": 1,
+              "kind": "query_scope"
+            }
+          ],
+          "provenance": {
+            "mode": "real_data",
+            "calculation_type": "deterministic_scientific",
+            "criteria_sha256": "33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd",
+            "runtime_requirement": "Replace query-scope version 1 with the current ledger version before dispatch/acceptance; ledger state governs availability.",
+            "parameters": {
+              "cell_context": "H1",
+              "controls_available": false
+            },
+            "tool_implementation": "safe_harbor.science.list_evidence"
+          }
+        },
+        "model_call_id": "chatcmpl-tool-aa7783e90f84a3a5"
+      },
+      {
+        "tool_name": "table_slice",
+        "arguments": {
+          "cell_context": "H1",
+          "contrast": "candidate",
+          "limit": 20,
+          "offset": 0
+        },
+        "result": {
+          "tool_name": "table_slice",
+          "candidate_id": "olonne-18",
+          "assembly": "GRCh38",
+          "cell_context": "H1 human embryonic stem cells",
+          "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "evidence_ids": [
+            "source:supp5:olonne-18"
+          ],
+          "source_hashes": {
+            "elife-79592-supp5.xlsx": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+          },
+          "calculation": {
+            "status": "computed",
+            "cell_context": "H1",
+            "contrast": "candidate",
+            "table_coverage": "significant-only",
+            "offset": 0,
+            "limit": 20,
+            "total_rows": 111,
+            "returned_rows": 20,
+            "next_offset": 20,
+            "rows": [
+              {
+                "gene_id_version": "ENSG00000132906.18",
+                "gene_id": "ENSG00000132906",
+                "gene_name": "CASP9",
+                "log2_fold_change": 2.76616179164633,
+                "p_value": 4.21752719320974e-39,
+                "fdr": 1.06467256465387e-34,
+                "source_chromosome": "1",
+                "source_start": 15490832,
+                "source_end": 15526534,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 2,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000198865.10",
+                "gene_id": "ENSG00000198865",
+                "gene_name": "CCDC152",
+                "log2_fold_change": -2.72328381422512,
+                "p_value": 8.68376092041136e-32,
+                "fdr": 1.09606430337432e-27,
+                "source_chromosome": "5",
+                "source_start": 42756818,
+                "source_end": 42802439,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 3,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000197181.12",
+                "gene_id": "ENSG00000197181",
+                "gene_name": "PIWIL2",
+                "log2_fold_change": -1.97966706520265,
+                "p_value": 1.95987864461078e-27,
+                "fdr": 1.64917255015182e-23,
+                "source_chromosome": "8",
+                "source_start": 22275316,
+                "source_end": 22357568,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 4,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000215146.6",
+                "gene_id": "ENSG00000215146",
+                "gene_name": null,
+                "log2_fold_change": -1.79511521771727,
+                "p_value": 1.03532134627017e-26,
+                "fdr": 6.53391301631103e-23,
+                "source_chromosome": "10",
+                "source_start": 42254072,
+                "source_end": 42367993,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 5,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000129317.15",
+                "gene_id": "ENSG00000129317",
+                "gene_name": "PUS7L",
+                "log2_fold_change": -1.46308844766815,
+                "p_value": 1.06714406131605e-25,
+                "fdr": 5.38779693677247e-22,
+                "source_chromosome": "12",
+                "source_start": 43718992,
+                "source_end": 43758793,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 6,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000162892.16",
+                "gene_id": "ENSG00000162892",
+                "gene_name": "IL24",
+                "log2_fold_change": -21.2324829824265,
+                "p_value": 9.95660015904637e-22,
+                "fdr": 4.18907357358278e-18,
+                "source_chromosome": "1",
+                "source_start": 206897443,
+                "source_end": 206904139,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 7,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000180938.6",
+                "gene_id": "ENSG00000180938",
+                "gene_name": "ZNF572",
+                "log2_fold_change": -5.93455260488553,
+                "p_value": 9.0176758405667e-21,
+                "fdr": 3.25203155598951e-17,
+                "source_chromosome": "8",
+                "source_start": 124973295,
+                "source_end": 124979389,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 8,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000257896.1",
+                "gene_id": "ENSG00000257896",
+                "gene_name": null,
+                "log2_fold_change": -9.07753107452208,
+                "p_value": 8.79398484296413e-20,
+                "fdr": 2.77494191719733e-16,
+                "source_chromosome": "12",
+                "source_start": 43736628,
+                "source_end": 43741067,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 9,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000120675.6",
+                "gene_id": "ENSG00000120675",
+                "gene_name": "DNAJC15",
+                "log2_fold_change": -2.98031587202472,
+                "p_value": 2.83378908677615e-19,
+                "fdr": 7.94846352295302e-16,
+                "source_chromosome": "13",
+                "source_start": 43023203,
+                "source_end": 43114213,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 10,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000156253.7",
+                "gene_id": "ENSG00000156253",
+                "gene_name": "RWDD2B",
+                "log2_fold_change": -2.60142264917166,
+                "p_value": 4.3585908297933e-18,
+                "fdr": 1.10028266907302e-14,
+                "source_chromosome": "21",
+                "source_start": 29004384,
+                "source_end": 29019360,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 11,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000227852.1",
+                "gene_id": "ENSG00000227852",
+                "gene_name": "RPS29P17",
+                "log2_fold_change": -20.943934361593,
+                "p_value": 6.98982318171614e-17,
+                "fdr": 1.60410087635675e-13,
+                "source_chromosome": "9",
+                "source_start": 35592786,
+                "source_end": 35592951,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 12,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000258993.1",
+                "gene_id": "ENSG00000258993",
+                "gene_name": null,
+                "log2_fold_change": 18.364387741269,
+                "p_value": 1.0942696504357e-16,
+                "fdr": 2.30197858796656e-13,
+                "source_chromosome": "14",
+                "source_start": 53023055,
+                "source_end": 53023597,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 13,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000240253.6",
+                "gene_id": "ENSG00000240253",
+                "gene_name": "FAR2P3",
+                "log2_fold_change": -1.77052257802237,
+                "p_value": 1.57192279042391e-16,
+                "fdr": 3.05243222472778e-13,
+                "source_chromosome": "2",
+                "source_start": 130690133,
+                "source_end": 130718831,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 14,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000198001.16",
+                "gene_id": "ENSG00000198001",
+                "gene_name": "IRAK4",
+                "log2_fold_change": -1.53553908654671,
+                "p_value": 2.1996273465308e-15,
+                "fdr": 3.96624233827311e-12,
+                "source_chromosome": "12",
+                "source_start": 43758944,
+                "source_end": 43798307,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 15,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000284655.1",
+                "gene_id": "ENSG00000284655",
+                "gene_name": null,
+                "log2_fold_change": 19.105969219666,
+                "p_value": 2.05081792392155e-13,
+                "fdr": 3.45138984476504e-10,
+                "source_chromosome": "8",
+                "source_start": 7680309,
+                "source_end": 7680526,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 16,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000198889.5",
+                "gene_id": "ENSG00000198889",
+                "gene_name": "DCAF12L1",
+                "log2_fold_change": -7.06032917242531,
+                "p_value": 2.30088400872679e-13,
+                "fdr": 3.63021974476869e-10,
+                "source_chromosome": "X",
+                "source_start": 126549383,
+                "source_end": 126552814,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 17,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000275386.1",
+                "gene_id": "ENSG00000275386",
+                "gene_name": null,
+                "log2_fold_change": 18.849117552579,
+                "p_value": 2.76087343666431e-12,
+                "fdr": 4.09973464912669e-09,
+                "source_chromosome": "8",
+                "source_start": 93974671,
+                "source_end": 93974776,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 18,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000205362.11",
+                "gene_id": "ENSG00000205362",
+                "gene_name": "MT1A",
+                "log2_fold_change": -21.462182117737,
+                "p_value": 4.1914163751172e-12,
+                "fdr": 5.87822860963659e-09,
+                "source_chromosome": "16",
+                "source_start": 56638666,
+                "source_end": 56640087,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 19,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000263563.7",
+                "gene_id": "ENSG00000263563",
+                "gene_name": "UBBP4",
+                "log2_fold_change": -1.44240203370399,
+                "p_value": 6.82858610530577e-12,
+                "fdr": 9.07267513907047e-09,
+                "source_chromosome": "17",
+                "source_start": 22090743,
+                "source_end": 22205156,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 20,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              },
+              {
+                "gene_id_version": "ENSG00000271378.1",
+                "gene_id": "ENSG00000271378",
+                "gene_name": "RBISP2",
+                "log2_fold_change": -19.7440749520393,
+                "p_value": 8.18539318213125e-12,
+                "fdr": 1.03316032744861e-08,
+                "source_chromosome": "5",
+                "source_start": 37130430,
+                "source_end": 37130700,
+                "source": {
+                  "source_id": "elife-79592-supp5.xlsx",
+                  "sheet": "Olônne-18 (56534775-56536439)",
+                  "row": 21,
+                  "sha256": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667"
+                }
+              }
+            ],
+            "omitted_source_columns": "Precomputed overlap flags are excluded; use control_overlap to compute them from original gene sets.",
+            "limitations": [
+              "No raw counts or nonsignificant rows are supplied in this source table."
+            ]
+          },
+          "limitations": [
+            "No raw counts or nonsignificant rows are supplied in this source table."
+          ],
+          "input_read_set": [
+            {
+              "key": "source:data_version",
+              "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "kind": "artifact"
+            },
+            {
+              "key": "criteria:v1",
+              "version": 1,
+              "kind": "criteria"
+            },
+            {
+              "key": "scope:olonne-18:expression",
+              "version": 2,
+              "kind": "query_scope"
+            }
+          ],
+          "provenance": {
+            "mode": "real_data",
+            "calculation_type": "deterministic_scientific",
+            "criteria_sha256": "33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd",
+            "runtime_requirement": "Replace query-scope version 1 with the current ledger version before dispatch/acceptance; ledger state governs availability.",
+            "parameters": {
+              "cell_context": "H1",
+              "controls_available": false,
+              "contrast": "candidate",
+              "offset": 0,
+              "limit": 20
+            },
+            "tool_implementation": "safe_harbor.science.table_slice"
+          }
+        },
+        "model_call_id": "chatcmpl-tool-b9af5f40b5e3dde2"
+      }
+    ],
+    "provider_responses": [
+      {
+        "call_index": 0,
+        "response": {
+          "id": "gen-1790452413-NA6OGz2z4b1GHiVQTJmD",
+          "choices": [
+            {
+              "finish_reason": "tool_calls",
+              "index": 0,
+              "logprobs": null,
+              "message": {
+                "content": "I'll gather the available evidence in one batch: source metadata, both H1 expression tables, and the reference artifact.\n\n",
+                "refusal": null,
+                "role": "assistant",
+                "annotations": null,
+                "audio": null,
+                "function_call": null,
+                "tool_calls": [
+                  {
+                    "id": "chatcmpl-tool-aa7783e90f84a3a5",
+                    "function": {
+                      "arguments": "{\"cell_context\": \"H1\"}",
+                      "name": "list_evidence"
+                    },
+                    "type": "function",
+                    "index": 0
+                  },
+                  {
+                    "id": "chatcmpl-tool-b9af5f40b5e3dde2",
+                    "function": {
+                      "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"candidate\", \"limit\": 20, \"offset\": 0}",
+                      "name": "table_slice"
+                    },
+                    "type": "function",
+                    "index": 1
+                  },
+                  {
+                    "id": "chatcmpl-tool-aacd84f25b4df1f5",
+                    "function": {
+                      "arguments": "{\"cell_context\": \"H1\", \"contrast\": \"untargeted\", \"limit\": 20, \"offset\": 0}",
+                      "name": "table_slice"
+                    },
+                    "type": "function",
+                    "index": 2
+                  },
+                  {
+                    "id": "chatcmpl-tool-9967e547370630b5",
+                    "function": {
+                      "arguments": "{\"artifact_id\": \"run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18\"}",
+                      "name": "retrieve_evidence"
+                    },
+                    "type": "function",
+                    "index": 3
+                  }
+                ],
+                "reasoning": "Let me start by listing evidence and reading tables. I have max 4 tool calls total.\n\nLet me plan: \n1. list_evidence (H1) + table_slice candidate H1 + table_slice untargeted H1 + reference_sequence — that's 4 calls in one block. But I also want retrieve_evidence for the reference artifact. Hmm, budget 4 total.\n\nLet me do a combined first block: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. That's 4 calls. Then I have 0 left. But I might want retrieve_evidence for the reference artifact to get annotation distances. Hmm.\n\nActually the question asks: \"What expression tables, methods, source rows, control comparisons, and reference evidence are available?\" So focus on evidence availability. Let me use list_evidence first to see what's available, then decide.\n\nBut tool limit is 4 total. Let me be efficient: do list_evidence + table_slice candidate + table_slice untargeted + reference_sequence in one block (4 calls). Then answer.\n\nActually retrieve_evidence could give the reference artifact with annotation distances (gene body, TSS, miRNA, lncRNA). That's valuable. But I can only do 4 calls. Let me prioritize: list_evidence (metadata), table_slice candidate H1, table_slice untargeted H1, retrieve_evidence reference artifact. Hmm, but reference_sequence gives actual bases.\n\nThe question emphasizes expression tables, methods, source rows, control comparisons, reference evidence. Let me do list_evidence + 2 table_slices + retrieve_evidence(reference artifact). Actually reference_sequence is a scientific tool for GRCh38 bases.\n\nLet me just do 4 calls: list_evidence, table_slice(candidate,H1), table_slice(untargeted,H1), retrieve_evidence(reference artifact). Then final answer.\n\nHmm, but I don't know the pointer structure of the reference artifact. Let me first do list_evidence to understand. But that costs a call. With 4 calls and 2 model responses, I can do: response 1 = list_evidence + table_slice candidate + table_slice untargeted + reference_sequence. Then response 2 = final answer. That uses 4 calls.\n\nAlternatively response 1 = list_evidence only, response 2 = 3 calls + answer? No, answer must be in a model response; tool calls and answer can be in same response? The final answer is a model response. I have 2 model responses. So response 1: tool calls. Response 2: final answer (can also include tool calls? probably not needed).\n\nLet me do response 1 with 4 tool calls: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. Then response 2 final answer.\n\nActually, I'd rather get the reference artifact via retrieve_evidence since it likely contains annotation distances (gene body, TSS, miRNA, lncRNA) which are key. But reference_sequence gives bases. The question is about expression tables and reference evidence availability. Let me include retrieve_evidence for the reference artifact instead of reference_sequence? Hmm.\n\nLet me do: list_evidence, table_slice candidate, table_slice untargeted, retrieve_evidence(reference artifact). That covers expression tables + reference evidence. Good.\n\nLet me go.",
+                "reasoning_details": [
+                  {
+                    "type": "reasoning.text",
+                    "text": "Let me start by listing evidence and reading tables. I have max 4 tool calls total.\n\nLet me plan: \n1. list_evidence (H1) + table_slice candidate H1 + table_slice untargeted H1 + reference_sequence — that's 4 calls in one block. But I also want retrieve_evidence for the reference artifact. Hmm, budget 4 total.\n\nLet me do a combined first block: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. That's 4 calls. Then I have 0 left. But I might want retrieve_evidence for the reference artifact to get annotation distances. Hmm.\n\nActually the question asks: \"What expression tables, methods, source rows, control comparisons, and reference evidence are available?\" So focus on evidence availability. Let me use list_evidence first to see what's available, then decide.\n\nBut tool limit is 4 total. Let me be efficient: do list_evidence + table_slice candidate + table_slice untargeted + reference_sequence in one block (4 calls). Then answer.\n\nActually retrieve_evidence could give the reference artifact with annotation distances (gene body, TSS, miRNA, lncRNA). That's valuable. But I can only do 4 calls. Let me prioritize: list_evidence (metadata), table_slice candidate H1, table_slice untargeted H1, retrieve_evidence reference artifact. Hmm, but reference_sequence gives actual bases.\n\nThe question emphasizes expression tables, methods, source rows, control comparisons, reference evidence. Let me do list_evidence + 2 table_slices + retrieve_evidence(reference artifact). Actually reference_sequence is a scientific tool for GRCh38 bases.\n\nLet me just do 4 calls: list_evidence, table_slice(candidate,H1), table_slice(untargeted,H1), retrieve_evidence(reference artifact). Then final answer.\n\nHmm, but I don't know the pointer structure of the reference artifact. Let me first do list_evidence to understand. But that costs a call. With 4 calls and 2 model responses, I can do: response 1 = list_evidence + table_slice candidate + table_slice untargeted + reference_sequence. Then response 2 = final answer. That uses 4 calls.\n\nAlternatively response 1 = list_evidence only, response 2 = 3 calls + answer? No, answer must be in a model response; tool calls and answer can be in same response? The final answer is a model response. I have 2 model responses. So response 1: tool calls. Response 2: final answer (can also include tool calls? probably not needed).\n\nLet me do response 1 with 4 tool calls: list_evidence, table_slice candidate, table_slice untargeted, reference_sequence. Then response 2 final answer.\n\nActually, I'd rather get the reference artifact via retrieve_evidence since it likely contains annotation distances (gene body, TSS, miRNA, lncRNA) which are key. But reference_sequence gives bases. The question is about expression tables and reference evidence availability. Let me include retrieve_evidence for the reference artifact instead of reference_sequence? Hmm.\n\nLet me do: list_evidence, table_slice candidate, table_slice untargeted, retrieve_evidence(reference artifact). That covers expression tables + reference evidence. Good.\n\nLet me go.",
+                    "format": "unknown",
+                    "index": 0
+                  }
+                ]
+              },
+              "native_finish_reason": "tool_calls"
+            }
+          ],
+          "created": 1790452413,
+          "model": "deepseek/deepseek-v4.1-flash",
+          "object": "chat.completion",
+          "metadata": null,
+          "moderation": null,
+          "service_tier": "default",
+          "system_fingerprint": null,
+          "usage": {
+            "completion_tokens": 1007,
+            "prompt_tokens": 4082,
+            "total_tokens": 5089,
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": null,
+              "audio_tokens": 0,
+              "reasoning_tokens": 722,
+              "rejected_prediction_tokens": null,
+              "text_tokens": null,
+              "image_tokens": 0
+            },
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cache_write_tokens": 0,
+              "cached_tokens": 1152,
+              "image_tokens": null,
+              "text_tokens": null,
+              "video_tokens": 0
+            },
+            "cost": 0.0008379784,
+            "is_byok": false,
+            "cost_details": {
+              "upstream_inference_cost": 0.0008379784,
+              "upstream_inference_prompt_cost": 0.0004150384,
+              "upstream_inference_completions_cost": 0.00042294
+            }
+          },
+          "provider": "DeepInfra"
+        }
+      }
+    ],
+    "request_token_bounds": [
+      {
+        "call_index": 0,
+        "input_utf8_bytes": 15264,
+        "input_bound": 19872,
+        "output_cap": 8192,
+        "cumulative_reserved_tokens": 28064,
+        "call_cost_bound_usd": 0.00622272,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607"
+      }
+    ],
+    "usage": {
+      "tokens": 5089,
+      "tool_calls": 2,
+      "model_calls": 1,
+      "cost_usd": 0.0008379784,
+      "duration_seconds": 8.1444
+    },
+    "tokens_uncertain": false,
+    "cost_uncertain": false,
+    "request_in_flight": false
+  },
+  "evidence_ids": [],
+  "input_read_set": [
+    {
+      "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:reference:olonne-18",
+      "version": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact:run-d6e1befd83154d239fdfeab61b2eaefe:source-manifest",
+      "version": "36e868d91f200098f224054a49ea293454bc5f2899e73101f7490059661a0e6b",
+      "kind": "artifact"
+    },
+    {
+      "key": "criteria:v1",
+      "version": 1,
+      "kind": "criteria"
+    },
+    {
+      "key": "scope:olonne-18:annotation",
+      "version": 1,
+      "kind": "query_scope"
+    },
+    {
+      "key": "scope:olonne-18:catalog",
+      "version": 1,
+      "kind": "query_scope"
+    },
+    {
+      "key": "scope:olonne-18:expression",
+      "version": 2,
+      "kind": "query_scope"
+    },
+    {
+      "key": "scope:olonne-18:sequence",
+      "version": 1,
+      "kind": "query_scope"
+    },
+    {
+      "key": "source:data_version",
+      "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "kind": "artifact"
+    }
+  ],
+  "provenance": {
+    "mode": "real_model",
+    "task_id": "run-d6e1befd83154d239fdfeab61b2eaefe:olonne-18:inspect:r0:revision1",
+    "role_id": "inspect",
+    "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "adapter": "openrouter",
+    "model_id": "deepseek/deepseek-v4.1-flash"
+  },
+  "created_at": "2026-09-26T19:53:41.336305+00:00"
+}
