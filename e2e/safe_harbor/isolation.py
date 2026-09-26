@@ -627,7 +627,7 @@ class Isolation:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SH-Q06 answer-key and tool-access isolation E2E (deterministic operational)")
-    parser.add_argument("--port", type=int, default=8016)
+    parser.add_argument("--port", type=int, default=8022)
     parser.add_argument("--timeout", type=float, default=180.0, help="seconds to wait for each deterministic run to complete")
     parser.add_argument("--output", type=Path, default=ROOT / "artifacts" / "safe_harbor" / "isolation-e2e" / str(int(time.time())))
     args = parser.parse_args()
