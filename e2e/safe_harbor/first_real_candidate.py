@@ -293,7 +293,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--candidate", default="pansio-1", choices=["pansio-1", "olonne-18", "keppel-19"])
     parser.add_argument("--attempts", type=int, default=3)
-    parser.add_argument("--token-limit", type=int, default=None, help="Explicit, reported run token budget override")
+    parser.add_argument("--token-limit", type=int, default=200000, help="Explicit, reported run token budget (contract default 60000 blocks real-model runs; see report)")
     parser.add_argument("--run-timeout", type=int, default=600)
     parser.add_argument("--api-port", type=int, default=8050)
     parser.add_argument("--ui-port", type=int, default=5195)
