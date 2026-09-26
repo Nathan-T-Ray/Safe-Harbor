@@ -1,0 +1,842 @@
+{
+  "ticket": "SH-Q09",
+  "journey": "Genome zoom truthfulness: overview -> chromosome -> locus -> sequence -> overview for every candidate, live, at an older replay position, with follow camera off/on and during cue-driven playback",
+  "mode": "deterministic_operational",
+  "replay_mode": "recorded_replay_of_deterministic_operational_run",
+  "mock_transport": false,
+  "model_calls": 0,
+  "run_mode": "deterministic",
+  "run_status": "complete",
+  "run_budget": {
+    "token_limit": 200000,
+    "tool_limit": 80,
+    "cost_limit_usd": 5,
+    "tokens_used": 0,
+    "tool_calls": 50,
+    "model_calls": 0,
+    "cost_usd": 0,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0
+  },
+  "ui_url": "http://127.0.0.1:5181",
+  "run_id": "run-07d97449d3d7482696b2a84deec1921e",
+  "provisioning": {
+    "created_by_journey": true,
+    "request": "POST /runs {all catalog candidates, mode: deterministic, budget: {tool_limit: 80}} then POST /runs/{id}/evidence-revisions {fixture_id: withhold-control-evidence}",
+    "first_complete_sequence": 39,
+    "revision_sequence": 40,
+    "final_sequence": 52
+  },
+  "started_at": "2026-09-26T19:35:45.227Z",
+  "finished_at": "2026-09-26T19:36:29.401Z",
+  "viewport": "1280x720",
+  "reduced_motion": "no-preference (transitions sampled on every animation frame)",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "server_camera_cues_in_events": 0,
+  "replay_positions": {
+    "older_sequence": 39,
+    "evidence_revision_sequence": 40,
+    "last_sequence": 52,
+    "revised_candidate": "pansio-1"
+  },
+  "extends": "artifacts/safe_harbor/genome-e2e/2026-09-26-q09/ and artifacts/safe_harbor/pr67-review/selector-compatible/ (PR #67 journey: transitions checked at start and +700 ms). All of its assertions are kept, including the 897b9e9 halo-safe selector and aria-pressed check; this run adds per-frame sampling, evidence-panel IDs, seeks while zoomed and follow-camera playback.",
+  "passed": true,
+  "checks_passed": 73,
+  "checks_total": 73,
+  "checks": [
+    {
+      "check": "catalog candidates equal run candidates and committed data",
+      "passed": true,
+      "candidates": [
+        {
+          "candidate_id": "pansio-1",
+          "interval": "chr1:113,339,961–113,340,514",
+          "stored": [
+            113339960,
+            113340514
+          ]
+        },
+        {
+          "candidate_id": "olonne-18",
+          "interval": "chr18:56,534,775–56,536,439",
+          "stored": [
+            56534774,
+            56536439
+          ]
+        },
+        {
+          "candidate_id": "keppel-19",
+          "interval": "chr19:5,400,761–5,402,139",
+          "stored": [
+            5400760,
+            5402139
+          ]
+        }
+      ]
+    },
+    {
+      "check": "live pansio-1: selected evidence equals snapshot at 52",
+      "passed": true,
+      "displayed_artifacts": 44,
+      "expected_artifacts": 44
+    },
+    {
+      "check": "live pansio-1: overview marker at real position",
+      "passed": true,
+      "marker_cx": 220.722589353409,
+      "expected_cx": 220.722589353409
+    },
+    {
+      "check": "live pansio-1: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live pansio-1: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live pansio-1: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live pansio-1: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:pansio-1",
+      "artifact_content_hash": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+      "sequence_sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+      "displayed": "chr1:113,339,941–113,340,040"
+    },
+    {
+      "check": "live pansio-1: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "live pansio-1: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "live pansio-1: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live pansio-1: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "live olonne-18: selected evidence equals snapshot at 52",
+      "passed": true,
+      "displayed_artifacts": 24,
+      "expected_artifacts": 24
+    },
+    {
+      "check": "live olonne-18: overview marker at real position",
+      "passed": true,
+      "marker_cx": 600.1576355399259,
+      "expected_cx": 600.1576355399259
+    },
+    {
+      "check": "live olonne-18: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live olonne-18: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live olonne-18: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live olonne-18: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:olonne-18",
+      "artifact_content_hash": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+      "sequence_sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+      "displayed": "chr18:56,534,755–56,534,854"
+    },
+    {
+      "check": "live olonne-18: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "live olonne-18: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "live olonne-18: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live olonne-18: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "live keppel-19: selected evidence equals snapshot at 52",
+      "passed": true,
+      "displayed_artifacts": 24,
+      "expected_artifacts": 24
+    },
+    {
+      "check": "live keppel-19: overview marker at real position",
+      "passed": true,
+      "marker_cx": 523.1350984390352,
+      "expected_cx": 523.1350984390352
+    },
+    {
+      "check": "live keppel-19: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live keppel-19: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live keppel-19: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live keppel-19: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:keppel-19",
+      "artifact_content_hash": "20c8ea46d51872ddaad48f11f67bf418c31c84bca4606862c025247581a92a8d",
+      "sequence_sha256": "43c18394936646627639f881df36ca85fff84d1d69205ba98e0a008e26d1ec79",
+      "displayed": "chr19:5,400,741–5,400,840"
+    },
+    {
+      "check": "live keppel-19: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "live keppel-19: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "live keppel-19: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "live keppel-19: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "follow camera at seek 39: view matches cue target and snapshot",
+      "passed": true,
+      "cue_target": {
+        "zoom": "locus",
+        "task_id": "run-07d97449d3d7482696b2a84deec1921e:pansio-1:report:r0",
+        "assessment_id": null,
+        "region": "graph",
+        "candidate_id": "pansio-1",
+        "chromosome": "chr1"
+      },
+      "cues_total": 43,
+      "cues_through_position": 31,
+      "frame": {
+        "cursor": 39,
+        "zoom": "locus",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "replay pansio-1: selected evidence equals snapshot at 39",
+      "passed": true,
+      "displayed_artifacts": 24,
+      "expected_artifacts": 24
+    },
+    {
+      "check": "replay pansio-1: overview marker at real position",
+      "passed": true,
+      "marker_cx": 220.722589353409,
+      "expected_cx": 220.722589353409
+    },
+    {
+      "check": "replay pansio-1: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay pansio-1: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay pansio-1: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay pansio-1: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:pansio-1",
+      "artifact_content_hash": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+      "sequence_sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+      "displayed": "chr1:113,339,941–113,340,040"
+    },
+    {
+      "check": "replay pansio-1: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "replay pansio-1: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "replay pansio-1: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay pansio-1: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "replay olonne-18: selected evidence equals snapshot at 39",
+      "passed": true,
+      "displayed_artifacts": 24,
+      "expected_artifacts": 24
+    },
+    {
+      "check": "replay olonne-18: overview marker at real position",
+      "passed": true,
+      "marker_cx": 600.1576355399259,
+      "expected_cx": 600.1576355399259
+    },
+    {
+      "check": "replay olonne-18: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay olonne-18: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 18,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay olonne-18: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay olonne-18: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:olonne-18",
+      "artifact_content_hash": "cd7d94ba943539be847b3b32d3b23b4b0c1281dd2c2126342d22429d52ca03ba",
+      "sequence_sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+      "displayed": "chr18:56,534,755–56,534,854"
+    },
+    {
+      "check": "replay olonne-18: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "replay olonne-18: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "replay olonne-18: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 19,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay olonne-18: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "replay keppel-19: selected evidence equals snapshot at 39",
+      "passed": true,
+      "displayed_artifacts": 24,
+      "expected_artifacts": 24
+    },
+    {
+      "check": "replay keppel-19: overview marker at real position",
+      "passed": true,
+      "marker_cx": 523.1350984390352,
+      "expected_cx": 523.1350984390352
+    },
+    {
+      "check": "replay keppel-19: chromosome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay keppel-19: locus consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay keppel-19: sequence consistent on every animation frame",
+      "passed": true,
+      "frames": 38,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay keppel-19: bases equal committed reference artifact and verified data file",
+      "passed": true,
+      "artifact_id": "run-07d97449d3d7482696b2a84deec1921e:reference:keppel-19",
+      "artifact_content_hash": "20c8ea46d51872ddaad48f11f67bf418c31c84bca4606862c025247581a92a8d",
+      "sequence_sha256": "43c18394936646627639f881df36ca85fff84d1d69205ba98e0a008e26d1ec79",
+      "displayed": "chr19:5,400,741–5,400,840"
+    },
+    {
+      "check": "replay keppel-19: +50 bp shows the next real bases",
+      "passed": true
+    },
+    {
+      "check": "replay keppel-19: -50 bp restores the original bases",
+      "passed": true
+    },
+    {
+      "check": "replay keppel-19: genome consistent on every animation frame",
+      "passed": true,
+      "frames": 37,
+      "frames_mid_animation": 20,
+      "min_opacity": 0.2,
+      "first_inconsistent": null
+    },
+    {
+      "check": "replay keppel-19: selected evidence unchanged after returning to overview",
+      "passed": true
+    },
+    {
+      "check": "replay: older position shows no later assessment revision or artifacts",
+      "passed": true,
+      "displayed_states_checked": 447,
+      "older_sequence": 39,
+      "older_revision": 2,
+      "older_freshness": "current",
+      "final_revision": 4,
+      "final_freshness": "current",
+      "artifacts_at_older": 70,
+      "artifacts_final": 90
+    },
+    {
+      "check": "follow off, seek 0 while zoomed to sequence: view held, state equals snapshot",
+      "passed": true,
+      "frame": {
+        "cursor": 0,
+        "zoom": "sequence"
+      }
+    },
+    {
+      "check": "follow off, seek 39 while zoomed to sequence: view held, state equals snapshot",
+      "passed": true,
+      "frame": {
+        "cursor": 39,
+        "zoom": "sequence",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "follow off, seek 52 while zoomed to sequence: view held, state equals snapshot",
+      "passed": true,
+      "frame": {
+        "cursor": 52,
+        "zoom": "sequence",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "follow off, seek 39 while zoomed to sequence: view held, state equals snapshot",
+      "passed": true,
+      "frame": {
+        "cursor": 39,
+        "zoom": "sequence",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "follow-camera playback: every frame truthful while cues drive zoom transitions",
+      "passed": true,
+      "frames": 872,
+      "sequences_covered": 53,
+      "camera_moves": 26,
+      "frames_mid_animation_after_camera_move": 323,
+      "zooms_seen": [
+        "genome",
+        "chromosome",
+        "locus",
+        "sequence"
+      ],
+      "candidates_seen": [
+        "Pansio-1",
+        "Olônne-18",
+        "Keppel-19"
+      ],
+      "inconsistent_frames": 0,
+      "first_inconsistent": null
+    },
+    {
+      "check": "follow-camera playback end: view equals final cue target, evidence equals final snapshot",
+      "passed": true,
+      "cue_target": {
+        "zoom": "locus",
+        "task_id": "run-07d97449d3d7482696b2a84deec1921e:pansio-1:report:r0:revision1",
+        "assessment_id": "run-07d97449d3d7482696b2a84deec1921e:pansio-1:assessment:4",
+        "region": "graph",
+        "candidate_id": "pansio-1",
+        "chromosome": "chr1"
+      },
+      "frame": {
+        "cursor": 52,
+        "zoom": "locus",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "follow-camera playback end: selected evidence equals final snapshot",
+      "passed": true,
+      "candidate_id": "pansio-1",
+      "displayed_artifacts": 44
+    },
+    {
+      "check": "cues and zoom never changed the scientific record",
+      "passed": true,
+      "snapshot_sha256": "c206e652c232ca3affccd8f971c9a205e8dbe401f4c580c32770938746b4bacc"
+    },
+    {
+      "check": "return live: LIVE label and final state for the selected candidate",
+      "passed": true,
+      "frame": {
+        "cursor": 52,
+        "zoom": "locus",
+        "candidate_id": "pansio-1"
+      }
+    },
+    {
+      "check": "no browser page errors",
+      "passed": true
+    }
+  ],
+  "summary": {
+    "live": [
+      {
+        "label": "live",
+        "candidate_id": "pansio-1",
+        "through_sequence": 52,
+        "expected_revision": "Revision 4",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 38,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          }
+        ]
+      },
+      {
+        "label": "live",
+        "candidate_id": "olonne-18",
+        "through_sequence": 52,
+        "expected_revision": "Revision 2",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 38,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 37,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          }
+        ]
+      },
+      {
+        "label": "live",
+        "candidate_id": "keppel-19",
+        "through_sequence": 52,
+        "expected_revision": "Revision 2",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 38,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 37,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          }
+        ]
+      }
+    ],
+    "replay": [
+      {
+        "label": "replay",
+        "candidate_id": "pansio-1",
+        "through_sequence": 39,
+        "expected_revision": "Revision 2",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 37,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          }
+        ]
+      },
+      {
+        "label": "replay",
+        "candidate_id": "olonne-18",
+        "through_sequence": 39,
+        "expected_revision": "Revision 2",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 38,
+            "frames_mid_animation": 18,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 19,
+            "min_opacity": 0.2
+          }
+        ]
+      },
+      {
+        "label": "replay",
+        "candidate_id": "keppel-19",
+        "through_sequence": 39,
+        "expected_revision": "Revision 2",
+        "expected_freshness": "current",
+        "levels": [
+          {
+            "level": "chromosome",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "locus",
+            "frames": 38,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "sequence",
+            "frames": 38,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          },
+          {
+            "level": "genome",
+            "frames": 37,
+            "frames_mid_animation": 20,
+            "min_opacity": 0.2
+          }
+        ]
+      }
+    ],
+    "seek_results_follow_off": [
+      {
+        "sequence": 0,
+        "revision": "Unresolved",
+        "freshness": "No assessment",
+        "bases_shown": 0,
+        "crumb": "Sequence",
+        "selected": "Pansio-1"
+      },
+      {
+        "sequence": 39,
+        "revision": "Revision 2",
+        "freshness": "current",
+        "bases_shown": 100,
+        "crumb": "Sequence",
+        "selected": "Pansio-1"
+      },
+      {
+        "sequence": 52,
+        "revision": "Revision 4",
+        "freshness": "current",
+        "bases_shown": 100,
+        "crumb": "Sequence",
+        "selected": "Pansio-1"
+      },
+      {
+        "sequence": 39,
+        "revision": "Revision 2",
+        "freshness": "current",
+        "bases_shown": 100,
+        "crumb": "Sequence",
+        "selected": "Pansio-1"
+      }
+    ]
+  },
+  "screenshots": [
+    "live-pansio-1-sequence.png",
+    "replay-pansio-1-sequence.png",
+    "follow-camera-playback-end.png"
+  ],
+  "browser_errors": [],
+  "limitations": [
+    "Deterministic operational run; no model reasoning is shown or evaluated.",
+    "Follow-camera targets are derived client-side by frontend/src/safe-harbor/cues.ts from committed events; the run carries no server camera_cue fields. The journey uses cameraAt() only to check where the camera went, and checks truthfulness independently against API snapshots.",
+    "The SVG locus view shows merged gene spans, not exon models; igv.js tracks are not exercised.",
+    "Reduced-motion rendering is not re-checked here (SH-U14 readability journey covers it)."
+  ]
+}
