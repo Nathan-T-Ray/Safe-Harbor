@@ -1,7 +1,7 @@
 {
   "ticket": "SH-Q02",
-  "started_at": "2026-09-26T19:13:45.693589+00:00",
-  "database": "safe_harbor_science_e2e_1790450025",
+  "started_at": "2026-09-26T19:28:29.768589+00:00",
+  "database": "safe_harbor_science_e2e_1790450909",
   "mode": "deterministic_operational",
   "model_calls": 0,
   "reference": "data/safe_harbor/evaluator/reference_answers.json (independent raw-file recomputation, not human reviewed)",
@@ -13,7 +13,7 @@
     {
       "case_id": "keppel-19--full_sources",
       "split": "final",
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -44,7 +44,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:assessment:2",
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -55,7 +55,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/keppel-19-full-sources.json",
+      "export": "artifacts/private/q02-main-check/keppel-19-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -185,7 +185,7 @@
     {
       "case_id": "keppel-19--h1_context_only",
       "split": "final",
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -216,7 +216,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:assessment:2",
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -227,7 +227,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/keppel-19-full-sources.json",
+      "export": "artifacts/private/q02-main-check/keppel-19-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -358,7 +358,7 @@
     {
       "case_id": "keppel-19--controls_withheld",
       "split": "final",
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -386,7 +386,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:assessment:4",
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:4",
         "assessment_revision": 4,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -397,7 +397,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/keppel-19-controls-withheld.json",
+      "export": "artifacts/private/q02-main-check/keppel-19-controls-withheld.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -488,7 +488,7 @@
     {
       "case_id": "olonne-18--full_sources",
       "split": "validation",
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -519,7 +519,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-9e35b11c26d04216a29e362acca51278:olonne-18:assessment:2",
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -530,7 +530,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/olonne-18-full-sources.json",
+      "export": "artifacts/private/q02-main-check/olonne-18-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -660,7 +660,7 @@
     {
       "case_id": "olonne-18--h1_context_only",
       "split": "validation",
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -691,7 +691,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-9e35b11c26d04216a29e362acca51278:olonne-18:assessment:2",
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -702,7 +702,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/olonne-18-full-sources.json",
+      "export": "artifacts/private/q02-main-check/olonne-18-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -833,7 +833,7 @@
     {
       "case_id": "olonne-18--controls_withheld",
       "split": "validation",
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -861,7 +861,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-9e35b11c26d04216a29e362acca51278:olonne-18:assessment:4",
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:4",
         "assessment_revision": 4,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -872,7 +872,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/olonne-18-controls-withheld.json",
+      "export": "artifacts/private/q02-main-check/olonne-18-controls-withheld.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -963,7 +963,7 @@
     {
       "case_id": "pansio-1--full_sources",
       "split": "development",
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -994,7 +994,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-ce72c019f28844f084ac007bdf27277f:pansio-1:assessment:2",
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -1005,7 +1005,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/pansio-1-full-sources.json",
+      "export": "artifacts/private/q02-main-check/pansio-1-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -1135,7 +1135,7 @@
     {
       "case_id": "pansio-1--h1_context_only",
       "split": "development",
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -1166,7 +1166,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-ce72c019f28844f084ac007bdf27277f:pansio-1:assessment:2",
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
         "assessment_revision": 2,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -1177,7 +1177,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/pansio-1-full-sources.json",
+      "export": "artifacts/private/q02-main-check/pansio-1-full-sources.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -1308,7 +1308,7 @@
     {
       "case_id": "pansio-1--controls_withheld",
       "split": "development",
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
       "passed": true,
       "failures": [],
       "observed_numbers": {
@@ -1336,7 +1336,7 @@
         "H1 human embryonic stem cells"
       ],
       "assessment": {
-        "assessment_id": "run-ce72c019f28844f084ac007bdf27277f:pansio-1:assessment:4",
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:4",
         "assessment_revision": 4,
         "screen_status": "incomplete",
         "evidence_status": "unknown",
@@ -1347,7 +1347,7 @@
         "outside_dhs_buffer",
         "outside_ultraconserved_regions"
       ],
-      "export": "artifacts/safe_harbor/science-e2e/1790450025/pansio-1-controls-withheld.json",
+      "export": "artifacts/private/q02-main-check/pansio-1-controls-withheld.json",
       "scoring": {
         "as_run_trace": {
           "required_accuracy": 0.0,
@@ -2731,7 +2731,7 @@
       "passed": true,
       "health": {
         "status": "ok",
-        "database": "safe_harbor_science_e2e_1790450025",
+        "database": "safe_harbor_science_e2e_1790450909",
         "authoritative_store": "MongoDB",
         "model_available": false,
         "coordinator_available": true,
@@ -2741,8 +2741,8 @@
     {
       "check": "h9_refused_by_runtime_tool_gate",
       "passed": true,
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
-      "task_id": "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:compare:r0",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "task_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:compare:r0",
       "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
     },
     {
@@ -2756,7 +2756,7 @@
     {
       "check": "withheld_controls_reported_unavailable_not_zero",
       "passed": true,
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
       "control_overlap_statuses": [
         "unavailable",
         "unavailable",
@@ -2770,30 +2770,30 @@
     {
       "check": "prior_assessment_marked_stale",
       "passed": true,
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
-      "assessment_id": "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:assessment:2",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
       "stale_reason": "Prepared withhold-control-evidence: scope:keppel-19:expression changed to version 2. No source measurement was altered."
     },
     {
       "check": "reopened_tasks_selective",
       "passed": true,
-      "run_id": "run-54cddb56280e4677b27eaa10fd7810ed",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
       "affected": [
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:assess:r0",
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:compare:r0",
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:inspect:r0",
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:report:r0",
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:review:r0"
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assess:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:compare:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:inspect:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:report:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:review:r0"
       ],
       "unchanged": [
-        "run-54cddb56280e4677b27eaa10fd7810ed:keppel-19:screen:r0"
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:screen:r0"
       ]
     },
     {
       "check": "h9_refused_by_runtime_tool_gate",
       "passed": true,
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
-      "task_id": "run-9e35b11c26d04216a29e362acca51278:olonne-18:compare:r0",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "task_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:compare:r0",
       "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
     },
     {
@@ -2807,7 +2807,7 @@
     {
       "check": "withheld_controls_reported_unavailable_not_zero",
       "passed": true,
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
       "control_overlap_statuses": [
         "unavailable",
         "unavailable",
@@ -2821,30 +2821,30 @@
     {
       "check": "prior_assessment_marked_stale",
       "passed": true,
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
-      "assessment_id": "run-9e35b11c26d04216a29e362acca51278:olonne-18:assessment:2",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
       "stale_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered."
     },
     {
       "check": "reopened_tasks_selective",
       "passed": true,
-      "run_id": "run-9e35b11c26d04216a29e362acca51278",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
       "affected": [
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:assess:r0",
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:compare:r0",
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:inspect:r0",
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:report:r0",
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:review:r0"
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assess:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:compare:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:inspect:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:report:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:review:r0"
       ],
       "unchanged": [
-        "run-9e35b11c26d04216a29e362acca51278:olonne-18:screen:r0"
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:screen:r0"
       ]
     },
     {
       "check": "h9_refused_by_runtime_tool_gate",
       "passed": true,
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
-      "task_id": "run-ce72c019f28844f084ac007bdf27277f:pansio-1:compare:r0",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "task_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:compare:r0",
       "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
     },
     {
@@ -2858,7 +2858,7 @@
     {
       "check": "withheld_controls_reported_unavailable_not_zero",
       "passed": true,
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
       "control_overlap_statuses": [
         "unavailable",
         "unavailable",
@@ -2872,29 +2872,29 @@
     {
       "check": "prior_assessment_marked_stale",
       "passed": true,
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
-      "assessment_id": "run-ce72c019f28844f084ac007bdf27277f:pansio-1:assessment:2",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
       "stale_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered."
     },
     {
       "check": "reopened_tasks_selective",
       "passed": true,
-      "run_id": "run-ce72c019f28844f084ac007bdf27277f",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
       "affected": [
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:assess:r0",
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:compare:r0",
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:inspect:r0",
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:report:r0",
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:review:r0"
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assess:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:compare:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:inspect:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:report:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:review:r0"
       ],
       "unchanged": [
-        "run-ce72c019f28844f084ac007bdf27277f:pansio-1:screen:r0"
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:screen:r0"
       ]
     },
     {
       "check": "forged_pass_over_incomplete_rejected_by_ledger",
       "passed": false,
-      "run_id": "science-e2e-forged-screen-07211e62fa69451d81873ee6f2550910",
+      "run_id": "science-e2e-forged-screen-b41854bc1a3e48e4957bebc51bed8845",
       "harness_mode": "mock",
       "incomplete_criteria": [
         "cancer_gene_distance",
@@ -2904,7 +2904,7 @@
       "reason": "ledger committed screen_status=pass with incomplete criteria"
     }
   ],
-  "finished_at": "2026-09-26T19:13:51.513955+00:00",
+  "finished_at": "2026-09-26T19:28:36.258114+00:00",
   "error": null,
   "passed": false,
   "summary": {

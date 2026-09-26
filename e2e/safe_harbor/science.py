@@ -112,7 +112,7 @@ def evaluate_assessment(assessment: dict, expected: dict) -> dict:
 
 class ScienceJourney:
     def __init__(self, port: int, output: Path):
-        self.port, self.output = port, output
+        self.port, self.output = port, output.resolve()
         self.base = f"http://127.0.0.1:{port}"
         self.output.mkdir(parents=True, exist_ok=True)
         self.database = f"safe_harbor_science_e2e_{int(time.time())}"
