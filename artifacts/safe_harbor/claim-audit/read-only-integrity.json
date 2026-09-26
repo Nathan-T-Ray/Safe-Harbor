@@ -1,0 +1,566 @@
+{
+  "journey": "SH-Q12 read-only claim audit",
+  "mode": "read_only_artifact_audit",
+  "model_calls": 0,
+  "imports_production_code": false,
+  "commit": "b61b267ba357353a3934fd10aa45ebe15a72bf84",
+  "recorded_at": "2026-09-26T19:54:39.599755+00:00",
+  "checks": [
+    {
+      "name": "coordinates:pansio-1",
+      "passed": true,
+      "detail": {
+        "internal_half_open": [
+          "chr1",
+          113339960,
+          113340514
+        ],
+        "source_one_based_closed": [
+          113339961,
+          113340514
+        ],
+        "width": 554
+      }
+    },
+    {
+      "name": "source_hash_chain:pansio-1",
+      "passed": true,
+      "detail": {
+        "source": "elife-79592-supp1.xlsx",
+        "sheet": "overlap safe-active",
+        "row": 5
+      }
+    },
+    {
+      "name": "coordinates:olonne-18",
+      "passed": true,
+      "detail": {
+        "internal_half_open": [
+          "chr18",
+          56534774,
+          56536439
+        ],
+        "source_one_based_closed": [
+          56534775,
+          56536439
+        ],
+        "width": 1665
+      }
+    },
+    {
+      "name": "source_hash_chain:olonne-18",
+      "passed": true,
+      "detail": {
+        "source": "elife-79592-supp1.xlsx",
+        "sheet": "overlap safe-active",
+        "row": 54
+      }
+    },
+    {
+      "name": "coordinates:keppel-19",
+      "passed": true,
+      "detail": {
+        "internal_half_open": [
+          "chr19",
+          5400760,
+          5402139
+        ],
+        "source_one_based_closed": [
+          5400761,
+          5402139
+        ],
+        "width": 1379
+      }
+    },
+    {
+      "name": "source_hash_chain:keppel-19",
+      "passed": true,
+      "detail": {
+        "source": "elife-79592-supp1.xlsx",
+        "sheet": "overlap safe-active",
+        "row": 55
+      }
+    },
+    {
+      "name": "reference_window:pansio-1",
+      "passed": true,
+      "detail": {
+        "length": 754,
+        "window": [
+          113339860,
+          113340614
+        ],
+        "sha256_matches_bases": true,
+        "personalized_h1_genome": false
+      }
+    },
+    {
+      "name": "reference_window:olonne-18",
+      "passed": true,
+      "detail": {
+        "length": 1865,
+        "window": [
+          56534674,
+          56536539
+        ],
+        "sha256_matches_bases": true,
+        "personalized_h1_genome": false
+      }
+    },
+    {
+      "name": "reference_window:keppel-19",
+      "passed": true,
+      "detail": {
+        "length": 1579,
+        "window": [
+          5400660,
+          5402239
+        ],
+        "sha256_matches_bases": true,
+        "personalized_h1_genome": false
+      }
+    },
+    {
+      "name": "source_manifest",
+      "passed": true,
+      "detail": {
+        "sources": 15,
+        "raw_source_bytes_committed": false,
+        "note": "Raw bytes are not in git, so original-file hashes cannot be re-derived from this checkout."
+      }
+    },
+    {
+      "name": "h1_counts_recomputed_from_normalized_tables",
+      "passed": true,
+      "detail": {
+        "pansio-1": {
+          "de": 96,
+          "shared_with_untargeted": 31,
+          "untargeted": 260
+        },
+        "olonne-18": {
+          "de": 111,
+          "shared_with_untargeted": 40,
+          "untargeted": 260
+        },
+        "keppel-19": {
+          "de": 139,
+          "shared_with_untargeted": 48,
+          "untargeted": 260
+        }
+      }
+    },
+    {
+      "name": "h1_tables_significant_only",
+      "passed": true,
+      "detail": {
+        "rows_outside_thresholds": 0,
+        "thresholds": {
+          "abs_log2_fold_change_gte": 1,
+          "fdr_lte": 0.01
+        }
+      }
+    },
+    {
+      "name": "split_one_locus_each",
+      "passed": true,
+      "detail": {
+        "development": [
+          "pansio-1"
+        ],
+        "validation": [
+          "olonne-18"
+        ],
+        "final": [
+          "keppel-19"
+        ]
+      }
+    },
+    {
+      "name": "r0_preflight_recorded",
+      "passed": true,
+      "detail": {
+        "purpose": "development_only_configuration_preflight_not_scored_comparison",
+        "tokens": 18200,
+        "model_calls": 1,
+        "tool_calls": 8,
+        "cost_usd": 0.00363608,
+        "required_correct": "18/18",
+        "support_ok": true,
+        "unsupported": []
+      }
+    },
+    {
+      "name": "h0_preflight_recorded",
+      "passed": true,
+      "detail": {
+        "purpose": "development_only_configuration_preflight_not_scored_comparison",
+        "tokens": 206150,
+        "model_calls": 12,
+        "tool_calls": 21,
+        "cost_usd": 0.033225976,
+        "required_correct": "16/18",
+        "support_ok": false,
+        "unsupported": [
+          {
+            "kind": "unsupported_numeric_finding",
+            "key": "control_de_count"
+          }
+        ]
+      }
+    },
+    {
+      "name": "r0_export_event_order",
+      "passed": true,
+      "detail": {
+        "events": 10,
+        "assessment_first_at": [
+          9
+        ],
+        "causes": [
+          "run.created",
+          "coordinator.recovered",
+          "task.started",
+          "task.started",
+          "task.completed",
+          "task.completed",
+          "task.started",
+          "task.reservation_extended",
+          "task.completed",
+          "run.stopped"
+        ]
+      }
+    },
+    {
+      "name": "coordinator_recovered_is_startup_not_crash",
+      "passed": true,
+      "detail": {
+        "note": "Every exported run records coordinator.recovered at startup (epoch 1). It is not evidence of crash recovery."
+      }
+    },
+    {
+      "name": "experiment_has_no_candidate:experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "passed": true,
+      "detail": {
+        "status_in_latest_record": "running_development",
+        "updated_at": "2026-09-26T19:19:50.182547+00:00",
+        "result_status_counts": {
+          "development/R0/pending": 1,
+          "validation/H0/pending": 3,
+          "validation/R0/pending": 3,
+          "validation/H1/awaiting_proposal": 3,
+          "final/H0/pending": 3,
+          "final/R0/pending": 3,
+          "final/H1/awaiting_proposal": 3,
+          "development/H0/complete": 1,
+          "development/R0/complete": 2,
+          "development/H0/failed": 1,
+          "development/H0/running": 1
+        },
+        "scored": [
+          {
+            "case": "pansio-1--full_sources",
+            "arm": "H0",
+            "status": "complete",
+            "required": "0/18",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 165124,
+            "cost_usd": 0.0259151648
+          },
+          {
+            "case": "pansio-1--full_sources",
+            "arm": "R0",
+            "status": "complete",
+            "required": "0/18",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 17910,
+            "cost_usd": 0.0033474
+          },
+          {
+            "case": "pansio-1--controls_withheld",
+            "arm": "R0",
+            "status": "complete",
+            "required": "0/15",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 17815,
+            "cost_usd": 0.0033341
+          },
+          {
+            "case": "pansio-1--controls_withheld",
+            "arm": "H0",
+            "status": "failed",
+            "required": "0/15",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 25284,
+            "cost_usd": 0.004480548799999999
+          }
+        ]
+      }
+    },
+    {
+      "name": "experiment_has_no_candidate:experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "passed": true,
+      "detail": {
+        "status_in_latest_record": "running_development",
+        "updated_at": "2026-09-26T19:45:49.012332+00:00",
+        "result_status_counts": {
+          "validation/H0/pending": 3,
+          "validation/R0/pending": 3,
+          "validation/H1/awaiting_proposal": 3,
+          "final/H0/pending": 3,
+          "final/R0/pending": 3,
+          "final/H1/awaiting_proposal": 3,
+          "development/H0/complete": 2,
+          "development/R0/complete": 3,
+          "development/H0/failed": 1
+        },
+        "scored": [
+          {
+            "case": "pansio-1--full_sources",
+            "arm": "H0",
+            "status": "complete",
+            "required": "14/18",
+            "decisions": "3/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 186755,
+            "cost_usd": 0.0287691656
+          },
+          {
+            "case": "pansio-1--full_sources",
+            "arm": "R0",
+            "status": "complete",
+            "required": "17/18",
+            "decisions": "2/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 20721,
+            "cost_usd": 0.0045079832
+          },
+          {
+            "case": "pansio-1--controls_withheld",
+            "arm": "R0",
+            "status": "complete",
+            "required": "14/15",
+            "decisions": "2/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 18838,
+            "cost_usd": 0.0037408
+          },
+          {
+            "case": "pansio-1--controls_withheld",
+            "arm": "H0",
+            "status": "failed",
+            "required": "0/15",
+            "decisions": "0/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 24412,
+            "cost_usd": 0.0040416992
+          },
+          {
+            "case": "pansio-1--h1_context_only",
+            "arm": "H0",
+            "status": "complete",
+            "required": "19/19",
+            "decisions": "3/3",
+            "completed": true,
+            "support_ok": true,
+            "tokens": 187378,
+            "cost_usd": 0.0284095504
+          },
+          {
+            "case": "pansio-1--h1_context_only",
+            "arm": "R0",
+            "status": "complete",
+            "required": "17/19",
+            "decisions": "2/3",
+            "completed": false,
+            "support_ok": false,
+            "tokens": 19716,
+            "cost_usd": 0.0039408432
+          }
+        ]
+      }
+    },
+    {
+      "name": "old_experiment_abort_recorded",
+      "passed": true,
+      "detail": {
+        "aborted_record_status": "aborted_configuration_failure",
+        "latest_experiment_status": "running_development",
+        "note": "latest-experiment.json still says running_development; experiment-aborted.json is the terminal record."
+      }
+    },
+    {
+      "name": "new_experiment_manifest_unchanged",
+      "passed": true,
+      "detail": {
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4"
+      }
+    },
+    {
+      "name": "h0_model_tool_choices",
+      "passed": true,
+      "detail": {
+        "pansio-1--h1_context_only": {
+          "status": "complete",
+          "replan_rounds": 0,
+          "roles": {
+            "screen": [
+              "inspect_candidate",
+              "screen_candidate",
+              "retrieve_evidence"
+            ],
+            "inspect": [
+              "list_evidence",
+              "table_slice",
+              "table_slice",
+              "retrieve_evidence"
+            ],
+            "compare": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "assess": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "review": [
+              "control_overlap",
+              "retrieve_evidence"
+            ],
+            "report": [
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence"
+            ]
+          },
+          "failures": []
+        },
+        "pansio-1--full_sources": {
+          "status": "complete",
+          "replan_rounds": 0,
+          "roles": {
+            "screen": [
+              "inspect_candidate",
+              "screen_candidate"
+            ],
+            "inspect": [
+              "list_evidence",
+              "table_slice",
+              "table_slice",
+              "reference_sequence"
+            ],
+            "compare": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "assess": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "review": [
+              "control_overlap",
+              "screen_candidate",
+              "retrieve_evidence"
+            ],
+            "report": [
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence",
+              "retrieve_evidence"
+            ]
+          },
+          "failures": []
+        },
+        "pansio-1--controls_withheld": {
+          "status": "blocked",
+          "replan_rounds": 1,
+          "roles": {
+            "inspect": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "screen": [
+              "inspect_candidate",
+              "screen_candidate",
+              "retrieve_evidence",
+              "retrieve_evidence"
+            ]
+          },
+          "failures": [
+            "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+          ]
+        }
+      }
+    },
+    {
+      "name": "recovery_sigkill_export",
+      "passed": true,
+      "detail": {
+        "mode": "deterministic_operational",
+        "exit_code": -9,
+        "epochs": [
+          1,
+          2
+        ],
+        "events": 30,
+        "report_paths_missing_in_checkout": [
+          "artifacts/safe_harbor/pr66-review/recovery-after/run-12c05643bd264f7892f9d7734f302799.export.json",
+          "artifacts/safe_harbor/pr66-review/recovery-after/e2e-recovery-be00907a8900442b83e39a7e8de2ce77.export.json",
+          "artifacts/safe_harbor/pr66-review/recovery-after/e2e-recovery-cd5628af28f64646a4695f0dba0a6d58.export.json"
+        ],
+        "note": "Exports exist beside the report; the report still names the pre-rename pr66-review directory and process logs are not committed."
+      }
+    },
+    {
+      "name": "optimizer_attempt_rejected",
+      "passed": true,
+      "detail": {
+        "status": "rejected_invalid_proposal",
+        "error": "Expecting value: line 1 column 1 (char 0)",
+        "tokens": 8672,
+        "cost_usd": 0.00205408
+      }
+    },
+    {
+      "name": "adaptation_e2e_blocked_on_genuine_proposal",
+      "passed": true,
+      "detail": {
+        "mode": "deterministic_operational",
+        "passed": 32,
+        "blocked": [
+          "ledger contains a genuine automatic (real-model) structural proposal substantiated by its recorded response",
+          "a run under a PROMOTED (validation-selected) structurally different version executes"
+        ]
+      }
+    },
+    {
+      "name": "no_q11_canonical_artifact",
+      "passed": true,
+      "detail": {
+        "note": "No canonical Q11 recording is committed."
+      }
+    }
+  ],
+  "passed": true,
+  "summary": {
+    "checks": 26,
+    "failed": []
+  }
+}

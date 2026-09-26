@@ -1,0 +1,48 @@
+# SH-Q12 adversarial claim audit
+
+Audited 2026-09-26 against `main` at `b61b267` and the committed artifacts. Auditor: `kiro-critic`, read-only. No production code was changed or imported, no model calls were made and no ledger was written. Machine-checkable findings are in [read-only-integrity.json](../../artifacts/safe_harbor/claim-audit/read-only-integrity.json). Rerun them with `python3 artifacts/safe_harbor/claim-audit/verify_claims.py` (26/26 checks pass; each check tests what the artifact *says*, not whether the claim is good).
+
+**Verdict: NOT SIGNED OFF.** SH-Q11 has produced no canonical recording, so no final pitch exists to certify. The pitch in the specification can be supported for 5 of its 7 segments. The 40-second segment "actual structural patch and measured promotion/rejection" is **not supported**: no model-generated executable harness exists, and no validation selection or promotion has run. This must stay visible as a missing result and must not be reworded as a success.
+
+**Independence:** other Kiro sessions authored the SH-Q06 and SH-Q10 journeys. Those rows are therefore not independent certification. The auditor wrote no runtime, science, harness or UI code.
+
+## The four questions
+
+| Question | Answer from the artifacts |
+|---|---|
+| Did the agent make a consequential investigation decision? | **Not demonstrated.** R0 is a fixed set of deterministic checks followed by one synthesis call. H0 is a fixed six-role graph with 0 replans in its completed runs. Within each role's allowlist the model did choose tools, and those choices varied between cases: `inspect` called `reference_sequence` in one case and `retrieve_evidence` in the other; `review` called `screen_candidate` only once. No artifact shows that a choice changed a conclusion. The one clearly consequential choice was harmful. In `pansio-1--controls_withheld` the H0 `inspect` worker asked for the withheld control table, received `PermissionError`, and the run ended `blocked` with a 0/15 score. |
+| Did the harness change? | **Only by hand.** The [adaptation E2E](../../artifacts/safe_harbor/adaptation-e2e/report.json) shows a saved structural patch compiling into a different executed graph (12→16 tasks) with matching role traces. It is deterministic operational, and the E2E wrote the patch itself. The only real optimizer attempt was [rejected](../../artifacts/safe_harbor/real-model-comparison/experiment-5d8ef28995924af7b65ab6ef4deb3273/optimizer-attempt.json) (`rejected_invalid_proposal`, empty content, 8,672 tokens, $0.00205408). In both experiments `H1` is `null`, and `optimizer` and `promotion` are unset. |
+| Was evaluation fair? | **Design yes, results not yet.** The frozen manifest of `experiment-a879…` matches its live record: same model, pinned provider, settings, budget, sources, criteria and split hash. The answer key is independently computed but **not human-reviewed**. There are three problems. (1) Each split contains one locus from one paper, so there is no generalization. (2) Validation and final assignments are all `pending` or `awaiting_proposal`. (3) Fairness concern: the H0 permission denial described in the first row ends the case, while R0's fixed checks never make that request. Owners of H03/H05 should decide whether that denial is a legitimate H0 failure or a runtime penalty. Either way, the case must still be reported. |
+| Was recovery real? | **Yes, for the operational runtime only.** [Recovery 15/15](../../artifacts/safe_harbor/pr66-runtime-repair/recovery-after/report.json) records real exits 86 and 87 plus an external SIGKILL (−9). The committed SIGKILL export has 30 contiguous events across coordinator epochs 1→2 and completes. All of this ran on the deterministic adapter with 0 model calls. No paid-model run was interrupted. **Warning:** every run, including the R0 demo run, logs `coordinator.recovered` at event 2 or 3 during normal startup (epoch 1). That event must not be narrated as a recovery. |
+
+## Pitch segments (specification three-minute demo)
+
+| Segment / spoken claim | Status | Evidence and limit |
+|---|---|---|
+| Context: three published GRCh38 candidates, H1 context, real sources | **Supported** | Independent checks confirm three things. Source→internal coordinate conversion is correct for all three loci. Each candidate's supplement-1 sheet/row hash matches the 15-source manifest. Each reference window's stored SHA-256 matches its bases, and `personalized_h1_genome` is false. The raw source bytes are **not in git**, so hashes of the original files can only be re-derived on a machine that has `data/safe_harbor/raw/`. These are published candidates, not a discovery. |
+| Real genome zoom | **Supported (operational)** | [Q09 frames 73/73](../../artifacts/safe_harbor/genome-e2e/2026-09-26-q09-frames/report.json), [readability 49/49](../../artifacts/safe_harbor/pr64-review/readability-final/report.json) and the [R0 replay journey 10/10](../../artifacts/safe_harbor/baseline-replay/report.json). Earlier failing readability runs are kept. |
+| Expression investigation: "96 targeted DE genes, 260 untargeted, 31 shared" | **Supported, with scope** | Recomputed from the normalized tables without production code: 96/111/139 DE genes, 31/40/48 shared, 260 controls. Every row meets \|log2FC\|≥1 and FDR≤0.01, so these are significant-only tables. The 18/18 [R0 preflight](../../artifacts/safe_harbor/real-model-preflight/run-1c38545496844fcb858df0892a3df064/report.json) is a **single development run that did not reproduce**. The same case and arm inside the frozen experiment scored 17/18 with 2/3 decisions and `completed: false`. Never present 18/18 as the arm's typical performance. |
+| Evidence revision reopens dependents | **Supported (operational)** | [Revision 10/10](../../artifacts/safe_harbor/pr66-runtime-repair/revision-after/report.json), with the earlier failure kept in [revision-before](../../artifacts/safe_harbor/pr66-runtime-repair/revision-before/report.json). This is a separate deterministic recording that did not happen during the R0 run. Do not splice it into that run. |
+| Real recovery | **Supported (operational)** | See the recovery row above. The report's `runs[*].export` paths still point to the old `pr66-review/` directory, although the exports are committed beside the report. The process logs it names are not committed. |
+| Actual structural patch and measured promotion/rejection | **Not supported** | No automatic executable proposal, no validation selection and no selected-version run exist. A manual patch is **not** an automatic change. A rejected empty optimizer output **demonstrates** that selection rejects invalid proposals; it does not show self-improvement. No cost result exists, and 15% is a threshold, not a measurement. |
+| Versioned dossier with preserved uncertainty | **Supported** | The R0 export has 10 contiguous events, with the first assessment at 9. The historical dossier at event 1 contains no assessment. The conclusion keeps the axes *incomplete / unknown / current*. |
+
+## Newly observed results that must be reported, not hidden
+
+- **`experiment-a879d0fa…` development split (Pansio-1 only, real model, one run per arm):** results are mixed and neither arm dominates. H0 scored 14/18 with 3/3 decisions, 0/15 (blocked), and 19/19 with 3/3 decisions (the only fully supported dossier). R0 scored 17/18, 14/15 and 17/19, each with 2/3 decisions and none marked `completed`. H0 used about 187k tokens (~$0.028) per completed case against about 20k (~$0.004) for R0. The committed record is a mid-run snapshot (`running_development`, 19:45:49 UTC). This is development data used to shape the proposal, not a comparison result.
+- **`experiment-5d8ef289…`:** all four scored assignments scored 0 because output was truncated. The record `latest-experiment.json` still says `running_development`. The terminal state is in `experiment-aborted.json` (`aborted_configuration_failure`). Anyone reading only the latest record would be misled.
+- **H0 preflight** [run-fd79…](../../artifacts/safe_harbor/real-model-preflight/run-fd79f621f4444f47aae814434998c3b9/report.json) scored 16/18 and cited an unsupported `control_de_count`, using 206,150 tokens and $0.033226. STATUS.md still describes this preflight as "underway".
+
+## Safe wording for Q11
+
+Use this wording until the gates below close:
+
+> "Safe Harbor investigates three published GRCh38 candidate regions in an H1 context, using real source tables and reference annotations. In one recorded run, a real model's synthesis matched every independently computed required number while keeping missing evidence open. Recovery and selective revision are shown in separate operational recordings. The system can execute a saved structural workflow change. However, the one automatic proposal so far was empty and rejected, and no improvement has been measured."
+
+Always keep the labels *real model*, *deterministic operational*, *mock* and *recorded replay* visible. Never claim global safety, causality, novel sites, generalization, a cost win or billion-token validation.
+
+## What would change the verdict
+
+1. H06/H07: a typed automatic patch with its recorded response; its compiled and executed topology; a separate validation selection; and a run under the selected version (SH-Q07 rerun).
+2. H05/H08: complete validation and final assignments for H0, R0 and H1 under one freeze, with every failure and all optimizer overhead reported, and the H0 permission-denial treatment resolved and disclosed.
+3. Q11: a committed canonical recording. Rerun this audit against its narration. Sign-off also requires a reviewer independent of the UI, harness, Q06 and Q10 authors.
