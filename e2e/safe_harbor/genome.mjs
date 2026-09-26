@@ -191,7 +191,9 @@ async function main() {
     // 5. Return to overview; selection persists and is marked on the same chromosome.
     await crumbs.getByRole('button', {name: 'Genome', exact: true}).click();
     assert.equal((await genome.locator('h2').textContent()).trim(), 'The published shortlist');
-    const selectedMarker = await genome.getByRole('button', {name: `Select ${candidate.name}`}).locator('circle').evaluate(c => ({r: c.getAttribute('r'), fill: c.getAttribute('fill')}));
+    const selectedOverview = genome.getByRole('button', {name: `Select ${candidate.name}`});
+    assert.equal(await selectedOverview.getAttribute('aria-pressed'), 'true', 'selected overview marker must expose its state without color');
+    const selectedMarker = await selectedOverview.locator('circle[fill="#7ee8dd"]').evaluate(c => ({r: c.getAttribute('r'), fill: c.getAttribute('fill')}));
     assert.deepEqual(selectedMarker, {r: '7', fill: '#7ee8dd'}, 'returned overview does not mark the selected candidate');
     await consistent(candidate, expect, `${phase} return`);
     record.levels.push({level: 'return_to_overview', selected_marker: selectedMarker});
@@ -227,7 +229,7 @@ async function main() {
       replay: {historical_sequence: historicalSequence, evidence_revision_sequence: revisionEvent.sequence, live_sequence: live.through_sequence, revised_candidate: revised,
         historical_revision: latestRevision(historical, revised), live_revision: latestRevision(live, revised)},
       sequence_integrity: sequenceIntegrity, journeys: checks, browser_errors: errors,
-      limitations: ['Deterministic operational run; no model reasoning is shown or evaluated.', 'Positions are checked after each transition starts and after 700 ms; intermediate animation frames are not individually sampled.', 'The SVG locus view shows merged gene spans, not exon models; igv.js tracks are not exercised.', `Follow camera was ${events.some(event => event.camera_cue) ? 'exercised by committed camera cues' : 'not exercised: the run has no camera cues (SH-U11 pending); rerun after cues land'}.`]};
+      limitations: ['Deterministic operational run; no model reasoning is shown or evaluated.', 'Positions are checked after each transition starts and after 700 ms; intermediate animation frames are not individually sampled.', 'The SVG locus view shows merged gene spans, not exon models; igv.js tracks are not exercised.', 'This journey verifies coordinate/version integrity; event-derived follow-camera behavior is separately exercised by presentation_replay.mjs.']};
     await writeFile(`${output}/report.json`, JSON.stringify(report, null, 2) + '\n');
     console.log(JSON.stringify({passed: true, run_id: runId, journeys: checks.length, report: `${output}/report.json`}, null, 2));
   } catch (error) {

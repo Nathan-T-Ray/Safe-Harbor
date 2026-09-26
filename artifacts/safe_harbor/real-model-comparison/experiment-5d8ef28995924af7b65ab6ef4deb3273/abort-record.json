@@ -1,0 +1,120 @@
+{
+  "recorded_at": "2026-09-26T19:28:40.889529+00:00",
+  "reason": "Aborted after the current paid case reached terminal state: default-high reasoning exhausted the 3000-token completion cap, producing unusable development outputs and an empty optimizer proposal. The operator integrated the independently verified ledger aggregation repair and explicit future generation settings; the existing between-case implementation fingerprint guard blocked every remaining dispatch. The frozen original manifest, all results, raw usage and failures are retained. No successful self-improvement or competent-baseline performance claim is supported.",
+  "original_driver_status": "complete",
+  "active_real_runs_at_reconciliation": 0,
+  "all_started_runs_terminal": true,
+  "never_dispatched_due_to_guard": [
+    {
+      "arm": "H0",
+      "case_id": "olonne-18--controls_withheld",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "H0",
+      "case_id": "olonne-18--h1_context_only",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "R0",
+      "case_id": "olonne-18--h1_context_only",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "H0",
+      "case_id": "keppel-19--full_sources",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "R0",
+      "case_id": "keppel-19--full_sources",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "H0",
+      "case_id": "keppel-19--controls_withheld",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "R0",
+      "case_id": "keppel-19--controls_withheld",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "H0",
+      "case_id": "keppel-19--h1_context_only",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    },
+    {
+      "arm": "R0",
+      "case_id": "keppel-19--h1_context_only",
+      "error": "LedgerError: Reference answers, scoring/case definitions or production implementations changed after experiment freeze",
+      "known_usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0,
+        "usage_complete": true
+      }
+    }
+  ],
+  "no_executable_h1_count": 6,
+  "no_improvement_claim": true,
+  "infrastructure_limitation": "Original internal Ledger.accept did not independently recompute criterion aggregation; normal model workers enforced it. Post-run repair is kept distinct from the frozen comparison. All actual accepted assessments undergo a separate read-only audit."
+}

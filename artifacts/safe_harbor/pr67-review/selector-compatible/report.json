@@ -1,0 +1,377 @@
+{
+  "ticket": "SH-Q09",
+  "journey": "Genome zoom truthfulness, live and in recorded replay",
+  "mode": "deterministic_operational",
+  "mock_transport": false,
+  "model_calls": 0,
+  "passed": true,
+  "run_id": "run-34607c321fa5457da78fd5598ebd33fd",
+  "run_created_by_journey": false,
+  "ui": "http://127.0.0.1:5192",
+  "viewport": "1280x720",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "replay": {
+    "historical_sequence": 39,
+    "evidence_revision_sequence": 40,
+    "live_sequence": 52,
+    "revised_candidate": "pansio-1",
+    "historical_revision": 2,
+    "live_revision": 4
+  },
+  "sequence_integrity": [
+    {
+      "candidate_id": "pansio-1",
+      "artifact_id": "run-34607c321fa5457da78fd5598ebd33fd:reference:pansio-1",
+      "window": "chr1:[113339860,113340614)",
+      "sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+      "verified_source_match": true
+    },
+    {
+      "candidate_id": "olonne-18",
+      "artifact_id": "run-34607c321fa5457da78fd5598ebd33fd:reference:olonne-18",
+      "window": "chr18:[56534674,56536539)",
+      "sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+      "verified_source_match": true
+    },
+    {
+      "candidate_id": "keppel-19",
+      "artifact_id": "run-34607c321fa5457da78fd5598ebd33fd:reference:keppel-19",
+      "window": "chr19:[5400660,5402239)",
+      "sha256": "43c18394936646627639f881df36ca85fff84d1d69205ba98e0a008e26d1ec79",
+      "verified_source_match": true
+    }
+  ],
+  "journeys": [
+    {
+      "phase": "live",
+      "candidate_id": "pansio-1",
+      "assessment_revision": 4,
+      "sequence": 52,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.45526023827575735,
+          "expected_fraction": 0.45526023827575735
+        },
+        {
+          "level": "chromosome",
+          "length": 248956422,
+          "marker_fraction": 0.45526023827575735
+        },
+        {
+          "level": "locus",
+          "interval": "chr1:113,339,961–113,340,514",
+          "tick_count": 5,
+          "genes_shown": 1,
+          "genes_verified_in_frozen_window": 1
+        },
+        {
+          "level": "sequence",
+          "sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+          "steps": [
+            {
+              "start_zero_based": 113339940,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 113339990,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 113339940,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "live",
+      "candidate_id": "olonne-18",
+      "assessment_revision": 2,
+      "sequence": 52,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.7034025547170302,
+          "expected_fraction": 0.7034025547170306
+        },
+        {
+          "level": "chromosome",
+          "length": 80373285,
+          "marker_fraction": 0.7034025547170306
+        },
+        {
+          "level": "locus",
+          "interval": "chr18:56,534,775–56,536,439",
+          "tick_count": 5,
+          "genes_shown": 1,
+          "genes_verified_in_frozen_window": 1
+        },
+        {
+          "level": "sequence",
+          "sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+          "steps": [
+            {
+              "start_zero_based": 56534754,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 56534804,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 56534754,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "live",
+      "candidate_id": "keppel-19",
+      "assessment_revision": 2,
+      "sequence": 52,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.09213544269695292,
+          "expected_fraction": 0.09213544269695308
+        },
+        {
+          "level": "chromosome",
+          "length": 58617616,
+          "marker_fraction": 0.09213544269695308
+        },
+        {
+          "level": "locus",
+          "interval": "chr19:5,400,761–5,402,139",
+          "tick_count": 5,
+          "genes_shown": 2,
+          "genes_verified_in_frozen_window": 2
+        },
+        {
+          "level": "sequence",
+          "sha256": "43c18394936646627639f881df36ca85fff84d1d69205ba98e0a008e26d1ec79",
+          "steps": [
+            {
+              "start_zero_based": 5400740,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 5400790,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 5400740,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "replay",
+      "candidate_id": "pansio-1",
+      "assessment_revision": 2,
+      "sequence": 39,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.45526023827575735,
+          "expected_fraction": 0.45526023827575735
+        },
+        {
+          "level": "chromosome",
+          "length": 248956422,
+          "marker_fraction": 0.45526023827575735
+        },
+        {
+          "level": "locus",
+          "interval": "chr1:113,339,961–113,340,514",
+          "tick_count": 5,
+          "genes_shown": 1,
+          "genes_verified_in_frozen_window": 1
+        },
+        {
+          "level": "sequence",
+          "sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+          "steps": [
+            {
+              "start_zero_based": 113339940,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 113339990,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 113339940,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "replay",
+      "candidate_id": "olonne-18",
+      "assessment_revision": 2,
+      "sequence": 39,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.7034025547170302,
+          "expected_fraction": 0.7034025547170306
+        },
+        {
+          "level": "chromosome",
+          "length": 80373285,
+          "marker_fraction": 0.7034025547170306
+        },
+        {
+          "level": "locus",
+          "interval": "chr18:56,534,775–56,536,439",
+          "tick_count": 5,
+          "genes_shown": 1,
+          "genes_verified_in_frozen_window": 1
+        },
+        {
+          "level": "sequence",
+          "sha256": "c817d920af90283abf276de7d3fbfc52eaa893f267004bd5d266c9916638f2d9",
+          "steps": [
+            {
+              "start_zero_based": 56534754,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 56534804,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 56534754,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    },
+    {
+      "phase": "replay",
+      "candidate_id": "keppel-19",
+      "assessment_revision": 2,
+      "sequence": 39,
+      "levels": [
+        {
+          "level": "genome",
+          "marker_fraction": 0.09213544269695292,
+          "expected_fraction": 0.09213544269695308
+        },
+        {
+          "level": "chromosome",
+          "length": 58617616,
+          "marker_fraction": 0.09213544269695308
+        },
+        {
+          "level": "locus",
+          "interval": "chr19:5,400,761–5,402,139",
+          "tick_count": 5,
+          "genes_shown": 2,
+          "genes_verified_in_frozen_window": 2
+        },
+        {
+          "level": "sequence",
+          "sha256": "43c18394936646627639f881df36ca85fff84d1d69205ba98e0a008e26d1ec79",
+          "steps": [
+            {
+              "start_zero_based": 5400740,
+              "bases": 100,
+              "inside_candidate": 80
+            },
+            {
+              "start_zero_based": 5400790,
+              "bases": 100,
+              "inside_candidate": 100
+            },
+            {
+              "start_zero_based": 5400740,
+              "bases": 100,
+              "inside_candidate": 80
+            }
+          ]
+        },
+        {
+          "level": "return_to_overview",
+          "selected_marker": {
+            "r": "7",
+            "fill": "#7ee8dd"
+          }
+        }
+      ],
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "limitations": [
+    "Deterministic operational run; no model reasoning is shown or evaluated.",
+    "Positions are checked after each transition starts and after 700 ms; intermediate animation frames are not individually sampled.",
+    "The SVG locus view shows merged gene spans, not exon models; igv.js tracks are not exercised.",
+    "Follow camera was not exercised: the run has no camera cues (SH-U11 pending); rerun after cues land."
+  ]
+}

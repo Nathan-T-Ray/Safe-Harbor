@@ -1,5 +1,7 @@
 # Projection readability and motion (SH-U14)
 
+Current acceptance: **49/49 checks passed** after integration, with the unchanged external browser journey. Evidence: `artifacts/safe_harbor/pr64-review/readability-final/report.json` and its screenshots. Keyboard dialogs, selected markers, SVG text sizing, conclusion visibility and reduced-motion checks pass. The original failing review below is retained as historical evidence.
+
 Journey: `e2e/safe_harbor/readability.mjs`. It drives a real browser through the Vite proxy to FastAPI and MongoDB at a **1280×720** viewport. Before measuring, it starts a **deterministic operational** run through the UI ("Start investigation"). The graph, stage labels, task statuses and assessments on screen therefore come from the actual ledger. There is no mocked transport, no model call and no biological interpretation.
 
 ```sh

@@ -1,0 +1,8 @@
+{
+  "ticket": "SH-Q09",
+  "passed": false,
+  "run_id": "run-34607c321fa5457da78fd5598ebd33fd",
+  "error": "locator.evaluate: Error: strict mode violation: getByRole('region', { name: 'Genome viewer' }).getByRole('button', { name: 'Select Pansio-1' }).locator('circle') resolved to 2 elements:\n    1) <circle r=\"11\" cy=\"18\" fill=\"none\" stroke=\"#d8fff5\" stroke-width=\"2\" cx=\"220.722589353409\"></circle> aka getByRole('button', { name: 'Select Pansio-' })\n    2) <circle r=\"7\" cy=\"18\" fill=\"#7ee8dd\" stroke=\"#101c2e\" stroke-width=\"2\" cx=\"220.722589353409\"></circle> aka getByRole('button', { name: 'Select Pansio-' })\n\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Genome viewer' }).getByRole('button', { name: 'Select Pansio-1' }).locator('circle')\u001b[22m\n\n    at journey (/Users/nathanray/safe-harbor-standalone/e2e/safe_harbor/genome.mjs:194:115)\n    at async main (/Users/nathanray/safe-harbor-standalone/e2e/safe_harbor/genome.mjs:209:7)\n    at async file:///Users/nathanray/safe-harbor-standalone/e2e/safe_harbor/genome.mjs:242:1",
+  "journeys": [],
+  "browser_errors": []
+}
