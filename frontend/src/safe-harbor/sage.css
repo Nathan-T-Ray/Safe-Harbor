@@ -274,3 +274,4 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .sage-app .sequence-row>span,.sage-app .sequence-row .coordinate{color:#354f52}
 .sage-app .sequence-row code span{color:#354f52}
 .sage-app .sequence-row code .inside-candidate{background:#354f52;color:#fff;border-bottom-color:#2f3e46}
+.sage-app dt,.sage-app .metric-grid dt{color:#354f52;font-size:12px}.sage-app dd,.sage-app .metric-grid dd{color:#2f3e46}
