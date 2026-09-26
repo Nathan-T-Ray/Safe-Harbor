@@ -85,3 +85,4 @@ button:not(:disabled):active{transform:translateY(1px)}
 .presentation .agent-tree-panel{order:3}
 @media(max-width:1100px){.at-meters{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.at-pulse{animation:none!important;box-shadow:none}}
+#agent-tree,.genome-panel,.conclusion-panel,.graph-panel{scroll-margin-top:76px}
