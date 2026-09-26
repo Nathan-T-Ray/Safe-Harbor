@@ -52,3 +52,30 @@ export function Helix({ length, thickness, turns = 3, vertical = false, drift = 
     </g>
   </svg>;
 }
+
+// A double helix drawn inside an existing SVG, spanning exactly [x, x+width]. The
+// wavelength is fixed, so helix length stays proportional to real chromosome length.
+export function HelixBar({ x, y, width, height, wavelength = 18 }: { x: number; y: number; width: number; height: number; wavelength?: number }) {
+  const amplitude = height / 2;
+  const mid = y + amplitude;
+  const steps = Math.max(8, Math.round(width / 3));
+  const path = (phase: number) => {
+    let d = '';
+    for (let i = 0; i <= steps; i++) {
+      const along = (i / steps) * width;
+      const across = mid + amplitude * Math.sin((along / wavelength) * 2 * Math.PI + phase);
+      d += `${i ? 'L' : 'M'}${(x + along).toFixed(1)},${across.toFixed(1)}`;
+    }
+    return d;
+  };
+  const rungCount = Math.floor(width / (wavelength / 4));
+  return <g className="helix-bar" aria-hidden="true">
+    {Array.from({ length: rungCount }, (_, index) => {
+      const along = (index + 0.5) * (wavelength / 4);
+      const angle = (along / wavelength) * 2 * Math.PI;
+      return <line key={index} x1={x + along} x2={x + along} y1={mid + amplitude * Math.sin(angle)} y2={mid - amplitude * Math.sin(angle)} stroke={PALETTE.rung} strokeWidth={1} opacity={0.4 + 0.5 * Math.abs(Math.cos(angle))} />;
+    })}
+    <path d={path(Math.PI)} fill="none" stroke={PALETTE.mid} strokeWidth={1.3} opacity={0.75} />
+    <path d={path(0)} fill="none" stroke={PALETTE.front} strokeWidth={1.6} />
+  </g>;
+}
