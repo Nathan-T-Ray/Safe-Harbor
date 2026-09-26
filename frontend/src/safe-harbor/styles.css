@@ -85,6 +85,14 @@ button:not(:disabled):active{transform:translateY(1px)}
 [role=treeitem]:focus-visible{outline:2px solid var(--c-cyan);outline-offset:2px}
 .at-footnote{padding:0 22px 14px;font-size:12.5px;color:var(--c-text-muted)}
 .presentation .agent-tree-panel{order:3}
+.final-dossier-panel{margin-top:18px;scroll-margin-top:90px}
+.final-dossier-body{padding:0 22px 20px;font-size:14px;line-height:1.65}
+.final-dossier-stage{color:var(--c-text-muted);margin-bottom:14px}
+.final-dossier-body .status-axes{margin:0 0 15px}
+.final-dossier-conclusion{font-size:16px;line-height:1.7;margin-bottom:16px}
+.final-dossier-body details{margin-bottom:16px}
+.final-dossier-body .scientific-footnote{padding:12px 0}
+.presentation .final-dossier-panel{order:2}
 @media(max-width:1100px){.at-meters{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(prefers-reduced-motion:reduce){.at-pulse{animation:none!important;box-shadow:none}}
 #agent-tree,.genome-panel,.conclusion-panel,.graph-panel{scroll-margin-top:76px}
