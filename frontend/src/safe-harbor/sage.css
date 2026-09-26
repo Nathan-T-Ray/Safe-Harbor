@@ -257,3 +257,20 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .now-numbers-scope{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#52796f;margin-bottom:6px}
 .now-numbers-block .now-numbers{margin-top:0;min-height:0}
 .now-numbers strong{font-variant-numeric:tabular-nums}
+
+/* Evidence / harness drawers on the light theme */
+.sage-app .artifact-card,.sage-app .harness-version,.sage-app .evaluation-card{background:#fff;border:1px solid #cad2c5;color:#2f3e46}
+.sage-app .artifact-heading strong,.sage-app .artifact-heading span,.sage-app .artifact-id,.sage-app .hash-line,.sage-app .evidence-ids,.sage-app .drawer-question,.sage-app .detail-list,.sage-app .detail-list *{color:#2f3e46}
+.sage-app .artifact-id,.sage-app .hash-line,.sage-app .evidence-ids{color:#354f52}
+.sage-app .metric-grid>*,.sage-app .metric-grid div{background:#f6f8f5;border-color:#cad2c5;color:#2f3e46}
+.sage-app .metric-grid span,.sage-app .metric-grid strong,.sage-app .metric-grid b{color:#2f3e46}
+.sage-app .raw-record,.sage-app .raw-record summary,.sage-app .raw-record pre{background:#f6f8f5;color:#2f3e46;border-color:#cad2c5}
+.sage-app .source-table,.sage-app .table-scroll table,.sage-app .table-scroll th,.sage-app .table-scroll td{background:#fff;color:#2f3e46;border-color:#cad2c5}
+.sage-app .tabbar button{color:#354f52;background:#fff;border-color:#cad2c5}
+.sage-app .tabbar button.active{color:#fff;background:#354f52;border-color:#354f52}
+.sage-app .notice.amber{background:#eef2ec;color:#2f3e46;border-color:#84a98c}
+.sage-app .inspector-drawer details summary{color:#354f52}
+/* Sequence coordinates and bases */
+.sage-app .sequence-row>span,.sage-app .sequence-row .coordinate{color:#354f52}
+.sage-app .sequence-row code span{color:#354f52}
+.sage-app .sequence-row code .inside-candidate{background:#354f52;color:#fff;border-bottom-color:#2f3e46}
