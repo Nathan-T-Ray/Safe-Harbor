@@ -118,19 +118,93 @@ check('coordinator_recovered_is_startup_not_crash',
       {'note': 'Every exported run records coordinator.recovered at startup (epoch 1). It is not evidence of crash recovery.'})
 
 # --- Comparison experiments ----------------------------------------------
-for path in (EXP_OLD, EXP_NEW):
-    exp = load(f'{path}/latest-experiment.json')
-    scored = [{'case': r['case_id'], 'arm': r['arm'], 'status': r['status'],
-               'required': f"{r['score']['required_correct']}/{r['score']['required_total']}",
-               'decisions': f"{r['score']['required_decisions_correct']}/{r['score']['required_decisions_total']}",
-               'completed': r['score']['completed'], 'support_ok': r['score']['support_ok'],
-               'tokens': r['usage'].get('tokens'), 'cost_usd': r['usage'].get('cost_usd')}
-              for r in exp['results'] if r.get('score')]
-    check(f"experiment_has_no_candidate:{exp['experiment_id']}",
-          exp['arms'].get('H1') is None and exp.get('optimizer') is None and exp.get('promotion') is None,
-          {'status_in_latest_record': exp['status'], 'updated_at': exp['updated_at'],
-           'result_status_counts': dict(collections.Counter(f"{r['split']}/{r['arm']}/{r['status']}" for r in exp['results'])),
-           'scored': scored})
+def scored_rows(exp):
+    return [{'split': r['split'], 'case': r['case_id'], 'arm': r['arm'], 'status': r['status'],
+             'required': f"{r['score']['required_correct']}/{r['score']['required_total']}",
+             'decisions': f"{r['score']['required_decisions_correct']}/{r['score']['required_decisions_total']}",
+             'completed': r['score']['completed'], 'support_ok': r['score']['support_ok'],
+             'tokens': r['usage'].get('tokens'), 'cost_usd': r['usage'].get('cost_usd')}
+            for r in exp['results'] if r.get('score')]
+
+
+def status_counts(exp):
+    return dict(collections.Counter(f"{r['split']}/{r['arm']}/{r['status']}" for r in exp['results']))
+
+
+old = load(f'{EXP_OLD}/latest-experiment.json')
+check('old_experiment_has_no_candidate', old['arms'].get('H1') is None and old.get('promotion') is None,
+      {'status_in_latest_record': old['status'], 'result_status_counts': status_counts(old), 'scored': scored_rows(old)})
+
+new = load(f'{EXP_NEW}/latest-experiment.json')
+check('new_experiment_not_promoted_and_final_pending',
+      new.get('promotion') is None and all(r['status'] in ('pending', 'awaiting_proposal') for r in new['results'] if r['split'] == 'final'),
+      {'status_in_latest_record': new['status'], 'updated_at': new['updated_at'], 'H1': new['arms'].get('H1'),
+       'result_status_counts': status_counts(new), 'scored': scored_rows(new)})
+
+# Genuine automatic proposal: bind response -> saved candidate -> experiment arm.
+PROOF = 'artifacts/safe_harbor/automatic-structure-proof'
+cand = load(f'{PROOF}/candidate-harness.json')
+parent = load(f'{PROOF}/parent-harness.json')
+attempt = load(f'{PROOF}/optimizer-attempt.json')
+response_text = json.dumps(load(f'{PROOF}/optimizer-response.json'))
+
+
+def rederive(spec):
+    body = {k: v for k, v in spec.items() if k != 'harness_hash'}
+    return hashlib.sha256(json.dumps(body, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
+
+
+ops = [op['op'] for op in cand['patch']['operations']]
+check('automatic_proposal_bound_to_saved_candidate',
+      attempt['status'] == 'candidate_ready' and attempt['mode'] == 'real_model' and cand['proposal_mode'] == 'real_model'
+      and attempt['candidate_hash'] == cand['harness_hash'] == new['arms']['H1'] == rederive(cand)
+      and parent['harness_hash'] == new['arms']['H0'] == cand['parent_hash'] == rederive(parent)
+      and cand['immutable_constraints'] == parent['immutable_constraints']
+      and set(ops) <= {'split_role', 'insert_reviewer', 'change_evidence_selection', 'reassign_tools'}
+      and '"finish_reason": "stop"' in response_text and all(op in response_text for op in ops),
+      {'candidate_hash': cand['harness_hash'], 'hash_rederived_from_saved_spec': rederive(cand) == cand['harness_hash'],
+       'operations': ops, 'parent_roles': [r['role_id'] for r in parent['roles']],
+       'candidate_roles': [r['role_id'] for r in cand['roles']], 'immutable_constraints_unchanged': True,
+       'optimizer_usage': {k: attempt['usage'][k] for k in ('tokens', 'model_calls', 'cost_usd', 'duration_seconds')}})
+
+h1 = load(f'{EXP_NEW}/runs/run-5134783b07da40f2b6ac5c6b053bf901.json')
+snap, events = h1['snapshot'], h1['events']
+role_of = {t['task_id']: t['role_id'] for t in snap['tasks']}
+deps = {t['role_id']: sorted(role_of[d] for d in t['depends_on']) for t in snap['tasks']}
+cand_deps = {r['role_id']: sorted(r.get('depends_on', [])) for r in cand['roles']}
+commits = {q: [(role_of.get(t['task_id']), t['status']) for t in events[q - 1]['upserts'].get('tasks', [])] for q in (11, 12, 15, 16)}
+trace = next(a['data'] for a in snap['artifacts'] if a['kind'] == 'worker_trace' and a['data'].get('role_id') == 'evidence_review')
+reviewer_tools = [c.get('tool_name') or c.get('tool') for c in trace['tool_calls']]
+check('h1_run_executes_saved_candidate',
+      snap['run']['harness_hash'] == cand['harness_hash'] and all(t['harness_hash'] == cand['harness_hash'] for t in snap['tasks'])
+      and deps == cand_deps and trace['mode'] == 'real_model'
+      and trace['context_packet'].get('context_policy') == 'contradictions_first' and 'control_overlap' in reviewer_tools
+      and commits == {11: [('inspect_evidence', 'complete')], 12: [('evidence_review', 'running')],
+                      15: [('evidence_review', 'complete')], 16: [('compare', 'running')]}
+      and [e['sequence'] for e in events] == list(range(1, len(events) + 1)),
+      {'run_id': snap['run']['run_id'], 'case': snap['run']['case_context']['case_id'], 'executed_dependencies': deps,
+       'commits': {str(k): v for k, v in commits.items()}, 'reviewer_tools': reviewer_tools,
+       'budget': {k: snap['run']['budget'][k] for k in ('tokens_used', 'model_calls', 'tool_calls', 'cost_usd')}})
+
+dossier = next(a['data'] for a in snap['artifacts'] if a['kind'] == 'versioned_dossier')
+dossier_text = json.dumps(dossier)
+check('h1_final_answer_not_validated',
+      '"model_proposal_accepted": false' in dossier_text and 'outside its consumed manifest' in dossier_text,
+      {'assessments': [(a.get('assessment_revision'), a.get('screen_status'), a.get('evidence_status'), a.get('exclusion_decision'))
+                       for a in snap['assessments']]})
+
+withheld = {}
+for run_path in sorted(glob.glob(f'{EXP_NEW}/runs/*.json')):
+    s = load(run_path)['snapshot']
+    if s['run']['case_context']['scenario_id'] == 'controls_withheld':
+        withheld[f"{s['run']['case_context']['case_id']}/{s['run'].get('evaluation_arm')}"] = {
+            'status': s['run']['status'],
+            'failures': [str(a['data'].get('error'))[:120] for a in s['artifacts'] if a['kind'] == 'worker_failure_trace']}
+h_family = {k: v for k, v in withheld.items() if not k.endswith('/R0')}
+check('controls_withheld_denial_pattern',
+      all(v['status'] == 'blocked' and any('PermissionError' in f for f in v['failures']) for v in h_family.values())
+      and all(v['status'] == 'complete' for k, v in withheld.items() if k.endswith('/R0')),
+      withheld)
 
 aborted = load(f'{EXP_OLD}/experiment-aborted.json')
 latest_old = load(f'{EXP_OLD}/latest-experiment.json')
@@ -147,7 +221,7 @@ choices = {}
 for run_path in sorted(glob.glob(f'{EXP_NEW}/runs/*.json')):
     run = load(run_path)
     snap = run['snapshot']
-    if snap['run'].get('baseline_arm') != 'H0':
+    if snap['run'].get('evaluation_arm') != 'H0':
         continue
     case = snap['run']['case_context']['case_id']
     choices[case] = {
@@ -177,12 +251,13 @@ check('recovery_sigkill_export',
 
 # --- Harness adaptation ---------------------------------------------------
 opt = load(f'{EXP_OLD}/optimizer-attempt.json')
-check('optimizer_attempt_rejected', opt.get('status') == 'rejected_invalid_proposal' and not opt.get('candidate_hash'),
+check('first_optimizer_attempt_rejected', opt.get('status') == 'rejected_invalid_proposal' and not opt.get('candidate_hash'),
       {'status': opt.get('status'), 'error': opt.get('error'),
        'tokens': opt['usage']['tokens'], 'cost_usd': opt['usage']['cost_usd']})
 adapt = load('artifacts/safe_harbor/adaptation-e2e/report.json')
-check('adaptation_e2e_blocked_on_genuine_proposal', adapt['summary']['failed'] == 0 and adapt['summary']['blocked'] == 2,
-      {'mode': adapt['execution_mode'], 'passed': adapt['summary']['passed'], 'blocked': adapt['summary']['blocked_checks']})
+check('q07_adaptation_report_predates_genuine_proposal', adapt['summary']['failed'] == 0 and adapt['summary']['blocked'] == 2,
+      {'mode': adapt['execution_mode'], 'passed': adapt['summary']['passed'], 'blocked': adapt['summary']['blocked_checks'],
+       'note': 'Committed Q07 report has not been rerun against the genuine candidate; selected-version run still requires promotion.'})
 
 check('no_q11_canonical_artifact', not glob.glob('artifacts/**/*q11*', recursive=True) and not glob.glob('artifacts/**/canonical*', recursive=True),
       {'note': 'No canonical Q11 recording is committed.'})
