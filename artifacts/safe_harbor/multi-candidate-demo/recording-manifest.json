@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "mode": "recorded_replay",
+  "execution_mode": "real_model",
+  "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+  "through_sequence": 75,
+  "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "export": {
+    "path": "run-export.json",
+    "sha256": "d17cb48e579c5894f92f97206d0117ce28d864064248beeae32a2e0b3f04fe94"
+  },
+  "terminal_proof": {
+    "run_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a",
+    "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "mode": "real_model",
+    "created_at": "2026-09-26T20:13:47.119598+00:00",
+    "stopped_at": "2026-09-26T20:18:09.521555+00:00",
+    "recorded_elapsed_seconds": 262.401957,
+    "terminal_event_id": "run-58dfbd54fef64dc69aa445c52a3f1b7a:75",
+    "through_sequence": 75,
+    "event_sequence_contiguous": true,
+    "complete_tasks": 18,
+    "total_tasks": 18,
+    "maximum_running_tasks_in_committed_event_history": 2,
+    "task_state_replay_equals_export_snapshot": true,
+    "settled_budget": {
+      "token_limit": 1200000,
+      "tool_limit": 120,
+      "cost_limit_usd": 5.0,
+      "tokens_used": 565962,
+      "tool_calls": 54,
+      "model_calls": 36,
+      "cost_usd": 0.08787485280000001,
+      "reserved_tokens": 0,
+      "uncertain_tokens": 0,
+      "reserved_tools": 0,
+      "reserved_cost_usd": 0.0
+    },
+    "final_dossiers": [
+      {
+        "artifact_id": "artifact-76ec1c25a6614670923c0c9b024cb9b8",
+        "accepted_at_event_sequence": 69,
+        "candidate_id": "keppel-19",
+        "assessment_revision": 3,
+        "model_proposal_accepted": true,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "not_justified_by_available_evidence",
+        "validation_errors": [],
+        "source_url": "http://127.0.0.1:8016/runs/run-58dfbd54fef64dc69aa445c52a3f1b7a/artifacts/artifact-76ec1c25a6614670923c0c9b024cb9b8"
+      },
+      {
+        "artifact_id": "artifact-3d5a2614dd0c4987baf9a1d2946b750e",
+        "accepted_at_event_sequence": 72,
+        "candidate_id": "olonne-18",
+        "assessment_revision": 3,
+        "model_proposal_accepted": true,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "not_justified_by_available_evidence",
+        "validation_errors": [],
+        "source_url": "http://127.0.0.1:8016/runs/run-58dfbd54fef64dc69aa445c52a3f1b7a/artifacts/artifact-3d5a2614dd0c4987baf9a1d2946b750e"
+      },
+      {
+        "artifact_id": "artifact-a22a7e89db164f60aa05ea70f9b58283",
+        "accepted_at_event_sequence": 74,
+        "candidate_id": "pansio-1",
+        "assessment_revision": 3,
+        "model_proposal_accepted": false,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "exclusion_decision": "unresolved",
+        "validation_errors": [
+          "A general expression concern does not establish a validated experimental suitability endpoint"
+        ],
+        "source_url": "http://127.0.0.1:8016/runs/run-58dfbd54fef64dc69aa445c52a3f1b7a/artifacts/artifact-a22a7e89db164f60aa05ea70f9b58283"
+      }
+    ],
+    "accepted_final_dossier_count": 2,
+    "rejected_final_dossier_count": 1,
+    "claim": "Actual real-model execution of three published candidate branches completed. Two final model proposals passed validation; Pansio final proposal was rejected and remains unresolved. No global safety or improvement claim."
+  },
+  "comparison_experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "excluded_from_frozen_comparison": true,
+  "automatic_candidate_selection": "rejected_parent_retained",
+  "ui_frozen": true,
+  "terminal_browser_rehearsal": "not_performed_after_ui_freeze",
+  "video_recording": "not_verified",
+  "independent_final_claim_signoff": "pending_Q12"
+}

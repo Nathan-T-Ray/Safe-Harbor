@@ -1,6 +1,6 @@
 # Real automatic harness change — 30 seconds
 
-This segment demonstrates an actual model-generated structural change executing, followed by **validation rejection and reuse of the retained parent version**. It does not claim improvement, promotion of H1, or a validated final answer from the first H1 run. Selection is recorded in experiment `experiment-a879d0fa4f5e499b89a43ed8b7f7f400`; final-case comparison runs remain in progress at this inspection.
+This segment demonstrates an actual model-generated structural change executing, followed by **validation rejection and reuse of the retained parent version**. It does not claim improvement, promotion of H1, or a validated final answer from the first H1 run. Experiment `experiment-a879d0fa4f5e499b89a43ed8b7f7f400` is complete with all 24 assigned rows retained. The [independent arithmetic audit](../../artifacts/safe_harbor/comparison-report-audit/report.json) passed 252 checks: 19 rows reached workflow status `complete`, 9 had scored `completed: true`, and 5 had `support_ok: true`. These are separate outcomes.
 
 ## Prepare the two real recordings
 
@@ -17,7 +17,7 @@ This segment demonstrates an actual model-generated structural change executing,
 | 8–20 s | H1 commits **11 → 12 → 15 → 16**, highlighting the new roles and dependency | “The saved change really executed: inspection finished, the new reviewer used its contradictions-first context and called control overlap, then downstream comparison began.” |
 | 20–30 s | Saved rejection and subsequent parent-run worker trace | “Validation rejected the candidate because support and completion declined. A later real-model run reused the retained parent. The change executed; improvement was not established.” |
 
-Do not present the baseline preflight and this validation case as a matched quality/cost comparison: they use different candidates and different roles in the experiment. Use the frozen experiment's own paired cases for that comparison after its results are available.
+Do not present the baseline preflight and this validation case as a matched quality/cost comparison: they use different candidates and different roles in the experiment. Use the frozen experiment's own paired cases in its [complete report](http://127.0.0.1:8016/experiments/experiment-a879d0fa4f5e499b89a43ed8b7f7f400).
 
 ## Exact execution references
 
