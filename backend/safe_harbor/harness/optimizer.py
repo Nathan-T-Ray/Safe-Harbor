@@ -139,7 +139,9 @@ def propose_harness(ledger, experiment_id: str, parent_hash: str, development_re
         messages = [{"role": "system", "content": SYSTEM_INSTRUCTIONS}, {"role": "user", "content": json.dumps(user_packet, ensure_ascii=False)}]
         request_record = {"model": model_id, "temperature": model_snapshot.get("temperature", 0), "max_tokens": output_cap, "response_format": {"type": "json_object"}, "messages": messages, "extra_body": {"provider": pricing["provider_routing"], "plugins": []}}
         input_bytes = len(json.dumps(request_record, ensure_ascii=False).encode("utf-8"))
-        input_bound = input_bytes + 512
+        # Match the worker's framing allowance so the optimizer cannot obtain a
+        # looser monetary/token boundary than the arms it proposes to change.
+        input_bound = input_bytes + 4096 + 256 * len(messages)
         total_bound = input_bound + output_cap
         if total_bound <= reserved_tokens and input_bytes <= int(model_snapshot.get("context_limit_bytes", 60000)):
             break

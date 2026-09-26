@@ -244,7 +244,7 @@ def execute_worker(ledger, run: dict, task: dict) -> dict:
             response = client.chat.completions.create(
                 model=run["model_id"], messages=messages,
                 max_tokens=output_cap,
-                temperature=run.get("model_settings", {}).get("temperature", 0), **({"tools": tools, "tool_choice": "auto", "parallel_tool_calls": True} if may_use_tools else {"response_format": {"type": "json_object"}}),
+                temperature=run.get("model_settings", {}).get("temperature", 0), **({"tools": tools, "tool_choice": "auto"} if may_use_tools else {"response_format": {"type": "json_object"}}),
                 extra_body={"provider": run["model_pricing"]["provider_routing"], "plugins": []},
             )
             usage["model_calls"] += 1

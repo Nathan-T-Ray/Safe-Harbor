@@ -1,0 +1,17 @@
+{
+  "journey": "Actual shared evidence connections and exact version inspection",
+  "mode": "deterministic_operational",
+  "mock_transport": false,
+  "run_id": "run-cb40fb2ed6a14ddfaea3ff4557b32805",
+  "candidate_id": "pansio-1",
+  "through_sequence": 16,
+  "shared_records": 14,
+  "displayed_records": 8,
+  "verified_edges": 33,
+  "task_positions_unchanged": true,
+  "verified_artifact_id": "artifact-8682bbab56d84c31b85d3f7eee0d3acc",
+  "verified_content_hash": "381200d6c2aa5c35ffcbe0a4f97cbcb1a25b93c33e0a4c8fe6033fe92910a084",
+  "seek_zero_has_no_future_evidence": true,
+  "browser_errors": [],
+  "passed": true
+}
