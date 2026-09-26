@@ -1,0 +1,1146 @@
+{
+ "ticket": "SH-Q11",
+ "started_at": "2026-09-26T16:00:32-0400",
+ "database": "safe_harbor_q11_demo_20260926T153329",
+ "output": "artifacts/safe_harbor/demo/20260926T160032",
+ "mode_requested": "real_model",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "model_provider": "openrouter",
+ "candidate_ids": [
+  "pansio-1",
+  "olonne-18",
+  "keppel-19"
+ ],
+ "attempts": [
+  {
+   "attempt": 1,
+   "request": {
+    "attached_to_existing_run": "run-c402f7440d05414ea1d008c7bb414d28"
+   },
+   "created_status": 201,
+   "phases": [
+    {
+     "phase": "investigation",
+     "status": "complete",
+     "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+     "duration_seconds": 589.5,
+     "through_sequence": 81,
+     "tasks": [
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      }
+     ]
+    },
+    {
+     "phase": "evidence_revision",
+     "fixture_id": "withhold-control-evidence",
+     "http_status": 200,
+     "result": {
+      "run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+      "sequence": 82,
+      "fixture_id": "withhold-control-evidence",
+      "affected_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0"
+      ],
+      "successor_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0:revision1"
+      ],
+      "unchanged_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:review:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:screen:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:review:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:screen:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:screen:r0"
+      ]
+     },
+     "status": "blocked",
+     "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+     "duration_seconds": 31.9,
+     "through_sequence": 87,
+     "tasks": [
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0:revision1",
+       "kind": "assess_candidate",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0:revision1",
+       "kind": "compute_features",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0:revision1",
+       "kind": "inspect_evidence",
+       "status": "failed",
+       "attempt": 1,
+       "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0:revision1",
+       "kind": "publish_shortlist",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0:revision1",
+       "kind": "review_candidate",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      }
+     ]
+    }
+   ],
+   "run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+   "crash": {
+    "done": true,
+    "note": "Attached after the driver was interrupted; crash injection (if any) is read from committed coordinator.recovered events."
+   },
+   "outcome": "blocked",
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "total_seconds": 621.6,
+   "spend": {
+    "tokens_used": 565384,
+    "model_calls": 37,
+    "tool_calls": 57,
+    "cost_usd": 0.032242504,
+    "uncertain_tokens": 91323,
+    "uncertain_cost_usd": 0.006100585,
+    "reserved_tokens": 0
+   }
+  },
+  {
+   "attempt": 1,
+   "request": {
+    "attached_to_existing_run": "run-0d71fb0b3f94441fb89bc5cf042eb6f5"
+   },
+   "created_status": 201,
+   "phases": [
+    {
+     "phase": "investigation",
+     "status": "complete",
+     "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+     "duration_seconds": 1440.8,
+     "through_sequence": 80,
+     "tasks": [
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      }
+     ]
+    }
+   ],
+   "run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+   "crash": {
+    "done": true,
+    "note": "Attached after the driver was interrupted; crash injection (if any) is read from committed coordinator.recovered events.",
+    "elapsed_seconds": 103.2,
+    "through_sequence": 18,
+    "coordinator_epoch": 1,
+    "running": [
+     {
+      "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:inspect:r0",
+      "kind": "inspect_evidence",
+      "attempt": 1
+     },
+     {
+      "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:inspect:r0",
+      "kind": "inspect_evidence",
+      "attempt": 1
+     }
+    ],
+    "complete": 3,
+    "budget": {
+     "tokens_used": 42014,
+     "model_calls": 6,
+     "tool_calls": 7,
+     "cost_usd": 0.0028799259999999997,
+     "uncertain_tokens": 0,
+     "uncertain_cost_usd": 0,
+     "reserved_tokens": 43335
+    },
+    "api_exit_code": -9,
+    "restart_seconds": 1.8
+   },
+   "outcome": "complete",
+   "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+   "total_seconds": 1441.0,
+   "spend": {
+    "tokens_used": 557395,
+    "model_calls": 36,
+    "tool_calls": 55,
+    "cost_usd": 0.030546550999999998,
+    "uncertain_tokens": 43335,
+    "uncertain_cost_usd": 0.003046725,
+    "reserved_tokens": 0
+   },
+   "budget": {
+    "token_limit": 1000000,
+    "tool_limit": 120,
+    "cost_limit_usd": 0.6,
+    "tokens_used": 557395,
+    "tool_calls": 55,
+    "model_calls": 36,
+    "cost_usd": 0.030546550999999998,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 43335,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 1.734723475976807e-18,
+    "uncertain_tool_calls": 8,
+    "uncertain_model_calls": 4,
+    "uncertain_cost_usd": 0.003046725
+   }
+  }
+ ],
+ "checks": [
+  {
+   "check": "api healthy: MongoDB authority and model configured",
+   "passed": true,
+   "evidence": {
+    "database": "safe_harbor_q11_demo_20260926T153329",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true
+   }
+  },
+  {
+   "check": "a complete real-model canonical run (with recovery and revision beats) was produced within the attempt limit",
+   "passed": true,
+   "evidence": [
+    {
+     "run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+     "outcome": "blocked",
+     "cost_usd": 0.032242504
+    },
+    {
+     "run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+     "outcome": "complete",
+     "cost_usd": 0.030546550999999998
+    }
+   ]
+  },
+  {
+   "check": "export: run mode is real_model with the configured model identity",
+   "passed": true,
+   "evidence": {
+    "mode": "real_model",
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "model_provider": "openrouter",
+    "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+    "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+    "status": "complete"
+   }
+  },
+  {
+   "check": "export: events are ordered, gap-free and match the snapshot watermark",
+   "passed": true,
+   "evidence": {
+    "events": 80
+   }
+  },
+  {
+   "check": "export: every current task accepted",
+   "passed": true,
+   "evidence": {
+    "current": 18,
+    "superseded": 0,
+    "not_complete": []
+   }
+  },
+  {
+   "check": "export: task graph stayed within 24 nodes",
+   "passed": true,
+   "evidence": {
+    "tasks": 18
+   }
+  },
+  {
+   "check": "export: all three candidates have a committed assessment",
+   "passed": true,
+   "evidence": [
+    "keppel-19",
+    "olonne-18",
+    "pansio-1"
+   ]
+  },
+  {
+   "check": "export: worker traces carry genuine model calls with provider usage",
+   "passed": true,
+   "evidence": {
+    "traces": 18,
+    "model_calls": 36,
+    "tokens": 557395
+   }
+  },
+  {
+   "check": "recovery: SIGKILL mid-flight was followed by a coordinator.recovered event at a new epoch and the interrupted tasks completed",
+   "passed": true,
+   "evidence": {
+    "recovered_events": [
+     {
+      "sequence": 2,
+      "epoch": 1
+     },
+     {
+      "sequence": 19,
+      "epoch": 2
+     }
+    ],
+    "interrupted": [
+     "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:inspect:r0",
+     "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:inspect:r0"
+    ],
+    "interrupted_final_attempts": {
+     "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:inspect:r0": 2,
+     "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:inspect:r0": 2
+    },
+    "uncertain_tokens": 43335,
+    "uncertain_cost_usd": 0.003046725
+   }
+  },
+  {
+   "check": "revision: prepared withhold-control-evidence reopened only dependent tasks and the real model committed a new current assessment",
+   "passed": false,
+   "evidence": {
+    "evidence_revised_sequence": null,
+    "reopened": [],
+    "candidate0_assessment_revisions": [
+     1,
+     2
+    ],
+    "candidate0_latest": {
+     "assessment_revision": 2,
+     "screen_status": "incomplete",
+     "evidence_status": "unknown",
+     "freshness": "current"
+    }
+   }
+  },
+  {
+   "check": "text: no global safe label in any accepted conclusion",
+   "passed": true,
+   "evidence": []
+  },
+  {
+   "check": "text: accepted conclusions are prose, not raw model JSON envelopes",
+   "passed": true,
+   "evidence": {
+    "raw_envelope_candidates": []
+   }
+  },
+  {
+   "check": "assessments: independent axes and incomplete when required evidence is missing",
+   "passed": true,
+   "evidence": {
+    "keppel-19": {
+     "screen_status": "incomplete",
+     "evidence_status": "unknown",
+     "freshness": "current",
+     "assessment_revision": 2
+    },
+    "olonne-18": {
+     "screen_status": "incomplete",
+     "evidence_status": "unknown",
+     "freshness": "current",
+     "assessment_revision": 2
+    },
+    "pansio-1": {
+     "screen_status": "incomplete",
+     "evidence_status": "unknown",
+     "freshness": "current",
+     "assessment_revision": 2
+    }
+   }
+  },
+  {
+   "check": "recompute: every model-requested scientific tool result recomputes identically from source",
+   "passed": true,
+   "evidence": {
+    "recomputed": 38,
+    "mismatched": []
+   }
+  },
+  {
+   "check": "browser: fresh client opens ?run=<id> in presentation mode and preloads every committed event",
+   "passed": true,
+   "evidence": {
+    "preload": "\u2713 80 events \u00b7 86 artifacts ready",
+    "ready_seconds": 2.235
+   }
+  },
+  {
+   "check": "browser: live view is labeled LIVE and REAL MODEL",
+   "passed": true,
+   "evidence": {
+    "modeBar": "LIVEREAL MODELcommit 80 / 80 \u00b7 run \u00b7 stopped \u00b7 recorded 4:24:32 PM"
+   }
+  },
+  {
+   "check": "browser: camera cues derived from actual events cover overview, genome zoom, bases, results and graph branches",
+   "passed": true,
+   "evidence": {
+    "cues": 27,
+    "steps": [
+     "overview",
+     "focus_chromosome",
+     "zoom_locus",
+     "show_bases",
+     "highlight_result",
+     "reveal_branch"
+    ],
+    "server_cues": 0
+   }
+  },
+  {
+   "check": "browser: an evidence-revision cue reveals the reopened branch",
+   "passed": true,
+   "evidence": []
+  },
+  {
+   "check": "browser: dossier: screen agreement all \u2713 and latest assessment per candidate equals the export",
+   "passed": true,
+   "evidence": {
+    "ok": 4,
+    "bad": 0,
+    "articles": 3,
+    "conclusions_match_export": true,
+    "facts": "ModeREAL MODELThrough commit80Run statuscompleteHarness047ea2e83216Assessment revisions6Exported9/26/2026, 4:24:39 PM"
+   }
+  },
+  {
+   "check": "browser: reset-to-start: commit 0 labeled RECORDED REPLAY + REAL MODEL, no assessment or dossier leaks",
+   "passed": true,
+   "evidence": {
+    "bar0": "RECORDED REPLAYREAL MODELcommit 0 / 80 \u00b7 before the first committed event",
+    "conclusion0": "Begin with the evidence. The expression concern is unresolved."
+   }
+  },
+  {
+   "check": "browser: full replay at 2\u00d7 played commit 0 \u2192 80 with RECORDED REPLAY + REAL MODEL labels",
+   "passed": true,
+   "evidence": {
+    "seconds": 40.091,
+    "barEnd": "RECORDED REPLAYREAL MODELcommit 80 / 80 \u00b7 run \u00b7 stopped \u00b7 recorded 4:24:32 PM"
+   }
+  },
+  {
+   "check": "browser: camera cues were shown during playback, each keyed to a real derived cue sequence",
+   "passed": true,
+   "evidence": {
+    "observed": 27,
+    "derived": 27
+   }
+  },
+  {
+   "check": "browser: at the last commit the displayed conclusion equals the exported latest assessment for the selected candidate",
+   "passed": true,
+   "evidence": {
+    "selected": "Pansio-1",
+    "selectedId": "pansio-1"
+   }
+  },
+  {
+   "check": "browser: no assessment appears before the first committed assessment",
+   "passed": true,
+   "evidence": {
+    "at": 49,
+    "pill": "Unresolved"
+   }
+  },
+  {
+   "check": "browser: second reset-to-start returns to commit 0",
+   "passed": true,
+   "evidence": "commit 0 / 80 \u00b7 before the first committed event"
+  },
+  {
+   "check": "browser: presentation made no ledger writes (GET/HEAD only)",
+   "passed": true,
+   "evidence": []
+  },
+  {
+   "check": "browser: no page errors",
+   "passed": true,
+   "evidence": []
+  }
+ ],
+ "findings": [
+  "Reused the already running API on port 8060 for safe_harbor_q11_demo_20260926T153329 (not started by this driver invocation)."
+ ],
+ "labels": {
+  "run": "REAL MODEL (real_model) \u2014 genuine OpenRouter calls committed to MongoDB",
+  "presentation": "RECORDED REPLAY of the committed MongoDB events; the browser phase makes no model call and no ledger write"
+ },
+ "total_spend": {
+  "known_cost_usd": 0.062789,
+  "uncertain_cost_usd": 0.009147,
+  "tokens": 1122779
+ },
+ "run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+ "export": {
+  "path": "artifacts/safe_harbor/demo/20260926T160032/export.json",
+  "bytes": 12088398,
+  "events": 80,
+  "through_sequence": 80
+ },
+ "run": {
+  "run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+  "status": "complete",
+  "mode": "real_model",
+  "model_id": "deepseek/deepseek-v4.1-flash",
+  "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+  "budget": {
+   "token_limit": 1000000,
+   "tool_limit": 120,
+   "cost_limit_usd": 0.6,
+   "tokens_used": 557395,
+   "tool_calls": 55,
+   "model_calls": 36,
+   "cost_usd": 0.030546550999999998,
+   "reserved_tokens": 0,
+   "uncertain_tokens": 43335,
+   "reserved_tools": 0,
+   "reserved_cost_usd": 1.734723475976807e-18,
+   "uncertain_tool_calls": 8,
+   "uncertain_model_calls": 4,
+   "uncertain_cost_usd": 0.003046725
+  },
+  "evidence_availability": {
+   "pansio-1": {
+    "control_evidence": true
+   },
+   "olonne-18": {
+    "control_evidence": true
+   },
+   "keppel-19": {
+    "control_evidence": true
+   }
+  },
+  "tasks": 18,
+  "latest_assessments": {
+   "keppel-19": {
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assessment:2",
+    "assessment_revision": 2,
+    "screen_status": "incomplete",
+    "evidence_status": "unknown",
+    "freshness": "current",
+    "conclusion": "The model proposal failed evidence or schema validation. The expression-exclusion question remains unresolved; inspect the recorded proposal and validation errors."
+   },
+   "olonne-18": {
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assessment:2",
+    "assessment_revision": 2,
+    "screen_status": "incomplete",
+    "evidence_status": "unknown",
+    "freshness": "current",
+    "conclusion": "The model proposal failed evidence or schema validation. The expression-exclusion question remains unresolved; inspect the recorded proposal and validation errors."
+   },
+   "pansio-1": {
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assessment:2",
+    "assessment_revision": 2,
+    "screen_status": "incomplete",
+    "evidence_status": "unknown",
+    "freshness": "current",
+    "conclusion": "The model proposal failed evidence or schema validation. The expression-exclusion question remains unresolved; inspect the recorded proposal and validation errors."
+   }
+  }
+ },
+ "presentation": {
+  "checks": [
+   {
+    "check": "fresh client opens ?run=<id> in presentation mode and preloads every committed event",
+    "passed": true,
+    "evidence": {
+     "preload": "\u2713 80 events \u00b7 86 artifacts ready",
+     "ready_seconds": 2.235
+    }
+   },
+   {
+    "check": "live view is labeled LIVE and REAL MODEL",
+    "passed": true,
+    "evidence": {
+     "modeBar": "LIVEREAL MODELcommit 80 / 80 \u00b7 run \u00b7 stopped \u00b7 recorded 4:24:32 PM"
+    }
+   },
+   {
+    "check": "camera cues derived from actual events cover overview, genome zoom, bases, results and graph branches",
+    "passed": true,
+    "evidence": {
+     "cues": 27,
+     "steps": [
+      "overview",
+      "focus_chromosome",
+      "zoom_locus",
+      "show_bases",
+      "highlight_result",
+      "reveal_branch"
+     ],
+     "server_cues": 0
+    }
+   },
+   {
+    "check": "an evidence-revision cue reveals the reopened branch",
+    "passed": true,
+    "evidence": []
+   },
+   {
+    "check": "dossier: screen agreement all \u2713 and latest assessment per candidate equals the export",
+    "passed": true,
+    "evidence": {
+     "ok": 4,
+     "bad": 0,
+     "articles": 3,
+     "conclusions_match_export": true,
+     "facts": "ModeREAL MODELThrough commit80Run statuscompleteHarness047ea2e83216Assessment revisions6Exported9/26/2026, 4:24:39 PM"
+    }
+   },
+   {
+    "check": "reset-to-start: commit 0 labeled RECORDED REPLAY + REAL MODEL, no assessment or dossier leaks",
+    "passed": true,
+    "evidence": {
+     "bar0": "RECORDED REPLAYREAL MODELcommit 0 / 80 \u00b7 before the first committed event",
+     "conclusion0": "Begin with the evidence. The expression concern is unresolved."
+    }
+   },
+   {
+    "check": "full replay at 2\u00d7 played commit 0 \u2192 80 with RECORDED REPLAY + REAL MODEL labels",
+    "passed": true,
+    "evidence": {
+     "seconds": 40.091,
+     "barEnd": "RECORDED REPLAYREAL MODELcommit 80 / 80 \u00b7 run \u00b7 stopped \u00b7 recorded 4:24:32 PM"
+    }
+   },
+   {
+    "check": "camera cues were shown during playback, each keyed to a real derived cue sequence",
+    "passed": true,
+    "evidence": {
+     "observed": 27,
+     "derived": 27
+    }
+   },
+   {
+    "check": "at the last commit the displayed conclusion equals the exported latest assessment for the selected candidate",
+    "passed": true,
+    "evidence": {
+     "selected": "Pansio-1",
+     "selectedId": "pansio-1"
+    }
+   },
+   {
+    "check": "no assessment appears before the first committed assessment",
+    "passed": true,
+    "evidence": {
+     "at": 49,
+     "pill": "Unresolved"
+    }
+   },
+   {
+    "check": "second reset-to-start returns to commit 0",
+    "passed": true,
+    "evidence": "commit 0 / 80 \u00b7 before the first committed event"
+   },
+   {
+    "check": "presentation made no ledger writes (GET/HEAD only)",
+    "passed": true,
+    "evidence": []
+   },
+   {
+    "check": "no page errors",
+    "passed": true,
+    "evidence": []
+   }
+  ],
+  "screenshots": [
+   "09-final-dossier.png",
+   "00-reset-commit-0.png",
+   "01-context.png",
+   "02-genome-locus.png",
+   "03-reference-bases.png",
+   "04-expression-result.png",
+   "05-first-assessment.png",
+   "06-crash-recovered.png"
+  ],
+  "replay_measurements": {
+   "2x_seconds": 40.091,
+   "1x_seconds": 80.142
+  },
+  "fresh_client_ready_seconds": 2.235,
+  "cues_observed_during_playback": [
+   {
+    "sequence": 1,
+    "text": "Genome overview \u00b7 Published shortlist on GRCh38 \u00b7 cue keyed to commit 1"
+   },
+   {
+    "sequence": 9,
+    "text": "Focus chromosome \u00b7 chr19 \u00b7 Keppel-19 \u00b7 cue keyed to commit 9"
+   },
+   {
+    "sequence": 9,
+    "text": "Zoom locus \u00b7 Keppel-19 locus \u00b7 inspect candidate \u00b7 cue keyed to commit 9"
+   },
+   {
+    "sequence": 30,
+    "text": "Zoom locus \u00b7 Keppel-19 locus \u00b7 list evidence \u00b7 cue keyed to commit 30"
+   },
+   {
+    "sequence": 30,
+    "text": "Show reference bases \u00b7 120 reference bases from chr19:5,400,761 \u00b7 cue keyed to commit 30"
+   },
+   {
+    "sequence": 38,
+    "text": "Zoom locus \u00b7 Keppel-19 locus \u00b7 control overlap \u00b7 cue keyed to commit 38"
+   },
+   {
+    "sequence": 50,
+    "text": "Zoom locus \u00b7 Keppel-19 locus \u00b7 control overlap \u00b7 cue keyed to commit 50"
+   },
+   {
+    "sequence": 50,
+    "text": "Highlight result \u00b7 Keppel-19 \u00b7 revision 1 \u00b7 incomplete screen \u00b7 cue keyed to commit 50"
+   },
+   {
+    "sequence": 50,
+    "text": "Reveal graph branch \u00b7 assess candidate \u00b7 complete \u00b7 cue keyed to commit 50"
+   },
+   {
+    "sequence": 54,
+    "text": "Focus chromosome \u00b7 chr18 \u00b7 Ol\u00f4nne-18 \u00b7 cue keyed to commit 54"
+   },
+   {
+    "sequence": 54,
+    "text": "Highlight result \u00b7 Ol\u00f4nne-18 \u00b7 revision 1 \u00b7 incomplete screen \u00b7 cue keyed to commit 54"
+   },
+   {
+    "sequence": 54,
+    "text": "Reveal graph branch \u00b7 assess candidate \u00b7 complete \u00b7 cue keyed to commit 54"
+   },
+   {
+    "sequence": 58,
+    "text": "Focus chromosome \u00b7 chr1 \u00b7 Pansio-1 \u00b7 cue keyed to commit 58"
+   },
+   {
+    "sequence": 58,
+    "text": "Highlight result \u00b7 Pansio-1 \u00b7 revision 1 \u00b7 incomplete screen \u00b7 cue keyed to commit 58"
+   },
+   {
+    "sequence": 58,
+    "text": "Reveal graph branch \u00b7 assess candidate \u00b7 complete \u00b7 cue keyed to commit 58"
+   },
+   {
+    "sequence": 62,
+    "text": "Focus chromosome \u00b7 chr18 \u00b7 Ol\u00f4nne-18 \u00b7 cue keyed to commit 62"
+   },
+   {
+    "sequence": 62,
+    "text": "Highlight result \u00b7 Ol\u00f4nne-18 \u00b7 revision 2 \u00b7 incomplete screen \u00b7 cue keyed to commit 62"
+   },
+   {
+    "sequence": 62,
+    "text": "Reveal graph branch \u00b7 review candidate \u00b7 complete \u00b7 cue keyed to commit 62"
+   },
+   {
+    "sequence": 65,
+    "text": "Focus chromosome \u00b7 chr19 \u00b7 Keppel-19 \u00b7 cue keyed to commit 65"
+   },
+   {
+    "sequence": 65,
+    "text": "Highlight result \u00b7 Keppel-19 \u00b7 revision 2 \u00b7 incomplete screen \u00b7 cue keyed to commit 65"
+   },
+   {
+    "sequence": 65,
+    "text": "Reveal graph branch \u00b7 review candidate \u00b7 complete \u00b7 cue keyed to commit 65"
+   },
+   {
+    "sequence": 69,
+    "text": "Focus chromosome \u00b7 chr1 \u00b7 Pansio-1 \u00b7 cue keyed to commit 69"
+   },
+   {
+    "sequence": 69,
+    "text": "Highlight result \u00b7 Pansio-1 \u00b7 revision 2 \u00b7 incomplete screen \u00b7 cue keyed to commit 69"
+   },
+   {
+    "sequence": 69,
+    "text": "Reveal graph branch \u00b7 review candidate \u00b7 complete \u00b7 cue keyed to commit 69"
+   },
+   {
+    "sequence": 74,
+    "text": "Reveal graph branch \u00b7 publish shortlist \u00b7 complete \u00b7 cue keyed to commit 74"
+   },
+   {
+    "sequence": 77,
+    "text": "Reveal graph branch \u00b7 publish shortlist \u00b7 complete \u00b7 cue keyed to commit 77"
+   },
+   {
+    "sequence": 79,
+    "text": "Reveal graph branch \u00b7 publish shortlist \u00b7 complete \u00b7 cue keyed to commit 79"
+   }
+  ],
+  "browser_phase_seconds": 129.8
+ },
+ "beats": {
+  "events": 80,
+  "genome_first_locus_result": 9,
+  "genome_first_reference_bases": 30,
+  "first_expression_result": 38,
+  "first_assessment": 50,
+  "post_crash_recovery": 19,
+  "evidence_revised": null,
+  "revised_assessment": null,
+  "last": 80
+ },
+ "timing": {
+  "recorded_run_wall_seconds_first_to_last_event": 1490.0,
+  "events": 80,
+  "replay_full_measured_seconds": {
+   "2x_seconds": 40.091,
+   "1x_seconds": 80.142
+  },
+  "outline": [
+   {
+    "beat": "context",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     0,
+     1
+    ],
+    "replay_seconds_at_1x": 1,
+    "replay_seconds_at_2x": 0.5,
+    "cues_in_span": 1
+   },
+   {
+    "beat": "genome_zoom",
+    "target_seconds": 25,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     1,
+     30
+    ],
+    "replay_seconds_at_1x": 29,
+    "replay_seconds_at_2x": 14.5,
+    "cues_in_span": 5
+   },
+   {
+    "beat": "expression_investigation",
+    "target_seconds": 30,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     30,
+     50
+    ],
+    "replay_seconds_at_1x": 20,
+    "replay_seconds_at_2x": 10.0,
+    "cues_in_span": 6
+   },
+   {
+    "beat": "evidence_revision",
+    "target_seconds": 25,
+    "backed_by_recorded_events": false,
+    "commit_span": null,
+    "replay_seconds_at_1x": null,
+    "replay_seconds_at_2x": null,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "recovery",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     19,
+     19
+    ],
+    "replay_seconds_at_1x": 0,
+    "replay_seconds_at_2x": 0.0,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "structural_patch_and_promotion",
+    "target_seconds": 40,
+    "backed_by_recorded_events": false,
+    "commit_span": null,
+    "replay_seconds_at_1x": null,
+    "replay_seconds_at_2x": null,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "versioned_dossier",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     80,
+     80
+    ],
+    "replay_seconds_at_1x": 0,
+    "replay_seconds_at_2x": 0.0,
+    "cues_in_span": 0
+   }
+  ],
+  "outline_target_total_seconds": 180
+ },
+ "finished_at": "2026-09-26T16:26:47-0400",
+ "passed": false
+}

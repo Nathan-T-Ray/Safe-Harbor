@@ -1,0 +1,265 @@
+{
+ "ticket": "SH-Q11",
+ "canonical_run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+ "revision_attempt_run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+ "database": "safe_harbor_q11_demo_20260926T153329",
+ "mode": "real_model",
+ "presentation_mode": "recorded_replay",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "budget": {
+  "token_limit": 1000000,
+  "tool_limit": 120,
+  "cost_limit_usd": 0.6,
+  "tokens_used": 557395,
+  "tool_calls": 55,
+  "model_calls": 36,
+  "cost_usd": 0.030546550999999998,
+  "reserved_tokens": 0,
+  "uncertain_tokens": 43335,
+  "reserved_tools": 0,
+  "reserved_cost_usd": 1.734723475976807e-18,
+  "uncertain_tool_calls": 8,
+  "uncertain_model_calls": 4,
+  "uncertain_cost_usd": 0.003046725
+ },
+ "latest_assessments": {
+  "keppel-19": {
+   "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assessment:2",
+   "assessment_revision": 2,
+   "screen_status": "incomplete",
+   "evidence_status": "unknown",
+   "freshness": "current"
+  },
+  "olonne-18": {
+   "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assessment:2",
+   "assessment_revision": 2,
+   "screen_status": "incomplete",
+   "evidence_status": "unknown",
+   "freshness": "current"
+  },
+  "pansio-1": {
+   "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assessment:2",
+   "assessment_revision": 2,
+   "screen_status": "incomplete",
+   "evidence_status": "unknown",
+   "freshness": "current"
+  }
+ },
+ "beats": {
+  "events": 80,
+  "genome_first_locus_result": 9,
+  "genome_first_reference_bases": 30,
+  "first_expression_result": 38,
+  "first_assessment": 50,
+  "post_crash_recovery": 19,
+  "evidence_revised": null,
+  "revised_assessment": null,
+  "last": 80
+ },
+ "timing": {
+  "recorded_run_wall_seconds_first_to_last_event": 1490.0,
+  "events": 80,
+  "replay_full_measured_seconds": {
+   "2x_seconds": 40.091,
+   "1x_seconds": 80.142
+  },
+  "outline": [
+   {
+    "beat": "context",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     0,
+     1
+    ],
+    "replay_seconds_at_1x": 1,
+    "replay_seconds_at_2x": 0.5,
+    "cues_in_span": 1
+   },
+   {
+    "beat": "genome_zoom",
+    "target_seconds": 25,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     1,
+     30
+    ],
+    "replay_seconds_at_1x": 29,
+    "replay_seconds_at_2x": 14.5,
+    "cues_in_span": 5
+   },
+   {
+    "beat": "expression_investigation",
+    "target_seconds": 30,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     30,
+     50
+    ],
+    "replay_seconds_at_1x": 20,
+    "replay_seconds_at_2x": 10.0,
+    "cues_in_span": 6
+   },
+   {
+    "beat": "evidence_revision",
+    "target_seconds": 25,
+    "backed_by_recorded_events": false,
+    "commit_span": null,
+    "replay_seconds_at_1x": null,
+    "replay_seconds_at_2x": null,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "recovery",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     19,
+     19
+    ],
+    "replay_seconds_at_1x": 0,
+    "replay_seconds_at_2x": 0.0,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "structural_patch_and_promotion",
+    "target_seconds": 40,
+    "backed_by_recorded_events": false,
+    "commit_span": null,
+    "replay_seconds_at_1x": null,
+    "replay_seconds_at_2x": null,
+    "cues_in_span": 0
+   },
+   {
+    "beat": "versioned_dossier",
+    "target_seconds": 20,
+    "backed_by_recorded_events": true,
+    "commit_span": [
+     80,
+     80
+    ],
+    "replay_seconds_at_1x": 0,
+    "replay_seconds_at_2x": 0.0,
+    "cues_in_span": 0
+   }
+  ],
+  "outline_target_total_seconds": 180
+ },
+ "checks": [
+  {
+   "check": "api healthy: MongoDB authority and model configured",
+   "passed": true
+  },
+  {
+   "check": "a complete real-model canonical run (with recovery and revision beats) was produced within the attempt limit",
+   "passed": true
+  },
+  {
+   "check": "export: run mode is real_model with the configured model identity",
+   "passed": true
+  },
+  {
+   "check": "export: events are ordered, gap-free and match the snapshot watermark",
+   "passed": true
+  },
+  {
+   "check": "export: every current task accepted",
+   "passed": true
+  },
+  {
+   "check": "export: task graph stayed within 24 nodes",
+   "passed": true
+  },
+  {
+   "check": "export: all three candidates have a committed assessment",
+   "passed": true
+  },
+  {
+   "check": "export: worker traces carry genuine model calls with provider usage",
+   "passed": true
+  },
+  {
+   "check": "recovery: SIGKILL mid-flight was followed by a coordinator.recovered event at a new epoch and the interrupted tasks completed",
+   "passed": true
+  },
+  {
+   "check": "revision: prepared withhold-control-evidence reopened only dependent tasks and the real model committed a new current assessment",
+   "passed": false
+  },
+  {
+   "check": "text: no global safe label in any accepted conclusion",
+   "passed": true
+  },
+  {
+   "check": "text: accepted conclusions are prose, not raw model JSON envelopes",
+   "passed": true
+  },
+  {
+   "check": "assessments: independent axes and incomplete when required evidence is missing",
+   "passed": true
+  },
+  {
+   "check": "recompute: every model-requested scientific tool result recomputes identically from source",
+   "passed": true
+  },
+  {
+   "check": "browser: fresh client opens ?run=<id> in presentation mode and preloads every committed event",
+   "passed": true
+  },
+  {
+   "check": "browser: live view is labeled LIVE and REAL MODEL",
+   "passed": true
+  },
+  {
+   "check": "browser: camera cues derived from actual events cover overview, genome zoom, bases, results and graph branches",
+   "passed": true
+  },
+  {
+   "check": "browser: an evidence-revision cue reveals the reopened branch",
+   "passed": true
+  },
+  {
+   "check": "browser: dossier: screen agreement all \u2713 and latest assessment per candidate equals the export",
+   "passed": true
+  },
+  {
+   "check": "browser: reset-to-start: commit 0 labeled RECORDED REPLAY + REAL MODEL, no assessment or dossier leaks",
+   "passed": true
+  },
+  {
+   "check": "browser: full replay at 2\u00d7 played commit 0 \u2192 80 with RECORDED REPLAY + REAL MODEL labels",
+   "passed": true
+  },
+  {
+   "check": "browser: camera cues were shown during playback, each keyed to a real derived cue sequence",
+   "passed": true
+  },
+  {
+   "check": "browser: at the last commit the displayed conclusion equals the exported latest assessment for the selected candidate",
+   "passed": true
+  },
+  {
+   "check": "browser: no assessment appears before the first committed assessment",
+   "passed": true
+  },
+  {
+   "check": "browser: second reset-to-start returns to commit 0",
+   "passed": true
+  },
+  {
+   "check": "browser: presentation made no ledger writes (GET/HEAD only)",
+   "passed": true
+  },
+  {
+   "check": "browser: no page errors",
+   "passed": true
+  }
+ ],
+ "not_demonstrated": [
+  "evidence_revision (revision run blocked: tools.py:139 PermissionError)",
+  "structural_patch_and_promotion (no real experiment run)"
+ ],
+ "report": "artifacts/safe_harbor/demo/20260926T160032/report.json",
+ "export_committed": false,
+ "docs": "docs/safe-harbor/DEMO.md"
+}

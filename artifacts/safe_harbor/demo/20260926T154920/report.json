@@ -1,0 +1,292 @@
+{
+ "ticket": "SH-Q11",
+ "started_at": "2026-09-26T15:49:20-0400",
+ "database": "safe_harbor_q11_demo_20260926T153329",
+ "output": "artifacts/safe_harbor/demo/20260926T154920",
+ "mode_requested": "real_model",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "model_provider": "openrouter",
+ "candidate_ids": [
+  "pansio-1",
+  "olonne-18",
+  "keppel-19"
+ ],
+ "attempts": [
+  {
+   "attempt": 1,
+   "request": {
+    "attached_to_existing_run": "run-c402f7440d05414ea1d008c7bb414d28"
+   },
+   "created_status": 201,
+   "phases": [
+    {
+     "phase": "investigation",
+     "status": "complete",
+     "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+     "duration_seconds": 589.5,
+     "through_sequence": 81,
+     "tasks": [
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:screen:r0",
+       "kind": "screen_regions",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:inspect:r0",
+       "kind": "inspect_evidence",
+       "status": "complete",
+       "attempt": 2,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:compare:r0",
+       "kind": "compute_features",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:assess:r0",
+       "kind": "assess_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:review:r0",
+       "kind": "review_candidate",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:report:r0",
+       "kind": "publish_shortlist",
+       "status": "complete",
+       "attempt": 1,
+       "error": null
+      }
+     ]
+    },
+    {
+     "phase": "evidence_revision",
+     "fixture_id": "withhold-control-evidence",
+     "http_status": 200,
+     "result": {
+      "run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+      "sequence": 82,
+      "fixture_id": "withhold-control-evidence",
+      "affected_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0"
+      ],
+      "successor_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0:revision1",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0:revision1"
+      ],
+      "unchanged_task_ids": [
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:review:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:keppel-19:screen:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:assess:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:compare:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:inspect:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:report:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:review:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:olonne-18:screen:r0",
+       "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:screen:r0"
+      ]
+     },
+     "status": "blocked",
+     "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+     "duration_seconds": 31.9,
+     "through_sequence": 87,
+     "tasks": [
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:assess:r0:revision1",
+       "kind": "assess_candidate",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:compare:r0:revision1",
+       "kind": "compute_features",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:inspect:r0:revision1",
+       "kind": "inspect_evidence",
+       "status": "failed",
+       "attempt": 1,
+       "error": "PermissionError: Untargeted control table is unavailable under the current evidence revision"
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:report:r0:revision1",
+       "kind": "publish_shortlist",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      },
+      {
+       "task_id": "run-c402f7440d05414ea1d008c7bb414d28:pansio-1:review:r0:revision1",
+       "kind": "review_candidate",
+       "status": "reopened",
+       "attempt": 0,
+       "error": null
+      }
+     ]
+    }
+   ],
+   "run_id": "run-c402f7440d05414ea1d008c7bb414d28",
+   "crash": {
+    "done": true,
+    "note": "Attached after the driver was interrupted; crash injection (if any) is read from committed coordinator.recovered events."
+   },
+   "outcome": "blocked",
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "total_seconds": 621.6,
+   "spend": {
+    "tokens_used": 565384,
+    "model_calls": 37,
+    "tool_calls": 57,
+    "cost_usd": 0.032242504,
+    "uncertain_tokens": 91323,
+    "uncertain_cost_usd": 0.006100585,
+    "reserved_tokens": 0
+   },
+   "budget": {
+    "token_limit": 1000000,
+    "tool_limit": 120,
+    "cost_limit_usd": 0.6,
+    "tokens_used": 565384,
+    "tool_calls": 57,
+    "model_calls": 37,
+    "cost_usd": 0.032242504,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 91323,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_tool_calls": 8,
+    "uncertain_model_calls": 4,
+    "uncertain_cost_usd": 0.006100585
+   }
+  }
+ ],
+ "checks": [
+  {
+   "check": "api healthy: MongoDB authority and model configured",
+   "passed": true,
+   "evidence": {
+    "database": "safe_harbor_q11_demo_20260926T153329",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true
+   }
+  }
+ ],
+ "findings": [
+  "Reused the already running API on port 8060 for safe_harbor_q11_demo_20260926T153329 (not started by this driver invocation)."
+ ],
+ "labels": {
+  "run": "REAL MODEL (real_model) \u2014 genuine OpenRouter calls committed to MongoDB",
+  "presentation": "RECORDED REPLAY of the committed MongoDB events; the browser phase makes no model call and no ledger write"
+ }
+}

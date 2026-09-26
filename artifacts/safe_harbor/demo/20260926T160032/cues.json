@@ -1,0 +1,371 @@
+{
+ "run_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5",
+ "derived_by": "frontend/src/safe-harbor/cues.ts deriveCues() executed in the browser on GET /runs/{id}/export events",
+ "count": 27,
+ "cues": [
+  {
+   "sequence": 1,
+   "step": "overview",
+   "label": "Published shortlist on GRCh38",
+   "cause": "run.created",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:1",
+   "target": {
+    "zoom": "genome",
+    "task_id": null,
+    "assessment_id": null,
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 9,
+   "step": "focus_chromosome",
+   "label": "chr19 \u00b7 Keppel-19",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:9",
+   "target": {
+    "candidate_id": "keppel-19",
+    "chromosome": "chr19",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 9,
+   "step": "zoom_locus",
+   "label": "Keppel-19 locus \u00b7 inspect candidate",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:9",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 30,
+   "step": "zoom_locus",
+   "label": "Keppel-19 locus \u00b7 list evidence",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:30",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 30,
+   "step": "show_bases",
+   "label": "120 reference bases from chr19:5,400,761",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:30",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "sequence",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 38,
+   "step": "zoom_locus",
+   "label": "Keppel-19 locus \u00b7 control overlap",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:38",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 50,
+   "step": "zoom_locus",
+   "label": "Keppel-19 locus \u00b7 control overlap",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:50",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 50,
+   "step": "highlight_result",
+   "label": "Keppel-19 \u00b7 revision 1 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:50",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assessment:1",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 50,
+   "step": "reveal_branch",
+   "label": "assess candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:50",
+   "target": {
+    "candidate_id": "keppel-19",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assess:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 54,
+   "step": "focus_chromosome",
+   "label": "chr18 \u00b7 Ol\u00f4nne-18",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:54",
+   "target": {
+    "candidate_id": "olonne-18",
+    "chromosome": "chr18",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 54,
+   "step": "highlight_result",
+   "label": "Ol\u00f4nne-18 \u00b7 revision 1 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:54",
+   "target": {
+    "candidate_id": "olonne-18",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assessment:1",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 54,
+   "step": "reveal_branch",
+   "label": "assess candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:54",
+   "target": {
+    "candidate_id": "olonne-18",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assess:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 58,
+   "step": "focus_chromosome",
+   "label": "chr1 \u00b7 Pansio-1",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:58",
+   "target": {
+    "candidate_id": "pansio-1",
+    "chromosome": "chr1",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 58,
+   "step": "highlight_result",
+   "label": "Pansio-1 \u00b7 revision 1 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:58",
+   "target": {
+    "candidate_id": "pansio-1",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assessment:1",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 58,
+   "step": "reveal_branch",
+   "label": "assess candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:58",
+   "target": {
+    "candidate_id": "pansio-1",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assess:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 62,
+   "step": "focus_chromosome",
+   "label": "chr18 \u00b7 Ol\u00f4nne-18",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:62",
+   "target": {
+    "candidate_id": "olonne-18",
+    "chromosome": "chr18",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 62,
+   "step": "highlight_result",
+   "label": "Ol\u00f4nne-18 \u00b7 revision 2 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:62",
+   "target": {
+    "candidate_id": "olonne-18",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:assessment:2",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 62,
+   "step": "reveal_branch",
+   "label": "review candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:62",
+   "target": {
+    "candidate_id": "olonne-18",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:review:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 65,
+   "step": "focus_chromosome",
+   "label": "chr19 \u00b7 Keppel-19",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:65",
+   "target": {
+    "candidate_id": "keppel-19",
+    "chromosome": "chr19",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 65,
+   "step": "highlight_result",
+   "label": "Keppel-19 \u00b7 revision 2 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:65",
+   "target": {
+    "candidate_id": "keppel-19",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:assessment:2",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 65,
+   "step": "reveal_branch",
+   "label": "review candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:65",
+   "target": {
+    "candidate_id": "keppel-19",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:review:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 69,
+   "step": "focus_chromosome",
+   "label": "chr1 \u00b7 Pansio-1",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:69",
+   "target": {
+    "candidate_id": "pansio-1",
+    "chromosome": "chr1",
+    "zoom": "chromosome",
+    "region": "genome"
+   }
+  },
+  {
+   "sequence": 69,
+   "step": "highlight_result",
+   "label": "Pansio-1 \u00b7 revision 2 \u00b7 incomplete screen",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:69",
+   "target": {
+    "candidate_id": "pansio-1",
+    "zoom": "locus",
+    "assessment_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:assessment:2",
+    "region": "conclusion"
+   }
+  },
+  {
+   "sequence": 69,
+   "step": "reveal_branch",
+   "label": "review candidate \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:69",
+   "target": {
+    "candidate_id": "pansio-1",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:review:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 74,
+   "step": "reveal_branch",
+   "label": "publish shortlist \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:74",
+   "target": {
+    "candidate_id": "olonne-18",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:olonne-18:report:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 77,
+   "step": "reveal_branch",
+   "label": "publish shortlist \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:77",
+   "target": {
+    "candidate_id": "keppel-19",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:keppel-19:report:r0",
+    "region": "graph"
+   }
+  },
+  {
+   "sequence": 79,
+   "step": "reveal_branch",
+   "label": "publish shortlist \u00b7 complete",
+   "cause": "task.completed",
+   "source": "derived",
+   "event_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:79",
+   "target": {
+    "candidate_id": "pansio-1",
+    "task_id": "run-0d71fb0b3f94441fb89bc5cf042eb6f5:pansio-1:report:r0",
+    "region": "graph"
+   }
+  }
+ ]
+}
