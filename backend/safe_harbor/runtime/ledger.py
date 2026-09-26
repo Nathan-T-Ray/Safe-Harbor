@@ -321,7 +321,7 @@ class Ledger:
 
         return self.transact(operation_id, {"run_id": run_id, "task_id": task_id, "epoch": epoch, "total_tokens": total_tokens, "total_cost_usd": total_cost_usd}, work)
 
-    def task_failed(self, run_id: str, task_id: str, epoch: int, error: str, transient: bool = False):
+    def task_failed(self, run_id: str, task_id: str, epoch: int, error: str, transient: bool = False, failure: dict | None = None):
         operation_id = identifier("failure")
 
         def work(session):
@@ -333,18 +333,37 @@ class Ledger:
             reservation = task.pop("reservation", {})
             budget = run["budget"]
             budget["reserved_tokens"] = max(0, budget["reserved_tokens"] - reservation.get("tokens", 0))
-            budget["uncertain_tokens"] += reservation.get("tokens", 0)
             budget["reserved_tools"] = max(0, budget.get("reserved_tools", 0) - reservation.get("tools", 0))
-            budget["uncertain_tool_calls"] = budget.get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
-            if run["mode"] == "real_model":
-                budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
             budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
-            budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
+            artifacts = []
+            if failure:
+                usage = failure["usage"]
+                budget["tokens_used"] += usage["tokens"]
+                budget["tool_calls"] += usage["tool_calls"]
+                budget["model_calls"] += usage["model_calls"]
+                budget["cost_usd"] = (budget.get("cost_usd") or 0) + usage["cost_usd"]
+                if failure["tokens_uncertain"]:
+                    budget["uncertain_tokens"] += max(0, reservation.get("tokens", 0) - usage["tokens"])
+                if failure["cost_uncertain"]:
+                    budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + max(0, reservation.get("cost_usd", 0) - usage["cost_usd"])
+                if failure["request_in_flight"]:
+                    budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + 1
+                artifacts = [failure["artifact"]]
+                task["failure_artifact_ids"] = task.get("failure_artifact_ids", []) + [failure["artifact"]["artifact_id"]]
+                task["failed_attempt_usage"] = usage
+            else:
+                budget["uncertain_tokens"] += reservation.get("tokens", 0)
+                budget["uncertain_tool_calls"] = budget.get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
+                if run["mode"] == "real_model":
+                    budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
+                budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
+            if budget["tokens_used"] + budget["uncertain_tokens"] > budget["token_limit"] or budget["tool_calls"] > budget["tool_limit"] or (budget.get("cost_usd") or 0) + budget.get("uncertain_cost_usd", 0) > budget["cost_limit_usd"]:
+                run["budget_breach"] = "Provider-reported failed-attempt usage exceeded its reservation; further dispatch is forbidden."
             task.update(status="queued" if transient and task["attempt"] < 2 else "failed", error=error, failed_at=now())
-            event = self._write_event(session, run, operation_id, "task.failed", {"tasks": [task]})
+            event = self._write_event(session, run, operation_id, "task.failed", {"tasks": [task], "artifacts": artifacts})
             return {"sequence": event["sequence"]}
 
-        return self.transact(operation_id, {"run_id": run_id, "task_id": task_id, "epoch": epoch, "error": error}, work)
+        return self.transact(operation_id, {"run_id": run_id, "task_id": task_id, "epoch": epoch, "error": error, "failure": failure}, work)
 
     def finish(self, run_id: str, epoch: int, status: str, reason: str):
         operation_id = identifier("finish")

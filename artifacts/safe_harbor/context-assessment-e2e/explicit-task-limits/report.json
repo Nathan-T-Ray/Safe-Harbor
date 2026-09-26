@@ -1,0 +1,45 @@
+{
+  "started_at": "2026-09-26T19:16:25.188330+00:00",
+  "database": "safe_harbor_operational_1790450184",
+  "mode": "deterministic_operational",
+  "harness_mode": "developer_authored_fixed_baseline",
+  "biological_results": "Real numerical source calculations; no model interpretation",
+  "model_calls": 0,
+  "cases": [
+    {
+      "case": "bounded_context_scoped_retrieval_validation_and_export",
+      "run_id": "run-14b4f17a49f6448895f80cd531d60c16",
+      "other_run_id": "run-41144edd8bf741949bcb54490a6e9347",
+      "passed": true,
+      "context_bytes": 39367,
+      "ancestor_hash_dependency": "artifact-28347bc3cb314fd6b875bdd0cdf863e5",
+      "denied": [
+        "evaluator-only",
+        "unknown manifest ID",
+        "other run",
+        "withdrawn historical control artifact"
+      ],
+      "validation_mode": "deterministic_validation",
+      "valid_fixture_accepted": true,
+      "incorrect_numeric_rejected": true,
+      "unsupported_citation_rejected": true,
+      "H9_context_rejected": true,
+      "missing_control_claim_rejected": true,
+      "historical_snapshot_unchanged": true,
+      "export_reconstructs_snapshot": true,
+      "export": "artifacts/safe_harbor/context-assessment-e2e/explicit-task-limits/run-14b4f17a49f6448895f80cd531d60c16.json"
+    }
+  ],
+  "processes": [
+    {
+      "pid": 96605,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/context-assessment-e2e/explicit-task-limits/process-1.log",
+      "started_at": "2026-09-26T19:16:25.192624+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:16:32.042794+00:00"
+    }
+  ],
+  "passed": true,
+  "finished_at": "2026-09-26T19:16:32.042943+00:00"
+}

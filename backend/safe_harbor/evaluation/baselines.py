@@ -31,7 +31,7 @@ OUTPUT_CONTRACT = (
     "including missing answers. Reference answers and evaluator files are inaccessible through approved tools."
 )
 
-DEFAULT_BUDGET = {"token_limit": 200000, "tool_limit": 40, "cost_limit_usd": 5.0}
+DEFAULT_BUDGET = {"token_limit": 400000, "tool_limit": 40, "cost_limit_usd": 5.0}
 
 
 def _r0_role(role_id: str, kind: str, dependencies: list[str], tools: list[str], instructions: str) -> dict:

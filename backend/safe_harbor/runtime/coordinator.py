@@ -163,4 +163,4 @@ class Coordinator:
                     future.result()
                 except Exception as exc:
                     transient = isinstance(exc, (TimeoutError, ConnectionError)) or exc.__class__.__name__ in ("APITimeoutError", "APIConnectionError", "RateLimitError")
-                    self.ledger.task_failed(run_id, task_id, epoch, f"{exc.__class__.__name__}: {exc}", transient=transient)
+                    self.ledger.task_failed(run_id, task_id, epoch, f"{exc.__class__.__name__}: {exc}", transient=transient, failure=getattr(exc, "worker_failure", None))

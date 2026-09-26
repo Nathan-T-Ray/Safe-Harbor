@@ -1,0 +1,215 @@
+{
+  "mode": "real_model",
+  "run_id": "run-152fa7ce5acd4449a90dd77269ada8d4",
+  "status": "blocked",
+  "model_id": "deepseek/deepseek-v4.1-flash",
+  "provider_slug": "inference-net",
+  "pricing_hash": "9a1c69dfc70a959465dd996e4e031544e18fe9c60fef787ae080d16ffa906987",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "started_at": "2026-09-26T19:02:28.196033+00:00",
+  "completed_at": "2026-09-26T19:12:09.361486+00:00",
+  "duration_seconds": 581.165453,
+  "through_sequence": 26,
+  "tasks": [
+    {
+      "role_id": "screen",
+      "status": "complete",
+      "started_at": "2026-09-26T19:02:28.267685+00:00",
+      "completed_at": "2026-09-26T19:05:00.973685+00:00",
+      "failed_at": null,
+      "error": null
+    },
+    {
+      "role_id": "inspect",
+      "status": "complete",
+      "started_at": "2026-09-26T19:02:28.279869+00:00",
+      "completed_at": "2026-09-26T19:03:00.724782+00:00",
+      "failed_at": null,
+      "error": null
+    },
+    {
+      "role_id": "compare",
+      "status": "complete",
+      "started_at": "2026-09-26T19:03:00.756600+00:00",
+      "completed_at": "2026-09-26T19:06:16.891574+00:00",
+      "failed_at": null,
+      "error": null
+    },
+    {
+      "role_id": "assess",
+      "status": "complete",
+      "started_at": "2026-09-26T19:06:16.926314+00:00",
+      "completed_at": "2026-09-26T19:09:12.728666+00:00",
+      "failed_at": null,
+      "error": null
+    },
+    {
+      "role_id": "review",
+      "status": "complete",
+      "started_at": "2026-09-26T19:09:12.783468+00:00",
+      "completed_at": "2026-09-26T19:11:05.370010+00:00",
+      "failed_at": null,
+      "error": null
+    },
+    {
+      "role_id": "report",
+      "status": "failed",
+      "started_at": "2026-09-26T19:11:05.400408+00:00",
+      "completed_at": null,
+      "failed_at": "2026-09-26T19:12:09.351277+00:00",
+      "error": "LedgerError: Model exceeded bounded tool allowance"
+    }
+  ],
+  "accepted_assessments": [
+    {
+      "assessment_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:assessment:1",
+      "assessment_revision": 1,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "freshness": "current",
+      "exclusion_decision": "not_justified_by_available_evidence",
+      "numerical_findings": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "validation_errors": [],
+      "model_proposal_accepted": true
+    },
+    {
+      "assessment_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:assessment:2",
+      "assessment_revision": 2,
+      "screen_status": "incomplete",
+      "evidence_status": "unknown",
+      "freshness": "current",
+      "exclusion_decision": "not_justified_by_available_evidence",
+      "numerical_findings": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": null,
+        "nearest_mapped_de_gene_gap_bp": null
+      },
+      "validation_errors": [],
+      "model_proposal_accepted": true
+    }
+  ],
+  "committed_role_usage": [
+    {
+      "role_id": "inspect",
+      "usage": {
+        "tokens": 18530,
+        "tool_calls": 4,
+        "model_calls": 2,
+        "cost_usd": 0.000787015,
+        "duration_seconds": 32.4098
+      },
+      "tools": [
+        "list_evidence",
+        "table_slice",
+        "table_slice",
+        "reference_sequence"
+      ]
+    },
+    {
+      "role_id": "screen",
+      "usage": {
+        "tokens": 14793,
+        "tool_calls": 2,
+        "model_calls": 2,
+        "cost_usd": 0.001264395,
+        "duration_seconds": 152.6803
+      },
+      "tools": [
+        "inspect_candidate",
+        "screen_candidate"
+      ]
+    },
+    {
+      "role_id": "compare",
+      "usage": {
+        "tokens": 28313,
+        "tool_calls": 3,
+        "model_calls": 2,
+        "cost_usd": 0.00168379,
+        "duration_seconds": 196.1071
+      },
+      "tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ]
+    },
+    {
+      "role_id": "assess",
+      "usage": {
+        "tokens": 39084,
+        "tool_calls": 3,
+        "model_calls": 2,
+        "cost_usd": 0.00196872,
+        "duration_seconds": 175.5521
+      },
+      "tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ]
+    },
+    {
+      "role_id": "review",
+      "usage": {
+        "tokens": 38247,
+        "tool_calls": 2,
+        "model_calls": 2,
+        "cost_usd": 0.0018534900000000002,
+        "duration_seconds": 112.5161
+      },
+      "tools": [
+        "screen_candidate",
+        "control_overlap"
+      ]
+    }
+  ],
+  "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 138967,
+    "tool_calls": 14,
+    "model_calls": 10,
+    "cost_usd": 0.0075574100000000005,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 57825,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_tool_calls": 4,
+    "uncertain_model_calls": 2,
+    "uncertain_cost_usd": 0.002788875
+  },
+  "dossier_completed": false,
+  "limitations": [
+    "Screen, investigation, comparison, assessment and review completed; report failed the four-tool boundary. This is not a fully completed investigation or final dossier.",
+    "The failed report response was not retained by the earlier worker implementation; its full reservation remains uncertain. This export has not been rewritten after the telemetry fix.",
+    "The runtime validates nine numerical fields and citations against consumed scientific outputs; this is not independent human review.",
+    "No current named assay/context contradiction supports a conflicting endpoint label. Workbook/prose count discrepancies are not themselves biological endpoint conflicts.",
+    "The data cover a publication-derived shortlist and a GRCh38 reference, not novel site discovery or a personalized H1 genome.",
+    "Control overlap and proximity do not establish safety or causality; required cancer/regulatory criteria remain unavailable."
+  ],
+  "subsequent_uniform_infrastructure_fixes": [
+    "Explicit per-task limits added to model packet and instructions without changing four-tool/two-response caps.",
+    "Received provider responses and known usage now persist on rejected attempts; interrupted or unreported usage remains uncertain."
+  ],
+  "transport_preflight": "deepinfra-transport-probe.json",
+  "comparison_configuration_note": "Subsequent comparisons separately freeze deepinfra/fp8 and uniform400000 tokens/40tools/$5, with900-second case deadline. These settings do not alter this run.",
+  "export": "first-pansio-run.json"
+}

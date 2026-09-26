@@ -1,0 +1,31 @@
+{
+  "mode": "mock",
+  "purpose": "Operational API/MongoDB/HTTP-provider E2E; synthetic response and synthetic accounting units, no real model inference or biological conclusion.",
+  "status": "passed",
+  "run_id": "mock-provider-e2e-39757e91cfb949e9a60594c2c50ed03b",
+  "database": "safe_harbor_provider_failure_1790450109",
+  "api_pid": 95883,
+  "provider_port": 62546,
+  "api_port": 62547,
+  "assertions": [
+    "Task allowance explicit in provider request and packet",
+    "Five proposed calls rejected before any tool executes",
+    "Known mock usage settled without uncertainty",
+    "Raw failed response preserved in atomic failure event",
+    "Failure artifact included in export"
+  ],
+  "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 33,
+    "tool_calls": 0,
+    "model_calls": 1,
+    "cost_usd": 0.0001,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0
+  },
+  "completed_at": "2026-09-26T19:15:11.914466+00:00"
+}

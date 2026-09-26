@@ -1,0 +1,19 @@
+{
+  "mode": "deterministic_operational_timeout_e2e",
+  "experiment_id": "experiment-b24e2190740848409442c82f21664e34",
+  "pending_run_id": "run-d44b42e0e52b4f9591059c25be2ad439",
+  "assigned_records": 24,
+  "dispatched_case_runs": 1,
+  "later_arms_dispatched": 0,
+  "model_calls": 0,
+  "complete_cost_report_issued": false,
+  "usage_reconciliation_required": true,
+  "checks": [
+    "Actual API/coordinator/MongoDB",
+    "Deadline freezes with run",
+    "Active-run timeout blocks whole experiment",
+    "All later assignments explicit unexecuted",
+    "No complete totals before terminal reconciliation",
+    "Terminal run does not silently resume experiment"
+  ]
+}
