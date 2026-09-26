@@ -1,0 +1,503 @@
+{
+ "ticket": "SH-Q01",
+ "started_at": "2026-09-26T19:07:07.145716+00:00",
+ "mode": "real_model",
+ "database": "safe_harbor_q01_20260926T150707",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "model_provider": "openrouter",
+ "candidate_id": "pansio-1",
+ "budget_request": {
+  "token_limit": 200000
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "run_id": "run-c85d6cbf50d146ecb9e9e0247cbfafde",
+   "status": "blocked",
+   "duration_seconds": 32.3,
+   "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 12667,
+    "tool_calls": 6,
+    "model_calls": 2,
+    "cost_usd": 0.0019243672,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 18441,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_cost_usd": 0.5
+   },
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "failed",
+     "error": "LedgerError: This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+     "kind": "compute_features",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  },
+  {
+   "attempt": 2,
+   "run_id": "run-4ec514ed40ea4295ae160966ae4bf760",
+   "status": "complete",
+   "duration_seconds": 50.8,
+   "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 138890,
+    "tool_calls": 14,
+    "model_calls": 11,
+    "cost_usd": 0.0381165584,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0
+   },
+   "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "compute_features",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "complete",
+     "error": null
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "check": "api healthy with MongoDB authority and model configured",
+   "passed": true,
+   "evidence": {
+    "status": "ok",
+    "database": "safe_harbor_q01_20260926T150707",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true,
+    "schema_version": 1
+   }
+  },
+  {
+   "check": "a real-model run reached complete within the attempt limit",
+   "passed": true,
+   "evidence": {
+    "attempts": 2
+   }
+  },
+  {
+   "check": "run recorded as real_model with configured model identity",
+   "passed": true,
+   "evidence": {
+    "mode": "real_model",
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "model_provider": "openrouter",
+    "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+    "data_version": "autio-79592-v2-gencode36-2026-09-26"
+   }
+  },
+  {
+   "check": "every worker made real recorded model calls with usage",
+   "passed": true,
+   "evidence": {
+    "workers": 6,
+    "model_calls": 11,
+    "tokens": 138890,
+    "cost_usd": 0.0381165584,
+    "uncertain_tokens": 0
+   }
+  },
+  {
+   "check": "all tasks accepted",
+   "passed": true,
+   "evidence": [
+    [
+     "screen_regions",
+     "complete"
+    ],
+    [
+     "inspect_evidence",
+     "complete"
+    ],
+    [
+     "compute_features",
+     "complete"
+    ],
+    [
+     "assess_candidate",
+     "complete"
+    ],
+    [
+     "review_candidate",
+     "complete"
+    ],
+    [
+     "publish_shortlist",
+     "complete"
+    ]
+   ]
+  },
+  {
+   "check": "events are ordered and gap-free",
+   "passed": true,
+   "evidence": {
+    "events": 26
+   }
+  },
+  {
+   "check": "every cited source matches original bytes (sequence JSON: identical bases)",
+   "passed": true,
+   "evidence": {
+    "cited": {
+     "elife-79592-supp1.xlsx": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc",
+     "elife-79592-supp4.xlsx": "641891f65518c735b553e1d28e36dd4fdd15a139b7d8177df01775274e6c538e",
+     "elife-79592-supp5.xlsx": "9811bae46bc42699b42751ef9c54c0a1b75b403154bb31026645fb719e335667",
+     "wgEncodeGencodeCompV36.sql": "7164106eb072b95e7a9499a4b153f9c7b0bb0e0b1bbbe00a79723707d5bf3256",
+     "wgEncodeGencodeAttrsV36.sql": "5c238ca6074985eabebe572b0f182382c965221439108c727c9668c3ca3dac22",
+     "wgEncodeGencodeCompV36.txt.gz": "843c434ede93314d09d78cfe498784942122bfa3e0c8d7a8bd096f1fd880be9a",
+     "wgEncodeGencodeAttrsV36.txt.gz": "2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be",
+     "pansio-1-hg38-sequence.json": "c8808f778839f10ffec55b22a2700a93bf5a2e9e2d921b70a2a17e04e7ff0f2e"
+    },
+    "mismatched": {},
+    "wrapper_metadata_drift_bases_identical": {
+     "pansio-1-hg38-sequence.json": {
+      "body_sha256_on_disk": "d4c3a5613da052900a7185f00599c6c12e62bf7302d6fc1b372c3e80bf0a65b4",
+      "committed_body_sha256": "c8808f778839f10ffec55b22a2700a93bf5a2e9e2d921b70a2a17e04e7ff0f2e",
+      "bases_sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2"
+     }
+    }
+   }
+  },
+  {
+   "check": "every model-requested tool result recomputes identically from exported arguments",
+   "passed": true,
+   "evidence": [
+    {
+     "tool": "list_evidence",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "07c8e77f7b5da89a35fbdad8cf0f506c77f88ada7f5cc292f859a30106b07edc",
+     "recomputed": "07c8e77f7b5da89a35fbdad8cf0f506c77f88ada7f5cc292f859a30106b07edc"
+    },
+    {
+     "tool": "table_slice",
+     "arguments": {
+      "cell_context": "H1",
+      "contrast": "candidate",
+      "offset": 0,
+      "limit": 20
+     },
+     "stored": "8e555a69d7688999373e97f6a824e281bdb07b0d4f1908333f0a08e237e77871",
+     "recomputed": "8e555a69d7688999373e97f6a824e281bdb07b0d4f1908333f0a08e237e77871"
+    },
+    {
+     "tool": "table_slice",
+     "arguments": {
+      "cell_context": "H1",
+      "contrast": "untargeted",
+      "offset": 0,
+      "limit": 20
+     },
+     "stored": "15b2aab73d1126f2a4f071d5a335430f75e4436f4d5fee7c88e7ede49f1d6991",
+     "recomputed": "15b2aab73d1126f2a4f071d5a335430f75e4436f4d5fee7c88e7ede49f1d6991"
+    },
+    {
+     "tool": "reference_sequence",
+     "arguments": {
+      "cell_context": "H1",
+      "offset": 0,
+      "length": 240
+     },
+     "stored": "108db600107fab34d6d2c6478ae0451ba414e47ad2c650ae6b2f4318c535da74",
+     "recomputed": "108db600107fab34d6d2c6478ae0451ba414e47ad2c650ae6b2f4318c535da74"
+    },
+    {
+     "tool": "expression_comparison",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "a934e28cf8c4b482893bb1f2f778f458939e69aee46c1f6b89182f0eaaeafe8d",
+     "recomputed": "a934e28cf8c4b482893bb1f2f778f458939e69aee46c1f6b89182f0eaaeafe8d"
+    },
+    {
+     "tool": "control_overlap",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1",
+     "recomputed": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1"
+    },
+    {
+     "tool": "gene_proximity",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "a0994bd195ff718b1c21f8f65c8a8812a55095e0c03b76a76599c3e8ba66df97",
+     "recomputed": "a0994bd195ff718b1c21f8f65c8a8812a55095e0c03b76a76599c3e8ba66df97"
+    },
+    {
+     "tool": "inspect_candidate",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "6edc95c828333452d326698c632e78001c1c8fa058e5c6e514a266b660c68c6d",
+     "recomputed": "6edc95c828333452d326698c632e78001c1c8fa058e5c6e514a266b660c68c6d"
+    },
+    {
+     "tool": "screen_candidate",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "391fc932ca4f6eaaf1b5e24423c1848d299ac54c2799b5964ecd6fa8d73e155c",
+     "recomputed": "391fc932ca4f6eaaf1b5e24423c1848d299ac54c2799b5964ecd6fa8d73e155c"
+    },
+    {
+     "tool": "expression_comparison",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "a934e28cf8c4b482893bb1f2f778f458939e69aee46c1f6b89182f0eaaeafe8d",
+     "recomputed": "a934e28cf8c4b482893bb1f2f778f458939e69aee46c1f6b89182f0eaaeafe8d"
+    },
+    {
+     "tool": "control_overlap",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1",
+     "recomputed": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1"
+    },
+    {
+     "tool": "gene_proximity",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "a0994bd195ff718b1c21f8f65c8a8812a55095e0c03b76a76599c3e8ba66df97",
+     "recomputed": "a0994bd195ff718b1c21f8f65c8a8812a55095e0c03b76a76599c3e8ba66df97"
+    },
+    {
+     "tool": "screen_candidate",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "391fc932ca4f6eaaf1b5e24423c1848d299ac54c2799b5964ecd6fa8d73e155c",
+     "recomputed": "391fc932ca4f6eaaf1b5e24423c1848d299ac54c2799b5964ecd6fa8d73e155c"
+    },
+    {
+     "tool": "control_overlap",
+     "arguments": {
+      "cell_context": "H1"
+     },
+     "stored": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1",
+     "recomputed": "042f0e495210152dea4d6b691d60820e64aad07d6818a1d0f0719d7fa13f3ba1"
+    }
+   ]
+  },
+  {
+   "check": "independent workbook recount agrees with the tool calculations",
+   "passed": true,
+   "evidence": {
+    "independent_from_raw_workbook": {
+     "sheet": "Pansio-1 (113339961-113340514)",
+     "targeted": 96,
+     "targeted_up": 48,
+     "targeted_down": 48,
+     "control": 260,
+     "control_up": 194,
+     "control_down": 66,
+     "shared": 31,
+     "shared_same_direction": 31,
+     "shared_opposite_direction": 0,
+     "shared_percent_of_targeted": 32.29
+    },
+    "tool_expression_comparison_targeted": {
+     "input_rows": 96,
+     "qualifying_rows": 96,
+     "unique_versioned_gene_count": 96,
+     "unique_stable_gene_count": 96,
+     "upregulated_gene_count": 48,
+     "downregulated_gene_count": 48,
+     "duplicate_versioned_ids": [],
+     "duplicate_stable_ids": [],
+     "nonqualifying_row_numbers": []
+    }
+   }
+  },
+  {
+   "check": "every multi-digit number in the conclusion is backed by a run calculation",
+   "passed": true,
+   "evidence": {
+    "quoted": [
+     0.0,
+     0.0954,
+     0.26895306859205775,
+     1.0,
+     5.0,
+     31.0,
+     96.0,
+     103.0,
+     554.0,
+     9824.0,
+     50000.0,
+     50001.0,
+     113339960.0,
+     113339961.0,
+     113340514.0,
+     113390514.0
+    ],
+    "unsupported": []
+   }
+  },
+  {
+   "check": "assessment keeps independent axes and required fields",
+   "passed": true,
+   "evidence": {
+    "screen_status": "incomplete",
+    "evidence_status": "unknown",
+    "freshness": "current",
+    "assessment_revision": 2,
+    "assembly": "GRCh38",
+    "cell_context": "H1 human embryonic stem cells"
+   }
+  },
+  {
+   "check": "missing required evidence yields incomplete, not pass",
+   "passed": true,
+   "evidence": {
+    "non_pass_criteria": [
+     "cancer_gene_distance",
+     "outside_dhs_buffer",
+     "outside_ultraconserved_regions"
+    ],
+    "screen_status": "incomplete"
+   }
+  },
+  {
+   "check": "no global safe label in accepted text",
+   "passed": true,
+   "evidence": {
+    "matches": []
+   }
+  },
+  {
+   "check": "every assessment evidence ID resolves to a run artifact or tool evidence",
+   "passed": true,
+   "evidence": {
+    "evidence_ids": 6,
+    "dangling": []
+   }
+  },
+  {
+   "check": "accepted conclusion is typed prose, not an unparsed model JSON envelope",
+   "passed": false,
+   "evidence": {
+    "conclusion_prefix": "{\n  \"conclusion\": \"Partially supported, and no exclusion is justified. The four computable GENCODE v36 annotation criteria (outside_gene_body, tss_distance, mir"
+   }
+  },
+  {
+   "check": "browser: mode indicator shows REAL MODEL",
+   "passed": true,
+   "evidence": {
+    "mode": "REAL MODEL"
+   }
+  },
+  {
+   "check": "browser: displayed conclusion equals committed assessment conclusion",
+   "passed": true,
+   "evidence": {
+    "shown_prefix": "{ \"conclusion\": \"Partially supported, and no exclusion is justified. The four computable GENCODE v36 annotation criteria (outside_gene_body, tss_distance, mirna_distance, lncrna_distance) are reproduc"
+   }
+  },
+  {
+   "check": "browser: displayed status axes match committed assessment",
+   "passed": true,
+   "evidence": {
+    "axes": "computational screenincompleteexperimental evidenceunknownevidence freshnesscurrent"
+   }
+  },
+  {
+   "check": "browser: displayed assessment revision matches",
+   "passed": true,
+   "evidence": {
+    "revision": "Revision 2"
+   }
+  },
+  {
+   "check": "browser: assembly and cell context are visible",
+   "passed": true,
+   "evidence": {
+    "context": "GRCh38H1 human embryonic stem cellsautio-79592-v2-gencode36-2026-09-26Ledger connectedLIVE"
+   }
+  },
+  {
+   "check": "browser: evidence inspector exposes committed tool results",
+   "passed": true,
+   "evidence": {
+    "drawer_prefix": "Inspect the committed recordEvidence & calculations\u00d7list evidencerev 1artifact-2e646a504cf842bcaa14ebf33ce5edc7tool namelist_evidencecandidate idpansio-1assemblyGRCh38cell contextH1 human embryonic stem cellsdata versionautio-79592-v2-gencode36-2026-09-26statuscomplete_catalog_queryinput read set \u00b7 "
+   }
+  },
+  {
+   "check": "browser: no page errors",
+   "passed": true,
+   "evidence": {
+    "errors": []
+   }
+  }
+ ],
+ "findings": [],
+ "run_id": "run-4ec514ed40ea4295ae160966ae4bf760",
+ "finished_at": "2026-09-26T19:08:36.539122+00:00",
+ "passed": false
+}

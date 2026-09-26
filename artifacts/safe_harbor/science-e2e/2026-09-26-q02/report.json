@@ -1,0 +1,2921 @@
+{
+  "ticket": "SH-Q02",
+  "started_at": "2026-09-26T19:28:29.768589+00:00",
+  "database": "safe_harbor_science_e2e_1790450909",
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "reference": "data/safe_harbor/evaluator/reference_answers.json (independent raw-file recomputation, not human reviewed)",
+  "evaluators": [
+    "safe_harbor.evaluation.scoring.score_case (H05) on actual run traces",
+    "SH-Q02 cross-check of every exported tool number against the reference"
+  ],
+  "cases": [
+    {
+      "case_id": "keppel-19--full_sources",
+      "split": "final",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/keppel-19-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.631578947368421,
+          "coverage": 0.631578947368421,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 139
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 48
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 91
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.34532374100719426
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53277
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53278
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 130
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 774116
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ]
+    },
+    {
+      "case_id": "keppel-19--h1_context_only",
+      "split": "final",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "control_de_count": 260,
+        "shared_de_count": 48,
+        "targeted_only_count": 91,
+        "overlap_fraction": 0.34532374100719426,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/keppel-19-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.6,
+          "coverage": 0.6,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 139
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 48
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 91
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.34532374100719426
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53277
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53278
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 130
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 774116
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "keppel-19--controls_withheld",
+      "split": "final",
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "de_count": 139,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "reference_numbers": {
+        "de_count": 139,
+        "min_gene_body_gap_bp": 53277,
+        "min_tss_base_distance_bp": 53278,
+        "mapped_de_count": 130,
+        "nearest_mapped_de_gene_gap_bp": 774116
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/keppel-19-controls-withheld.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.5,
+          "coverage": 0.5,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 139
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53277
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 53278
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 130
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 774116
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "evidence_revision_sequence": 16
+    },
+    {
+      "case_id": "olonne-18--full_sources",
+      "split": "validation",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/olonne-18-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.6666666666666666,
+          "coverage": 0.6666666666666666,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 111
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 40
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 71
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.36036036036036034
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 60769
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 64426
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 103
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 32399164
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ]
+    },
+    {
+      "case_id": "olonne-18--h1_context_only",
+      "split": "validation",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "control_de_count": 260,
+        "shared_de_count": 40,
+        "targeted_only_count": 71,
+        "overlap_fraction": 0.36036036036036034,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/olonne-18-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.631578947368421,
+          "coverage": 0.631578947368421,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 111
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 40
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 71
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.36036036036036034
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 60769
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 64426
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 103
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 32399164
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "olonne-18--controls_withheld",
+      "split": "validation",
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "de_count": 111,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "reference_numbers": {
+        "de_count": 111,
+        "min_gene_body_gap_bp": 60769,
+        "min_tss_base_distance_bp": 64426,
+        "mapped_de_count": 103,
+        "nearest_mapped_de_gene_gap_bp": 32399164
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/olonne-18-controls-withheld.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.5333333333333333,
+          "coverage": 0.5333333333333333,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 111
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 60769
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 64426
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 103
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 32399164
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "evidence_revision_sequence": 16
+    },
+    {
+      "case_id": "pansio-1--full_sources",
+      "split": "development",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/pansio-1-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.6666666666666666,
+          "coverage": 0.6666666666666666,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 96
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 31
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 65
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.3229166666666667
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50000
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50001
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 90
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 4352715
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ]
+    },
+    {
+      "case_id": "pansio-1--h1_context_only",
+      "split": "development",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "control_de_count": 260,
+        "shared_de_count": 31,
+        "targeted_only_count": 65,
+        "overlap_fraction": 0.3229166666666667,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
+        "assessment_revision": 2,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/pansio-1-full-sources.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "control_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "shared_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "targeted_only_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "overlap_fraction": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.631578947368421,
+          "coverage": 0.631578947368421,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 96
+            },
+            "control_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 260
+            },
+            "shared_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 31
+            },
+            "targeted_only_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 65
+            },
+            "overlap_fraction": {
+              "correct": true,
+              "supported": true,
+              "actual": 0.3229166666666667
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50000
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50001
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 90
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 4352715
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "note": "Same deterministic run as full_sources: scenario wording cannot change deterministic execution; applicability is exercised by the H9 checks."
+    },
+    {
+      "case_id": "pansio-1--controls_withheld",
+      "split": "development",
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "passed": true,
+      "failures": [],
+      "observed_numbers": {
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "de_count": 96,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "reference_numbers": {
+        "de_count": 96,
+        "min_gene_body_gap_bp": 50000,
+        "min_tss_base_distance_bp": 50001,
+        "mapped_de_count": 90,
+        "nearest_mapped_de_gene_gap_bp": 4352715
+      },
+      "unavailable_numbers": [
+        "control_de_count",
+        "shared_de_count",
+        "targeted_only_count",
+        "overlap_fraction"
+      ],
+      "tool_result_count": 13,
+      "tool_contexts": [
+        "H1 human embryonic stem cells"
+      ],
+      "assessment": {
+        "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:4",
+        "assessment_revision": 4,
+        "screen_status": "incomplete",
+        "evidence_status": "unknown",
+        "freshness": "current"
+      },
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "export": "artifacts/private/q02-main-check/pansio-1-controls-withheld.json",
+      "scoring": {
+        "as_run_trace": {
+          "required_accuracy": 0.0,
+          "coverage": 0.0,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_gene_body_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "min_tss_base_distance_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "mapped_de_count": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": false,
+              "supported": false,
+              "actual": null
+            }
+          },
+          "decisions": {
+            "exclusion_decision": false,
+            "screen_status": false,
+            "evidence_status": false
+          },
+          "unsupported_kinds": []
+        },
+        "committed_assessment_findings": {
+          "required_accuracy": 0.5333333333333333,
+          "coverage": 0.5333333333333333,
+          "support_ok": true,
+          "completed": true,
+          "numbers": {
+            "de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 96
+            },
+            "min_gene_body_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50000
+            },
+            "min_tss_base_distance_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 50001
+            },
+            "mapped_de_count": {
+              "correct": true,
+              "supported": true,
+              "actual": 90
+            },
+            "nearest_mapped_de_gene_gap_bp": {
+              "correct": true,
+              "supported": true,
+              "actual": 4352715
+            }
+          },
+          "decisions": {
+            "exclusion_decision": true,
+            "screen_status": true,
+            "evidence_status": true
+          },
+          "unsupported_kinds": []
+        },
+        "note": "as_run_trace scores the deterministic trace proposal, which carries no model numbers; committed_assessment_findings substitutes the committed assessment's own validated numbers and citations into the scorer's answer contract."
+      },
+      "not_evaluated": [
+        "model reasoning: deterministic operational mode makes no model call",
+        "required_limitations rubric: deterministic findings carry no model limitation text, so limitation scores are expected to be zero"
+      ],
+      "evidence_revision_sequence": 16
+    }
+  ],
+  "negative_controls": [
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5789473684210527,
+        "coverage": 0.631578947368421,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 48
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 91
+          },
+          "overlap_fraction": {
+            "correct": false,
+            "supported": false,
+            "actual": 0.18461538461538463
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5789473684210527,
+        "coverage": 0.631578947368421,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 48
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 91
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.34532374100719426
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": false,
+            "supported": false,
+            "actual": 53277
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5789473684210527,
+        "coverage": 0.631578947368421,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 48
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 91
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.34532374100719426
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": false,
+            "supported": false,
+            "actual": 139
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "faithfully cited wrong shared-count calculation",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5789473684210527,
+        "coverage": 0.631578947368421,
+        "support_ok": true,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": false,
+            "supported": true,
+            "actual": 49
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 91
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.34532374100719426
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": []
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--full_sources",
+      "corruption": "passing screen claimed over incomplete required criteria",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5789473684210527,
+        "coverage": 0.631578947368421,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 48
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 91
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.34532374100719426
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": false,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "decision_contradicts_reference",
+          "missing_required_evidence_claimed_pass",
+          "screen_aggregation_not_supported_by_required_criteria"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5,
+        "coverage": 0.5,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "keppel-19--controls_withheld",
+      "corruption": "superseded control values reused after withdrawal",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5,
+        "coverage": 0.5,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 139
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53277
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 53278
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 130
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 774116
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 40
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 71
+          },
+          "overlap_fraction": {
+            "correct": false,
+            "supported": false,
+            "actual": 0.15384615384615385
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 40
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 71
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.36036036036036034
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": false,
+            "supported": false,
+            "actual": 64425
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 40
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 71
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.36036036036036034
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": false,
+            "supported": false,
+            "actual": 111
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "faithfully cited wrong shared-count calculation",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": true,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": false,
+            "supported": true,
+            "actual": 41
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 71
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.36036036036036034
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": []
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--full_sources",
+      "corruption": "passing screen claimed over incomplete required criteria",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 40
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 71
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.36036036036036034
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": false,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "decision_contradicts_reference",
+          "missing_required_evidence_claimed_pass",
+          "screen_aggregation_not_supported_by_required_criteria"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5333333333333333,
+        "coverage": 0.5333333333333333,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "olonne-18--controls_withheld",
+      "corruption": "superseded control values reused after withdrawal",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5333333333333333,
+        "coverage": 0.5333333333333333,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 111
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 60769
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 64426
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 103
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 32399164
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "overlap fraction over control denominator",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 31
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 65
+          },
+          "overlap_fraction": {
+            "correct": false,
+            "supported": false,
+            "actual": 0.11923076923076924
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "TSS interval gap reported as nearest-base distance",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 31
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 65
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.3229166666666667
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": false,
+            "supported": false,
+            "actual": 50000
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "unmapped DE IDs counted as mapped",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 31
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 65
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.3229166666666667
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": false,
+            "supported": false,
+            "actual": 96
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unsupported_numeric_finding"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "faithfully cited wrong shared-count calculation",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": true,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": false,
+            "supported": true,
+            "actual": 32
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 65
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.3229166666666667
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": []
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--full_sources",
+      "corruption": "passing screen claimed over incomplete required criteria",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.6111111111111112,
+        "coverage": 0.6666666666666666,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "control_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 260
+          },
+          "shared_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 31
+          },
+          "targeted_only_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 65
+          },
+          "overlap_fraction": {
+            "correct": true,
+            "supported": true,
+            "actual": 0.3229166666666667
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": false,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "decision_contradicts_reference",
+          "missing_required_evidence_claimed_pass",
+          "screen_aggregation_not_supported_by_required_criteria"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--controls_withheld",
+      "corruption": "withheld controls reported as zero",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5333333333333333,
+        "coverage": 0.5333333333333333,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    },
+    {
+      "label": "deliberately corrupted copy of a real committed output, scored by safe_harbor.evaluation.scoring; not a system result",
+      "case_id": "pansio-1--controls_withheld",
+      "corruption": "superseded control values reused after withdrawal",
+      "rejected_by_evaluation": true,
+      "score": {
+        "required_accuracy": 0.5333333333333333,
+        "coverage": 0.5333333333333333,
+        "support_ok": false,
+        "completed": true,
+        "numbers": {
+          "de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 96
+          },
+          "min_gene_body_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50000
+          },
+          "min_tss_base_distance_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 50001
+          },
+          "mapped_de_count": {
+            "correct": true,
+            "supported": true,
+            "actual": 90
+          },
+          "nearest_mapped_de_gene_gap_bp": {
+            "correct": true,
+            "supported": true,
+            "actual": 4352715
+          }
+        },
+        "decisions": {
+          "exclusion_decision": true,
+          "screen_status": true,
+          "evidence_status": true
+        },
+        "unsupported_kinds": [
+          "unavailable_evidence_claim"
+        ]
+      }
+    }
+  ],
+  "checks": [
+    {
+      "check": "api_health_isolated_database",
+      "passed": true,
+      "health": {
+        "status": "ok",
+        "database": "safe_harbor_science_e2e_1790450909",
+        "authoritative_store": "MongoDB",
+        "model_available": false,
+        "coordinator_available": true,
+        "schema_version": 1
+      }
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "task_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "keppel-19",
+      "h1_de_count": 139,
+      "h9_de_count": 91,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "assessment_id": "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:keppel-19:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-391499f4cf5849d8abdbe53632b16347",
+      "affected": [
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:assess:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:compare:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:inspect:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:report:r0",
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:review:r0"
+      ],
+      "unchanged": [
+        "run-391499f4cf5849d8abdbe53632b16347:keppel-19:screen:r0"
+      ]
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "task_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "olonne-18",
+      "h1_de_count": 111,
+      "h9_de_count": 51,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "assessment_id": "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:olonne-18:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-db7d105727b64d32a973ced71caeae7a",
+      "affected": [
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:assess:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:compare:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:inspect:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:report:r0",
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:review:r0"
+      ],
+      "unchanged": [
+        "run-db7d105727b64d32a973ced71caeae7a:olonne-18:screen:r0"
+      ]
+    },
+    {
+      "check": "h9_refused_by_runtime_tool_gate",
+      "passed": true,
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "task_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:compare:r0",
+      "reason": "This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+      "check": "h9_separately_labelled_not_h1",
+      "passed": true,
+      "candidate_id": "pansio-1",
+      "h1_de_count": 96,
+      "h9_de_count": 60,
+      "h9_context": "H9 human embryonic stem cells"
+    },
+    {
+      "check": "withheld_controls_reported_unavailable_not_zero",
+      "passed": true,
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "control_overlap_statuses": [
+        "unavailable",
+        "unavailable",
+        "unavailable"
+      ],
+      "expression_control_statuses": [
+        "unavailable",
+        "unavailable"
+      ]
+    },
+    {
+      "check": "prior_assessment_marked_stale",
+      "passed": true,
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "assessment_id": "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assessment:2",
+      "stale_reason": "Prepared withhold-control-evidence: scope:pansio-1:expression changed to version 2. No source measurement was altered."
+    },
+    {
+      "check": "reopened_tasks_selective",
+      "passed": true,
+      "run_id": "run-5fab07677c4642f586cc307f5e611bc8",
+      "affected": [
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:assess:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:compare:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:inspect:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:report:r0",
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:review:r0"
+      ],
+      "unchanged": [
+        "run-5fab07677c4642f586cc307f5e611bc8:pansio-1:screen:r0"
+      ]
+    },
+    {
+      "check": "forged_pass_over_incomplete_rejected_by_ledger",
+      "passed": false,
+      "run_id": "science-e2e-forged-screen-b41854bc1a3e48e4957bebc51bed8845",
+      "harness_mode": "mock",
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "reason": "ledger committed screen_status=pass with incomplete criteria"
+    }
+  ],
+  "finished_at": "2026-09-26T19:28:36.258114+00:00",
+  "error": null,
+  "passed": false,
+  "summary": {
+    "cases_passed": 9,
+    "cases": 9,
+    "negative_controls_rejected": 21,
+    "negative_controls": 21,
+    "checks_passed": 16,
+    "checks": 17,
+    "failed": [
+      "forged_pass_over_incomplete_rejected_by_ledger"
+    ]
+  }
+}
