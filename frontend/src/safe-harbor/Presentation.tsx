@@ -10,6 +10,7 @@ import { reconstruct, type RecordState } from './record';
 import { CUE_STEPS, cueStepLabel, type Cue } from './cues';
 import './presentation.css';
 import { useDialogFocus } from './dialogFocus';
+import { readableConclusion } from './App';
 
 export interface RunExport {
   schema_version: 1; exported_at: string; mode: Mode | string; authoritative_store: string;
@@ -175,7 +176,7 @@ function Dossier({ runId, exported, error, events, run, onClose, onRetry }: { ru
         {latest.length ? <div className="shp-assessments">{latest.map(a => <article key={a.assessment_id}>
           <header><strong>{names.get(a.candidate_id) ?? a.candidate_id}</strong><span>revision {a.assessment_revision} · {a.cell_context} · {a.assembly}</span></header>
           <dl><div><dt>Computational screen</dt><dd>{human(a.screen_status)}</dd></div><div><dt>Experimental evidence</dt><dd>{human(a.evidence_status)}</dd></div><div><dt>Freshness</dt><dd className={a.freshness === 'stale' ? 'shp-amber' : ''}>{a.freshness}</dd></div></dl>
-          <p>{a.conclusion}</p>
+          <p>{readableConclusion(a.conclusion).text}</p>
           {a.unresolved_questions.length > 0 && <p className="shp-muted">Unresolved: {a.unresolved_questions.join(' · ')}</p>}
         </article>)}</div> : <p className="shp-muted">No assessment has been committed in this record.</p>}
         <p className="shp-muted">{dossiers.length} versioned dossier artifact{dossiers.length === 1 ? '' : 's'} · {exported.events.length} ordered events · {exported.operations.length} accepted operations</p>
