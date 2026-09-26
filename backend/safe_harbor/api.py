@@ -9,11 +9,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import ValidationError
+from pydantic import BaseModel, ConfigDict, ValidationError
 
 from shared.contracts import Budget, CreateExperiment, CreateRun, EvidenceRevision, Run
 from safe_harbor.runtime.compiler import compile_harness
-from safe_harbor.runtime.ledger import Ledger, LedgerError, identifier, now
+from safe_harbor.runtime.ledger import Ledger, LedgerError, digest, identifier, now
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 ledger = Ledger()
@@ -89,6 +89,10 @@ def create_run(body: CreateRun, *, start: bool = True) -> dict:
         raise HTTPException(422, "Mock fixtures are supplied as files; live runs require deterministic or real_model mode.")
     if body.mode == "real_model" and not model_available():
         raise HTTPException(409, "Real-model execution is unconfigured. Set OPENROUTER_API_KEY and MODEL_ID in the ignored .env file.")
+    pricing = None
+    if body.mode == "real_model":
+        from safe_harbor.runtime.pricing import freeze_model_pricing
+        pricing = freeze_model_pricing(os.environ["MODEL_ID"])
     source = science().get_catalog()
     by_id = {candidate["candidate_id"]: candidate for candidate in source["candidates"]}
     if len(body.candidate_ids) != len(set(body.candidate_ids)) or set(body.candidate_ids) - set(by_id):
@@ -114,9 +118,24 @@ def create_run(body: CreateRun, *, start: bool = True) -> dict:
         replan_rounds=0, execution_limits={"workers": 2, "task_nodes": 24, "replan_rounds": 3, "transient_retries": 1},
         model_id=os.getenv("MODEL_ID") if body.mode == "real_model" else None,
         model_provider="openrouter" if body.mode == "real_model" else None,
+        baseline_arm=harness.get("baseline_arm", "H1" if harness.get("parent_hash") else "H0"),
+        model_pricing=pricing,
+        model_settings={"temperature": 0, "max_output_tokens": min(8192, max(512, int(os.getenv("MODEL_MAX_OUTPUT_TOKENS", "3000")))), "context_limit_bytes": 60000},
         scientific_contract="Published shortlist; GRCh38 reference, H1 context; no global safety label.",
     ).model_dump()
-    ledger.create(run, [by_id[candidate_id] for candidate_id in body.candidate_ids], tasks, harness)
+    frozen_assets = []
+    for candidate_id in body.candidate_ids:
+        data = {"candidate_id": candidate_id, "data_version": source["data_version"], "reference_assets": source.get("reference_assets", {}).get(candidate_id, {})}
+        frozen_assets.append({
+            "artifact_id": f"{run_id}:reference:{candidate_id}", "run_id": run_id, "kind": "reference_assets",
+            "revision": 1, "content_hash": digest(data), "data": data, "evidence_ids": by_id[candidate_id]["evidence_ids"],
+            "input_read_set": [{"key": key, "version": versions[key], "kind": "artifact" if key == "source:data_version" else "query_scope"} for key in ("source:data_version", f"scope:{candidate_id}:sequence", f"scope:{candidate_id}:annotation")],
+            "provenance": {"data_version": source["data_version"], "mode": body.mode, "source": "Frozen source catalog; original sequence and annotation hashes retained inside reference_assets."},
+            "created_at": run["created_at"],
+        })
+    manifest_data = {"data_version": source["data_version"], "criteria": source.get("criteria", {}), "provenance": source.get("provenance", {}), "limitations": source.get("limitations", [])}
+    frozen_assets.append({"artifact_id": f"{run_id}:source-manifest", "run_id": run_id, "kind": "source_manifest", "revision": 1, "content_hash": digest(manifest_data), "data": manifest_data, "evidence_ids": sorted({item for candidate_id in body.candidate_ids for item in by_id[candidate_id]["evidence_ids"]}), "input_read_set": [{"key": "source:data_version", "version": source["data_version"], "kind": "artifact"}, {"key": "criteria:v1", "version": 1, "kind": "criteria"}], "provenance": {"data_version": source["data_version"], "mode": body.mode}, "created_at": run["created_at"]})
+    ledger.create(run, [by_id[candidate_id] for candidate_id in body.candidate_ids], tasks, harness, artifacts=frozen_assets)
     if coordinator and start:
         coordinator.enqueue(run_id)
     return {"run_id": run_id}
@@ -144,6 +163,50 @@ def artifact(run_id: str, artifact_id: str):
     if not record:
         raise HTTPException(404, "Artifact is outside this run or does not exist.")
     return record
+
+
+@app.get("/runs/{run_id}/tasks/{task_id}/context")
+def task_context(run_id: str, task_id: str):
+    from safe_harbor.runtime.worker import build_context_packet
+    run = ledger.get_run(run_id)
+    task = ledger.db.tasks.find_one({"run_id": run_id, "task_id": task_id}, {"_id": 0})
+    if not task:
+        raise HTTPException(404, "Task is outside this run or does not exist.")
+    return build_context_packet(ledger, run, task)
+
+
+@app.get("/runs/{run_id}/tasks/{task_id}/evidence/{artifact_id}")
+def task_evidence(run_id: str, task_id: str, artifact_id: str, pointer: str = "", offset: int = Query(0, ge=0), limit: int = Query(20, ge=1, le=20)):
+    from safe_harbor.runtime.context import retrieve
+    run = ledger.get_run(run_id)
+    task = ledger.db.tasks.find_one({"run_id": run_id, "task_id": task_id}, {"_id": 0})
+    if not task:
+        raise HTTPException(404, "Task is outside this run or does not exist.")
+    return retrieve(ledger, run, task, {"artifact_id": artifact_id, "pointer": pointer, "offset": offset, "limit": limit})
+
+
+class ValidateAssessmentRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    task_id: str
+    proposal: dict
+
+
+@app.post("/runs/{run_id}/assessment-validation")
+def assessment_validation(run_id: str, body: ValidateAssessmentRequest):
+    """Read-only validator inspection. This endpoint never creates a model or scientific result."""
+    from safe_harbor.runtime.assessments import validate_proposal
+    from safe_harbor.runtime.context import available_artifacts
+    run = ledger.get_run(run_id)
+    task = ledger.db.tasks.find_one({"run_id": run_id, "task_id": body.task_id, "status": "complete"}, {"_id": 0})
+    if not task:
+        raise HTTPException(404, "Completed task not found in this run.")
+    outputs = list(ledger.db.artifacts.find({"run_id": run_id, "artifact_id": {"$in": task.get("result_artifact_ids", [])}}, {"_id": 0}))
+    existing = next((artifact["data"]["assessment"] for artifact in outputs if artifact["kind"] == "assessment_proposal"), None)
+    if not existing:
+        raise HTTPException(422, "Choose a task with a saved assessment proposal.")
+    artifacts = available_artifacts(ledger, run, task) + [artifact for artifact in outputs if artifact["kind"] == "scientific_tool_result"]
+    validated, errors = validate_proposal(body.proposal, artifacts, existing["criterion_results"], existing["screen_status"], run["evidence_availability"][task["candidate_id"]]["control_evidence"])
+    return {"mode": "deterministic_validation", "model_called": False, "state_changed": False, "valid": not errors, "errors": errors, "validated_proposal": validated if not errors else None}
 
 
 @app.post("/runs/{run_id}/resume")

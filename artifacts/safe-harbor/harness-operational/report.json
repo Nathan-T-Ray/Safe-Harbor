@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-26T18:42:34.003661+00:00",
+  "mode": "deterministic_operational",
+  "proposal_origin": "manual_operational_e2e",
+  "automatic_proposal": false,
+  "model_improvement_measured": false,
+  "database": "safe_harbor_harness_e2e_934e03f6ea24",
+  "port": 59119,
+  "assigned_budget_per_run": {
+    "token_limit": 60000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0
+  },
+  "patch": {
+    "operations": [
+      {
+        "op": "insert_reviewer",
+        "after_role_id": "assess",
+        "role": {
+          "role_id": "controls_audit",
+          "kind": "review_candidate",
+          "question": "Are the H1 control overlap numerator, denominator, and context preserved in this assessment?",
+          "allowed_tools": [
+            "control_overlap"
+          ],
+          "context_policy": "numerical_first",
+          "instructions": "This manually authored deterministic operational reviewer checks actual control results. Keep the expression concern unresolved pending real model interpretation. Never infer safety or causality."
+        }
+      }
+    ]
+  },
+  "api_process_id": 85300,
+  "passed": true,
+  "outcomes": [
+    {
+      "label": "fixed_baseline",
+      "run_id": "run-7fa7de4fe6534a58b3a2ae85aad49377",
+      "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+      "task_count": 6,
+      "completed_roles": [
+        "screen",
+        "inspect",
+        "compare",
+        "assess",
+        "review",
+        "report"
+      ],
+      "event_count": 15,
+      "measured_usage": {
+        "token_limit": 60000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 0,
+        "tool_calls": 13,
+        "model_calls": 0,
+        "cost_usd": 0.0,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0
+      },
+      "export": "fixed_baseline.json"
+    },
+    {
+      "label": "manual_structural_patch",
+      "run_id": "run-787cf2432c4949a6b8b8be933c45e76c",
+      "harness_hash": "9ba226a6c46b5e3c389b0ff2137dc1b94fa5e3659aec52f2afabed43d373fb2f",
+      "task_count": 7,
+      "completed_roles": [
+        "screen",
+        "inspect",
+        "compare",
+        "assess",
+        "controls_audit",
+        "review",
+        "report"
+      ],
+      "event_count": 17,
+      "measured_usage": {
+        "token_limit": 60000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 0,
+        "tool_calls": 14,
+        "model_calls": 0,
+        "cost_usd": 0.0,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 0,
+        "reserved_cost_usd": 0
+      },
+      "export": "manual_structural_patch.json",
+      "executed_review_proof": {
+        "task_id": "run-787cf2432c4949a6b8b8be933c45e76c:pansio-1:controls_audit:r0",
+        "depends_on": [
+          "run-787cf2432c4949a6b8b8be933c45e76c:pansio-1:assess:r0"
+        ],
+        "downstream_review_task": "run-787cf2432c4949a6b8b8be933c45e76c:pansio-1:review:r0",
+        "scientific_artifact_id": "artifact-9e14c01828d14433b22769cf6e55c0cc",
+        "worker_trace_id": "artifact-b9f13f7e36054bdc9320ee83c2398311",
+        "context_selection": {
+          "policy": "numerical_first",
+          "max_characters": 28000,
+          "selected_characters": 24147,
+          "available_count": 3,
+          "included_artifact_ids": [
+            "artifact-be012655b3c047fbbd74fc2c10fffb0f",
+            "artifact-fb5d491dbc0b41c594a0d422a243a225",
+            "artifact-fe9255dc5a5d403daf7bc8bb9f55cb38"
+          ],
+          "omitted_artifact_ids": []
+        }
+      }
+    }
+  ],
+  "source_data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "model_calls": 0,
+  "ended_at": "2026-09-26T18:42:39.639275+00:00",
+  "api_exit_code": -15
+}

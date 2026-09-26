@@ -1,0 +1,80 @@
+{
+  "started_at": "2026-09-26T18:41:28.596898+00:00",
+  "database": "safe_harbor_operational_1790448088",
+  "mode": "deterministic_operational",
+  "harness_mode": "mock",
+  "biological_results": "Computed numerical results only; no model interpretation",
+  "model_calls": 0,
+  "cases": [
+    {
+      "case": "revision_during_two_active_branches",
+      "run_id": "operational-e2e-5f440ab82ed64e90b59885249be3dd42",
+      "passed": true,
+      "first_revision": {
+        "run_id": "operational-e2e-5f440ab82ed64e90b59885249be3dd42",
+        "sequence": 14,
+        "fixture_id": "withhold-control-evidence",
+        "affected_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:assessment:r0",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_a:r0",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_b:r0",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:report:r0"
+        ],
+        "successor_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:assessment:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_a:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_b:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:report:r0:revision1"
+        ],
+        "unchanged_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:reference_branch:r0"
+        ]
+      },
+      "second_revision": {
+        "run_id": "operational-e2e-5f440ab82ed64e90b59885249be3dd42",
+        "sequence": 18,
+        "fixture_id": "restore-control-evidence",
+        "affected_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:assessment:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_a:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_b:r0:revision1",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:report:r0:revision1"
+        ],
+        "successor_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:assessment:r0:revision1:revision2",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_a:r0:revision1:revision2",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_b:r0:revision1:revision2",
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:report:r0:revision1:revision2"
+        ],
+        "unchanged_task_ids": [
+          "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:reference_branch:r0"
+        ]
+      },
+      "in_flight_rejected": [
+        "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_a:r0:revision1",
+        "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:expression_b:r0:revision1"
+      ],
+      "rejection_count": 2,
+      "unchanged_reference_task_id": "operational-e2e-5f440ab82ed64e90b59885249be3dd42:pansio-1:reference_branch:r0",
+      "historical_snapshot_unchanged": true,
+      "final_events": 27,
+      "export": "artifacts/safe_harbor/revision-e2e/2026-09-26-proof/operational-e2e-5f440ab82ed64e90b59885249be3dd42.json"
+    }
+  ],
+  "processes": [
+    {
+      "pid": 84562,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "2",
+        "SAFE_HARBOR_OPERATIONAL_DELAY_ROLES": "expression_a,expression_b"
+      },
+      "log": "artifacts/safe_harbor/revision-e2e/2026-09-26-proof/process-1.log",
+      "started_at": "2026-09-26T18:41:28.600868+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T18:41:37.416064+00:00"
+    }
+  ],
+  "source_calculations": "real immutable workbook and reference inputs",
+  "passed": true,
+  "finished_at": "2026-09-26T18:41:37.416151+00:00"
+}

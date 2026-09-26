@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-26T18:40:56.686948+00:00",
+  "mode": "deterministic_operational",
+  "proposal_origin": "manual_operational_e2e",
+  "automatic_proposal": false,
+  "model_improvement_measured": false,
+  "database": "safe_harbor_harness_e2e_4390f4a39633",
+  "port": 58745,
+  "assigned_budget_per_run": {
+    "token_limit": 60000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0
+  },
+  "patch": {
+    "operations": [
+      {
+        "op": "insert_reviewer",
+        "after_role_id": "assess",
+        "role": {
+          "role_id": "controls_audit",
+          "kind": "review_candidate",
+          "question": "Are the H1 control overlap numerator, denominator, and context preserved in this assessment?",
+          "allowed_tools": [
+            "control_overlap"
+          ],
+          "context_policy": "numerical_first",
+          "instructions": "This manually authored deterministic operational reviewer checks actual control results. Keep the expression concern unresolved pending real model interpretation. Never infer safety or causality."
+        }
+      }
+    ]
+  },
+  "api_process_id": 84292,
+  "passed": false,
+  "error": "KeyError: 'selection_trace'",
+  "ended_at": "2026-09-26T18:41:00.731575+00:00",
+  "api_exit_code": -15
+}

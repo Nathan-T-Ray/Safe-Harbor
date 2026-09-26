@@ -1,0 +1,41 @@
+// Actual browser, HTTP, and persisted experiment report. No mocked model or API.
+import { chromium } from '../../frontend/node_modules/playwright/index.mjs';
+import assert from 'node:assert/strict';
+import { mkdir,writeFile } from 'node:fs/promises';
+const base=process.env.SAFE_HARBOR_UI_URL??'http://127.0.0.1:5178';
+const operationalId=process.env.SAFE_HARBOR_OPERATIONAL_EXPERIMENT;
+const blockedId=process.env.SAFE_HARBOR_BLOCKED_EXPERIMENT;
+assert.ok(operationalId&&blockedId,'Provide genuine stored experiment IDs.');
+const read=async id=>{const response=await fetch(`${base}/api/experiments/${id}`);assert.ok(response.ok);return response.json();};
+const operational=await read(operationalId),blocked=await read(blockedId);
+assert.equal(operational.status,'operational_complete');assert.equal(blocked.status,'blocked');
+assert.equal(operational.report.model_improvement_claim,false);
+const browser=await chromium.launch({headless:true});const page=await browser.newPage({viewport:{width:1280,height:720},reducedMotion:'reduce'});
+const errors=[];page.on('pageerror',error=>errors.push(error.message));
+try{
+ const runId=operational.report_attachment?.run_id;
+ await page.goto(`${base}/${runId?`?run=${runId}`:''}`);
+ await page.getByRole('button',{name:/Harness evolution/}).click();
+ const drawer=page.getByRole('dialog',{name:'Harness evolution'});
+ await drawer.getByLabel('Saved experiment ID').fill(operationalId);
+ await drawer.getByRole('button',{name:'Open',exact:true}).click();
+ await drawer.locator('.experiment-controls .notice').filter({hasText:'operational complete'}).waitFor();
+ await drawer.locator('.comparison-report').first().waitFor();
+ assert.match(await drawer.locator('.comparison-report').first().textContent(),/operational only/);
+ assert.match(await drawer.textContent(),/No executable automatic candidate was available/);
+ assert.match(await drawer.textContent(),/Runs \+ optimizer total/);
+ const report=operational.report;
+ assert.equal(report.case_results.length,24);
+ assert.equal(report.case_results.filter(r=>r.status==='not_run_no_candidate').length,6);
+ assert.equal(report.case_results.filter(r=>r.status==='operational_complete').length,18);
+ await drawer.getByLabel('Saved experiment ID').fill(blockedId);
+ await drawer.getByRole('button',{name:'Open',exact:true}).click();
+ await drawer.locator('.experiment-controls .notice').filter({hasText:'blocked'}).waitFor();
+ assert.match(await drawer.locator('.experiment-controls').textContent(),/unconfigured/);
+ assert.match(await drawer.locator('.experiment-controls').textContent(),/No model run or improvement was fabricated/);
+ assert.deepEqual(errors,[]);
+ await mkdir('artifacts/manifests',{recursive:true});
+ await page.screenshot({path:'artifacts/manifests/harness-drawer-blocked.png',fullPage:true});
+ const result={journey:'Stored operational comparison and blocked genuine-model experiment in browser',passed:true,mock_transport:false,model_calls:0,operational_experiment_id:operationalId,blocked_experiment_id:blockedId,assigned_case_rows:24,operational_completed_cases:18,no_candidate_cases:6,model_improvement_claim:false,browser_errors:errors};
+ await writeFile('artifacts/manifests/harness-drawer-e2e.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+}finally{await browser.close();}

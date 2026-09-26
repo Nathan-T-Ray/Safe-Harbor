@@ -16,7 +16,7 @@ def _database(database=None):
     if database is not None:
         yield database
         return
-    client = MongoClient(os.getenv("MONGODB_URI", "mongodb://127.0.0.1:27019/?replicaSet=living-atlas-dev"), serverSelectionTimeoutMS=5000)
+    client = MongoClient(os.getenv("MONGODB_URI", "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev"), serverSelectionTimeoutMS=5000)
     try:
         yield client[os.getenv("MONGODB_DATABASE", "safe_harbor")]
     finally:

@@ -1,0 +1,18 @@
+{
+  "run_id": "run-61c1f8d4a138477abc0a5dfe20ce9342",
+  "mode": "deterministic",
+  "real_model_run": false,
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "tasks": 18,
+  "tool_calls": 39,
+  "model_calls": 0,
+  "through_sequence": 39,
+  "frozen_reference_artifacts": 3,
+  "screen_statuses": [
+    "incomplete"
+  ],
+  "evidence_statuses": [
+    "unknown"
+  ],
+  "export": "artifacts/safe_harbor/real-data-deterministic/run-61c1f8d4a138477abc0a5dfe20ce9342.json"
+}

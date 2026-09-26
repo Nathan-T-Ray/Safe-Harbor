@@ -92,7 +92,8 @@ class Coordinator:
         payload = execute_worker(self.ledger, run, task)
         if run.get("operational_fixture"):
             delay = min(10.0, max(0.0, float(os.getenv("SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT", "0"))))
-            if delay:
+            delayed_roles = set(filter(None, os.getenv("SAFE_HARBOR_OPERATIONAL_DELAY_ROLES", "").split(",")))
+            if delay and (not delayed_roles or task["role_id"] in delayed_roles):
                 time.sleep(delay)
         operation_id = f"accept:{task['task_id']}:{state['epoch']}:{state['attempt']}"
         accepted = self.ledger.accept(operation_id, payload)
@@ -102,7 +103,7 @@ class Coordinator:
         return {"accepted_sequence": accepted["sequence"]}
 
     def _dispatch(self, run: dict, task: dict, epoch: int):
-        real = run["mode"] == "real_model"
+        real = run["mode"] == "real_model" and not (run.get("baseline_arm") == "R0" and task["kind"] != "assess_candidate")
         model_calls = task["budget"]["max_model_calls"] if real else 0
         tokens = int(os.getenv("SAFE_HARBOR_TOKENS_PER_TASK", "12000")) if real else 0
         if run.get("operational_fixture") and not real:
@@ -110,7 +111,7 @@ class Coordinator:
             tokens = int(os.getenv("SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION", "0"))
         tools = task["budget"]["max_tool_calls"] if real else min(len(task["allowed_tools"]), task["budget"]["max_tool_calls"])
         # Unknown dollar usage stays reserved/uncertain; it cannot substantiate a cost win.
-        cost = float(os.getenv("SAFE_HARBOR_COST_RESERVATION_PER_TASK", "0.5")) if real else 0.0
+        cost = 0.0  # Verified endpoint price × next request bound is reserved before each provider call.
         reads = read_set_for(self.ledger, run, task)
         reserved = self.ledger.reserve(run["run_id"], task["task_id"], epoch, reads, tokens, tools, cost)
         if os.getenv("SAFE_HARBOR_CRASH_AFTER_RESERVE") == task["kind"]:

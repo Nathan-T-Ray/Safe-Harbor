@@ -1,0 +1,40 @@
+{
+  "mode": "deterministic_operational_e2e",
+  "experiment_id": "experiment-90c5f025a6fd4ed6b1d689f6248d6723",
+  "blocked_real_experiment_id": "experiment-da9fd333bde048ffb5de18508c10b400",
+  "assigned_records": 24,
+  "actual_case_runs": 18,
+  "tool_calls": {
+    "H0": 117,
+    "R0": 72
+  },
+  "model_calls": 0,
+  "required_denominators": {
+    "H0": 159,
+    "R0": 159
+  },
+  "model_improvement_claim": false,
+  "comparison_manifest_hash": "f9a28bfe461aa3439aed7c19c9d61c437423a442b14621d0ab1ad09c4c895974",
+  "report_attachment": {
+    "run_id": "run-8b10921cb09442e1aff542ecbd7fc9ca",
+    "evaluation_id": "experiment-90c5f025a6fd4ed6b1d689f6248d6723:comparison-report",
+    "sequence": 17
+  },
+  "checks": [
+    "Real API and MongoDB",
+    "Fresh arm/case namespaces",
+    "Same frozen model settings, evidence and budgets",
+    "Every assigned row retained",
+    "All R0 tools exactly once",
+    "No evaluator keys in worker context or tool outputs",
+    "Control withholding enforced",
+    "Missing model answers score zero",
+    "Selected harness used after selection",
+    "Ordered committed comparison report"
+  ],
+  "limitations": [
+    "No genuine model execution or automatic model proposal.",
+    "Answer-key attack attempts belong to the separate Q06 E2E; this journey audits all observed packets and allowed interfaces.",
+    "No model improvement or biological safety claim."
+  ]
+}

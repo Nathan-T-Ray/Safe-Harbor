@@ -47,7 +47,7 @@ def main():
                     raise
                 direct.admin.command('replSetInitiate', {'_id': 'safe-harbor-dev', 'members': [{'_id': 0, 'host': '127.0.0.1:27021'}]})
             direct.close()
-        env.setdefault('MONGODB_URI', 'mongodb://127.0.0.1:27019/?replicaSet=living-atlas-dev')
+        env.setdefault('MONGODB_URI', 'mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev')
         client = MongoClient(env['MONGODB_URI'], serverSelectionTimeoutMS=15000)
         hello = client.admin.command('hello')
         if not hello.get('setName') and hello.get('msg') != 'isdbgrid':

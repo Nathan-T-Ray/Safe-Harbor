@@ -63,6 +63,7 @@ def compile_harness(harness: dict, run_id: str, candidate_ids: list[str], revisi
                 "budget": {"max_tool_calls": min(8, role.get("max_tool_calls", 4)), "max_model_calls": min(3, role.get("max_model_calls", 2))},
                 "status": "queued", "attempt": 0, "context_policy": role.get("context_policy", "relevant_evidence"),
                 "instructions": role.get("instructions", ""), "plan_revision": revision,
+                "runtime_tools": ["retrieve_evidence"],
             }
             tasks.append(Task.model_validate(task).model_dump())
     validate_plan(tasks)

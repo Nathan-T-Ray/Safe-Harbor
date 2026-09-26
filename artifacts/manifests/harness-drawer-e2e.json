@@ -1,0 +1,13 @@
+{
+  "journey": "Stored operational comparison and blocked genuine-model experiment in browser",
+  "passed": true,
+  "mock_transport": false,
+  "model_calls": 0,
+  "operational_experiment_id": "experiment-90c5f025a6fd4ed6b1d689f6248d6723",
+  "blocked_experiment_id": "experiment-da9fd333bde048ffb5de18508c10b400",
+  "assigned_case_rows": 24,
+  "operational_completed_cases": 18,
+  "no_candidate_cases": 6,
+  "model_improvement_claim": false,
+  "browser_errors": []
+}

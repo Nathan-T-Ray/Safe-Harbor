@@ -32,3 +32,24 @@ The independently authored H04 all-checks baseline can use `baseline_arm: R0`, `
 Operational `mode: mock` / `proposal_mode: mock` registry fixtures are excluded from production listing. Invalid non-mock saved records fail validation rather than silently appearing valid.
 
 Only syntax, build, schema and complete operational/browser E2E verification are allowed. No unit or component tests.
+
+## Executed operational proof
+
+From the standalone repository root, with its MongoDB replica set running:
+
+```sh
+PYTHONPATH=.:backend .venv/bin/python e2e/safe_harbor/harness_execution.py
+```
+
+The journey launches a fresh real API/coordinator process against an isolated MongoDB database, saves both specifications, calls the actual API, runs real source-backed Pansio-1 calculations, checks the committed tasks and artifacts, and exports both runs. The API subprocess is stopped afterward; the database remains inspectable.
+
+The recorded successful journey has six completed H0 roles and thirteen scientific tool calls; the manually authored candidate has seven completed roles and fourteen tool calls. Its additional `controls_audit` reviewer executed `control_overlap`, consumed `numerical_first` context, and appeared between assessment and the existing review in the saved task dependencies. The assigned limits were identical (60,000 tokens, 40 tool calls, $5). Actual model calls and tokens were zero in both runs. This proves structural execution and version isolation; it does not establish automatic architecture invention, scientific interpretation, or improvement. The added reviewer cost an additional tool call.
+
+Evidence in the standalone repository:
+
+- [Operational E2E implementation](https://github.com/Nathan-T-Ray/Safe-Harbor/blob/main/e2e/safe_harbor/harness_execution.py)
+- [Measured operational report](https://github.com/Nathan-T-Ray/Safe-Harbor/blob/main/artifacts/safe-harbor/harness-operational/report.json)
+- [Baseline committed export](https://github.com/Nathan-T-Ray/Safe-Harbor/blob/main/artifacts/safe-harbor/harness-operational/fixed_baseline.json)
+- [Manually patched committed export](https://github.com/Nathan-T-Ray/Safe-Harbor/blob/main/artifacts/safe-harbor/harness-operational/manual_structural_patch.json)
+
+An earlier script attempt completed both runs but looked up the context trace using the wrong field name; its failed report is retained. The corrected E2E inspects the runtime's actual `context_selection_trace` field and passes.

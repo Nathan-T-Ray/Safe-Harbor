@@ -66,6 +66,8 @@ class Ledger:
         return run
 
     def _write_event(self, session, run: dict, operation_id: str, cause: str, upserts: dict) -> dict:
+        for artifact in upserts.get("artifacts", []):
+            run["evidence_versions"][f"artifact:{artifact['artifact_id']}"] = artifact["content_hash"]
         run["run_revision"] += 1
         run["through_sequence"] += 1
         upserts = copy.deepcopy(upserts)
@@ -124,12 +126,13 @@ class Ledger:
 
         return self._transaction(work)
 
-    def create(self, run: dict, candidates: list, tasks: list, harness: dict) -> dict:
-        payload = {"run_id": run["run_id"], "run": run, "candidates": candidates, "tasks": tasks, "harness": harness}
+    def create(self, run: dict, candidates: list, tasks: list, harness: dict, artifacts: list | None = None) -> dict:
+        artifacts = artifacts or []
+        payload = {"run_id": run["run_id"], "run": run, "candidates": candidates, "tasks": tasks, "harness": harness, "artifacts": artifacts}
 
         def work(session):
             current = copy.deepcopy(run)
-            event = self._write_event(session, current, f"create:{run['run_id']}", "run.created", {"candidates": candidates, "tasks": tasks, "harness_versions": [harness]})
+            event = self._write_event(session, current, f"create:{run['run_id']}", "run.created", {"candidates": candidates, "tasks": tasks, "harness_versions": [harness], "artifacts": artifacts})
             return {"run_id": run["run_id"], "sequence": event["sequence"]}
 
         return self.transact(f"create:{run['run_id']}", payload, work)
@@ -148,6 +151,8 @@ class Ledger:
 
         def work(session):
             run = self.get_run(run_id, session)
+            for artifact in self.db.artifacts.find({"run_id": run_id}, {"artifact_id": 1, "content_hash": 1}, session=session):
+                run["evidence_versions"][f"artifact:{artifact['artifact_id']}"] = artifact["content_hash"]
             if run.get("coordinator_owner") != owner and run.get("lease_expires_at", 0) > time.time():
                 raise LedgerError("Another coordinator holds an unexpired lease")
             # A fresh process takes an epoch; old processes are fenced at every commit.
@@ -163,7 +168,9 @@ class Ledger:
                 run["budget"]["reserved_tokens"] = max(0, run["budget"]["reserved_tokens"] - reserved)
                 run["budget"]["uncertain_tokens"] += reserved
                 run["budget"]["reserved_tools"] = max(0, run["budget"].get("reserved_tools", 0) - reservation.get("tools", 0))
-                run["budget"]["tool_calls"] += reservation.get("tools", 0)
+                run["budget"]["uncertain_tool_calls"] = run["budget"].get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
+                if run["mode"] == "real_model":
+                    run["budget"]["uncertain_model_calls"] = run["budget"].get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
                 run["budget"]["reserved_cost_usd"] = max(0, run["budget"].get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
                 run["budget"]["uncertain_cost_usd"] = run["budget"].get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
                 task["status"] = "queued" if task["attempt"] < 2 else "failed"
@@ -201,7 +208,7 @@ class Ledger:
             budget = run["budget"]
             if budget["tokens_used"] + budget["reserved_tokens"] + budget["uncertain_tokens"] + tokens > budget["token_limit"]:
                 raise LedgerError("Token budget exhausted", 429)
-            if budget["tool_calls"] + budget.get("reserved_tools", 0) + tools > budget["tool_limit"]:
+            if budget["tool_calls"] + budget.get("reserved_tools", 0) + budget.get("uncertain_tool_calls", 0) + tools > budget["tool_limit"]:
                 raise LedgerError("Tool budget exhausted", 429)
             if (budget.get("cost_usd") or 0) + budget.get("reserved_cost_usd", 0) + budget.get("uncertain_cost_usd", 0) + cost > budget["cost_limit_usd"]:
                 raise LedgerError("Cost budget exhausted", 429)
@@ -285,7 +292,7 @@ class Ledger:
             }}, upsert=True)
             raise
 
-    def extend_reservation(self, run_id: str, task_id: str, epoch: int, total_tokens: int) -> dict:
+    def extend_reservation(self, run_id: str, task_id: str, epoch: int, total_tokens: int, total_cost_usd: float | None = None) -> dict:
         """Reserve a conservative next-request bound before contacting a model provider."""
         operation_id = identifier("extend-reservation")
 
@@ -298,16 +305,21 @@ class Ledger:
             self.check_read_set(run, task["input_read_set"])
             reservation = task["reservation"]
             delta = max(0, total_tokens - reservation["tokens"])
+            cost_delta = max(0.0, (total_cost_usd or 0.0) - reservation.get("cost_usd", 0))
             budget = run["budget"]
             if budget["tokens_used"] + budget["uncertain_tokens"] + budget["reserved_tokens"] + delta > budget["token_limit"]:
                 raise LedgerError("Next model request exceeds the remaining token budget", 429)
-            if delta:
+            if (budget.get("cost_usd") or 0) + budget.get("uncertain_cost_usd", 0) + budget.get("reserved_cost_usd", 0) + cost_delta > budget["cost_limit_usd"]:
+                raise LedgerError("Next model request exceeds the remaining verified monetary budget", 429)
+            if delta or cost_delta:
                 reservation["tokens"] += delta
+                reservation["cost_usd"] = reservation.get("cost_usd", 0) + cost_delta
                 budget["reserved_tokens"] += delta
+                budget["reserved_cost_usd"] = budget.get("reserved_cost_usd", 0) + cost_delta
                 self._write_event(session, run, operation_id, "task.reservation_extended", {"tasks": [task]})
             return copy.deepcopy(reservation)
 
-        return self.transact(operation_id, {"run_id": run_id, "task_id": task_id, "epoch": epoch, "total_tokens": total_tokens}, work)
+        return self.transact(operation_id, {"run_id": run_id, "task_id": task_id, "epoch": epoch, "total_tokens": total_tokens, "total_cost_usd": total_cost_usd}, work)
 
     def task_failed(self, run_id: str, task_id: str, epoch: int, error: str, transient: bool = False):
         operation_id = identifier("failure")
@@ -323,7 +335,9 @@ class Ledger:
             budget["reserved_tokens"] = max(0, budget["reserved_tokens"] - reservation.get("tokens", 0))
             budget["uncertain_tokens"] += reservation.get("tokens", 0)
             budget["reserved_tools"] = max(0, budget.get("reserved_tools", 0) - reservation.get("tools", 0))
-            budget["tool_calls"] += reservation.get("tools", 0)
+            budget["uncertain_tool_calls"] = budget.get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
+            if run["mode"] == "real_model":
+                budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
             budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
             budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
             task.update(status="queued" if transient and task["attempt"] < 2 else "failed", error=error, failed_at=now())
@@ -369,4 +383,8 @@ class Ledger:
         snapshot = self.snapshot(run_id)
         watermark = snapshot["through_sequence"]
         events = list(self.db.events.find({"run_id": run_id, "sequence": {"$lte": watermark}}, {"_id": 0}).sort("sequence", 1))
-        return {"schema_version": 1, "exported_at": now(), "mode": snapshot["run"]["mode"], "authoritative_store": "MongoDB application ledger", "snapshot": snapshot, "events": events, "operations": list(self.db.operations.find({"run_id": run_id}, {"_id": 0})), "immutable_assessment_revisions": list(self.db.assessments.find({"run_id": run_id}, {"_id": 0})), "limitations": ["Runtime checkpoints are separate from application acceptance transactions.", "Genome base counts are not model token counts."]}
+        cutoff = events[-1]["occurred_at"] if events else snapshot["run"]["created_at"]
+        operation_ids = [event["operation_id"] for event in events]
+        operations = list(self.db.operations.find({"run_id": run_id, "$or": [{"operation_id": {"$in": operation_ids}}, {"accepted_at": {"$lte": cutoff}}, {"occurred_at": {"$lte": cutoff}}]}, {"_id": 0}))
+        assessment_ids = [assessment["assessment_id"] for assessment in snapshot["assessments"]]
+        return {"schema_version": 1, "exported_at": now(), "through_sequence": watermark, "mode": snapshot["run"]["mode"], "authoritative_store": "MongoDB application ledger", "snapshot": snapshot, "events": events, "operations": operations, "immutable_assessment_revisions": list(self.db.assessments.find({"run_id": run_id, "assessment_id": {"$in": assessment_ids}}, {"_id": 0})), "source_manifests": [artifact for artifact in snapshot["artifacts"] if artifact["kind"] == "source_manifest"], "reference_assets": [artifact for artifact in snapshot["artifacts"] if artifact["kind"] == "reference_assets"], "limitations": ["Runtime checkpoints are separate from application acceptance transactions.", "Genome base counts are not model token counts.", "Original experimental workbooks remain external immutable artifacts identified by their recorded URLs and byte hashes."]}

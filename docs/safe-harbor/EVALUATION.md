@@ -1,0 +1,43 @@
+# Safe Harbor comparison protocol
+
+The comparison is executable through `POST /experiments` with `{"mode":"real_model"}`. It freezes model identity/settings and verified provider routing/pricing, actual source and criteria hashes, all grouped case assignments, one shared run budget, the common required-output schema, baseline specifications, and promotion rule before results. `GET /experiments/{id}` preserves every assigned arm/case, including failures and explicit unexecuted cases. Credentials stay server-side in the ignored `.env`.
+
+## Fixed baselines and isolation
+
+H0 is the competent fixed six-role workflow with control-aware instructions, metadata and source provenance, the complete scientific tool set, review, and the same structured output requirements as revised workflows. It is not given evaluator answers. R0 executes all eight relevant deterministic tools once in two independent analysis branches, then makes one synthesis call to the same model. It has no agent planning or extra model review calls. All arms receive uniform, bounded retrieval of their own ancestor artifacts and source manifest. A fresh run/task/artifact namespace is created for every arm and case; derived answers never cross arms.
+
+The common initial per-case cap is 200,000 tokens, 40 tool calls and USD 5. These are assigned limits, not measured optimal values or actual spend. Actual provider usage, call counts, durations, incomplete reservations, and pricing hashes are recorded separately. The frozen generation settings initially use temperature 0 and the run-frozen output cap (default 3,000 tokens; `MODEL_MAX_OUTPUT_TOKENS` bounded to 512–8,192). There is no application answer cache. Provider-side caching is not controlled; one paired stochastic comparison remains provisional. Optimizer overhead has its own 30,000-token/USD 1 cap and is not charged to a case arm. Deterministic scoring time, zero evaluator model calls, and exclusions from the measured overhead scope are explicit.
+
+## Cases and evaluator boundary
+
+Nine audit scenarios span three publication-derived loci: Pansio-1 development, Olônne-18 validation, and Keppel-19 final. Each locus has full-source, control-evidence-withheld, and H1-context-only scenarios. Related scenarios remain in their locus split. One independent locus per split and shared publication sources sharply limit generalization.
+
+The root integrator independently computed expected numerical answers from raw XLSX and UCSC files in `reference_answers.py`; they have not been human-reviewed. Only the evaluator imports those records. Public case packets use an explicit allowlist of question, context and evidence-availability fields. Numerical references, admissible decisions and scoring rubrics are never put into worker packets or tool responses. Runtime retrieval only accepts exact artifact IDs from the current run's ancestor manifest, not paths, URLs, evaluator files, or other run IDs.
+
+## Required-output scoring
+
+All assigned required numerical values, scoped decisions and limitation codes enter the denominator for an attempted case. Missing output or a failed run cannot improve accuracy by omitting a difficult answer. Unexecuted cases remain visibly unscored, rather than receiving invented model outcomes. Scoring uses the raw selected final proposal; conservative runtime fallback answers do not count as successful model answers.
+
+Each number must match its independent reference tolerance and cite a supporting calculation. Citation support is checked per metric and value against the selected task and its completed, current dependency closure. An unrelated artifact, superseded task, stale read set, different cell context, missing control evidence, unknown metric, or rejected runtime proposal cannot establish support. Current-scope artifact IDs and source IDs are preserved. Accuracy, support, coverage and operational completion remain separate fields. A blank deterministic proposal can complete operationally while achieving zero required-answer accuracy and coverage; that is not a real-model score or improvement result.
+
+The evaluator also checks required decision values, complete seven-criterion aggregation, unavailable-evidence claims, and contradictory support claims. Each required limitation code needs a concrete text explanation containing its corresponding scientific concepts (for example, control overlap plus a denial of causal inference). Copying a code or attaching an arbitrary nonempty limitations list receives no explanation credit. These bounded English-language checks can miss valid paraphrases or misleading prose; their limitations are included with every score. Structured checks do not establish that every free-form sentence is correct; independent claim review remains required. No global safety score or safety label is produced.
+
+## Selection and execution order
+
+H0/R0 development runs execute first, alternating arm order by case. A real optimizer receives only development traces and aggregate development metrics and proposes one typed saved structural change. A deterministic adapter does not generate or stand in for this proposal. H0/R0 and an executable H1 then receive isolated validation runs. Selection requires complete comparable validation assignments, no per-case correctness/support/coverage/completion regression, and either more correct required decisions or at least 15% measured cost reduction at equal quality. Missing usage bars a cost-win claim. Rejection remains a valid recorded outcome.
+
+Final cases execute only after the selection decision is saved. The selected saved harness executes first on the final split, followed by the other available arms. Final outcomes do not influence selection. The completed report includes all cases, exact harness versions, optimizer response/patch, promotion or rejection, run usage and overhead, and an ordered report event on the selected final run. Deterministic comparisons are labeled operational-only and cannot establish model improvement.
+
+Experiment orchestration currently runs in one API-process thread. Individual runs have durable runtime recovery; the experiment driver itself is not resumed automatically after server-process death. This limitation is recorded in every experiment. There are no unit or component tests; verification is through real API/process/MongoDB journeys and schema/syntax/data-integrity checks.
+
+## Recorded operational acceptance
+
+On 2026-09-26 the isolated API at port 8013 and MongoDB database `safe_harbor_evaluation_e2e` completed experiment `experiment-90c5f025a6fd4ed6b1d689f6248d6723`:
+
+- All 18 H0/R0 executions completed across nine scenarios. Six H1 assignments explicitly recorded `not_run_no_candidate`.
+- H0 made 117 actual deterministic scientific-tool calls; R0 made 72. Neither made a model call. These counts demonstrate execution paths, not model quality or resource improvement.
+- Each arm scored 0/159 required answers because deterministic operational proposals intentionally supply no model interpretation. Missing outputs remained in the denominator.
+- Selection was `operational_only`. The report was committed to selected final run `run-8b10921cb09442e1aff542ecbd7fc9ca` at event sequence 17.
+- Real-model request `experiment-da9fd333bde048ffb5de18508c10b400` recorded 24 assigned cases as blocked because model credentials were absent. No model output, automatic model proposal, promotion or biological improvement was fabricated.
+
+H03–H05 implementation and operational paths exist. Genuine case-level model traces, automatic H1 generation, and any scientific/model performance claim still require configured model access and a new frozen real-model experiment. Historical experiments are retained; later code changes do not rewrite their scores or usage.

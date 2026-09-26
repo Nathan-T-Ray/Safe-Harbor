@@ -64,7 +64,9 @@ def apply_revision(ledger, run_id: str, fixture_id: str) -> dict:
                 budget["reserved_tokens"] = max(0, budget["reserved_tokens"] - reservation.get("tokens", 0))
                 budget["uncertain_tokens"] += reservation.get("tokens", 0)
                 budget["reserved_tools"] = max(0, budget.get("reserved_tools", 0) - reservation.get("tools", 0))
-                budget["tool_calls"] += reservation.get("tools", 0)
+                budget["uncertain_tool_calls"] = budget.get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
+                if run["mode"] == "real_model":
+                    budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
                 budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
                 budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
             task.update(status="superseded", superseded_by=successor["task_id"], reopen_reason=reason, reservation={})

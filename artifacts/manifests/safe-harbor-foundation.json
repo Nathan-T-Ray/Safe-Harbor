@@ -4,7 +4,7 @@
   "mock_transport": false,
   "model_calls": 0,
   "biological_interpretation_tested": false,
-  "base": "http://127.0.0.1:5175",
+  "base": "http://127.0.0.1:5176",
   "health": {
     "status": "ok",
     "database": "safe_harbor",
@@ -43,5 +43,5 @@
     }
   ],
   "browser_errors": [],
-  "duration_ms": 2850
+  "duration_ms": 3203
 }
