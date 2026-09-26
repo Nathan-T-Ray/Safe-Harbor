@@ -1,0 +1,194 @@
+{
+ "ticket": "SH-Q01",
+ "started_at": "2026-09-26T19:38:44.036309+00:00",
+ "mode": "real_model",
+ "database": "safe_harbor_q01_20260926T153844",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "model_provider": "openrouter",
+ "candidate_id": "pansio-1",
+ "budget_request": {
+  "token_limit": 200000
+ },
+ "attempts": [
+  {
+   "attempt": 1,
+   "run_id": "run-2c14d5ba8be84fe1b1fcc21aaa29a23c",
+   "status": "running",
+   "duration_seconds": 600.3,
+   "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 103444,
+    "tool_calls": 12,
+    "model_calls": 8,
+    "cost_usd": 0.006592734999999999,
+    "reserved_tokens": 91712,
+    "uncertain_tokens": 0,
+    "reserved_tools": 4,
+    "reserved_cost_usd": 0.006199315
+   },
+   "stop_reason": null,
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "compute_features",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "running",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  },
+  {
+   "attempt": 2,
+   "run_id": "run-f14459e8a2e64b9c968fb373cc91baa0",
+   "status": "running",
+   "duration_seconds": 600.5,
+   "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 68792,
+    "tool_calls": 10,
+    "model_calls": 6,
+    "cost_usd": 0.004919929,
+    "reserved_tokens": 94906,
+    "uncertain_tokens": 0,
+    "reserved_tools": 4,
+    "reserved_cost_usd": 0.006320485000000001
+   },
+   "stop_reason": null,
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "compute_features",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "running",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  },
+  {
+   "attempt": 3,
+   "run_id": "run-ce85a1badfd34d3d8d730637a181d99b",
+   "status": "running",
+   "duration_seconds": 600.3,
+   "budget": {
+    "token_limit": 200000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 70567,
+    "tool_calls": 9,
+    "model_calls": 6,
+    "cost_usd": 0.004666466,
+    "reserved_tokens": 94242,
+    "uncertain_tokens": 0,
+    "reserved_tools": 4,
+    "reserved_cost_usd": 0.006266305
+   },
+   "stop_reason": null,
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "compute_features",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "running",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "check": "api healthy with MongoDB authority and model configured",
+   "passed": true,
+   "evidence": {
+    "status": "ok",
+    "database": "safe_harbor_q01_20260926T153844",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true,
+    "schema_version": 1
+   }
+  },
+  {
+   "check": "a real-model run reached complete within the attempt limit",
+   "passed": false,
+   "evidence": {
+    "attempts": 3
+   }
+  }
+ ],
+ "findings": [],
+ "finished_at": "2026-09-26T20:08:48.331549+00:00",
+ "passed": false
+}
