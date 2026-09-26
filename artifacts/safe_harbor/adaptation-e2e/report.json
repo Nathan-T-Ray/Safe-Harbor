@@ -1,0 +1,2736 @@
+{
+  "ticket": "SH-Q07",
+  "started_at": "2026-09-26T19:27:39.818523+00:00",
+  "database": "safe_harbor_adaptation_e2e_1790450859",
+  "port": 8041,
+  "execution_mode": "deterministic_operational",
+  "labels": {
+    "structural_runs": "deterministic operational adapters over real ingested source data; zero model calls",
+    "operational_patch": "E2E-authored control-path patch (not automatic, not model-generated)",
+    "genuine_automatic_proposal": "real_model proposal only if found and substantiated in the ledger; never fabricated",
+    "experiment": "product deterministic experiment (operational_only selection); cannot establish model improvement"
+  },
+  "model_calls": 0,
+  "model_improvement_claim": false,
+  "checks": [
+    {
+      "check": "ledger contains a genuine automatic (real-model) structural proposal substantiated by its recorded response",
+      "result": "blocked",
+      "databases_scanned": 9,
+      "real_model_versions": 0,
+      "optimizer_attempts": 0,
+      "optimizer_candidates_ready": 0,
+      "optimizer_response_artifacts": 0,
+      "real_model_runs": 0,
+      "reason": "No substantiated real-model optimizer proposal exists on this replica set; the optimizer was not invoked because this journey must not spend provider credits."
+    },
+    {
+      "check": "operational candidate saved immutably with parent, exact patch and provenance label",
+      "result": "passed",
+      "harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117",
+      "parent_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+      "roles": 8
+    },
+    {
+      "check": "isolated API has no model access (guard against provider spend)",
+      "result": "passed"
+    },
+    {
+      "check": "catalog serves the verified candidates used by the journey",
+      "result": "passed",
+      "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26"
+    },
+    {
+      "check": "saving a candidate does not silently change the default harness of new runs",
+      "result": "passed",
+      "run_id": "run-ccad4807480d410a98272652a014bf88",
+      "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54"
+    },
+    {
+      "check": "baseline_H0: executed task graph equals compile_harness(saved spec)",
+      "result": "passed",
+      "task_count": 12,
+      "compiled_count": 12
+    },
+    {
+      "check": "baseline_H0: run and every task record the saved harness hash",
+      "result": "passed",
+      "run_harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+      "saved_harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54"
+    },
+    {
+      "check": "baseline_H0: run event stream freezes the exact saved harness record",
+      "result": "passed"
+    },
+    {
+      "check": "baseline_H0: all tasks complete with zero model calls/tokens",
+      "result": "passed",
+      "status": "complete",
+      "model_calls": 0,
+      "tokens_used": 0,
+      "tool_calls": 26
+    },
+    {
+      "check": "baseline_H0: export equals snapshot with contiguous ordered events",
+      "result": "passed",
+      "through_sequence": 27
+    },
+    {
+      "check": "baseline_H0: one role-attributed worker trace per executed task with assigned tools and context policy",
+      "result": "passed",
+      "failures": [],
+      "traced_tasks": 12
+    },
+    {
+      "check": "baseline_H0: committed events show every task started only after its dependencies completed",
+      "result": "passed",
+      "failures": []
+    },
+    {
+      "check": "operational_patch: executed task graph equals compile_harness(saved spec)",
+      "result": "passed",
+      "task_count": 16,
+      "compiled_count": 16
+    },
+    {
+      "check": "operational_patch: run and every task record the saved harness hash",
+      "result": "passed",
+      "run_harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117",
+      "saved_harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117"
+    },
+    {
+      "check": "operational_patch: run event stream freezes the exact saved harness record",
+      "result": "passed"
+    },
+    {
+      "check": "operational_patch: all tasks complete with zero model calls/tokens",
+      "result": "passed",
+      "status": "complete",
+      "model_calls": 0,
+      "tokens_used": 0,
+      "tool_calls": 28
+    },
+    {
+      "check": "operational_patch: export equals snapshot with contiguous ordered events",
+      "result": "passed",
+      "through_sequence": 35
+    },
+    {
+      "check": "operational_patch: one role-attributed worker trace per executed task with assigned tools and context policy",
+      "result": "passed",
+      "failures": [],
+      "traced_tasks": 16
+    },
+    {
+      "check": "operational_patch: committed events show every task started only after its dependencies completed",
+      "result": "passed",
+      "failures": []
+    },
+    {
+      "check": "operational_patch: compiled architecture differs structurally from baseline",
+      "result": "passed",
+      "roles_added": [
+        "assess_quantify",
+        "assess_synthesis",
+        "control_contradiction_review"
+      ],
+      "roles_removed": [
+        "assess"
+      ],
+      "edges_added": [
+        [
+          "assess_quantify",
+          "assess_synthesis"
+        ],
+        [
+          "assess_synthesis",
+          "control_contradiction_review"
+        ],
+        [
+          "compare",
+          "assess_quantify"
+        ],
+        [
+          "control_contradiction_review",
+          "report"
+        ],
+        [
+          "control_contradiction_review",
+          "review"
+        ],
+        [
+          "inspect",
+          "assess_quantify"
+        ],
+        [
+          "screen",
+          "assess_quantify"
+        ]
+      ],
+      "edges_removed": [
+        [
+          "assess",
+          "report"
+        ],
+        [
+          "assess",
+          "review"
+        ],
+        [
+          "compare",
+          "assess"
+        ],
+        [
+          "inspect",
+          "assess"
+        ],
+        [
+          "screen",
+          "assess"
+        ]
+      ],
+      "context_policy_changes": {
+        "review": [
+          "relevant_evidence",
+          "numerical_first"
+        ]
+      },
+      "tool_assignment_changes": {
+        "inspect": [
+          [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          [
+            "list_evidence",
+            "table_slice"
+          ]
+        ],
+        "screen": [
+          [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          [
+            "inspect_candidate",
+            "reference_sequence",
+            "screen_candidate"
+          ]
+        ]
+      }
+    },
+    {
+      "check": "operational_patch: executed task graphs reproduce exactly that structural difference for every candidate",
+      "result": "passed",
+      "baseline_task_count": 12,
+      "candidate_task_count": 16
+    },
+    {
+      "check": "operational_patch: added roles produced worker traces only under the candidate; removed roles only under baseline",
+      "result": "passed",
+      "baseline_traced_roles": [
+        "assess",
+        "compare",
+        "inspect",
+        "report",
+        "review",
+        "screen"
+      ],
+      "candidate_traced_roles": [
+        "assess_quantify",
+        "assess_synthesis",
+        "compare",
+        "control_contradiction_review",
+        "inspect",
+        "report",
+        "review",
+        "screen"
+      ]
+    },
+    {
+      "check": "operational_patch: data, evidence versions, model identity/settings, limits and assigned budget identical across arms",
+      "result": "passed",
+      "differing_fields": [],
+      "assigned_budget": {
+        "token_limit": 60000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0
+      }
+    },
+    {
+      "check": "operational_patch: every scientific calculation is identical across arms (same input data; structure changed, not evidence)",
+      "result": "passed",
+      "mismatched": [],
+      "calculation_keys": 16
+    },
+    {
+      "check": "operational patch: split, inserted reviewer, context change and tool reassignment each visible in executed traces",
+      "result": "passed",
+      "failures": [],
+      "evidence": {
+        "pansio-1": {
+          "split_consumed_artifacts": 2,
+          "reviewer_consumed_artifacts": 2,
+          "review_consumed_reviewer_artifacts": 2,
+          "screen_tool_calls": [
+            "inspect_candidate",
+            "reference_sequence",
+            "screen_candidate"
+          ],
+          "inspect_tool_calls": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "review_numerical_first_ranks": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "olonne-18": {
+          "split_consumed_artifacts": 2,
+          "reviewer_consumed_artifacts": 2,
+          "review_consumed_reviewer_artifacts": 2,
+          "screen_tool_calls": [
+            "inspect_candidate",
+            "reference_sequence",
+            "screen_candidate"
+          ],
+          "inspect_tool_calls": [
+            "list_evidence",
+            "table_slice"
+          ],
+          "review_numerical_first_ranks": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ]
+        }
+      }
+    },
+    {
+      "check": "earlier baseline run stays frozen to its own version after candidate runs",
+      "result": "passed"
+    },
+    {
+      "check": "boundedness: every out-of-bounds or non-structural patch is rejected by the patch compiler",
+      "result": "passed",
+      "rejected": 16,
+      "attempted": 16,
+      "saved_versions_before": 2,
+      "saved_versions_after": 2
+    },
+    {
+      "check": "boundedness: POST /runs rejects every forged or out-of-bounds harness/request and creates no run",
+      "result": "passed",
+      "rejected": 27,
+      "attempted": 27,
+      "runs_before": 3,
+      "runs_after": 3,
+      "constraint_keys_checked": [
+        "assembly",
+        "cell_context",
+        "evaluation_rules",
+        "input_data",
+        "max_candidates",
+        "max_replanning_rounds",
+        "max_tasks_per_episode",
+        "max_transient_retries",
+        "max_workers",
+        "model_identity",
+        "permission_boundary",
+        "reference_answers",
+        "scientific_contract",
+        "scientific_criteria",
+        "total_assigned_budget"
+      ]
+    },
+    {
+      "check": "real-model experiment is recorded as blocked without credentials (no optimizer call, no fabricated proposal)",
+      "result": "passed",
+      "experiment_id": "experiment-d391265a0e064d34a3e415fdf0eceb2b",
+      "status": "blocked",
+      "blockers": [
+        "Real-model access is unconfigured; set server-side OPENROUTER_API_KEY and MODEL_ID. No model run or improvement was fabricated."
+      ]
+    },
+    {
+      "check": "deterministic experiment completes through POST /experiments",
+      "result": "passed",
+      "experiment_id": "experiment-647daddbf4b3406d9f19d772ac88ad44",
+      "status": "operational_complete",
+      "error": null,
+      "wall_seconds": 11.2
+    },
+    {
+      "check": "deterministic optimizer path refuses to invent a proposal; H1 rows kept as not_run_no_candidate",
+      "result": "passed",
+      "optimizer_status": "blocked",
+      "optimizer_reason": "Deterministic operational adapters cannot generate a genuine model architecture proposal.",
+      "h1_rows": 6
+    },
+    {
+      "check": "validation/promotion decision is persisted in MongoDB evaluations and matches the experiment",
+      "result": "passed",
+      "promotion_record_id": "promotion:experiment-647daddbf4b3406d9f19d772ac88ad44",
+      "status": "operational_only",
+      "selected_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "reason": "No executable automatic candidate was available; no self-improvement claim."
+    },
+    {
+      "check": "subsequent selected-version final run records the selected harness hash and carries the ordered report event",
+      "result": "passed",
+      "selected_run_id": "run-09d081e906444c4f87c3025be5249978",
+      "report_sequence": 17,
+      "selected_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "final_runs_after_validation": true
+    },
+    {
+      "check": "a run under a PROMOTED (validation-selected) structurally different version executes",
+      "result": "blocked",
+      "reason": "Promotion requires a genuine real-model proposal plus real-model validation scores; deterministic selection is operational_only by design and selected the unchanged H0. The structural runs above use explicitly selected saved hashes, not a promoted version."
+    }
+  ],
+  "negative_patch_checks": [
+    {
+      "attempt": "criteria edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "evaluation rule / evaluator edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "reference answer edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "input data edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "model identity edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "assigned budget edit",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Unknown structural operation; criteria, data, model, budget, evaluation, and permission edits are forbidden"
+    },
+    {
+      "attempt": "new role elevates tool-call cap",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "New role contains forbidden dependency, permission, or budget fields"
+    },
+    {
+      "attempt": "new role elevates model-call cap",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "New role contains forbidden dependency, permission, or budget fields"
+    },
+    {
+      "attempt": "new role supplies its own dependencies",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "New role contains forbidden dependency, permission, or budget fields"
+    },
+    {
+      "attempt": "permission: unapproved tool on new role",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Role requests unapproved or repeated tools"
+    },
+    {
+      "attempt": "permission: reassign unapproved tool",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Tool reassignment must move existing approved tools between distinct roles"
+    },
+    {
+      "attempt": "split drops a tool capability",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Split roles must preserve the original role's tool capabilities"
+    },
+    {
+      "attempt": "top-level immutable override alongside operations",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Patch must contain 1–4 approved structural operations only"
+    },
+    {
+      "attempt": "more than four operations",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Patch must contain 1–4 approved structural operations only"
+    },
+    {
+      "attempt": "real-model label without recorded model response",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "A real-model proposal requires model identity and a recorded response artifact"
+    },
+    {
+      "attempt": "no executable change",
+      "rejected": true,
+      "http_equivalent_code": 422,
+      "error": "Patch does not change executable role behavior"
+    }
+  ],
+  "negative_api_checks": [
+    {
+      "attempt": "immutable constraint altered: assembly",
+      "forged_hash": "210215ef8cbb721cbc60df154556314ee55e6a4a425e1e637e58e909e7438bda",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: cell_context",
+      "forged_hash": "69c2129fae6b4ffd86d1b9a4904f5552ce1b1c8661457d154d41e5c3c0f58565",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: evaluation_rules",
+      "forged_hash": "2c3cbec88ae7d1bbb78d9ad27033b99abd7b5bd8eae2f1e81cddd21b3efac34e",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: input_data",
+      "forged_hash": "11704f262183274b12cd0013568ba9958f74d9328be59514b1d13b4d693a002c",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: max_candidates",
+      "forged_hash": "8de3bc3fb42cb88c35d9355c7cf1008e8cf7082c5b98c76dfe632e45de9caf79",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: max_replanning_rounds",
+      "forged_hash": "facd941085ee283ec570ad84fb297cdc446f6bc75ab48055d6751b18b10f50bb",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: max_tasks_per_episode",
+      "forged_hash": "0573abdcfe5a974527719aef0b432d4711eb1bd194e82da1e72d1d68dca20d2a",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: max_transient_retries",
+      "forged_hash": "5d57eb96380330043f0d7a77e135717b72c1f21dcb3690e9f52768c3edba477d",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: max_workers",
+      "forged_hash": "b32dc3be4e0e84b9ae0026d9168f4deeccb4e44a35345e9d06060929bd7135aa",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: model_identity",
+      "forged_hash": "28ec3c89eb63ee19052cde3826df17dff70b5722b2f39f41166de4c4dbe8ca0a",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: permission_boundary",
+      "forged_hash": "21142ad1b98c9462edec1f9a09828c2587951d9c209418fc3ca340e1d043308d",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: reference_answers",
+      "forged_hash": "4423711d9c4e2e1ce75aac5d26d33f8eeeb9ad00f9520bdfd176a83e98fdf544",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: scientific_contract",
+      "forged_hash": "c248a03d14baa85f89cd5ea11ccc1659b3e5e8152d6f6ef57886af5ed9f0d7cd",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: scientific_criteria",
+      "forged_hash": "96b998f6be17e6bf359f62532e83c99e6ae621fc6bbf3c4678c46924ff2d8620",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "immutable constraint altered: total_assigned_budget",
+      "forged_hash": "ea4e356c015a48a83e75b3ab561ba9a329b8f6e46c2e642e48830064edc3cba2",
+      "http_status": 422,
+      "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered",
+      "rejected": true
+    },
+    {
+      "attempt": "top-level budget setting injected",
+      "forged_hash": "8104253123fb12cd2c5cb49d5ac16bfce1764a6b6bce98ff25df9d0370f73660",
+      "http_status": 422,
+      "detail": "Harness contains forbidden top-level settings",
+      "rejected": true
+    },
+    {
+      "attempt": "top-level model identity injected",
+      "forged_hash": "ca3343ec32113d5826a90b3471af73304b05c41e99f58d980a5168e58f6450f2",
+      "http_status": 422,
+      "detail": "Harness contains forbidden top-level settings",
+      "rejected": true
+    },
+    {
+      "attempt": "top-level criteria injected",
+      "forged_hash": "b898525de2ff2373068bab2033a42603c61f6e4adf927ee86b4206a5d596831f",
+      "http_status": 422,
+      "detail": "Harness contains forbidden top-level settings",
+      "rejected": true
+    },
+    {
+      "attempt": "role tool-call cap elevated",
+      "forged_hash": "1e8bf38446caf698962d60f846dadc7b04fd764da3eda39981c4fbd17f7ea7d6",
+      "http_status": 422,
+      "detail": "Role tool-call cap must remain within 0–4",
+      "rejected": true
+    },
+    {
+      "attempt": "role granted unapproved tool",
+      "forged_hash": "f380d6e45b9e929f7453c809dfc768c03dccf289a9cd6a0f14355b52e568f129",
+      "http_status": 422,
+      "detail": "Role requests unapproved or repeated tools",
+      "rejected": true
+    },
+    {
+      "attempt": "approved tool removed from harness",
+      "forged_hash": "87746a630f5481da91e9e59731f426080a9cc31c79914359a960b0228f4c93ed",
+      "http_status": 422,
+      "detail": "A harness must retain the same complete approved tool set",
+      "rejected": true
+    },
+    {
+      "attempt": "review removed upstream of report",
+      "forged_hash": "c49a716c06116d885e42ff2e192af2be7b926466aefa6dfa167442f18ebbf85e",
+      "http_status": 422,
+      "detail": "Reporting must remain downstream of every assessment and review",
+      "rejected": true
+    },
+    {
+      "attempt": "content changed without matching hash",
+      "http_status": 422,
+      "detail": "Harness hash does not match its exact specification",
+      "rejected": true
+    },
+    {
+      "attempt": "request body carries model identity",
+      "http_status": 422,
+      "detail": "schema validation",
+      "rejected": true
+    },
+    {
+      "attempt": "request budget carries non-limit field",
+      "http_status": 422,
+      "detail": "Only assigned budget limits may be supplied.",
+      "rejected": true
+    },
+    {
+      "attempt": "unknown harness hash",
+      "http_status": 404,
+      "detail": "Unknown saved harness version",
+      "rejected": true
+    },
+    {
+      "attempt": "real-model run while provider credentials are absent",
+      "http_status": 409,
+      "detail": "Real-model execution is unconfigured. Set OPENROUTER_API_KEY and MODEL_ID in the ignored .env file.",
+      "rejected": true
+    }
+  ],
+  "comparisons": [
+    {
+      "name": "operational_patch",
+      "baseline_run_id": "run-5a101336d5294d83a101f3a817080bd0",
+      "candidate_run_id": "run-66481add821e4926bb6a2413e85c817e",
+      "baseline_harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+      "candidate_harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117",
+      "structural_diff": {
+        "roles_added": [
+          "assess_quantify",
+          "assess_synthesis",
+          "control_contradiction_review"
+        ],
+        "roles_removed": [
+          "assess"
+        ],
+        "edges_added": [
+          [
+            "assess_quantify",
+            "assess_synthesis"
+          ],
+          [
+            "assess_synthesis",
+            "control_contradiction_review"
+          ],
+          [
+            "compare",
+            "assess_quantify"
+          ],
+          [
+            "control_contradiction_review",
+            "report"
+          ],
+          [
+            "control_contradiction_review",
+            "review"
+          ],
+          [
+            "inspect",
+            "assess_quantify"
+          ],
+          [
+            "screen",
+            "assess_quantify"
+          ]
+        ],
+        "edges_removed": [
+          [
+            "assess",
+            "report"
+          ],
+          [
+            "assess",
+            "review"
+          ],
+          [
+            "compare",
+            "assess"
+          ],
+          [
+            "inspect",
+            "assess"
+          ],
+          [
+            "screen",
+            "assess"
+          ]
+        ],
+        "context_policy_changes": {
+          "review": [
+            "relevant_evidence",
+            "numerical_first"
+          ]
+        },
+        "tool_assignment_changes": {
+          "inspect": [
+            [
+              "list_evidence",
+              "table_slice",
+              "reference_sequence"
+            ],
+            [
+              "list_evidence",
+              "table_slice"
+            ]
+          ],
+          "screen": [
+            [
+              "inspect_candidate",
+              "screen_candidate"
+            ],
+            [
+              "inspect_candidate",
+              "reference_sequence",
+              "screen_candidate"
+            ]
+          ]
+        }
+      },
+      "tool_calls": {
+        "baseline": 26,
+        "candidate": 28
+      },
+      "task_counts": {
+        "baseline": 12,
+        "candidate": 16
+      },
+      "candidate": {
+        "label": "operational_patch",
+        "run_id": "run-66481add821e4926bb6a2413e85c817e",
+        "harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117",
+        "proposal_mode": "deterministic_operational",
+        "architecture": {
+          "harness_hash": "19700f0760f3726a96ca789cf5321ccc0f28f86e6501f3b53c89f26ebf3fc117",
+          "role_ids": [
+            "screen",
+            "inspect",
+            "compare",
+            "assess_quantify",
+            "assess_synthesis",
+            "control_contradiction_review",
+            "review",
+            "report"
+          ],
+          "edges": [
+            [
+              "assess_quantify",
+              "assess_synthesis"
+            ],
+            [
+              "assess_synthesis",
+              "control_contradiction_review"
+            ],
+            [
+              "compare",
+              "assess_quantify"
+            ],
+            [
+              "compare",
+              "report"
+            ],
+            [
+              "compare",
+              "review"
+            ],
+            [
+              "control_contradiction_review",
+              "report"
+            ],
+            [
+              "control_contradiction_review",
+              "review"
+            ],
+            [
+              "inspect",
+              "assess_quantify"
+            ],
+            [
+              "inspect",
+              "compare"
+            ],
+            [
+              "inspect",
+              "report"
+            ],
+            [
+              "inspect",
+              "review"
+            ],
+            [
+              "review",
+              "report"
+            ],
+            [
+              "screen",
+              "assess_quantify"
+            ],
+            [
+              "screen",
+              "report"
+            ],
+            [
+              "screen",
+              "review"
+            ]
+          ],
+          "kinds": {
+            "screen": "screen_regions",
+            "inspect": "inspect_evidence",
+            "compare": "compute_features",
+            "assess_quantify": "compute_features",
+            "assess_synthesis": "assess_candidate",
+            "control_contradiction_review": "review_candidate",
+            "review": "review_candidate",
+            "report": "publish_shortlist"
+          },
+          "tools": {
+            "screen": [
+              "inspect_candidate",
+              "reference_sequence",
+              "screen_candidate"
+            ],
+            "inspect": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "compare": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "assess_quantify": [
+              "expression_comparison",
+              "control_overlap"
+            ],
+            "assess_synthesis": [
+              "gene_proximity"
+            ],
+            "control_contradiction_review": [
+              "control_overlap"
+            ],
+            "review": [
+              "screen_candidate",
+              "control_overlap"
+            ],
+            "report": []
+          },
+          "context_policies": {
+            "screen": "relevant_evidence",
+            "inspect": "relevant_evidence",
+            "compare": "relevant_evidence",
+            "assess_quantify": "numerical_first",
+            "assess_synthesis": "relevant_evidence",
+            "control_contradiction_review": "contradictions_first",
+            "review": "numerical_first",
+            "report": "relevant_evidence"
+          }
+        },
+        "executed_architecture": {
+          "pansio-1": {
+            "role_ids": [
+              "assess_quantify",
+              "assess_synthesis",
+              "compare",
+              "control_contradiction_review",
+              "inspect",
+              "report",
+              "review",
+              "screen"
+            ],
+            "edges": [
+              [
+                "assess_quantify",
+                "assess_synthesis"
+              ],
+              [
+                "assess_synthesis",
+                "control_contradiction_review"
+              ],
+              [
+                "compare",
+                "assess_quantify"
+              ],
+              [
+                "compare",
+                "report"
+              ],
+              [
+                "compare",
+                "review"
+              ],
+              [
+                "control_contradiction_review",
+                "report"
+              ],
+              [
+                "control_contradiction_review",
+                "review"
+              ],
+              [
+                "inspect",
+                "assess_quantify"
+              ],
+              [
+                "inspect",
+                "compare"
+              ],
+              [
+                "inspect",
+                "report"
+              ],
+              [
+                "inspect",
+                "review"
+              ],
+              [
+                "review",
+                "report"
+              ],
+              [
+                "screen",
+                "assess_quantify"
+              ],
+              [
+                "screen",
+                "report"
+              ],
+              [
+                "screen",
+                "review"
+              ]
+            ],
+            "tools": {
+              "screen": [
+                "inspect_candidate",
+                "reference_sequence",
+                "screen_candidate"
+              ],
+              "inspect": [
+                "list_evidence",
+                "table_slice"
+              ],
+              "compare": [
+                "expression_comparison",
+                "control_overlap",
+                "gene_proximity"
+              ],
+              "assess_quantify": [
+                "expression_comparison",
+                "control_overlap"
+              ],
+              "assess_synthesis": [
+                "gene_proximity"
+              ],
+              "control_contradiction_review": [
+                "control_overlap"
+              ],
+              "review": [
+                "screen_candidate",
+                "control_overlap"
+              ],
+              "report": []
+            },
+            "context_policies": {
+              "screen": "relevant_evidence",
+              "inspect": "relevant_evidence",
+              "compare": "relevant_evidence",
+              "assess_quantify": "numerical_first",
+              "assess_synthesis": "relevant_evidence",
+              "control_contradiction_review": "contradictions_first",
+              "review": "numerical_first",
+              "report": "relevant_evidence"
+            }
+          },
+          "olonne-18": {
+            "role_ids": [
+              "assess_quantify",
+              "assess_synthesis",
+              "compare",
+              "control_contradiction_review",
+              "inspect",
+              "report",
+              "review",
+              "screen"
+            ],
+            "edges": [
+              [
+                "assess_quantify",
+                "assess_synthesis"
+              ],
+              [
+                "assess_synthesis",
+                "control_contradiction_review"
+              ],
+              [
+                "compare",
+                "assess_quantify"
+              ],
+              [
+                "compare",
+                "report"
+              ],
+              [
+                "compare",
+                "review"
+              ],
+              [
+                "control_contradiction_review",
+                "report"
+              ],
+              [
+                "control_contradiction_review",
+                "review"
+              ],
+              [
+                "inspect",
+                "assess_quantify"
+              ],
+              [
+                "inspect",
+                "compare"
+              ],
+              [
+                "inspect",
+                "report"
+              ],
+              [
+                "inspect",
+                "review"
+              ],
+              [
+                "review",
+                "report"
+              ],
+              [
+                "screen",
+                "assess_quantify"
+              ],
+              [
+                "screen",
+                "report"
+              ],
+              [
+                "screen",
+                "review"
+              ]
+            ],
+            "tools": {
+              "screen": [
+                "inspect_candidate",
+                "reference_sequence",
+                "screen_candidate"
+              ],
+              "inspect": [
+                "list_evidence",
+                "table_slice"
+              ],
+              "compare": [
+                "expression_comparison",
+                "control_overlap",
+                "gene_proximity"
+              ],
+              "assess_quantify": [
+                "expression_comparison",
+                "control_overlap"
+              ],
+              "assess_synthesis": [
+                "gene_proximity"
+              ],
+              "control_contradiction_review": [
+                "control_overlap"
+              ],
+              "review": [
+                "screen_candidate",
+                "control_overlap"
+              ],
+              "report": []
+            },
+            "context_policies": {
+              "screen": "relevant_evidence",
+              "inspect": "relevant_evidence",
+              "compare": "relevant_evidence",
+              "assess_quantify": "numerical_first",
+              "assess_synthesis": "relevant_evidence",
+              "control_contradiction_review": "contradictions_first",
+              "review": "numerical_first",
+              "report": "relevant_evidence"
+            }
+          }
+        },
+        "task_count": 16,
+        "event_count": 35,
+        "measured_usage": {
+          "token_limit": 60000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 28,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "tool_calls_by_role": {
+          "screen": {
+            "tool_calls": 6
+          },
+          "inspect": {
+            "tool_calls": 4
+          },
+          "compare": {
+            "tool_calls": 6
+          },
+          "assess_quantify": {
+            "tool_calls": 4
+          },
+          "assess_synthesis": {
+            "tool_calls": 2
+          },
+          "control_contradiction_review": {
+            "tool_calls": 2
+          },
+          "review": {
+            "tool_calls": 4
+          },
+          "report": {
+            "tool_calls": 0
+          }
+        },
+        "executed_role_traces": {
+          "screen": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:screen:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-087481178a2f4db99705b781594b7df5",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "inspect_candidate",
+                "reference_sequence",
+                "screen_candidate"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest"
+              ],
+              "included_artifact_ids": [],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:screen:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-18e1b2e7516f44f78c52d6bcee1d7abe",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "inspect_candidate",
+                "reference_sequence",
+                "screen_candidate"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest"
+              ],
+              "included_artifact_ids": [],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "inspect": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:inspect:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-eeff3cd5741e47c8817d1d7ae905b2be",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "list_evidence",
+                "table_slice"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest"
+              ],
+              "included_artifact_ids": [],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:inspect:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-ca3530a6ad614aa7950b89ded223698c",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "list_evidence",
+                "table_slice"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest"
+              ],
+              "included_artifact_ids": [],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "compare": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:compare:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-ab0492af190048ca95dee1c5ca299a2b",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "expression_comparison",
+                "control_overlap",
+                "gene_proximity"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4"
+              ],
+              "included_artifact_ids": [
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4"
+              ],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:compare:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-28f1c948023944bca8fdf7e2bc2729e6",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "expression_comparison",
+                "control_overlap",
+                "gene_proximity"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58"
+              ],
+              "included_artifact_ids": [
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58"
+              ],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "assess_quantify": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_quantify:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-d599e69fecb9415197619c346845e56e",
+              "context_policy": "numerical_first",
+              "tool_calls": [
+                "expression_comparison",
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-14715dc3af0b498793a1793a148cb4df"
+              ],
+              "included_artifact_ids": [
+                "artifact-14715dc3af0b498793a1793a148cb4df",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4"
+              ],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_quantify:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-b78d2958fc9b43c2ad513407d93b1a4f",
+              "context_policy": "numerical_first",
+              "tool_calls": [
+                "expression_comparison",
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f"
+              ],
+              "included_artifact_ids": [
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358"
+              ],
+              "output_kinds": [
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "assess_synthesis": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_synthesis:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-c227f7015e7641bb9848822ca54d6ed7",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "gene_proximity"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-dacb62a22440479dba669f4ae24edc2c",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-14715dc3af0b498793a1793a148cb4df"
+              ],
+              "included_artifact_ids": [
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-dacb62a22440479dba669f4ae24edc2c",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_synthesis:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-98ef9f0cd53d4578b341af72f0f5928f",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [
+                "gene_proximity"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-b6ff6d81437845f3bf6ce46652ae79bd",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f"
+              ],
+              "included_artifact_ids": [
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-b6ff6d81437845f3bf6ce46652ae79bd",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "control_contradiction_review": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:control_contradiction_review:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-721242bdaa504cdeb742b16bab31cf9a",
+              "context_policy": "contradictions_first",
+              "tool_calls": [
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-09dd9f00841a489ebb3ac8296398fa28",
+                "artifact-33ec0523284e4426987b752172837d9c",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-dacb62a22440479dba669f4ae24edc2c",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-14715dc3af0b498793a1793a148cb4df"
+              ],
+              "included_artifact_ids": [
+                "artifact-09dd9f00841a489ebb3ac8296398fa28",
+                "artifact-14715dc3af0b498793a1793a148cb4df",
+                "artifact-33ec0523284e4426987b752172837d9c",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-6bfbf42f031943129400c49fbee2768a"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:control_contradiction_review:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-f52e5af9a5f145d8aee8fc0d2643de79",
+              "context_policy": "contradictions_first",
+              "tool_calls": [
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-12d6931e4c654168828ecacf08333244",
+                "artifact-768a67a2a8af40be893ae35979425b52",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-b6ff6d81437845f3bf6ce46652ae79bd",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f"
+              ],
+              "included_artifact_ids": [
+                "artifact-12d6931e4c654168828ecacf08333244",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-688e95197fa44d349dee68c733984b58"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "review": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:review:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-bc5775f5b407473495e89a0c5af753a1",
+              "context_policy": "numerical_first",
+              "tool_calls": [
+                "screen_candidate",
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-14715dc3af0b498793a1793a148cb4df",
+                "artifact-c6997ee599ff4a0f8bfe630cc3c76861",
+                "artifact-a419f8c9fa244268aab3c9d3c314c90a",
+                "artifact-09dd9f00841a489ebb3ac8296398fa28",
+                "artifact-33ec0523284e4426987b752172837d9c",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-dacb62a22440479dba669f4ae24edc2c"
+              ],
+              "included_artifact_ids": [
+                "artifact-09dd9f00841a489ebb3ac8296398fa28",
+                "artifact-14715dc3af0b498793a1793a148cb4df",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-c6997ee599ff4a0f8bfe630cc3c76861",
+                "artifact-6bfbf42f031943129400c49fbee2768a"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:review:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-842fd81343d3436e9cddb509587689c9",
+              "context_policy": "numerical_first",
+              "tool_calls": [
+                "screen_candidate",
+                "control_overlap"
+              ],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f",
+                "artifact-2c5fb50c39ee45b9b233486c40389be4",
+                "artifact-ff02de910ddf4aa08f17763fcc0a4502",
+                "artifact-12d6931e4c654168828ecacf08333244",
+                "artifact-768a67a2a8af40be893ae35979425b52",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-b6ff6d81437845f3bf6ce46652ae79bd"
+              ],
+              "included_artifact_ids": [
+                "artifact-12d6931e4c654168828ecacf08333244",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-688e95197fa44d349dee68c733984b58"
+              ],
+              "output_kinds": [
+                "assessment_proposal",
+                "scientific_tool_result",
+                "scientific_tool_result",
+                "worker_trace"
+              ]
+            }
+          ],
+          "report": [
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:pansio-1:report:r0",
+              "candidate_id": "pansio-1",
+              "worker_trace_id": "artifact-1701097c3400426aad71c2def1a9e0d2",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:pansio-1",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4",
+                "artifact-a1efa2ed3a474ead821aaf497af0b28a",
+                "artifact-af96c9fd8ef543e397061de5729234c4",
+                "artifact-14715dc3af0b498793a1793a148cb4df",
+                "artifact-c6997ee599ff4a0f8bfe630cc3c76861",
+                "artifact-a419f8c9fa244268aab3c9d3c314c90a",
+                "artifact-be4d5f7346c540aeb5410cd369ab46d1",
+                "artifact-b61f75228c3d45718d18dcf1b47df9f3",
+                "artifact-d196f0508d1e4dbfa76f5b56dd42519c",
+                "artifact-09dd9f00841a489ebb3ac8296398fa28",
+                "artifact-33ec0523284e4426987b752172837d9c",
+                "artifact-572a2478c68748ca9c00adf63701ef56",
+                "artifact-dacb62a22440479dba669f4ae24edc2c"
+              ],
+              "included_artifact_ids": [
+                "artifact-650ad24375044427903ee38fb9815274",
+                "artifact-6bfbf42f031943129400c49fbee2768a",
+                "artifact-be993b82d1b942e9a5471f1c16bedf3c",
+                "artifact-70cda17b6d234f99b40ed10e2511c53a",
+                "artifact-b70aa2c6b287461093714d0ca53a71a4"
+              ],
+              "output_kinds": [
+                "versioned_dossier",
+                "worker_trace"
+              ]
+            },
+            {
+              "task_id": "run-66481add821e4926bb6a2413e85c817e:olonne-18:report:r0",
+              "candidate_id": "olonne-18",
+              "worker_trace_id": "artifact-83950c2fd4b4403c872d459a6fb3c674",
+              "context_policy": "relevant_evidence",
+              "tool_calls": [],
+              "evidence_manifest_ids": [
+                "run-66481add821e4926bb6a2413e85c817e:reference:olonne-18",
+                "run-66481add821e4926bb6a2413e85c817e:source-manifest",
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58",
+                "artifact-da290b6a57934a9f929749f7bd4de682",
+                "artifact-993b09c649314b3ea7da5efc3e5ca050",
+                "artifact-1d666c717cee4f2fa611aadd90c7e53f",
+                "artifact-2c5fb50c39ee45b9b233486c40389be4",
+                "artifact-ff02de910ddf4aa08f17763fcc0a4502",
+                "artifact-0724d0e4171e4fb0b05b17e0a7512410",
+                "artifact-6e8f50d6b6914988b4dbcc6e866aee23",
+                "artifact-37de9c34c06344cb92a40245956d1182",
+                "artifact-12d6931e4c654168828ecacf08333244",
+                "artifact-768a67a2a8af40be893ae35979425b52",
+                "artifact-1c1c3e84ac6045debbe45ccf66b7a554",
+                "artifact-b6ff6d81437845f3bf6ce46652ae79bd"
+              ],
+              "included_artifact_ids": [
+                "artifact-9f538e52524f4a58b1d06524e69a4763",
+                "artifact-688e95197fa44d349dee68c733984b58",
+                "artifact-28790161c4f34eaa92d116e5fb4a8e07",
+                "artifact-5d8092e7978546ddb7e947ef2a50c358",
+                "artifact-ea8ad370ac0b42538d1fa719bd9dce58"
+              ],
+              "output_kinds": [
+                "versioned_dossier",
+                "worker_trace"
+              ]
+            }
+          ]
+        },
+        "task_start_sequences": {
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:screen:r0": 3,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:screen:r0": 4,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:inspect:r0": 7,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:inspect:r0": 8,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:compare:r0": 11,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:compare:r0": 12,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_quantify:r0": 15,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_quantify:r0": 17,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_synthesis:r0": 18,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_synthesis:r0": 21,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:control_contradiction_review:r0": 22,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:control_contradiction_review:r0": 25,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:review:r0": 26,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:review:r0": 29,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:report:r0": 30,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:report:r0": 33
+        },
+        "task_complete_sequences": {
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:screen:r0": 5,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:screen:r0": 6,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:inspect:r0": 9,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:inspect:r0": 10,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:compare:r0": 13,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:compare:r0": 14,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_quantify:r0": 16,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_quantify:r0": 19,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:assess_synthesis:r0": 20,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:assess_synthesis:r0": 23,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:control_contradiction_review:r0": 24,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:control_contradiction_review:r0": 27,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:review:r0": 28,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:review:r0": 31,
+          "run-66481add821e4926bb6a2413e85c817e:olonne-18:report:r0": 32,
+          "run-66481add821e4926bb6a2413e85c817e:pansio-1:report:r0": 34
+        },
+        "export_sha256": "3f61a5862e78747cdce2f13f2d3c6c62175b5ef67ed5c20648281b2005fc7dd1"
+      },
+      "patch": {
+        "operations": [
+          {
+            "op": "split_role",
+            "role_id": "assess",
+            "roles": [
+              {
+                "role_id": "assess_quantify",
+                "kind": "compute_features",
+                "question": "Which exact targeted, untargeted-control and overlap counts bear on the expression-exclusion question?",
+                "allowed_tools": [
+                  "expression_comparison",
+                  "control_overlap"
+                ],
+                "context_policy": "numerical_first",
+                "instructions": "E2E-authored operational role. Obtain exact counts and denominators with tools only; do not interpret safety or causality."
+              },
+              {
+                "role_id": "assess_synthesis",
+                "kind": "assess_candidate",
+                "question": "Do these measured expression changes justify excluding this candidate region?",
+                "allowed_tools": [
+                  "gene_proximity"
+                ],
+                "context_policy": "relevant_evidence",
+                "instructions": "E2E-authored operational role. Synthesize upstream quantities; keep unresolved questions explicit; never assign a global safety label."
+              }
+            ]
+          },
+          {
+            "op": "insert_reviewer",
+            "after_role_id": "assess_synthesis",
+            "role": {
+              "role_id": "control_contradiction_review",
+              "kind": "review_candidate",
+              "question": "Do any unavailable, incomplete or conflicting control calculations undermine the synthesized assessment?",
+              "allowed_tools": [
+                "control_overlap"
+              ],
+              "context_policy": "contradictions_first",
+              "instructions": "E2E-authored operational reviewer. Surface unavailable or conflicting control evidence first; absence is not a negative biological result."
+            }
+          },
+          {
+            "op": "change_context",
+            "role_id": "review",
+            "context_policy": "numerical_first"
+          },
+          {
+            "op": "reassign_tools",
+            "from_role_id": "inspect",
+            "to_role_id": "screen",
+            "tools": [
+              "reference_sequence"
+            ]
+          }
+        ]
+      },
+      "proposal_metadata": {
+        "authoring": "e2e_authored_operational_control_path",
+        "automatic_proposal": false,
+        "ticket": "SH-Q07",
+        "purpose": "Prove a saved structural change is executed; not an automatic proposal and not evidence of improvement."
+      }
+    }
+  ],
+  "genuine_proposal_scan": {
+    "uri_host": "mongodb:",
+    "databases": [
+      {
+        "database": "safe_harbor_adaptation_e2e_1790450733",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_adaptation_e2e_1790450752",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_adaptation_e2e_1790450787",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_genome_e2e_dev",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_genome_e2e_verify",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_q09_genome_e2e",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_science_e2e_1790449737",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_science_e2e_1790449770",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      },
+      {
+        "database": "safe_harbor_science_e2e_1790450025",
+        "real_model_harness_versions": 0,
+        "optimizer_attempts": 0,
+        "optimizer_candidates_ready": 0,
+        "optimizer_response_artifacts": 0,
+        "real_model_runs": 0
+      }
+    ],
+    "candidates": []
+  },
+  "api_process_id": 47523,
+  "api_health": {
+    "status": "ok",
+    "database": "safe_harbor_adaptation_e2e_1790450859",
+    "authoritative_store": "MongoDB",
+    "model_available": false,
+    "coordinator_available": true,
+    "schema_version": 1
+  },
+  "baseline": {
+    "label": "baseline_H0",
+    "run_id": "run-5a101336d5294d83a101f3a817080bd0",
+    "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+    "proposal_mode": "developer_authored_fixed_baseline",
+    "architecture": {
+      "harness_hash": "047ea2e832169210167e9097c6aa56836d96de5064fde18c408969ccfc587a54",
+      "role_ids": [
+        "screen",
+        "inspect",
+        "compare",
+        "assess",
+        "review",
+        "report"
+      ],
+      "edges": [
+        [
+          "assess",
+          "report"
+        ],
+        [
+          "assess",
+          "review"
+        ],
+        [
+          "compare",
+          "assess"
+        ],
+        [
+          "compare",
+          "report"
+        ],
+        [
+          "compare",
+          "review"
+        ],
+        [
+          "inspect",
+          "assess"
+        ],
+        [
+          "inspect",
+          "compare"
+        ],
+        [
+          "inspect",
+          "report"
+        ],
+        [
+          "inspect",
+          "review"
+        ],
+        [
+          "review",
+          "report"
+        ],
+        [
+          "screen",
+          "assess"
+        ],
+        [
+          "screen",
+          "report"
+        ],
+        [
+          "screen",
+          "review"
+        ]
+      ],
+      "kinds": {
+        "screen": "screen_regions",
+        "inspect": "inspect_evidence",
+        "compare": "compute_features",
+        "assess": "assess_candidate",
+        "review": "review_candidate",
+        "report": "publish_shortlist"
+      },
+      "tools": {
+        "screen": [
+          "inspect_candidate",
+          "screen_candidate"
+        ],
+        "inspect": [
+          "list_evidence",
+          "table_slice",
+          "reference_sequence"
+        ],
+        "compare": [
+          "expression_comparison",
+          "control_overlap",
+          "gene_proximity"
+        ],
+        "assess": [
+          "expression_comparison",
+          "control_overlap",
+          "gene_proximity"
+        ],
+        "review": [
+          "screen_candidate",
+          "control_overlap"
+        ],
+        "report": []
+      },
+      "context_policies": {
+        "screen": "relevant_evidence",
+        "inspect": "relevant_evidence",
+        "compare": "relevant_evidence",
+        "assess": "relevant_evidence",
+        "review": "relevant_evidence",
+        "report": "relevant_evidence"
+      }
+    },
+    "executed_architecture": {
+      "pansio-1": {
+        "role_ids": [
+          "assess",
+          "compare",
+          "inspect",
+          "report",
+          "review",
+          "screen"
+        ],
+        "edges": [
+          [
+            "assess",
+            "report"
+          ],
+          [
+            "assess",
+            "review"
+          ],
+          [
+            "compare",
+            "assess"
+          ],
+          [
+            "compare",
+            "report"
+          ],
+          [
+            "compare",
+            "review"
+          ],
+          [
+            "inspect",
+            "assess"
+          ],
+          [
+            "inspect",
+            "compare"
+          ],
+          [
+            "inspect",
+            "report"
+          ],
+          [
+            "inspect",
+            "review"
+          ],
+          [
+            "review",
+            "report"
+          ],
+          [
+            "screen",
+            "assess"
+          ],
+          [
+            "screen",
+            "report"
+          ],
+          [
+            "screen",
+            "review"
+          ]
+        ],
+        "tools": {
+          "screen": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "inspect": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "compare": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "assess": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "review": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "report": []
+        },
+        "context_policies": {
+          "screen": "relevant_evidence",
+          "inspect": "relevant_evidence",
+          "compare": "relevant_evidence",
+          "assess": "relevant_evidence",
+          "review": "relevant_evidence",
+          "report": "relevant_evidence"
+        }
+      },
+      "olonne-18": {
+        "role_ids": [
+          "assess",
+          "compare",
+          "inspect",
+          "report",
+          "review",
+          "screen"
+        ],
+        "edges": [
+          [
+            "assess",
+            "report"
+          ],
+          [
+            "assess",
+            "review"
+          ],
+          [
+            "compare",
+            "assess"
+          ],
+          [
+            "compare",
+            "report"
+          ],
+          [
+            "compare",
+            "review"
+          ],
+          [
+            "inspect",
+            "assess"
+          ],
+          [
+            "inspect",
+            "compare"
+          ],
+          [
+            "inspect",
+            "report"
+          ],
+          [
+            "inspect",
+            "review"
+          ],
+          [
+            "review",
+            "report"
+          ],
+          [
+            "screen",
+            "assess"
+          ],
+          [
+            "screen",
+            "report"
+          ],
+          [
+            "screen",
+            "review"
+          ]
+        ],
+        "tools": {
+          "screen": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "inspect": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "compare": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "assess": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "review": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "report": []
+        },
+        "context_policies": {
+          "screen": "relevant_evidence",
+          "inspect": "relevant_evidence",
+          "compare": "relevant_evidence",
+          "assess": "relevant_evidence",
+          "review": "relevant_evidence",
+          "report": "relevant_evidence"
+        }
+      }
+    },
+    "task_count": 12,
+    "event_count": 27,
+    "measured_usage": {
+      "token_limit": 60000,
+      "tool_limit": 40,
+      "cost_limit_usd": 5.0,
+      "tokens_used": 0,
+      "tool_calls": 26,
+      "model_calls": 0,
+      "cost_usd": 0.0,
+      "reserved_tokens": 0,
+      "uncertain_tokens": 0,
+      "reserved_tools": 0,
+      "reserved_cost_usd": 0
+    },
+    "tool_calls_by_role": {
+      "screen": {
+        "tool_calls": 4
+      },
+      "inspect": {
+        "tool_calls": 6
+      },
+      "compare": {
+        "tool_calls": 6
+      },
+      "assess": {
+        "tool_calls": 6
+      },
+      "review": {
+        "tool_calls": 4
+      },
+      "report": {
+        "tool_calls": 0
+      }
+    },
+    "executed_role_traces": {
+      "screen": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:screen:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-cb0d60017db94032b2d40e0ffd04c7ca",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest"
+          ],
+          "included_artifact_ids": [],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:screen:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-4702b819a55a4253b79747e19223e7c6",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "inspect_candidate",
+            "screen_candidate"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest"
+          ],
+          "included_artifact_ids": [],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        }
+      ],
+      "inspect": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:inspect:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-062001876126429bb3c6a902e6f04279",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest"
+          ],
+          "included_artifact_ids": [],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:inspect:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-24cb958490834a1fadbba70d791e9715",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "list_evidence",
+            "table_slice",
+            "reference_sequence"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest"
+          ],
+          "included_artifact_ids": [],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        }
+      ],
+      "compare": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:compare:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-d736356c9a404f0bbfef98ab6fbd5820",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1"
+          ],
+          "included_artifact_ids": [
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1"
+          ],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:compare:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-2bcd2a9dc0054d2ca01e338faa62f620",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3"
+          ],
+          "included_artifact_ids": [
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3"
+          ],
+          "output_kinds": [
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        }
+      ],
+      "assess": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:assess:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-8b9eb3f557f9493da9054f0685246407",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1",
+            "artifact-51445a14f475459188663c6c8e9e8a09",
+            "artifact-93294dafb59f4eb8b3eaabaf35eb915e",
+            "artifact-81741f8ccba84470875738a55c26ac74"
+          ],
+          "included_artifact_ids": [
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1"
+          ],
+          "output_kinds": [
+            "assessment_proposal",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:assess:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-ecda7c5b5da24da19f0b0e6f9159ca57",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "expression_comparison",
+            "control_overlap",
+            "gene_proximity"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3",
+            "artifact-3a0f4e49c98640828258b659f0cf1985",
+            "artifact-10a7e61f799942b4a4f8517617dcf7da",
+            "artifact-86dd7a81fe65495596828ce234e19013"
+          ],
+          "included_artifact_ids": [
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3"
+          ],
+          "output_kinds": [
+            "assessment_proposal",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        }
+      ],
+      "review": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:review:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-34da3614f3134d00a9abeb9bb6bcb72a",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1",
+            "artifact-51445a14f475459188663c6c8e9e8a09",
+            "artifact-93294dafb59f4eb8b3eaabaf35eb915e",
+            "artifact-81741f8ccba84470875738a55c26ac74",
+            "artifact-74107ecf0a8d434db0a3a8dfb31aebfa",
+            "artifact-0ef2673089ad4f4c806c78c8b034db32",
+            "artifact-4a843a3352304618ae72738188d81bf7",
+            "artifact-2ea8626f6ca042f8ae4409a6789e722d"
+          ],
+          "included_artifact_ids": [
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1"
+          ],
+          "output_kinds": [
+            "assessment_proposal",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:review:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-71709ba3ddde42718fd4a87a36a18ae7",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [
+            "screen_candidate",
+            "control_overlap"
+          ],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3",
+            "artifact-3a0f4e49c98640828258b659f0cf1985",
+            "artifact-10a7e61f799942b4a4f8517617dcf7da",
+            "artifact-86dd7a81fe65495596828ce234e19013",
+            "artifact-481e89c8b9ee4debbe6af070b2a61439",
+            "artifact-5a76b5e121a742a093ba988fa90998c8",
+            "artifact-ea36a58a4901407ca7ddba20e7b268e1",
+            "artifact-f1fbc340bf524a20be1532169c942283"
+          ],
+          "included_artifact_ids": [
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3"
+          ],
+          "output_kinds": [
+            "assessment_proposal",
+            "scientific_tool_result",
+            "scientific_tool_result",
+            "worker_trace"
+          ]
+        }
+      ],
+      "report": [
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:pansio-1:report:r0",
+          "candidate_id": "pansio-1",
+          "worker_trace_id": "artifact-cbfbae4efb8b469885ab1ed51488e68c",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:pansio-1",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1",
+            "artifact-51445a14f475459188663c6c8e9e8a09",
+            "artifact-93294dafb59f4eb8b3eaabaf35eb915e",
+            "artifact-81741f8ccba84470875738a55c26ac74",
+            "artifact-74107ecf0a8d434db0a3a8dfb31aebfa",
+            "artifact-0ef2673089ad4f4c806c78c8b034db32",
+            "artifact-4a843a3352304618ae72738188d81bf7",
+            "artifact-2ea8626f6ca042f8ae4409a6789e722d",
+            "artifact-e88f449b1f5b4fa98f3e43e5766b80a1",
+            "artifact-1f210cc966da4761aad5963029b90df8",
+            "artifact-e8d078d00f24443e909749b7bc7168a7"
+          ],
+          "included_artifact_ids": [
+            "artifact-62cccb6bcc18443db4ead07eb1f6f05a",
+            "artifact-d4f6efc70bd948e38025092455c92421",
+            "artifact-5469426c062d48c58b02791a2f64966c",
+            "artifact-99e5048baeb64d7c88e95b275fda3360",
+            "artifact-6633bb1a27894ea0a96ccb1edcc89ce1"
+          ],
+          "output_kinds": [
+            "versioned_dossier",
+            "worker_trace"
+          ]
+        },
+        {
+          "task_id": "run-5a101336d5294d83a101f3a817080bd0:olonne-18:report:r0",
+          "candidate_id": "olonne-18",
+          "worker_trace_id": "artifact-276a27fbafe54e04a9d149f4f9aaa9e7",
+          "context_policy": "relevant_evidence",
+          "tool_calls": [],
+          "evidence_manifest_ids": [
+            "run-5a101336d5294d83a101f3a817080bd0:reference:olonne-18",
+            "run-5a101336d5294d83a101f3a817080bd0:source-manifest",
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3",
+            "artifact-3a0f4e49c98640828258b659f0cf1985",
+            "artifact-10a7e61f799942b4a4f8517617dcf7da",
+            "artifact-86dd7a81fe65495596828ce234e19013",
+            "artifact-481e89c8b9ee4debbe6af070b2a61439",
+            "artifact-5a76b5e121a742a093ba988fa90998c8",
+            "artifact-ea36a58a4901407ca7ddba20e7b268e1",
+            "artifact-f1fbc340bf524a20be1532169c942283",
+            "artifact-9c6c91a0310340769c0bca6c873e86a6",
+            "artifact-8a57af89ef2149e7be1fe1d1685bdbe9",
+            "artifact-294b71fed08c4154a746bf2b5200a644"
+          ],
+          "included_artifact_ids": [
+            "artifact-d3fa241a91a1489da47fd7b717373b64",
+            "artifact-dca8a5a963e24b68bcf977952c8ad804",
+            "artifact-60ed23645b2a44f9888d58f8e501d8e3",
+            "artifact-05daeea3fa354ae48c82223deb39e7f1",
+            "artifact-168b109448764491b83673c529cc5ed3"
+          ],
+          "output_kinds": [
+            "versioned_dossier",
+            "worker_trace"
+          ]
+        }
+      ]
+    },
+    "task_start_sequences": {
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:screen:r0": 3,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:screen:r0": 4,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:inspect:r0": 7,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:inspect:r0": 8,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:compare:r0": 11,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:compare:r0": 12,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:assess:r0": 15,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:assess:r0": 16,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:review:r0": 19,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:review:r0": 20,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:report:r0": 23,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:report:r0": 24
+    },
+    "task_complete_sequences": {
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:screen:r0": 5,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:screen:r0": 6,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:inspect:r0": 9,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:inspect:r0": 10,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:compare:r0": 13,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:compare:r0": 14,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:assess:r0": 17,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:assess:r0": 18,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:review:r0": 21,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:review:r0": 22,
+      "run-5a101336d5294d83a101f3a817080bd0:olonne-18:report:r0": 25,
+      "run-5a101336d5294d83a101f3a817080bd0:pansio-1:report:r0": 26
+    },
+    "export_sha256": "b7cb297d868409b1aca662211308455900b6910e1c822572876c9ffd7a0e65a1"
+  },
+  "experiment": {
+    "blocked_real_model_experiment_id": "experiment-d391265a0e064d34a3e415fdf0eceb2b",
+    "experiment_id": "experiment-647daddbf4b3406d9f19d772ac88ad44",
+    "status": "operational_complete",
+    "wall_seconds": 11.2,
+    "arms": {
+      "H0": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "R0": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383",
+      "H1": null
+    },
+    "optimizer": {
+      "status": "blocked",
+      "reason": "Deterministic operational adapters cannot generate a genuine model architecture proposal.",
+      "candidate_hash": null,
+      "usage": {
+        "tokens": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": 0.0,
+        "duration_seconds": 0.0,
+        "usage_complete": true
+      }
+    },
+    "promotion": {
+      "evaluation_id": "promotion:experiment-647daddbf4b3406d9f19d772ac88ad44",
+      "type": "harness_selection",
+      "status": "operational_only",
+      "promoted": null,
+      "selected_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "reason": "No executable automatic candidate was available; no self-improvement claim.",
+      "reasons": null
+    },
+    "selected_final_run_id": "run-09d081e906444c4f87c3025be5249978",
+    "report_event_sequence": 17,
+    "case_rows": 24,
+    "executed_case_runs": 18,
+    "report_model_improvement_claim": false
+  },
+  "genuine_proposals_executed": [],
+  "api_exit_code": -15,
+  "finished_at": "2026-09-26T19:27:56.508140+00:00",
+  "error": null,
+  "summary": {
+    "passed": 32,
+    "failed": 0,
+    "blocked": 2,
+    "checks": 34,
+    "failed_checks": [],
+    "blocked_checks": [
+      "ledger contains a genuine automatic (real-model) structural proposal substantiated by its recorded response",
+      "a run under a PROMOTED (validation-selected) structurally different version executes"
+    ]
+  },
+  "ticket_acceptance_complete": false,
+  "limitations": [
+    "Structural runs use deterministic operational adapters: they prove the saved change is compiled and executed, not that it improves answers.",
+    "The operational patch was authored in this E2E; it is not an automatic or model-generated proposal.",
+    "No genuine real-model optimizer proposal exists on the scanned replica set, so automatic proposal inspection and promotion of a structural version remain unexercised.",
+    "The deterministic experiment selects H0 as operational_only; no promotion, model improvement or cost win is claimed.",
+    "Only the local replica set was scanned; other contributors' ledgers were not accessible."
+  ]
+}
