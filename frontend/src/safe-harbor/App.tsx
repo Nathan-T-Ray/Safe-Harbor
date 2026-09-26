@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Artifact, Assessment, Candidate, Catalog, Mode, Task } from '../../../shared/contracts';
 import { api } from './client';
 import { useRecord } from './record';
@@ -28,7 +28,12 @@ export function App(){
  const candidates=recordState.candidates.length?recordState.candidates:catalog?.candidates??[];const selected=candidates.find(c=>c.candidate_id===selectedId)??candidates[0];const assessment=latestAssessment(recordState.assessments,selected);const task=recordState.tasks.find(t=>t.task_id===selectedTask);
  const visibleArtifacts=recordState.artifacts.filter(a=>{const owner=recordState.tasks.find(t=>t.task_id===a.provenance.task_id)?.candidate_id;return (a.data.candidate_id??owner??selected?.candidate_id)===selected?.candidate_id;});
  const cues=useMemo(()=>deriveCues(record.events),[record.events]);
- const camera=useCameraFollow({cues,position:record.cursor,enabled:follow,stepBudgetMs:1000/record.speed,apply:target=>{if(target.candidate_id&&recordState.candidates.some(candidate=>candidate.candidate_id===target.candidate_id))setSelectedId(target.candidate_id);if(target.zoom)setZoom(target.zoom);if(target.task_id!==undefined)setSelectedTask(target.task_id??undefined);},regions:{genome:()=>document.querySelector('.genome-panel'),conclusion:()=>document.querySelector('.conclusion-panel'),graph:()=>document.querySelector('.graph-panel')}});
+ // Camera-driven view changes (candidate focus, genome zoom) are coalesced so the left
+ // column settles on each view for at least CALM_VIEW_MS instead of flickering per commit.
+ const CALM_VIEW_MS=3200;const pendingView=useRef<{candidate_id?:string;zoom?:Zoom}>({});const lastView=useRef(0);const viewTimer=useRef<number|undefined>(undefined);
+ const calmView=useCallback((next:{candidate_id?:string;zoom?:Zoom})=>{pendingView.current={candidate_id:next.candidate_id??pendingView.current.candidate_id,zoom:next.zoom??pendingView.current.zoom};const flush=()=>{viewTimer.current=undefined;lastView.current=Date.now();const view=pendingView.current;pendingView.current={};if(view.candidate_id)setSelectedId(view.candidate_id);if(view.zoom)setZoom(view.zoom);};const wait=Math.max(0,CALM_VIEW_MS-(Date.now()-lastView.current));if(viewTimer.current===undefined)viewTimer.current=window.setTimeout(flush,wait);},[]);
+ useEffect(()=>()=>{if(viewTimer.current!==undefined)clearTimeout(viewTimer.current);},[]);
+ const camera=useCameraFollow({cues,position:record.cursor,enabled:follow,stepBudgetMs:1000/record.speed,apply:target=>{calmView({candidate_id:target.candidate_id&&recordState.candidates.some(candidate=>candidate.candidate_id===target.candidate_id)?target.candidate_id:undefined,zoom:target.zoom});if(target.task_id!==undefined)setSelectedTask(target.task_id??undefined);},regions:{genome:()=>document.querySelector('.genome-panel'),conclusion:()=>document.querySelector('.conclusion-panel'),graph:()=>document.querySelector('.graph-panel')}});
  useEffect(()=>{const escape=(event:KeyboardEvent)=>{if(event.key==='Escape')setDrawer(null);};addEventListener('keydown',escape);return()=>removeEventListener('keydown',escape);},[]);
  const openRun=(id:string)=>{if(!id.trim())return;setRunId(id.trim());localStorage.setItem('safe-harbor-run',id.trim());const url=new URL(location.href);url.searchParams.set('run',id.trim());history.replaceState({},'',url);setDrawer(null);setSelectedTask(undefined);requestAnimationFrame(()=>window.scrollTo({top:0,left:0,behavior:'instant'}));};
  const action=async(label:string,fn:()=>Promise<unknown>)=>{setBusy(label);setActionError(null);try{await fn();}catch(e){setActionError(e instanceof Error?e.message:String(e));}finally{setBusy(null);}};

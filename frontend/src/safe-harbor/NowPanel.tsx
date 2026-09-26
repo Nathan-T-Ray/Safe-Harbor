@@ -9,7 +9,7 @@ import { buildAgent } from './AgentTree';
 import { taskName } from './Graph';
 
 const verb: Record<string, string> = { screen_regions: 'Screening named criteria for', inspect_evidence: 'Reading recorded evidence for', compute_features: 'Comparing expression changes for', assess_candidate: 'Drafting the assessment for', review_candidate: 'Reviewing the assessment for', publish_shortlist: 'Assembling the dossier' };
-const MIN_DWELL = 1500;
+const MIN_DWELL = 4000;
 
 function pickFocus(tasks: Task[], cueTask?: string | null): Task | undefined {
   const running = tasks.filter(t => t.status === 'running');
