@@ -27,3 +27,4 @@ data/safe_harbor/reference/
 data/safe_harbor/mongo/
 artifacts/private/
 *.pid
+.vercel
