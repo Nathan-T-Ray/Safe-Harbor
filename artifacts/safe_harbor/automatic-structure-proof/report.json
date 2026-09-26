@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "observed_at": "2026-09-26T19:50:31.075801+00:00",
+  "observed_at": "2026-09-26T19:51:11.274391+00:00",
   "inspection_mode": "read_only_recorded_real_model_execution",
   "model_calls_by_this_inspection": 0,
   "ledger_writes": 0,
@@ -10,7 +10,7 @@
   "parent_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
   "candidate_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
   "proposal": {
-    "status": "integrity_failure",
+    "status": "compiled_and_saved",
     "checks": {
       "candidate_content_hash_matches": true,
       "parent_content_hash_matches": true,
@@ -23,7 +23,7 @@
       "actual_model_proposal_not_manual_fixture": true,
       "immutable_constraints_identical": true,
       "development_cases_only": true,
-      "model_settings_and_budget_frozen_in_request": false,
+      "model_settings_and_budget_frozen_in_request": true,
       "changed_task_topology_in_saved_spec": true
     },
     "optimizer_usage": {
@@ -288,7 +288,7 @@
     ]
   },
   "execution": {
-    "status": "tasks_instantiated_execution_pending_or_incomplete",
+    "status": "changed_roles_and_tool_assignment_executed",
     "runs": [
       {
         "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
@@ -306,7 +306,7 @@
           "controls_available": true,
           "evidence_revision_fixture": null
         },
-        "through_sequence": 9,
+        "through_sequence": 18,
         "checks": {
           "actual_task_topology_matches_saved_candidate": true,
           "run_frozen_to_candidate": true,
@@ -314,9 +314,9 @@
           "assigned_budget_matches_optimizer_comparison": true,
           "model_identity_settings_and_pricing_match": true,
           "started_tasks_waited_for_committed_dependencies": true,
-          "all_added_roles_have_accepted_real_model_traces": false,
-          "changed_reviewer_context_traced": false,
-          "moved_control_tool_actually_called_by_new_role": false
+          "all_added_roles_have_accepted_real_model_traces": true,
+          "changed_reviewer_context_traced": true,
+          "moved_control_tool_actually_called_by_new_role": true
         },
         "topology_mismatches": [],
         "dependency_order_violations": [],
@@ -331,7 +331,7 @@
               "screen_candidate"
             ],
             "context_policy": "relevant_evidence",
-            "status": "running",
+            "status": "complete",
             "attempt": 1,
             "plan_revision": 0
           },
@@ -345,7 +345,7 @@
               "table_slice"
             ],
             "context_policy": "relevant_evidence",
-            "status": "running",
+            "status": "complete",
             "attempt": 1,
             "plan_revision": 0
           },
@@ -361,8 +361,8 @@
               "reference_sequence"
             ],
             "context_policy": "contradictions_first",
-            "status": "queued",
-            "attempt": 0,
+            "status": "complete",
+            "attempt": 1,
             "plan_revision": 0
           },
           {
@@ -377,8 +377,8 @@
               "gene_proximity"
             ],
             "context_policy": "relevant_evidence",
-            "status": "queued",
-            "attempt": 0,
+            "status": "running",
+            "attempt": 1,
             "plan_revision": 0
           },
           {
@@ -437,7 +437,176 @@
             "plan_revision": 0
           }
         ],
-        "role_traces": [],
+        "role_traces": [
+          {
+            "artifact_id": "artifact-62ff20eb89b7435c9acd3bfb07676870",
+            "artifact_kind": "worker_trace",
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+            "role_id": "screen",
+            "mode": "real_model",
+            "execution_adapter": "openrouter",
+            "context_policy": "relevant_evidence",
+            "context_selection_trace": {
+              "policy": "relevant_evidence",
+              "max_characters": 28000,
+              "selected_characters": 0,
+              "available_count": 0,
+              "included_artifact_ids": [],
+              "omitted_artifact_ids": []
+            },
+            "allowed_tools": [
+              "inspect_candidate",
+              "screen_candidate"
+            ],
+            "tool_calls": [
+              {
+                "tool_name": "inspect_candidate",
+                "arguments": {
+                  "cell_context": "H1"
+                },
+                "model_call_id": "chatcmpl-tool-8f14e5e98263c818"
+              },
+              {
+                "tool_name": "screen_candidate",
+                "arguments": {
+                  "cell_context": "H1"
+                },
+                "model_call_id": "chatcmpl-tool-81d6aa16e2a52ffc"
+              },
+              {
+                "tool_name": "retrieve_evidence",
+                "arguments": {
+                  "artifact_id": "run-5134783b07da40f2b6ac5c6b053bf901:source-manifest"
+                },
+                "model_call_id": "chatcmpl-tool-9ac2ff8d3172d796"
+              }
+            ],
+            "provider_response_count": 2,
+            "usage": {
+              "tokens": 19563,
+              "tool_calls": 3,
+              "model_calls": 2,
+              "cost_usd": 0.0028749112,
+              "duration_seconds": 23.5905
+            }
+          },
+          {
+            "artifact_id": "artifact-0e28613c841049439be895a03be3ecec",
+            "artifact_kind": "worker_trace",
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0",
+            "role_id": "inspect_evidence",
+            "mode": "real_model",
+            "execution_adapter": "openrouter",
+            "context_policy": "relevant_evidence",
+            "context_selection_trace": {
+              "policy": "relevant_evidence",
+              "max_characters": 28000,
+              "selected_characters": 0,
+              "available_count": 0,
+              "included_artifact_ids": [],
+              "omitted_artifact_ids": []
+            },
+            "allowed_tools": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "tool_calls": [
+              {
+                "tool_name": "list_evidence",
+                "arguments": {
+                  "cell_context": "H1"
+                },
+                "model_call_id": "chatcmpl-tool-810009fdd94cd4a4"
+              },
+              {
+                "tool_name": "table_slice",
+                "arguments": {
+                  "cell_context": "H1",
+                  "contrast": "candidate",
+                  "limit": 20,
+                  "offset": 0
+                },
+                "model_call_id": "chatcmpl-tool-8b0ffbffaede8cfe"
+              },
+              {
+                "tool_name": "table_slice",
+                "arguments": {
+                  "cell_context": "H1",
+                  "contrast": "untargeted",
+                  "limit": 20,
+                  "offset": 0
+                },
+                "model_call_id": "chatcmpl-tool-839578237b35e844"
+              },
+              {
+                "tool_name": "retrieve_evidence",
+                "arguments": {
+                  "artifact_id": "run-5134783b07da40f2b6ac5c6b053bf901:reference:olonne-18"
+                },
+                "model_call_id": "chatcmpl-tool-bcebacee35327aca"
+              }
+            ],
+            "provider_response_count": 2,
+            "usage": {
+              "tokens": 20278,
+              "tool_calls": 4,
+              "model_calls": 2,
+              "cost_usd": 0.00356272,
+              "duration_seconds": 24.2648
+            }
+          },
+          {
+            "artifact_id": "artifact-8b1749f667294b108ed8fc3e013d8a92",
+            "artifact_kind": "worker_trace",
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+            "role_id": "evidence_review",
+            "mode": "real_model",
+            "execution_adapter": "openrouter",
+            "context_policy": "contradictions_first",
+            "context_selection_trace": {
+              "policy": "contradictions_first",
+              "max_characters": 28000,
+              "selected_characters": 12215,
+              "available_count": 4,
+              "included_artifact_ids": [
+                "artifact-9b1ab225996b4d639997c0f2ec7c02c6",
+                "artifact-9b4bf228cc314930b56c6acb737f5ac1",
+                "artifact-cc913a18c0fd4729b778484206aeac43",
+                "artifact-f7d39fee845248e1a536d5fe8ce19cba"
+              ],
+              "omitted_artifact_ids": []
+            },
+            "allowed_tools": [
+              "control_overlap",
+              "reference_sequence"
+            ],
+            "tool_calls": [
+              {
+                "tool_name": "control_overlap",
+                "arguments": {
+                  "cell_context": "H1"
+                },
+                "model_call_id": "chatcmpl-tool-9eed52dea01328bb"
+              },
+              {
+                "tool_name": "retrieve_evidence",
+                "arguments": {
+                  "artifact_id": "run-5134783b07da40f2b6ac5c6b053bf901:reference:olonne-18",
+                  "pointer": "/calculation"
+                },
+                "model_call_id": "chatcmpl-tool-b64ef8eb3bdd7c4f"
+              }
+            ],
+            "provider_response_count": 2,
+            "usage": {
+              "tokens": 21352,
+              "tool_calls": 2,
+              "model_calls": 2,
+              "cost_usd": 0.0030692704,
+              "duration_seconds": 6.2105
+            }
+          }
+        ],
         "events": [
           {
             "sequence": 1,
@@ -503,11 +672,74 @@
             "task_ids": [
               "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
             ]
+          },
+          {
+            "sequence": 10,
+            "cause": "task.completed",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0"
+            ]
+          },
+          {
+            "sequence": 11,
+            "cause": "task.completed",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+            ]
+          },
+          {
+            "sequence": 12,
+            "cause": "task.started",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+            ]
+          },
+          {
+            "sequence": 13,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+            ]
+          },
+          {
+            "sequence": 14,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+            ]
+          },
+          {
+            "sequence": 15,
+            "cause": "task.completed",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+            ]
+          },
+          {
+            "sequence": 16,
+            "cause": "task.started",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0"
+            ]
+          },
+          {
+            "sequence": 17,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0"
+            ]
+          },
+          {
+            "sequence": 18,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0"
+            ]
           }
         ],
         "export": {
           "path": "run-5134783b07da40f2b6ac5c6b053bf901.export.json",
-          "sha256": "865bd67caf094c41b2b6e6bb6ecbd2d3ea0e84f0edd581f299988a019dd4292d"
+          "sha256": "ecd1f00772be47585122d8cb9b0b72146ea4d40006f0becf3beadbb9e955ef96"
         }
       }
     ]

@@ -49,6 +49,9 @@ parsed = json.loads(raw["raw_content"])
 request_packet = json.loads(raw["request"]["messages"][1]["content"])
 development_ids = {c["case_id"] for c in experiment["cases"] if c["split"] == "development"}
 development_rows = request_packet["development_results"]["runs"]
+manifest_model = experiment["model_snapshot"]
+model_summary = {k: v for k, v in manifest_model.items() if k != "model_pricing"}
+model_summary["pricing_hash"] = manifest_model["model_pricing"]["pricing_hash"]
 before, after = architecture(parent["roles"]), architecture(candidate["roles"])
 checks = {
     "candidate_content_hash_matches": digest({k: v for k, v in candidate.items() if k != "harness_hash"}) == CANDIDATE,
@@ -62,7 +65,7 @@ checks = {
     "actual_model_proposal_not_manual_fixture": candidate["proposal_mode"] == response["provenance"]["mode"] == optimizer["mode"] == "real_model" and optimizer["usage"]["model_calls"] == 1,
     "immutable_constraints_identical": candidate["immutable_constraints"] == parent["immutable_constraints"],
     "development_cases_only": set(raw["development_case_ids"]) <= development_ids and all(x["case_id"] in development_ids for x in development_rows) and request_packet["development_results"]["split"] == response["provenance"]["source_split"] == "development",
-    "model_settings_and_budget_frozen_in_request": request_packet["fixed_model_snapshot"] == experiment["model_snapshot"] and request_packet["same_assigned_budget_for_every_arm"] == optimizer["assigned_run_budget"],
+    "model_settings_and_budget_frozen_in_request": request_packet["fixed_model_snapshot"] == model_summary and request_packet["same_assigned_budget_for_every_arm"] == optimizer["assigned_run_budget"] and raw["request"]["extra_body"]["provider"] == manifest_model["model_pricing"]["provider_routing"],
     "changed_task_topology_in_saved_spec": set(before) != set(after) and before != after,
 }
 report = {

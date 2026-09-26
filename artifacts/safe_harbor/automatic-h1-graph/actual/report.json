@@ -1,0 +1,135 @@
+{
+  "passed": true,
+  "mode": "read_only_actual_real_model_H1",
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+  "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+  "observed_run_status": "complete",
+  "through_sequence": 32,
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "candidate_interval": {
+    "candidate_id": "olonne-18",
+    "chromosome": "chr18",
+    "start": 56534774,
+    "end": 56536439,
+    "coordinate_system": "zero_based_half_open"
+  },
+  "task_count": 7,
+  "dependency_edge_count": 14,
+  "all_dependency_edges_left_to_right": true,
+  "positions_stable_across_poll": true,
+  "positions": {
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0": {
+      "x": 0,
+      "y": 0
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0": {
+      "x": 0,
+      "y": 172
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0": {
+      "x": 264,
+      "y": 0
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0": {
+      "x": 528,
+      "y": 0
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0": {
+      "x": 792,
+      "y": 0
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0": {
+      "x": 1056,
+      "y": 0
+    },
+    "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:report:r0": {
+      "x": 1320,
+      "y": 0
+    }
+  },
+  "task_dependencies": [
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+      "role_id": "screen",
+      "depends_on": []
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0",
+      "role_id": "inspect_evidence",
+      "depends_on": []
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+      "role_id": "evidence_review",
+      "depends_on": [
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+      ]
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+      "role_id": "compare",
+      "depends_on": [
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+      ]
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0",
+      "role_id": "assess",
+      "depends_on": [
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0"
+      ]
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0",
+      "role_id": "review",
+      "depends_on": [
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0"
+      ]
+    },
+    {
+      "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:report:r0",
+      "role_id": "report",
+      "depends_on": [
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0",
+        "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0"
+      ]
+    }
+  ],
+  "inserted_reviewer": {
+    "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+    "status": "complete",
+    "attempt": 1,
+    "allowed_tools": [
+      "control_overlap",
+      "reference_sequence"
+    ],
+    "observed_tool_calls": [
+      "control_overlap",
+      "retrieve_evidence"
+    ],
+    "context_policy": "contradictions_first",
+    "trace_artifact_ids": [
+      "artifact-8b1749f667294b108ed8fc3e013d8a92"
+    ],
+    "recorded_provider_responses": 2
+  },
+  "actual_h1_link_present": true,
+  "observed_promotion_status": null,
+  "model_calls_by_inspection": 0,
+  "ledger_writes": 0,
+  "browser_errors": [],
+  "limitations": [
+    "Real H1 task creation and dependency layout are verified. Reviewer execution status and available provider traces are stated at the observed watermark.",
+    "No correctness, promotion, cost win or final comparison is inferred from the graph.",
+    "The run may continue while this read-only inspection is performed."
+  ]
+}
