@@ -8,7 +8,7 @@
     "end": 113340514,
     "coordinate_system": "zero_based_half_open",
     "cell_context": "H1 human embryonic stem cells",
-    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
     "group_id": "autio-chr1-113000001-114000000",
     "source_coordinates": {
       "assembly": "GRCh38",
@@ -40,7 +40,7 @@
     "end": 56536439,
     "coordinate_system": "zero_based_half_open",
     "cell_context": "H1 human embryonic stem cells",
-    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
     "group_id": "autio-chr18-56000001-57000000",
     "source_coordinates": {
       "assembly": "GRCh38",
@@ -72,7 +72,7 @@
     "end": 5402139,
     "coordinate_system": "zero_based_half_open",
     "cell_context": "H1 human embryonic stem cells",
-    "data_version": "autio-79592-v2-gencode36-2026-09-26",
+    "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
     "group_id": "autio-chr19-5000001-6000000",
     "source_coordinates": {
       "assembly": "GRCh38",

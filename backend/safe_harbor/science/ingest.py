@@ -21,7 +21,7 @@ DATA = ROOT / "data" / "safe_harbor"
 RAW = DATA / "raw"
 NORMALIZED = DATA / "normalized"
 STUDY = "https://elifesciences.org/articles/79592"
-VERSION = "autio-79592-v2-gencode36-2026-09-26"
+VERSION = "autio-79592-v2-gencode36-comp-pseudo-2026-09-26"
 NAMES = {"Pansio": ("pansio-1", "Pansio-1", "chr1"),
          "Olônne": ("olonne-18", "Olônne-18", "chr18"),
          "Keppel": ("keppel-19", "Keppel-19", "chr19")}
@@ -118,8 +118,8 @@ def candidates(inventories: list[dict]) -> list[dict]:
 
 def references(candidate_records: list[dict]) -> tuple[list[dict], dict]:
     sources = []
-    for name in ("wgEncodeGencodeCompV36.sql", "wgEncodeGencodeAttrsV36.sql",
-                 "wgEncodeGencodeCompV36.txt.gz", "wgEncodeGencodeAttrsV36.txt.gz", "chromInfo.txt.gz"):
+    for name in ("wgEncodeGencodeCompV36.sql", "wgEncodeGencodeAttrsV36.sql", "wgEncodeGencodePseudoGeneV36.sql",
+                 "wgEncodeGencodeCompV36.txt.gz", "wgEncodeGencodeAttrsV36.txt.gz", "wgEncodeGencodePseudoGeneV36.txt.gz", "chromInfo.txt.gz"):
         source = download("https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/" + name, name)
         source.update(attribution="UCSC Genome Browser; GENCODE v36 (where applicable)",
                       license_url="https://www.gencodegenes.org/pages/data_access.html")
@@ -141,25 +141,26 @@ def references(candidate_records: list[dict]) -> tuple[list[dict], dict]:
     chromosomes.sort(key=lambda r: canonical.index(r["chromosome"]))
     write_json("chromosomes.json", chromosomes)
     transcripts, genes = [], {}
-    with gzip.open(RAW / "wgEncodeGencodeCompV36.txt.gz", "rt") as fh:
-        for rowno, line in enumerate(fh, 1):
-            f = line.rstrip("\n").split("\t")
-            assert len(f) == 16
-            if f[2] not in canonical:
-                continue
-            attr = attrs[f[1]]
-            item = {**attr, "transcript_id": f[1], "chromosome": f[2], "strand": f[3],
-                    "start": int(f[4]), "end": int(f[5]), "source_row": rowno,
-                    "tss": int(f[4]) if f[3] == "+" else int(f[5])-1}
-            key = (item["gene_id"], item["chromosome"])
-            if key not in genes:
-                genes[key] = {k: v for k, v in item.items() if k not in ("transcript_id", "tss")}
-            else:
-                genes[key]["start"] = min(genes[key]["start"], item["start"])
-                genes[key]["end"] = max(genes[key]["end"], item["end"])
-            if any(item["chromosome"] == c["chromosome"] and item["end"] > c["start"]-1_000_000 and item["start"] < c["end"]+1_000_000 for c in candidate_records):
-                item["exons"] = list(zip(map(int, f[9].rstrip(",").split(",")), map(int, f[10].rstrip(",").split(","))))
-                transcripts.append(item)
+    for table_name in ("wgEncodeGencodeCompV36.txt.gz", "wgEncodeGencodePseudoGeneV36.txt.gz"):
+        with gzip.open(RAW / table_name, "rt") as fh:
+            for rowno, line in enumerate(fh, 1):
+                f = line.rstrip("\n").split("\t")
+                assert len(f) == 16
+                if f[2] not in canonical:
+                    continue
+                attr = attrs[f[1]]
+                item = {**attr, "transcript_id": f[1], "chromosome": f[2], "strand": f[3],
+                        "start": int(f[4]), "end": int(f[5]), "source_row": rowno, "source_table": table_name,
+                        "tss": int(f[4]) if f[3] == "+" else int(f[5])-1}
+                key = (item["gene_id"], item["chromosome"])
+                if key not in genes:
+                    genes[key] = {k: v for k, v in item.items() if k not in ("transcript_id", "tss")}
+                else:
+                    genes[key]["start"] = min(genes[key]["start"], item["start"])
+                    genes[key]["end"] = max(genes[key]["end"], item["end"])
+                if any(item["chromosome"] == c["chromosome"] and item["end"] > c["start"]-1_000_000 and item["start"] < c["end"]+1_000_000 for c in candidate_records):
+                    item["exons"] = list(zip(map(int, f[9].rstrip(",").split(",")), map(int, f[10].rstrip(",").split(","))))
+                    transcripts.append(item)
     write_json("genes.json", list(genes.values()))
     assets = {}
     for c in candidate_records:
@@ -177,7 +178,9 @@ def references(candidate_records: list[dict]) -> tuple[list[dict], dict]:
                "source_url": url, "personalized_h1_genome": False}
         features = [x for x in transcripts if x["chromosome"] == c["chromosome"] and x["end"] > c["start"]-1_000_000 and x["start"] < c["end"]+1_000_000]
         assets[c["candidate_id"]] = {"sequence": seq, "annotation": {"features": features,
-                     "coverage": {"chromosome": c["chromosome"], "start": c["start"]-1_000_000, "end": c["end"]+1_000_000, "complete": True},
+                     "coverage": {"chromosome": c["chromosome"], "start": c["start"]-1_000_000, "end": c["end"]+1_000_000, "complete": True,
+                                  "tables": ["wgEncodeGencodeCompV36", "wgEncodeGencodePseudoGeneV36"],
+                                  "completeness_definition": "All overlapping rows from both frozen UCSC v36 transcript tables; canonical chromosomes only."},
                      "release": "GENCODE v36", "assembly": "GRCh38", "coordinate_system": "zero_based_half_open",
                      "source_hashes": {x["source_id"]: x["sha256"] for x in sources if "Gencode" in x["source_id"]},
                      "analysis_note": "New GENCODE v36 analysis; not an exact reproduction of the publication annotation pipeline."}}

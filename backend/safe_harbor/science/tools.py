@@ -105,8 +105,8 @@ def _evidence(name: str, candidate_id: str, context: str, controls_available: bo
             if controls_available and name in ("list_evidence", "expression_comparison", "control_overlap"):
                 ids.append(f"source:{supplement}:untargeted")
     if name in ("list_evidence", "gene_proximity", "screen_candidate"):
-        files += ["wgEncodeGencodeCompV36.txt.gz", "wgEncodeGencodeAttrsV36.txt.gz",
-                  "wgEncodeGencodeCompV36.sql", "wgEncodeGencodeAttrsV36.sql"]
+        files += ["wgEncodeGencodeCompV36.txt.gz", "wgEncodeGencodeAttrsV36.txt.gz", "wgEncodeGencodePseudoGeneV36.txt.gz",
+                  "wgEncodeGencodeCompV36.sql", "wgEncodeGencodeAttrsV36.sql", "wgEncodeGencodePseudoGeneV36.sql"]
         ids.append(f"source:gencode-v36:{candidate_id}")
     if name in ("list_evidence", "reference_sequence"):
         files.append(f"{candidate_id}-hg38-sequence.json")
@@ -174,7 +174,7 @@ def run_tool(tool_name: str, candidate_id: str, arguments: dict | None = None) -
     available = getattr(args, "controls_available", True)
     if tool_name == "inspect_candidate":
         calculation = {"status": "computed", "candidate": c, "methods": _load("manifest")["input_contract"],
-                       "criteria": _load("criteria"), "available_reference_window": {k: v for k,v in _load("reference_assets")[candidate_id]["sequence"].items() if k != "sequence"},
+                       "criteria": _load("criteria"),
                        "limitations": ["Publication-derived shortlist; not a newly discovered locus."]}
     elif tool_name == "list_evidence":
         calculation = _list_evidence(candidate_id, context, available)

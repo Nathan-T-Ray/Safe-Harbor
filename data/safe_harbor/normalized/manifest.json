@@ -1,8 +1,9 @@
 {
   "schema_version": 1,
-  "data_version": "autio-79592-v2-gencode36-2026-09-26",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
   "mode": "real_data",
   "assembly": "GRCh38",
+  "criteria_sha256": "33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd",
   "cell_context": "H1 human embryonic stem cells",
   "study_url": "https://elifesciences.org/articles/79592",
   "sources": [
@@ -75,6 +76,15 @@
       "license_url": "https://www.gencodegenes.org/pages/data_access.html"
     },
     {
+      "source_id": "wgEncodeGencodePseudoGeneV36.sql",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodePseudoGeneV36.sql",
+      "path": "data/safe_harbor/raw/wgEncodeGencodePseudoGeneV36.sql",
+      "sha256": "f9989b977626f808454082b78d852dc5a6f91055d1aca9d2998f0998b7c63704",
+      "bytes": 2048,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
       "source_id": "wgEncodeGencodeCompV36.txt.gz",
       "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodeCompV36.txt.gz",
       "path": "data/safe_harbor/raw/wgEncodeGencodeCompV36.txt.gz",
@@ -89,6 +99,15 @@
       "path": "data/safe_harbor/raw/wgEncodeGencodeAttrsV36.txt.gz",
       "sha256": "2098b0e7cd1ae412b1edfe93d267405175eadb63f63b9e8315b6bddda0a7c6be",
       "bytes": 5504036,
+      "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
+      "license_url": "https://www.gencodegenes.org/pages/data_access.html"
+    },
+    {
+      "source_id": "wgEncodeGencodePseudoGeneV36.txt.gz",
+      "url": "https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/wgEncodeGencodePseudoGeneV36.txt.gz",
+      "path": "data/safe_harbor/raw/wgEncodeGencodePseudoGeneV36.txt.gz",
+      "sha256": "67a06659d5836a49abfd64498a45e25de55c82fbbf5223ae410412f71ba92739",
+      "bytes": 781311,
       "attribution": "UCSC Genome Browser; GENCODE v36 (where applicable)",
       "license_url": "https://www.gencodegenes.org/pages/data_access.html"
     },

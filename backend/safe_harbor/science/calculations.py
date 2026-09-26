@@ -54,7 +54,7 @@ def closest_features(candidate: dict, features: list[dict], limit: int = 3) -> l
                         "transcript_id": feature.get("transcript_id"), "chromosome": feature["chromosome"],
                         "start": feature["start"], "end": feature["end"], "strand": feature.get("strand"),
                         "interval_gap_bp": gap, "nearest_reference_base_distance_bp": 0 if overlap else gap+1,
-                        "overlap": overlap, "source_row": feature.get("source_row"),
+                        "overlap": overlap, "source_row": feature.get("source_row"), "source_table": feature.get("source_table"),
                         **({"tss": feature["tss"]} if "tss" in feature else {})})
     return results
 

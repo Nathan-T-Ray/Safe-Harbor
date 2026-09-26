@@ -1,7 +1,9 @@
 {
   "check_type": "data_integrity",
   "status": "passed",
-  "sources_verified": 13,
+  "sources_verified": 15,
+  "criteria_sha256": "33a2f4e97e7a1b2f90f45c77dfbc26598ce4c1a6df2871a119c0a3b489b6b7fd",
+  "canonical_gencode_gene_count": 60660,
   "candidate_count": 3,
   "canonical_chromosomes": 25,
   "expression_counts": {

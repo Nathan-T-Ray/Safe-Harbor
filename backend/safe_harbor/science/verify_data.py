@@ -10,6 +10,7 @@ def verify() -> dict:
     root = Path(__file__).resolve().parents[3]
     catalog = get_catalog()
     manifest = catalog["provenance"]
+    assert hashlib.sha256((root / "data/safe_harbor/normalized/criteria.json").read_bytes()).hexdigest() == manifest["criteria_sha256"]
     for source in manifest["sources"]:
         data = (root / source["path"]).read_bytes()
         assert len(data) == source["bytes"]
@@ -37,7 +38,10 @@ def verify() -> dict:
             assert all(abs(r["log2_fold_change"]) >= 1 and r["fdr"] <= .01 for r in rows)
             assert all(r["source"]["row"] >= 2 and r["source"]["sha256"] for r in rows)
             counts[context][candidate_id] = len(ids)
+    genes = _load("genes")
+    assert len(genes) == 60660, "Combined v36 canonical gene count differs from official GENCODE release36 statistics; re-inspect before use"
     return {"check_type": "data_integrity", "status": "passed", "sources_verified": len(manifest["sources"]),
+            "criteria_sha256": manifest["criteria_sha256"], "canonical_gencode_gene_count": len(genes),
             "candidate_count": len(catalog["candidates"]), "canonical_chromosomes": len(catalog["chromosomes"]),
             "expression_counts": counts,
             "discrepancies": [{"candidate_id": "keppel-19", "context": "H1", "workbook_count": counts["H1"]["keppel-19"],
