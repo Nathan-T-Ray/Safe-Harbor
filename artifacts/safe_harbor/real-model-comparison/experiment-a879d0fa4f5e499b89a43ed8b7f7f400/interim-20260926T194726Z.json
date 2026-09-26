@@ -1,0 +1,1249 @@
+{
+  "mode": "real_model",
+  "interim": true,
+  "comparison_validity_not_yet_established": true,
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "recorded_at": "20260926T194726Z",
+  "status": "running_validation",
+  "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+  "model_snapshot": {
+    "provider": "openrouter",
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "temperature": 0,
+    "max_output_tokens": 8192,
+    "context_limit_bytes": 60000,
+    "reasoning": {
+      "effort": "low"
+    },
+    "model_pricing": {
+      "model_id": "deepseek/deepseek-v4.1-flash",
+      "provider_slug": "deepinfra/fp8",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash/endpoints",
+      "frozen_at": "2026-09-26T19:38:39.595515+00:00",
+      "pricing": {
+        "prompt": "0.00000014",
+        "completion": "0.00000042",
+        "input_cache_read": "0.0000000042",
+        "discount": 0.3
+      },
+      "prompt_usd_per_token_bound": 1.4e-07,
+      "completion_usd_per_token_bound": 4.2e-07,
+      "request_usd_bound": 0.0,
+      "provider_routing": {
+        "only": [
+          "deepinfra/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0.14,
+          "completion": 0.42,
+          "request": 0.0
+        }
+      },
+      "policy": "Text-only calls, fixed endpoint, provider price ceilings, no server plugins or automatic fallback; unreported usage remains uncertain.",
+      "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607"
+    },
+    "cache_policy": "no_application_answer_cache; provider caching is not controlled and usage remains provisional"
+  },
+  "finished_results": [
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--full_sources",
+      "candidate_id": "pansio-1",
+      "scenario_id": "full_sources",
+      "split": "development",
+      "arm": "H0",
+      "run_id": "run-650b0b7901da47e4a4400d87243a2111",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "status": "complete",
+      "score": {
+        "required_correct": 14,
+        "required_total": 18,
+        "required_accuracy": 0.7777777777777778,
+        "required_decisions_correct": 3,
+        "required_decisions_total": 3,
+        "unsupported_count": 3,
+        "unsupported_findings": [
+          {
+            "kind": "unsupported_numeric_finding",
+            "key": "de_count"
+          },
+          {
+            "kind": "limitation_code_without_concrete_explanation",
+            "key": "unmapped_de_ids"
+          },
+          {
+            "kind": "runtime_rejected_proposal",
+            "reason": "Resolving the expression exclusion concern requires available targeted and control evidence"
+          }
+        ],
+        "coverage": 0.8333333333333334,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": 96,
+            "present": true,
+            "correct": true,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "control_de_count",
+            "expected": 260,
+            "actual": 260,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "shared_de_count",
+            "expected": 31,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "targeted_only_count",
+            "expected": 65,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "overlap_fraction",
+            "expected": 0.3229166666666667,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": 50000,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": 50001,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": 90,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": 4352715,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "not_justified_by_available_evidence",
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "unknown",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": false
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 186755,
+        "tool_calls": 19,
+        "model_calls": 12,
+        "cost_usd": 0.0287691656,
+        "duration_seconds": 136.1616,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-77a34dc5ed6a4c7589c8e7b087292e14",
+        "artifact-b7ef595a32234d81a0d848ab878d13ba",
+        "artifact-ff5f3e0b5056464d8de7eb8458361438",
+        "artifact-f1767c97b2c24b3d88d3ac90c665d84d",
+        "artifact-16b3897fcf14419fbeab77ea7dd36c89",
+        "artifact-9706d3a13557468ea34def807298a42e"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.002993,
+      "selected_trace_artifact_id": "artifact-9706d3a13557468ea34def807298a42e"
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--full_sources",
+      "candidate_id": "pansio-1",
+      "scenario_id": "full_sources",
+      "split": "development",
+      "arm": "R0",
+      "run_id": "run-c8aa19556f5d4108892146cc99802237",
+      "harness_hash": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383",
+      "status": "complete",
+      "score": {
+        "required_correct": 17,
+        "required_total": 18,
+        "required_accuracy": 0.9444444444444444,
+        "required_decisions_correct": 2,
+        "required_decisions_total": 3,
+        "unsupported_count": 3,
+        "unsupported_findings": [
+          {
+            "kind": "decision_contradicts_reference",
+            "key": "evidence_status"
+          },
+          {
+            "kind": "runtime_rejected_proposal",
+            "reason": "A general expression concern does not establish a validated experimental suitability endpoint"
+          },
+          {
+            "kind": "endpoint_support_not_established_by_rubric",
+            "key": "evidence_status"
+          }
+        ],
+        "coverage": 1.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": 96,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "control_de_count",
+            "expected": 260,
+            "actual": 260,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "shared_de_count",
+            "expected": 31,
+            "actual": 31,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "targeted_only_count",
+            "expected": 65,
+            "actual": 65,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "overlap_fraction",
+            "expected": 0.3229166666666667,
+            "actual": 0.3229166666666667,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": 50000,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": 50001,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": 90,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": 4352715,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "not_justified_by_available_evidence",
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "supported_for_endpoint",
+            "present": true,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 20721,
+        "tool_calls": 8,
+        "model_calls": 1,
+        "cost_usd": 0.0045079832,
+        "duration_seconds": 52.1866,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-3351f7886cc5417eb6b9fab41f0d99d6",
+        "artifact-f7c269cc5b8b4a5e8908f303fc1cb0e4",
+        "artifact-bbfd4930f36646ea88d90bf187baddca"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.003152,
+      "selected_trace_artifact_id": "artifact-bbfd4930f36646ea88d90bf187baddca"
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--controls_withheld",
+      "candidate_id": "pansio-1",
+      "scenario_id": "controls_withheld",
+      "split": "development",
+      "arm": "R0",
+      "run_id": "run-0fb89fa304d54d67ad2dcf2d1351d445",
+      "harness_hash": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383",
+      "status": "complete",
+      "score": {
+        "required_correct": 14,
+        "required_total": 15,
+        "required_accuracy": 0.9333333333333333,
+        "required_decisions_correct": 2,
+        "required_decisions_total": 3,
+        "unsupported_count": 2,
+        "unsupported_findings": [
+          {
+            "kind": "decision_contradicts_reference",
+            "key": "exclusion_decision"
+          },
+          {
+            "kind": "runtime_rejected_proposal",
+            "reason": "Resolving the expression exclusion concern requires available targeted and control evidence"
+          }
+        ],
+        "coverage": 1.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": 96,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": 50000,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": 50001,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": 90,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": 4352715,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "unknown",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "controls_unavailable",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 18838,
+        "tool_calls": 8,
+        "model_calls": 1,
+        "cost_usd": 0.0037408,
+        "duration_seconds": 32.9854,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-82de940afbf8489880cca2ce5e323919",
+        "artifact-4bde2cbbc78e4fe4b694722d18626680",
+        "artifact-30e9314419734efb8694e21cad55898c"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.002183,
+      "selected_trace_artifact_id": "artifact-30e9314419734efb8694e21cad55898c"
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--controls_withheld",
+      "candidate_id": "pansio-1",
+      "scenario_id": "controls_withheld",
+      "split": "development",
+      "arm": "H0",
+      "run_id": "run-dc78b257a27a4d7b967d7814cc7259f5",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "status": "failed",
+      "score": {
+        "required_correct": 0,
+        "required_total": 15,
+        "required_accuracy": 0.0,
+        "required_decisions_correct": 0,
+        "required_decisions_total": 3,
+        "unsupported_count": 0,
+        "unsupported_findings": [],
+        "coverage": 0.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "unresolved"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "controls_unavailable",
+            "present": false,
+            "correct": false
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 24412,
+        "tool_calls": 6,
+        "model_calls": 3,
+        "cost_usd": 0.0040416992,
+        "duration_seconds": 36.0036,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-20671955b7a1412e992a8a8d87791d7d"
+      ],
+      "error": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+      "scoring_duration_seconds": 0.002413,
+      "selected_trace_artifact_id": null
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--h1_context_only",
+      "candidate_id": "pansio-1",
+      "scenario_id": "h1_context_only",
+      "split": "development",
+      "arm": "H0",
+      "run_id": "run-4a650f383fb54c2e8b11b0676b608a32",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "status": "complete",
+      "score": {
+        "required_correct": 19,
+        "required_total": 19,
+        "required_accuracy": 1.0,
+        "required_decisions_correct": 3,
+        "required_decisions_total": 3,
+        "unsupported_count": 0,
+        "unsupported_findings": [],
+        "coverage": 1.0,
+        "completed": true,
+        "support_ok": true,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": 96,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "control_de_count",
+            "expected": 260,
+            "actual": 260,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "shared_de_count",
+            "expected": 31,
+            "actual": 31,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "targeted_only_count",
+            "expected": 65,
+            "actual": 65,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "overlap_fraction",
+            "expected": 0.3229166666666667,
+            "actual": 0.3229166666666667,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": 50000,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": 50001,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": 90,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": 4352715,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "not_justified_by_available_evidence",
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "unknown",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "cell_context_not_transferable",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 187378,
+        "tool_calls": 19,
+        "model_calls": 12,
+        "cost_usd": 0.0284095504,
+        "duration_seconds": 131.9046,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-db067b937d774f13adce3cabba8b407d",
+        "artifact-91e8fa194e2e4ad6a03015b928e0385c",
+        "artifact-ca45829b176e4d3fa83ba3b2ee92be79",
+        "artifact-49dd7337de274f66af60ce72c0916887",
+        "artifact-df340dc625b44073b5dfe5341ea22a8f",
+        "artifact-7aa56d20711c4b119a20fff7207f0023"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.00278,
+      "selected_trace_artifact_id": "artifact-7aa56d20711c4b119a20fff7207f0023"
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "pansio-1--h1_context_only",
+      "candidate_id": "pansio-1",
+      "scenario_id": "h1_context_only",
+      "split": "development",
+      "arm": "R0",
+      "run_id": "run-e82f8848d9fa4c7db70fde8e9a4d4883",
+      "harness_hash": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383",
+      "status": "complete",
+      "score": {
+        "required_correct": 17,
+        "required_total": 19,
+        "required_accuracy": 0.8947368421052632,
+        "required_decisions_correct": 2,
+        "required_decisions_total": 3,
+        "unsupported_count": 4,
+        "unsupported_findings": [
+          {
+            "kind": "decision_contradicts_reference",
+            "key": "evidence_status"
+          },
+          {
+            "kind": "limitation_code_without_concrete_explanation",
+            "key": "control_overlap_not_causality"
+          },
+          {
+            "kind": "runtime_rejected_proposal",
+            "reason": "A general expression concern does not establish a validated experimental suitability endpoint"
+          },
+          {
+            "kind": "endpoint_support_not_established_by_rubric",
+            "key": "evidence_status"
+          }
+        ],
+        "coverage": 1.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 96,
+            "actual": 96,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "control_de_count",
+            "expected": 260,
+            "actual": 260,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "shared_de_count",
+            "expected": 31,
+            "actual": 31,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "targeted_only_count",
+            "expected": 65,
+            "actual": 65,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "overlap_fraction",
+            "expected": 0.3229166666666667,
+            "actual": 0.3229166666666667,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 50000,
+            "actual": 50000,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 50001,
+            "actual": 50001,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 90,
+            "actual": 90,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 4352715,
+            "actual": 4352715,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "not_justified_by_available_evidence",
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "supported_for_endpoint",
+            "present": true,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "cell_context_not_transferable",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 19716,
+        "tool_calls": 8,
+        "model_calls": 1,
+        "cost_usd": 0.0039408432,
+        "duration_seconds": 40.0721,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-da1cb31222ad44c3a706f39ee4d104cd",
+        "artifact-120fa72d13aa4a3c8dbfa64bb8f92563",
+        "artifact-4d78b42374004e5dac8356a8e6a78cde"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.002921,
+      "selected_trace_artifact_id": "artifact-4d78b42374004e5dac8356a8e6a78cde"
+    }
+  ],
+  "optimizer_status": "candidate_ready",
+  "limitations": [
+    "Interim record: later assignments and selection remain unfinished. No improvement claim."
+  ]
+}

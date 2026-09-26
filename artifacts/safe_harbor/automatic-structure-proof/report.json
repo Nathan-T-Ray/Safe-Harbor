@@ -1,0 +1,689 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-09-26T19:50:31.075801+00:00",
+  "inspection_mode": "read_only_recorded_real_model_execution",
+  "model_calls_by_this_inspection": 0,
+  "ledger_writes": 0,
+  "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+  "experiment_status": "running_validation",
+  "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+  "parent_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "candidate_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+  "proposal": {
+    "status": "integrity_failure",
+    "checks": {
+      "candidate_content_hash_matches": true,
+      "parent_content_hash_matches": true,
+      "response_artifact_hash_matches_exact_data": true,
+      "request_hash_matches_saved_request": true,
+      "raw_content_equals_provider_message": true,
+      "exact_model_patch_equals_saved_patch": true,
+      "exact_rationale_preserved": true,
+      "response_provenance_binds_candidate_parent_request": true,
+      "actual_model_proposal_not_manual_fixture": true,
+      "immutable_constraints_identical": true,
+      "development_cases_only": true,
+      "model_settings_and_budget_frozen_in_request": false,
+      "changed_task_topology_in_saved_spec": true
+    },
+    "optimizer_usage": {
+      "tokens": 11969,
+      "tool_calls": 0,
+      "model_calls": 1,
+      "cost_usd": 0.00342986,
+      "duration_seconds": 83.994899,
+      "usage_complete": true,
+      "reserved_tokens": 33357,
+      "uncertain_tokens": 0,
+      "uncertain_cost_usd": 0.0,
+      "reserved_cost_usd": 0.00696374,
+      "provider_usage": {
+        "completion_tokens": 6265,
+        "prompt_tokens": 5704,
+        "total_tokens": 11969,
+        "completion_tokens_details": {
+          "accepted_prediction_tokens": null,
+          "audio_tokens": 0,
+          "reasoning_tokens": 5736,
+          "rejected_prediction_tokens": null,
+          "text_tokens": null,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "image_tokens": null,
+          "text_tokens": null,
+          "video_tokens": 0
+        },
+        "cost": 0.00342986,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00342986,
+          "upstream_inference_prompt_cost": 0.00079856,
+          "upstream_inference_completions_cost": 0.0026313
+        }
+      },
+      "budget_breach": false,
+      "cost_budget_breach": false
+    },
+    "provider_response_id": "gen-1790451949-k14LSg3OkCCYZnWE15wM",
+    "finish_reason": "stop",
+    "request_hash": "18f0b8cddd46fa9ad778cd395d1355dc4cfcfe1c7fb0fd9378353f77ca8b28d8",
+    "response_artifact_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400:optimizer-response",
+    "patch": {
+      "operations": [
+        {
+          "op": "split_role",
+          "role_id": "inspect",
+          "roles": [
+            {
+              "role_id": "inspect_evidence",
+              "kind": "inspect_evidence",
+              "question": "What expression tables, methods, source rows, and reference evidence are available?",
+              "allowed_tools": [
+                "list_evidence",
+                "table_slice"
+              ],
+              "context_policy": "relevant_evidence",
+              "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+              "decision_target": "evidence_inventory",
+              "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete."
+            },
+            {
+              "role_id": "evidence_review",
+              "kind": "review_candidate",
+              "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+              "allowed_tools": [
+                "reference_sequence"
+              ],
+              "context_policy": "contradictions_first",
+              "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+              "decision_target": "evidence_availability",
+              "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs."
+            }
+          ]
+        },
+        {
+          "op": "reassign_tools",
+          "from_role_id": "compare",
+          "to_role_id": "evidence_review",
+          "tools": [
+            "control_overlap"
+          ]
+        }
+      ]
+    },
+    "rationale": "Development traces show H0 failed on controls_withheld because the inspect role failed after revision, while R0 completed; H0 also had unsupported_count 3 on full_sources. The failure appears tied to inspect attempting to resolve control availability and missing evidence. Splitting inspect into a pure evidence-inventory role and an upstream evidence-review role that explicitly handles missing controls should reduce failure risk and improve completeness. Validation could disprove this if the new topology does not improve completion on controls_withheld or increases unsupported_count."
+  },
+  "architecture": {
+    "parent": {
+      "screen": {
+        "kind": "screen_regions",
+        "depends_on": [],
+        "allowed_tools": [
+          "inspect_candidate",
+          "screen_candidate"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "inspect": {
+        "kind": "inspect_evidence",
+        "depends_on": [],
+        "allowed_tools": [
+          "list_evidence",
+          "table_slice",
+          "reference_sequence"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "compare": {
+        "kind": "compute_features",
+        "depends_on": [
+          "inspect"
+        ],
+        "allowed_tools": [
+          "expression_comparison",
+          "control_overlap",
+          "gene_proximity"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "assess": {
+        "kind": "assess_candidate",
+        "depends_on": [
+          "screen",
+          "inspect",
+          "compare"
+        ],
+        "allowed_tools": [
+          "expression_comparison",
+          "control_overlap",
+          "gene_proximity"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "review": {
+        "kind": "review_candidate",
+        "depends_on": [
+          "screen",
+          "inspect",
+          "compare",
+          "assess"
+        ],
+        "allowed_tools": [
+          "screen_candidate",
+          "control_overlap"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "report": {
+        "kind": "publish_shortlist",
+        "depends_on": [
+          "screen",
+          "inspect",
+          "compare",
+          "assess",
+          "review"
+        ],
+        "allowed_tools": [],
+        "context_policy": "relevant_evidence"
+      }
+    },
+    "candidate": {
+      "screen": {
+        "kind": "screen_regions",
+        "depends_on": [],
+        "allowed_tools": [
+          "inspect_candidate",
+          "screen_candidate"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "inspect_evidence": {
+        "kind": "inspect_evidence",
+        "depends_on": [],
+        "allowed_tools": [
+          "list_evidence",
+          "table_slice"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "evidence_review": {
+        "kind": "review_candidate",
+        "depends_on": [
+          "inspect_evidence"
+        ],
+        "allowed_tools": [
+          "control_overlap",
+          "reference_sequence"
+        ],
+        "context_policy": "contradictions_first"
+      },
+      "compare": {
+        "kind": "compute_features",
+        "depends_on": [
+          "evidence_review"
+        ],
+        "allowed_tools": [
+          "expression_comparison",
+          "gene_proximity"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "assess": {
+        "kind": "assess_candidate",
+        "depends_on": [
+          "screen",
+          "evidence_review",
+          "compare"
+        ],
+        "allowed_tools": [
+          "expression_comparison",
+          "control_overlap",
+          "gene_proximity"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "review": {
+        "kind": "review_candidate",
+        "depends_on": [
+          "screen",
+          "evidence_review",
+          "compare",
+          "assess"
+        ],
+        "allowed_tools": [
+          "screen_candidate",
+          "control_overlap"
+        ],
+        "context_policy": "relevant_evidence"
+      },
+      "report": {
+        "kind": "publish_shortlist",
+        "depends_on": [
+          "screen",
+          "evidence_review",
+          "compare",
+          "assess",
+          "review"
+        ],
+        "allowed_tools": [],
+        "context_policy": "relevant_evidence"
+      }
+    },
+    "roles_added": [
+      "evidence_review",
+      "inspect_evidence"
+    ],
+    "roles_removed": [
+      "inspect"
+    ],
+    "roles_modified": [
+      "assess",
+      "compare",
+      "report",
+      "review"
+    ]
+  },
+  "execution": {
+    "status": "tasks_instantiated_execution_pending_or_incomplete",
+    "runs": [
+      {
+        "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+        "status": "running",
+        "case_context": {
+          "case_id": "olonne-18--full_sources",
+          "candidate_id": "olonne-18",
+          "scenario_id": "full_sources",
+          "assembly": "GRCh38",
+          "cell_context": "H1 human embryonic stem cells",
+          "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "objective": "Do these measured expression changes justify excluding this candidate region?",
+          "question": "Do these measured expression changes justify excluding this candidate region? Use the available H1 tables, untargeted controls and GRCh38 annotations. State what the calculations can and cannot establish.",
+          "instructions": "Use the available H1 tables, untargeted controls and GRCh38 annotations. State what the calculations can and cannot establish.",
+          "controls_available": true,
+          "evidence_revision_fixture": null
+        },
+        "through_sequence": 9,
+        "checks": {
+          "actual_task_topology_matches_saved_candidate": true,
+          "run_frozen_to_candidate": true,
+          "mode_real_model": true,
+          "assigned_budget_matches_optimizer_comparison": true,
+          "model_identity_settings_and_pricing_match": true,
+          "started_tasks_waited_for_committed_dependencies": true,
+          "all_added_roles_have_accepted_real_model_traces": false,
+          "changed_reviewer_context_traced": false,
+          "moved_control_tool_actually_called_by_new_role": false
+        },
+        "topology_mismatches": [],
+        "dependency_order_violations": [],
+        "task_states": [
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+            "role_id": "screen",
+            "kind": "screen_regions",
+            "depends_on": [],
+            "allowed_tools": [
+              "inspect_candidate",
+              "screen_candidate"
+            ],
+            "context_policy": "relevant_evidence",
+            "status": "running",
+            "attempt": 1,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0",
+            "role_id": "inspect_evidence",
+            "kind": "inspect_evidence",
+            "depends_on": [],
+            "allowed_tools": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "context_policy": "relevant_evidence",
+            "status": "running",
+            "attempt": 1,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+            "role_id": "evidence_review",
+            "kind": "review_candidate",
+            "depends_on": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+            ],
+            "allowed_tools": [
+              "control_overlap",
+              "reference_sequence"
+            ],
+            "context_policy": "contradictions_first",
+            "status": "queued",
+            "attempt": 0,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+            "role_id": "compare",
+            "kind": "compute_features",
+            "depends_on": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0"
+            ],
+            "allowed_tools": [
+              "expression_comparison",
+              "gene_proximity"
+            ],
+            "context_policy": "relevant_evidence",
+            "status": "queued",
+            "attempt": 0,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0",
+            "role_id": "assess",
+            "kind": "assess_candidate",
+            "depends_on": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0"
+            ],
+            "allowed_tools": [
+              "expression_comparison",
+              "control_overlap",
+              "gene_proximity"
+            ],
+            "context_policy": "relevant_evidence",
+            "status": "queued",
+            "attempt": 0,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0",
+            "role_id": "review",
+            "kind": "review_candidate",
+            "depends_on": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0"
+            ],
+            "allowed_tools": [
+              "screen_candidate",
+              "control_overlap"
+            ],
+            "context_policy": "relevant_evidence",
+            "status": "queued",
+            "attempt": 0,
+            "plan_revision": 0
+          },
+          {
+            "task_id": "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:report:r0",
+            "role_id": "report",
+            "kind": "publish_shortlist",
+            "depends_on": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0"
+            ],
+            "allowed_tools": [],
+            "context_policy": "relevant_evidence",
+            "status": "queued",
+            "attempt": 0,
+            "plan_revision": 0
+          }
+        ],
+        "role_traces": [],
+        "events": [
+          {
+            "sequence": 1,
+            "cause": "run.created",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:evidence_review:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:compare:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:assess:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:review:r0",
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:report:r0"
+            ]
+          },
+          {
+            "sequence": 2,
+            "cause": "evaluation.case_bound",
+            "task_ids": []
+          },
+          {
+            "sequence": 3,
+            "cause": "coordinator.recovered",
+            "task_ids": []
+          },
+          {
+            "sequence": 4,
+            "cause": "task.started",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0"
+            ]
+          },
+          {
+            "sequence": 5,
+            "cause": "task.started",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+            ]
+          },
+          {
+            "sequence": 6,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+            ]
+          },
+          {
+            "sequence": 7,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0"
+            ]
+          },
+          {
+            "sequence": 8,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:screen:r0"
+            ]
+          },
+          {
+            "sequence": 9,
+            "cause": "task.reservation_extended",
+            "task_ids": [
+              "run-5134783b07da40f2b6ac5c6b053bf901:olonne-18:inspect_evidence:r0"
+            ]
+          }
+        ],
+        "export": {
+          "path": "run-5134783b07da40f2b6ac5c6b053bf901.export.json",
+          "sha256": "865bd67caf094c41b2b6e6bb6ecbd2d3ea0e84f0edd581f299988a019dd4292d"
+        }
+      }
+    ]
+  },
+  "evaluation": {
+    "status": "pending",
+    "promotion": null,
+    "h1_case_results": [
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "olonne-18--controls_withheld",
+        "candidate_id": "olonne-18",
+        "scenario_id": "controls_withheld",
+        "split": "validation",
+        "arm": "H1",
+        "run_id": null,
+        "harness_hash": null,
+        "status": "awaiting_proposal",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      },
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "olonne-18--h1_context_only",
+        "candidate_id": "olonne-18",
+        "scenario_id": "h1_context_only",
+        "split": "validation",
+        "arm": "H1",
+        "run_id": null,
+        "harness_hash": null,
+        "status": "awaiting_proposal",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      },
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "keppel-19--full_sources",
+        "candidate_id": "keppel-19",
+        "scenario_id": "full_sources",
+        "split": "final",
+        "arm": "H1",
+        "run_id": null,
+        "harness_hash": null,
+        "status": "awaiting_proposal",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      },
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "keppel-19--controls_withheld",
+        "candidate_id": "keppel-19",
+        "scenario_id": "controls_withheld",
+        "split": "final",
+        "arm": "H1",
+        "run_id": null,
+        "harness_hash": null,
+        "status": "awaiting_proposal",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      },
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "keppel-19--h1_context_only",
+        "candidate_id": "keppel-19",
+        "scenario_id": "h1_context_only",
+        "split": "final",
+        "arm": "H1",
+        "run_id": null,
+        "harness_hash": null,
+        "status": "awaiting_proposal",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      },
+      {
+        "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+        "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+        "case_id": "olonne-18--full_sources",
+        "candidate_id": "olonne-18",
+        "scenario_id": "full_sources",
+        "split": "validation",
+        "arm": "H1",
+        "run_id": "run-5134783b07da40f2b6ac5c6b053bf901",
+        "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+        "status": "running",
+        "score": null,
+        "usage": {
+          "tokens": null,
+          "tool_calls": 0,
+          "model_calls": 0,
+          "cost_usd": null,
+          "duration_seconds": 0,
+          "usage_complete": false
+        },
+        "trace_artifact_ids": [],
+        "error": null
+      }
+    ]
+  },
+  "files": {
+    "parent": {
+      "path": "parent-harness.json",
+      "sha256": "80ddc79dda63715c2a60e1151d7cb5f2758fee6358fc627949ca6c9bc945f544"
+    },
+    "candidate": {
+      "path": "candidate-harness.json",
+      "sha256": "f3908ba4c2ee951657090ff003c460d58a0da76173b1c1c77eaf529d9f5760cc"
+    },
+    "response": {
+      "path": "optimizer-response.json",
+      "sha256": "3224d3155a35dfac777cd51ac535e5e9edfa4312773e84e47e2186f57726404a"
+    },
+    "optimizer": {
+      "path": "optimizer-attempt.json",
+      "sha256": "e3cc0db0930d7bcb1e7135571ac4e4d580520cb3dcf4f8746a1e7c2389868d0d"
+    },
+    "experiment": {
+      "path": "experiment-observed.json",
+      "sha256": "65d77626631291b8b42d63f157b805c745ba84f18f4d3c8bfdd9024f089cbf50"
+    }
+  },
+  "limitations": [
+    "Compilation, executed topology, validation, and promotion are separate claims; pending stages are not successes.",
+    "Exact model-authored new-role instructions contain literal [shared_instruction:...] markers. They were preserved, not silently expanded or repaired. Runtime mandatory metadata/output constraints remain separate.",
+    "The optimizer rationale is its own hypothesis from development traces, not an independently established cause or improvement.",
+    "This read-only inspection makes no provider call and does not force-dispatch a candidate run.",
+    "No biological safety or broad generalization is demonstrated."
+  ],
+  "model_improvement_claim": false
+}

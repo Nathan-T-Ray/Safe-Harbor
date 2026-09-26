@@ -1,0 +1,41 @@
+{
+  "mode": "read_only_real_model_record",
+  "run_id": "run-650b0b7901da47e4a4400d87243a2111",
+  "passed": false,
+  "criterion": "Every task dependency progresses left to right",
+  "violations": [
+    {
+      "parent_id": "run-650b0b7901da47e4a4400d87243a2111:pansio-1:assess:r0",
+      "child_id": "run-650b0b7901da47e4a4400d87243a2111:pansio-1:review:r0",
+      "parent_x": 792,
+      "child_x": 792
+    }
+  ],
+  "positions": {
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:screen:r0": {
+      "transform": "translate(0px, 0px)",
+      "x": 0
+    },
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:inspect:r0": {
+      "transform": "translate(264px, 0px)",
+      "x": 264
+    },
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:compare:r0": {
+      "transform": "translate(528px, 0px)",
+      "x": 528
+    },
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:assess:r0": {
+      "transform": "translate(792px, 0px)",
+      "x": 792
+    },
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:review:r0": {
+      "transform": "translate(792px, 172px)",
+      "x": 792
+    },
+    "run-650b0b7901da47e4a4400d87243a2111:pansio-1:report:r0": {
+      "transform": "translate(1056px, 0px)",
+      "x": 1056
+    }
+  },
+  "model_calls": 0
+}

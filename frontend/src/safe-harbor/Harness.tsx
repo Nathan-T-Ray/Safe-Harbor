@@ -13,7 +13,8 @@ const words = (value: unknown): string => String(value ?? '').replaceAll('_',' '
 
 function LiveProposal({experiment}: {experiment:SavedRecord}) {
   const optimizer=record(experiment.optimizer), promotion=record(experiment.promotion);
-  const operations=records(record(optimizer.patch).operations), results=records(experiment.results);
+  const splitOrder=['development','validation','final'];
+  const operations=records(record(optimizer.patch).operations), results=records(experiment.results).sort((a,b)=>splitOrder.indexOf(String(a.split))-splitOrder.indexOf(String(b.split)));
   const hasProposal=Object.keys(optimizer).length>0, hasDecision=Object.keys(promotion).length>0;
   const compiled=optimizer.status==='candidate_ready'&&typeof optimizer.candidate_hash==='string';
   const h1Runs=results.filter(item=>item.arm==='H1'&&typeof item.run_id==='string'&&item.run_id.length>0);
@@ -35,7 +36,7 @@ function LiveProposal({experiment}: {experiment:SavedRecord}) {
     {typeof optimizer.candidate_hash==='string'&&<p className="hash-line">Candidate: {optimizer.candidate_hash}</p>}
     {hasProposal&&<p className="report-limitation">Saved optimizer usage: {number(usage.tokens)} tokens · {number(usage.model_calls)} calls · {money(usage.cost_usd)}. {usage.usage_complete===true?'Usage complete.':'Usage incomplete or pending.'}</p>}
     <p className="small muted">Compilation is not execution or promotion. A recorded run's completion is workflow state; required-answer quality remains a separate saved evaluation.</p>
-    {results.length>0&&<><h3>Assigned case progress</h3><div className="table-scroll"><table aria-label="Live assigned case results"><thead><tr><th>Case / split</th><th>Arm</th><th>Saved outcome</th><th>Stored run</th></tr></thead><tbody>{results.map((item,index)=><tr key={`${String(item.arm)}:${String(item.case_id)}:${index}`} data-arm={String(item.arm)}><td>{String(item.case_id)}<br/>{words(item.split)}</td><td>{String(item.arm)}</td><td>{words(item.status)}</td><td>{typeof item.run_id==='string'&&item.run_id.length>0?<a href={`/?run=${encodeURIComponent(item.run_id)}`}>Inspect {String(item.arm)} run ↗</a>:'No run recorded'}</td></tr>)}</tbody></table></div></>}
+    {results.length>0&&<><h3>Assigned case progress</h3><div className="table-scroll"><table aria-label="Live assigned case results" style={{fontSize:12}}><thead><tr><th>Case / split</th><th>Arm</th><th>Saved outcome</th><th>Stored run</th></tr></thead><tbody>{results.map((item,index)=><tr key={`${String(item.arm)}:${String(item.case_id)}:${index}`} data-arm={String(item.arm)}><td>{String(item.case_id)}<br/>{words(item.split)}</td><td>{String(item.arm)}</td><td>{words(item.status)}</td><td>{typeof item.run_id==='string'&&item.run_id.length>0?<a href={`/?run=${encodeURIComponent(item.run_id)}`}>Inspect {String(item.arm)} run ↗</a>:'No run recorded'}</td></tr>)}</tbody></table></div></>}
   </section>;
 }
 

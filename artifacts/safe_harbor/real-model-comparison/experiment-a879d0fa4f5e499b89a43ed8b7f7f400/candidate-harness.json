@@ -1,0 +1,215 @@
+{
+  "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+  "description": "Unselected candidate specification; execution and separate evaluation are required.",
+  "immutable_constraints": {
+    "assembly": "GRCh38",
+    "cell_context": "H1 human embryonic stem cells",
+    "scientific_criteria": "safe-harbor-criteria-v1; fixed by the source catalog",
+    "reference_answers": "evaluator-only; immutable and unavailable to workers",
+    "evaluation_rules": "frozen experiment manifest; optimizer cannot modify",
+    "input_data": "frozen source hashes and evidence availability per case",
+    "model_identity": "fixed by the comparison manifest; optimizer cannot modify",
+    "total_assigned_budget": "fixed by the comparison manifest and run ledger",
+    "permission_boundary": "scoped approved tools only; no arbitrary URLs, files, or evaluator data",
+    "max_workers": 2,
+    "max_tasks_per_episode": 24,
+    "max_replanning_rounds": 3,
+    "max_transient_retries": 1,
+    "max_candidates": 3,
+    "scientific_contract": "Separate named-criterion screen status, endpoint support, and freshness. Missing required evidence means incomplete. No global safety claim."
+  },
+  "name": "Candidate workflow from 2562bbd42027",
+  "parent_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "patch": {
+    "operations": [
+      {
+        "op": "split_role",
+        "role_id": "inspect",
+        "roles": [
+          {
+            "role_id": "inspect_evidence",
+            "kind": "inspect_evidence",
+            "question": "What expression tables, methods, source rows, and reference evidence are available?",
+            "allowed_tools": [
+              "list_evidence",
+              "table_slice"
+            ],
+            "context_policy": "relevant_evidence",
+            "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+            "decision_target": "evidence_inventory",
+            "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete."
+          },
+          {
+            "role_id": "evidence_review",
+            "kind": "review_candidate",
+            "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+            "allowed_tools": [
+              "reference_sequence"
+            ],
+            "context_policy": "contradictions_first",
+            "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+            "decision_target": "evidence_availability",
+            "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs."
+          }
+        ]
+      },
+      {
+        "op": "reassign_tools",
+        "from_role_id": "compare",
+        "to_role_id": "evidence_review",
+        "tools": [
+          "control_overlap"
+        ]
+      }
+    ]
+  },
+  "proposal_metadata": {
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "provider": "openrouter",
+    "response_artifact_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400:optimizer-response",
+    "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+    "request_hash": "18f0b8cddd46fa9ad778cd395d1355dc4cfcfe1c7fb0fd9378353f77ca8b28d8",
+    "rationale": "Development traces show H0 failed on controls_withheld because the inspect role failed after revision, while R0 completed; H0 also had unsupported_count 3 on full_sources. The failure appears tied to inspect attempting to resolve control availability and missing evidence. Splitting inspect into a pure evidence-inventory role and an upstream evidence-review role that explicitly handles missing controls should reduce failure risk and improve completeness. Validation could disprove this if the new topology does not improve completion on controls_withheld or increases unsupported_count.",
+    "development_case_ids": [
+      "pansio-1--controls_withheld",
+      "pansio-1--controls_withheld",
+      "pansio-1--full_sources",
+      "pansio-1--full_sources",
+      "pansio-1--h1_context_only",
+      "pansio-1--h1_context_only"
+    ]
+  },
+  "proposal_mode": "real_model",
+  "roles": [
+    {
+      "role_id": "screen",
+      "kind": "screen_regions",
+      "question": "Which frozen computational criteria are met, failed, or incomplete for this published interval?",
+      "depends_on": [],
+      "allowed_tools": [
+        "inspect_candidate",
+        "screen_candidate"
+      ],
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Read the named criteria and their parameters. Report all required missing criteria, including unavailable cancer-gene/regulatory evidence. Never infer an overall pass from the available subset.",
+      "decision_target": "expression_exclusion_concern",
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "inspect_evidence",
+      "kind": "inspect_evidence",
+      "question": "What expression tables, methods, source rows, and reference evidence are available?",
+      "allowed_tools": [
+        "list_evidence",
+        "table_slice"
+      ],
+      "context_policy": "relevant_evidence",
+      "instructions": "[shared_instruction:scientific_instructions]List available evidence and table slices. Identify H1 targeted-versus-control and untargeted-control contrasts, significance/selection rules, gene units, duplicate identifiers, and whether only significant results are tabulated. Do not attempt to resolve missing controls; report availability only. H9 is a different biological context.",
+      "decision_target": "evidence_inventory",
+      "completion_condition": "Persist exact evidence IDs and table availability; flag missing required evidence as incomplete.",
+      "depends_on": [],
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "evidence_review",
+      "kind": "review_candidate",
+      "question": "Are control comparisons and required evidence available, and are missing controls explicitly flagged as incomplete rather than failed?",
+      "allowed_tools": [
+        "control_overlap",
+        "reference_sequence"
+      ],
+      "context_policy": "contradictions_first",
+      "instructions": "[shared_instruction:scientific_instructions]Independently verify whether control evidence is present. If controls are withheld or unavailable, explicitly mark controls_unavailable and set screen_status to incomplete. Do not treat missing controls as a negative biological result or a failure. Use control_overlap only if control evidence is present. Reconcile any contradictions between the evidence inventory and the screen status. [shared_instruction:answer_contract]",
+      "decision_target": "evidence_availability",
+      "completion_condition": "Persist a clear determination of control availability and missing evidence, with exact evidence IDs.",
+      "depends_on": [
+        "inspect_evidence"
+      ],
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "compare",
+      "kind": "compute_features",
+      "question": "How do targeted expression changes compare with untargeted-control variation and genomic proximity?",
+      "depends_on": [
+        "evidence_review"
+      ],
+      "allowed_tools": [
+        "expression_comparison",
+        "gene_proximity"
+      ],
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Select relevant deterministic calculations. Obtain targeted and control counts, explicit overlap numerators and denominators, duplicate/unmapped identifiers, and distances using tools. Prioritize a missing control or proximity calculation that could change the interpretation. Do not do interval arithmetic yourself.",
+      "decision_target": "expression_exclusion_concern",
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "assess",
+      "kind": "assess_candidate",
+      "question": "Do these measured expression changes justify excluding this candidate region?",
+      "depends_on": [
+        "screen",
+        "evidence_review",
+        "compare"
+      ],
+      "allowed_tools": [
+        "expression_comparison",
+        "control_overlap",
+        "gene_proximity"
+      ],
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Synthesize the available numerical results and methods. Use tools to resolve missing consequential evidence. Explain what the expression comparison supports or questions, with exact counts and denominators. Control variation can contextualize a concern but does not establish causality or safety. Preserve uncertainty when required evidence is missing. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "decision_target": "expression_exclusion_concern",
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "review",
+      "kind": "review_candidate",
+      "question": "Are the candidate assessment's numerical findings, context, and exclusions supported by the consumed evidence?",
+      "depends_on": [
+        "screen",
+        "evidence_review",
+        "compare",
+        "assess"
+      ],
+      "allowed_tools": [
+        "screen_candidate",
+        "control_overlap"
+      ],
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Independently challenge numerical claims, denominators, control awareness, applicability to H1, and unsupported biological conclusions. Reconcile contradictions explicitly. Do not turn absent results into failures or label suitability established. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "decision_target": "expression_exclusion_concern",
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    },
+    {
+      "role_id": "report",
+      "kind": "publish_shortlist",
+      "question": "What versioned candidate dossier accurately records the conclusion, evidence, and remaining requirements?",
+      "depends_on": [
+        "screen",
+        "evidence_review",
+        "compare",
+        "assess",
+        "review"
+      ],
+      "allowed_tools": [],
+      "context_policy": "relevant_evidence",
+      "instructions": "Use actual source-backed numerical results and exact evidence IDs. Preserve assembly, H1 cell context, source versions, original row provenance, and unresolved requirements. Missing evidence is not a negative biological result. Keep gene-body and transcription-start distances distinct. Reference GRCh38 is not a personalized H1 genome. GENCODE v36 is a new annotation analysis. Control overlap and proximity cannot establish safety or causality. Never assign a global safe label or invent thresholds. Publish a concise inspectable synthesis scoped to the named endpoint and assay. Include evidence IDs and remaining limitations. Label publication-derived shortlist, deterministic operational versus real model mode, and provisional unknowns faithfully. Return numerical_findings as an object with applicable keys de_count, control_de_count, shared_de_count, targeted_only_count, overlap_fraction, min_gene_body_gap_bp, min_tss_base_distance_bp, mapped_de_count, nearest_mapped_de_gene_gap_bp. Include all nine keys. Values must be numbers copied from deterministic tool results; use null for unavailable values, never invent zero. de_count is targeted unique versioned Ensembl DE IDs; control_de_count is the independent untargeted count; shared_de_count and targeted_only_count use the control-overlap sets; overlap_fraction is shared/targeted. min_gene_body_gap_bp is the nearest gene-body Bioframe gap; min_tss_base_distance_bp uses the explicitly frozen nearest-reference-base distance; mapped_de_count and nearest_mapped_de_gene_gap_bp refer to GENCODE-mapped DE genes. Provide numerical_evidence as an object mapping each reported numeric key to exact consumed source/artifact IDs. Provide exclusion_decision ('justified_for_named_criterion', 'not_justified_by_available_evidence', or 'unresolved'), screen_status ('pass','fail','incomplete'), evidence_status ('supported_for_endpoint','conflicting','unknown'), conclusion, evidence_ids, unresolved_questions, and plain-text limitations. Also provide limitation_codes using only applicable entries from significant_only_tables, reference_not_personal_h1, control_overlap_not_causality, distance_not_safety, missing_cancer_regulatory_evidence, unmapped_de_ids, source_count_discrepancy, controls_unavailable, cell_context_not_transferable. Explain each selected code in limitations. Do not claim controls_unavailable when control evidence is present. These are output names and scientific guardrails, not reference answers. Every assigned required output is evaluated, including missing answers. Reference answers and evaluator files are inaccessible through approved tools.",
+      "decision_target": "expression_exclusion_concern",
+      "completion_condition": "Persist exact evidence-linked results, distinguish measured facts from interpretation, and retain unresolved questions.",
+      "max_tool_calls": 4,
+      "max_model_calls": 2
+    }
+  ],
+  "schema_version": 1
+}

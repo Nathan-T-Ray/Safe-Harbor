@@ -8,14 +8,16 @@ Safe Harbor uses real genome data to investigate published candidate DNA inserti
 
 ## Start implementing
 
-Read an available SH-* ticket, inspect its dependencies and reserved paths, and claim it visibly before editing. Active ownership stays on the live GitHub issue. Submit small PRs to `main`. Shared contracts/dependencies are integrator-owned.
+Read an available SH-* ticket, inspect its dependencies and reserved paths, and claim it visibly before editing. Active ownership stays on the live GitHub issue. Push small verified increments directly to `main`; the user has explicitly requested direct integration. Shared contracts/dependencies are integrator-owned.
 
-Current active lanes: runtime R10–R12; evaluation H03–H05; automatic harness proposals H06–H08; integrator D08–D09 and Q08. These are claimed. External contributors should inspect the live board for available E2E/critic and provenance packages, then claim a distinct file scope. Do not duplicate the active implementation.
+The live board marks accepted work DONE and shows the remaining automatic-harness/comparison and final demonstration work. Check it before starting; do not duplicate completed implementation or overlap an active file claim. Scientific/runtime/scoring code is frozen during a comparison, while documentation and UI integrations can continue.
 
 ## Current implementation
 
 GRCh38 reference, H1 context, publication-derived Pansio-1, Olônne-18 and Keppel-19. Real source tables, hashes, reference sequence and GENCODE v36 annotations are ingested. React genome/graph/evidence/replay UI, FastAPI/MongoDB transactional ledger, LangGraph checkpoints, scoped calculations and saved executable harness are implemented and being integrated.
 
 A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim or model-improvement result is made. The configured real-model investigation and fair comparison are being verified; no improvement result is claimed.
+
+A genuine R0 investigation completed with18/18 required outputs and verified browser/replay state. Other model runs have made errors; this is a successful core trial, not a demonstrated improvement. See [the ready baseline walkthrough](docs/safe-harbor/DEMO.md), [actual process/revision proof](docs/safe-harbor/CONTINUITY_DEMO.md), and [current status](docs/safe-harbor/STATUS.md).
 
 **NO UNIT TESTS. NO COMPONENT TESTS. E2E ONLY.** Build, type, syntax, schema and data-integrity checks are permitted.
