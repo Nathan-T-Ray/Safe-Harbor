@@ -1,22 +1,26 @@
 # Implementation status — 2026-09-26
 
-[Live contributor board](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/1) and issue claims are authoritative. This is the standalone Safe Harbor project; all 60 old-location SH tickets redirect here. Legacy LA tickets were left untouched.
+Work lands directly on `main`. [Live ticket board](https://github.com/Nathan-T-Ray/Safe-Harbor/issues/1) shows current owners and accepted tickets. This is the standalone Safe Harbor project, with a dedicated local MongoDB replica set; it does not use the old project database.
 
-| Package | Owner | Actual status |
-|---|---|---|
-| F01–F04 | codex-integrator | Standalone repo, contracts, locks, startup and dedicated MongoDB proven; model configuration supplied; first genuine investigation in progress |
-| D01–D07 | codex-data | Five real supplements, 15 source hashes, GRCh38 coordinates, sequences, Comp/PseudoGene GENCODE v36 and bounded numerical tools verified |
-| D08–D09 | codex-integrator | Independent raw-file calculation agrees with 27 persisted numbers; nine grouped audit cases and promotion rule frozen; no human review claimed |
-| R01–R09 | codex-runtime | Real API/Mongo crash, idempotency and active revision journeys passed; real provider path remains untested |
-| R10–R12 | codex-runtime | Scoped retrieval, bounded contexts, proposal validation and historical export implemented; E2E integration in progress |
-| H01–H02 | codex-harness | Saved manual structural patch executed a genuinely different task graph; this is operational evidence only |
-| H03–H05 | codex-evaluation | Both baselines and isolated scoring executed operationally; all assignments, missing H1 and zero model calls reported |
-| H06–H08 | codex-harness | Optimizer, promotion and reporting implemented; automatic proposal and actual model comparison await credentials |
-| U01–U10/U12 | codex-ui | Actual API/browser genome, exact bases, graph, evidence and historical replay verified; presentation refinements remain |
-| Q08 | codex-integrator | Browser reconstruction equals MongoDB snapshots at sequences 1/19/39, repeated seeks; no future assessment leakage |
+**UI is implemented and running at http://localhost:5176.** API:8016, dedicated MongoDB:27021. [Open the completed real R0 investigation](http://localhost:5176/?run=run-1c38545496844fcb858df0892a3df064).
 
-Scientific context is H1 human embryonic stem cells against the GRCh38 reference, not a personalized H1 genome. The three candidates are publication-derived. Keppel's H1 workbook count of 139 versus article prose count of 119 remains unresolved. Missing cancer/regulatory inputs keep the overall screen incomplete. No global biological safety conclusion is produced.
+| Work | Demonstrated state |
+|---|---|
+| Real source pack and calculations | Five actual supplements, 15 original source hashes, verified GRCh38 intervals and reference bases, GENCODE v36 Comp/PseudoGene annotations; independent calculations agree |
+| Browser | Four coordinate-correct zoom levels, graph, evidence, replay and presentation integrated; 49/49 readability/keyboard/motion checks; six live/historical candidate zoom journeys passed |
+| Genuine vertical slice | R0 Pansio development preflight completed with 18/18 supported required outputs; browser conclusion, axes, revision and evidence agree with MongoDB, 7/7 checks |
+| Persistence | Authoritative transactional MongoDB ledger and separate LangGraph checkpoints; actual process death/restart verified; original artifacts remain accessible |
+| Runtime repairs | Authoritative criterion/evidence validation integrated. External E2Es exposed concurrent revision allocation and stop/resume races; isolated fixes are undergoing actual-service verification |
+| Harness | Saved structural patches compile and execute changed task graphs. Manual operational proof is complete; a successful automatically generated executable patch is still required |
+| Actual comparison | First attempt preserved and explicitly aborted after empty model outputs and rejected optimizer proposal. Nine runs started; nine later arms blocked before dispatch; six H1 assignments lacked a candidate. No improvement claim |
+| Next model work | Same model/provider, explicit low reasoning and 8192 completion allowance. R0 development preflight passes; H0 development preflight underway. New held-out comparison waits for these checks and runtime fixes |
 
-Evidence includes `artifacts/manifests/independent-numerical-api-audit.json`, `replay-integrity.json`, `replay-reference-versions.json`, `safe-harbor-foundation.json`, and operational process/revision reports under `artifacts/safe_harbor/`. These are deterministic operational runs and recorded replays, not real model investigations or proof of model improvement.
+The completed R0 preflight used 18,200 measured tokens, one model call, eight deterministic tools and USD0.00363608. It is configuration preflight on development data, not a generalization or cost-win result. Model identity remains `deepseek/deepseek-v4.1-flash` via pinned `deepinfra/fp8`. Credentials stay in ignored chmod0600 `.env`.
 
-Current integration services: dedicated `safe-harbor-dev` replica set on localhost:27021, API:8016 and UI:5176. No Atlas connectivity claim is made. OpenRouter is configured server-side with `deepseek/deepseek-v4.1-flash`. The first genuine worker traces have committed tool calls and provider-reported usage; the complete assessment/comparison remains in progress. Genuine model investigation, automatic model-generated structural proposal, fair model comparison and final canonical real recording remain release gates.
+The first comparison spent 668,316 measured run tokens/USD0.108032232 plus 8,672 optimizer tokens/USD0.00205408; failed attempts remain visible. Its original manifest, results, exports and explicit abort record are under `artifacts/safe_harbor/real-model-comparison/experiment-5d8ef28995924af7b65ab6ef4deb3273/`. Final assessment audit found no aggregate/evidence violations in its 11 accepted records; most model proposals were invalid and retained unresolved states.
+
+Scientific context is H1 human embryonic stem cells against the GRCh38 reference, not a personalized H1 genome. All three candidates are publication-derived. Keppel's workbook count139 versus article119 remains unresolved. Missing cancer/regulatory evidence keeps the overall screen incomplete. Neither control overlap nor distance proves biological safety or causality.
+
+Current evidence: `artifacts/safe_harbor/real-model-preflight/run-1c38545496844fcb858df0892a3df064/`, `artifacts/safe_harbor/pr64-review/readability-final/`, `artifacts/safe_harbor/pr67-review/selector-compatible/`, `artifacts/safe_harbor/ledger-aggregate-repair/`, and `artifacts/manifests/replay-integrity.json`. Each report labels real-model versus deterministic operational execution. SVG locus fallback is explicit; no fabricated tracks are used.
+
+Remaining release gates: finish runtime race verification, execute an automatic structural proposal, run a fair H0/R0/H1 comparison, produce the canonical genuine recording, and complete independent claim review. No novel safe sites, global safety, whole-genome search, measured improvement or billion-token performance is claimed.

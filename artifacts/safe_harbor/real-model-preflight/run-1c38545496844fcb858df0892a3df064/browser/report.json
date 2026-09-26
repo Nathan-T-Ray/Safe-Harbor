@@ -1,0 +1,57 @@
+{
+  "checks": [
+    {
+      "check": "mode indicator shows REAL MODEL",
+      "passed": true,
+      "evidence": {
+        "mode": "REAL MODEL"
+      }
+    },
+    {
+      "check": "displayed conclusion equals committed assessment conclusion",
+      "passed": true,
+      "evidence": {
+        "shown_prefix": "The measured expression changes do not justify excluding the Pansio-1 candidate region. In H1 human embryonic stem cells, the targeted clone had 96 unique versioned Ensembl DE genes, while the indepen"
+      }
+    },
+    {
+      "check": "displayed status axes match committed assessment",
+      "passed": true,
+      "evidence": {
+        "axes": "computational screenincompleteexperimental evidenceunknownevidence freshnesscurrent"
+      }
+    },
+    {
+      "check": "displayed assessment revision matches",
+      "passed": true,
+      "evidence": {
+        "revision": "Revision 1"
+      }
+    },
+    {
+      "check": "assembly and cell context are visible",
+      "passed": true,
+      "evidence": {
+        "context": "GRCh38H1 human embryonic stem cellsautio-79592-v2-gencode36-comp-pseudo-2026-09-26Ledger connectedLIVE"
+      }
+    },
+    {
+      "check": "evidence inspector exposes committed tool results",
+      "passed": true,
+      "evidence": {
+        "drawer_prefix": "Inspect the committed recordEvidence & calculations\u00d7reference assetsrev 1run-1c38545496844fcb858df0892a3df064:reference:pansio-1candidate idpansio-1data versionautio-79592-v2-gencode36-comp-pseudo-2026-09-26Evidence: source:supp1 \u00b7 source:supp5:pansio-1Source, versions & provenance{ \"data_version\": "
+      }
+    },
+    {
+      "check": "no page errors",
+      "passed": true,
+      "evidence": {
+        "errors": []
+      }
+    }
+  ],
+  "mode": "real_model",
+  "run_id": "run-1c38545496844fcb858df0892a3df064",
+  "phase": "read_only_browser_of_development_preflight",
+  "new_model_calls": 0
+}
