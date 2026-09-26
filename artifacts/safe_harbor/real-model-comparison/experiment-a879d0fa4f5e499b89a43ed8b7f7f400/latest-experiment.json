@@ -6,7 +6,7 @@
   "kind": "harness_comparison",
   "status": "running_validation",
   "created_at": "2026-09-26T19:38:39.607316+00:00",
-  "updated_at": "2026-09-26T19:52:35.784543+00:00",
+  "updated_at": "2026-09-26T19:53:58.179970+00:00",
   "comparison_manifest": {
     "schema_version": 1,
     "model": {
@@ -289,75 +289,6 @@
     }
   ],
   "results": [
-    {
-      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
-      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
-      "case_id": "olonne-18--controls_withheld",
-      "candidate_id": "olonne-18",
-      "scenario_id": "controls_withheld",
-      "split": "validation",
-      "arm": "H0",
-      "run_id": null,
-      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
-      "status": "pending",
-      "score": null,
-      "usage": {
-        "tokens": null,
-        "tool_calls": 0,
-        "model_calls": 0,
-        "cost_usd": null,
-        "duration_seconds": 0,
-        "usage_complete": false
-      },
-      "trace_artifact_ids": [],
-      "error": null
-    },
-    {
-      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
-      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
-      "case_id": "olonne-18--controls_withheld",
-      "candidate_id": "olonne-18",
-      "scenario_id": "controls_withheld",
-      "split": "validation",
-      "arm": "H1",
-      "run_id": null,
-      "harness_hash": null,
-      "status": "awaiting_proposal",
-      "score": null,
-      "usage": {
-        "tokens": null,
-        "tool_calls": 0,
-        "model_calls": 0,
-        "cost_usd": null,
-        "duration_seconds": 0,
-        "usage_complete": false
-      },
-      "trace_artifact_ids": [],
-      "error": null
-    },
-    {
-      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
-      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
-      "case_id": "olonne-18--h1_context_only",
-      "candidate_id": "olonne-18",
-      "scenario_id": "h1_context_only",
-      "split": "validation",
-      "arm": "H0",
-      "run_id": null,
-      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
-      "status": "pending",
-      "score": null,
-      "usage": {
-        "tokens": null,
-        "tool_calls": 0,
-        "model_calls": 0,
-        "cost_usd": null,
-        "duration_seconds": 0,
-        "usage_complete": false
-      },
-      "trace_artifact_ids": [],
-      "error": null
-    },
     {
       "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
       "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
@@ -2451,6 +2382,512 @@
       "arm": "R0",
       "run_id": "run-3c7aee6e4fdb45e7855a2b1e08bcdeea",
       "harness_hash": "e3718daeb896aac468ac7dfd855fd954ceba014aab5e57eaf933c0c6dd193383",
+      "status": "complete",
+      "score": {
+        "required_correct": 14,
+        "required_total": 15,
+        "required_accuracy": 0.9333333333333333,
+        "required_decisions_correct": 2,
+        "required_decisions_total": 3,
+        "unsupported_count": 2,
+        "unsupported_findings": [
+          {
+            "kind": "decision_contradicts_reference",
+            "key": "exclusion_decision"
+          },
+          {
+            "kind": "runtime_rejected_proposal",
+            "reason": "Resolving the expression exclusion concern requires available targeted and control evidence"
+          }
+        ],
+        "coverage": 1.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 111,
+            "actual": 111,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 60769,
+            "actual": 60769,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 64426,
+            "actual": 64426,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 103,
+            "actual": 103,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 32399164,
+            "actual": 32399164,
+            "present": true,
+            "correct": true,
+            "supported": true
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "unresolved"
+            ],
+            "actual": "not_justified_by_available_evidence",
+            "present": true,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": "incomplete",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": "unknown",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": true,
+            "correct": true
+          },
+          {
+            "kind": "limitation",
+            "key": "controls_unavailable",
+            "present": true,
+            "correct": true
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 19865,
+        "tool_calls": 8,
+        "model_calls": 1,
+        "cost_usd": 0.0041717032,
+        "duration_seconds": 57.3338,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-d41e363d07a549eb8565f5316a78bfae",
+        "artifact-407c98024b0d4ff08b2c1746ca53457d",
+        "artifact-b96811c30f4649b28d682675358df90b"
+      ],
+      "error": null,
+      "scoring_duration_seconds": 0.00211,
+      "selected_trace_artifact_id": "artifact-b96811c30f4649b28d682675358df90b"
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "olonne-18--controls_withheld",
+      "candidate_id": "olonne-18",
+      "scenario_id": "controls_withheld",
+      "split": "validation",
+      "arm": "H0",
+      "run_id": "run-d6e1befd83154d239fdfeab61b2eaefe",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+      "status": "failed",
+      "score": {
+        "required_correct": 0,
+        "required_total": 15,
+        "required_accuracy": 0.0,
+        "required_decisions_correct": 0,
+        "required_decisions_total": 3,
+        "unsupported_count": 0,
+        "unsupported_findings": [],
+        "coverage": 0.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 111,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 60769,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 64426,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 103,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 32399164,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "unresolved"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "controls_unavailable",
+            "present": false,
+            "correct": false
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 20590,
+        "tool_calls": 5,
+        "model_calls": 3,
+        "cost_usd": 0.0036412768,
+        "duration_seconds": 20.3719,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-205f49ce2e894d90b390303e2abaa2dc"
+      ],
+      "error": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+      "scoring_duration_seconds": 0.001912,
+      "selected_trace_artifact_id": null
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "olonne-18--controls_withheld",
+      "candidate_id": "olonne-18",
+      "scenario_id": "controls_withheld",
+      "split": "validation",
+      "arm": "H1",
+      "run_id": "run-e9b7d35c48e245a7ace4dce1f77e10d2",
+      "harness_hash": "453e57dd9f41b0cb35120608d3670cceaf8b15be4ce7e2c84684d65cb6097124",
+      "status": "failed",
+      "score": {
+        "required_correct": 0,
+        "required_total": 15,
+        "required_accuracy": 0.0,
+        "required_decisions_correct": 0,
+        "required_decisions_total": 3,
+        "unsupported_count": 0,
+        "unsupported_findings": [],
+        "coverage": 0.0,
+        "completed": false,
+        "support_ok": false,
+        "details": [
+          {
+            "kind": "number",
+            "key": "de_count",
+            "expected": 111,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_gene_body_gap_bp",
+            "expected": 60769,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "min_tss_base_distance_bp",
+            "expected": 64426,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "mapped_de_count",
+            "expected": 103,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "number",
+            "key": "nearest_mapped_de_gene_gap_bp",
+            "expected": 32399164,
+            "actual": null,
+            "present": false,
+            "correct": false,
+            "supported": false
+          },
+          {
+            "kind": "decision",
+            "key": "exclusion_decision",
+            "expected": [
+              "unresolved"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "screen_status",
+            "expected": [
+              "incomplete"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "decision",
+            "key": "evidence_status",
+            "expected": [
+              "unknown",
+              "conflicting"
+            ],
+            "actual": null,
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "significant_only_tables",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "reference_not_personal_h1",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "control_overlap_not_causality",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "distance_not_safety",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "missing_cancer_regulatory_evidence",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "unmapped_de_ids",
+            "present": false,
+            "correct": false
+          },
+          {
+            "kind": "limitation",
+            "key": "controls_unavailable",
+            "present": false,
+            "correct": false
+          }
+        ],
+        "reference_review_status": "independently_computed_not_human_reviewed",
+        "limitations": [
+          "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+        ]
+      },
+      "usage": {
+        "tokens": 17294,
+        "tool_calls": 5,
+        "model_calls": 3,
+        "cost_usd": 0.0020998880000000003,
+        "duration_seconds": 4.6642,
+        "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+        "usage_complete": true,
+        "uncertain_tokens": 0,
+        "uncertain_cost_usd": 0
+      },
+      "trace_artifact_ids": [
+        "artifact-f818f80283104dd19ed065bfeeb29156"
+      ],
+      "error": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+      "scoring_duration_seconds": 0.000662,
+      "selected_trace_artifact_id": null
+    },
+    {
+      "experiment_id": "experiment-a879d0fa4f5e499b89a43ed8b7f7f400",
+      "comparison_manifest_hash": "2af3928e232d6fcf9e10096319206fdd9355e6aadb54673ada66d7d2c02b84a4",
+      "case_id": "olonne-18--h1_context_only",
+      "candidate_id": "olonne-18",
+      "scenario_id": "h1_context_only",
+      "split": "validation",
+      "arm": "H0",
+      "run_id": "run-a198a3d757a140b0bafe6f37155e202b",
+      "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
       "status": "running",
       "score": null,
       "usage": {
