@@ -1,7 +1,7 @@
 /* Split investigation layout. Sage-on-white theme chosen by the repository owner. Palette: #cad2c5 #84a98c #52796f #354f52 #2f3e46 + white / tints. */
-:root{--s1:#cad2c5;--s2:#84a98c;--s3:#52796f;--s4:#354f52;--s5:#2f3e46;--tint:#f6f8f5;--tint2:#eef2ec;--sage-surface:#fff;--sage-background:#fff;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--s5);background:var(--sage-surface)}
+:root{--sage-body:Sora,system-ui,-apple-system,'Segoe UI',sans-serif;--sage-display:Fraunces,Georgia,'Times New Roman',serif;--s1:#cad2c5;--s2:#84a98c;--s3:#52796f;--s4:#354f52;--s5:#2f3e46;--tint:#f6f8f5;--tint2:#eef2ec;--sage-surface:#fff;--sage-background:#fff;font-family:var(--sage-body);color:var(--s5);background:var(--sage-surface)}
 html,body{background:var(--sage-surface);color:var(--s5)}
-.sage-app{min-height:100vh;display:flex;flex-direction:column;background:var(--sage-surface);color:var(--s5);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+.sage-app{min-height:100vh;display:flex;flex-direction:column;background:var(--sage-surface);color:var(--s5);font-family:var(--sage-body)}
 .sage-app h1,.sage-app h2,.sage-app h3{font-family:inherit;color:var(--s5);letter-spacing:-.01em}
 .sage-app .eyebrow{color:var(--s3);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
 .sage-app button,.sage-app .button{background:var(--sage-surface);color:var(--s5);border:1px solid var(--s1);border-radius:10px;padding:7px 12px;font-size:13px;box-shadow:none}
@@ -169,3 +169,8 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important
 .sage-main{position:relative;z-index:1}
 @media (max-width:1100px){.helix-watermark{display:none}}
 @media (prefers-reduced-motion:reduce){.helix-drift{animation:none}}
+
+/* Typography: Fraunces for headlines, Sora for body text. */
+.sage-app,.sage-app button,.sage-app input,.sage-app select,.sage-app textarea{font-family:var(--sage-body)}
+.sage-app h1,.sage-app h2,.sage-app h3,.sage-app .brand span,.sage-app .panel-head h2,.now-head h1,.tree-panel h2,.sage-app .drawer-head h2,.sage-app .rail-heading h1{font-family:var(--sage-display);font-optical-sizing:auto;letter-spacing:-.01em;font-weight:600}
+.sage-app code,.sage-app pre,.sage-app .sequence-row code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
