@@ -1,5 +1,5 @@
-/* Split investigation layout, using the specified dark navy, cyan and amber palette. */
-:root{--s1:#344960;--s2:#83e6d7;--s3:#83e6d7;--s4:#b1c2d8;--s5:#e3edf7;--tint:#142236;--tint2:#1a3243;--sage-surface:#101c2d;--sage-background:#0a1220;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--s5);background:var(--sage-surface)}
+/* Split investigation layout. Sage-on-white theme chosen by the repository owner. Palette: #cad2c5 #84a98c #52796f #354f52 #2f3e46 + white / tints. */
+:root{--s1:#cad2c5;--s2:#84a98c;--s3:#52796f;--s4:#354f52;--s5:#2f3e46;--tint:#f6f8f5;--tint2:#eef2ec;--sage-surface:#fff;--sage-background:#fff;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--s5);background:var(--sage-surface)}
 html,body{background:var(--sage-surface);color:var(--s5)}
 .sage-app{min-height:100vh;display:flex;flex-direction:column;background:var(--sage-surface);color:var(--s5);font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
 .sage-app h1,.sage-app h2,.sage-app h3{font-family:inherit;color:var(--s5);letter-spacing:-.01em}
@@ -137,18 +137,18 @@ body,#root,.safe-harbor-app.sage-app{background:var(--sage-surface) !important}
 
 /* Preserve contrast and restrained status accents on the original split layout. */
 body,#root,.safe-harbor-app.sage-app{background:var(--sage-background)!important}
-.sage-app .mode-chip{background:#173d43;color:#b5f4e9;border:1px solid #417678}
-.sage-app button.primary{background:#83e6d7;color:#102b30;border-color:#83e6d7}
-.sage-app button.primary:hover{background:#b4f2e6}
-.sage-app .amber-text,.now-state.failed,.now-state.blocked{color:#efc58b}
-.now-state.failed i,.now-state.blocked i{background:#efc58b;border-color:#efc58b}
-.fill-deep{fill:#265956;stroke:#83e6d7}.fill-char{fill:#60482f;stroke:#efc58b}
-.mark-light{stroke:#e3edf7}.mark-dark{stroke:#e3edf7}
-.sage-app .genome-canvas svg rect{fill:#2c4058}
+.sage-app .mode-chip{background:#354f52;color:#fff;border:1px solid #354f52}
+.sage-app button.primary{background:#354f52;color:#fff;border-color:#354f52}
+.sage-app button.primary:hover{background:#52796f}
+.sage-app .amber-text,.now-state.failed,.now-state.blocked{color:#2f3e46;font-weight:700}
+.now-state.failed i,.now-state.blocked i{background:#2f3e46;border-color:#2f3e46}
+.fill-deep{fill:#52796f;stroke:#52796f}.fill-char{fill:#2f3e46;stroke:#2f3e46}
+.mark-light{stroke:#fff}.mark-dark{stroke:#fff}
+.sage-app .genome-canvas svg rect{fill:#cad2c5}
 .sage-app .status-axes span,.sage-app .pill,.mode-chip{font-size:12px}
 .sage-app .muted,.sage-app .small.muted,.sage-top .data-version{opacity:1}
-.sage-app .inspector-drawer,.sage-app .harness-drawer{background:#101c2d;color:#e3edf7;border-color:#344960}
-.sage-app .drawer-scrim{background:#0009}
+.sage-app .inspector-drawer,.sage-app .harness-drawer{background:#fff;color:#2f3e46;border-color:#cad2c5}
+.sage-app .drawer-scrim{background:rgba(47,62,70,.28)}
 .sage-app .conclusion-text{font-size:18px;line-height:1.6}
 .sage-app .final-dossier-panel .panel-head{flex-wrap:wrap}
 @media(prefers-reduced-motion:reduce){.sage-app *,.sage-app *::before,.sage-app *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
