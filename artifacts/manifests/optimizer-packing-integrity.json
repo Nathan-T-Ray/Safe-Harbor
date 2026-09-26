@@ -1,0 +1,20 @@
+{
+  "check": "Read-only actual operational development-record packing and live pricing data-integrity audit; no provider request",
+  "source_experiment_id": "experiment-90c5f025a6fd4ed6b1d689f6248d6723",
+  "live_pricing_run_id": "run-152fa7ce5acd4449a90dd77269ada8d4",
+  "mode": "deterministic_operational",
+  "parent_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "packing_implementation_sha256": "54397673d6e7ed0954bc44f8dfebd9d862297005eb777d6d047a3fc456da4db6",
+  "cases": 6,
+  "task_records": 35,
+  "parent_instructions_expand_exactly": true,
+  "task_ids_columns_scores_and_arm_hashes_expand_exactly": true,
+  "input_utf8_bytes": 21971,
+  "conservative_tokens_including_output": 29579,
+  "conservative_cost_usd": 0.0018002650000000001,
+  "retained_actual_worker_trace_observations": 2,
+  "omitted_ids_retained_outside_prompt": 100,
+  "optimizer_token_limit": 30000,
+  "model_calls": 0,
+  "limitation": "Actual operational development traces and actual frozen endpoint pricing verify packing/bounds only. Genuine optimizer proposal and validation remain unexecuted."
+}

@@ -1,0 +1,24 @@
+{
+  "mode": "mock",
+  "pr": 65,
+  "head": "372eabfb07eaedd0694e35f002b11e4adfc857b0",
+  "script_sha256": "26f65aad9ef2e0f1b2f98beced58a8a6c19ac83dc410f6f28fd871125997bfaf",
+  "database": "safe_harbor_science_e2e_1790450324",
+  "review_only": true,
+  "core_changed": false,
+  "model_calls": 0,
+  "checks": [
+    {
+      "check": "forged_pass_over_incomplete_rejected_by_ledger",
+      "passed": false,
+      "run_id": "science-e2e-forged-screen-50c78c64244949eeb2de626711989292",
+      "harness_mode": "mock",
+      "incomplete_criteria": [
+        "cancer_gene_distance",
+        "outside_dhs_buffer",
+        "outside_ultraconserved_regions"
+      ],
+      "reason": "ledger committed screen_status=pass with incomplete criteria"
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+{
+  "journey": "recovery",
+  "started_at": "2026-09-26T19:03:10.223887+00:00",
+  "database": "sh_e2e_recovery_1790449389_0a8732",
+  "api_port": 8031,
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "labels": {
+    "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
+    "fault_injection": "operational crash hooks / delays / token reservations are fault-injection only and never reported as model usage",
+    "biological_claims": "none; these journeys test runtime persistence and control flow only"
+  },
+  "checks": [
+    {
+      "check": "accept_crash:run_created_via_api",
+      "passed": true,
+      "evidence": {
+        "http_status": 201,
+        "body": {
+          "run_id": "run-0f39b2989de64f57b452c274cbfd94fb"
+        }
+      }
+    },
+    {
+      "check": "accept_crash:process_died_at_hook",
+      "passed": true,
+      "evidence": {
+        "exit_code": 86,
+        "hook": "SAFE_HARBOR_CRASH_AFTER_ACCEPT=compute_features"
+      }
+    },
+    {
+      "check": "accept_crash:acceptance_durable_but_node_not_checkpointed",
+      "passed": true,
+      "evidence": {
+        "task_states_after_death": {
+          "assess": {
+            "status": "queued",
+            "attempt": 0,
+            "epoch": null
+          },
+          "compare": {
+            "status": "complete",
+            "attempt": 1,
+            "epoch": 1
+          },
+          "inspect": {
+            "status": "complete",
+            "attempt": 1,
+            "epoch": 1
+          },
+          "report": {
+            "status": "queued",
+            "attempt": 0,
+            "epoch": null
+          },
+          "review": {
+            "status": "queued",
+            "attempt": 0,
+            "epoch": null
+          },
+          "screen": {
+            "status": "complete",
+            "attempt": 1,
+            "epoch": 1
+          }
+        },
+        "compare_accept_operations": [
+          "accept:run-0f39b2989de64f57b452c274cbfd94fb:pansio-1:compare:r0:1:1"
+        ],
+        "compare_latest_checkpoint_channels": [
+          "attempt",
+          "branch:to:execute_and_accept",
+          "epoch",
+          "run_id",
+          "task_id"
+        ],
+        "screen_latest_checkpoint_channels": [
+          "accepted_sequence",
+          "attempt",
+          "epoch",
+          "run_id",
+          "task_id"
+        ],
+        "note": "The ledger holds the compare acceptance; its LangGraph thread has no completed-node checkpoint (screen's does), i.e. the process died between acceptance and checkpoint.",
+        "through_sequence_at_death": 8
+      }
+    },
+    {
+      "check": "accept_crash:accepted_outputs_preserved_not_reexecuted",
+      "passed": true,
+      "evidence": {
+        "artifacts_before_restart": {
+          "screen": [
+            [
+              "artifact-2e55bb3f652b4354a4cb4c184cc7b47d",
+              "261ad1013b5b3152b4facbd823a16c240fc64e8f57fb3640dc9edecc219fcf44"
+            ],
+            [
+              "artifact-7fe64e4d55da4a02abca37c718e6e2b0",
+              "46f06d59a1371258a03244791df0a345109134ebd67277a72d4828d5c0cf5822"
+            ],
+            [
+              "artifact-a4b547e0c5604c4da593ccbc31194a05",
+              "657ee5cae772df1f2b499777d5e14617fc59264744febd99e2950cd7e149d8b4"
+            ]
+          ],
+          "inspect": [
+            [
+              "artifact-790911deca91411b913f2f5042c0ed95",
+              "ff98de2fc4a74afff5e5ce806b4cc3558ae90a68694f3b9e368562fa3494dd14"
+            ],
+            [
+              "artifact-90b4ae4024584d2db5ce0242cf2bc05d",
+              "6f661ddb5fa57773bad0c00e8c55b743a2eaeacbf39a61dd2bebb6c88abeb15b"
+            ],
+            [
+              "artifact-baec807caf3f4304a377f47c1e5a4326",
+              "82e0371cfa2c51e04888ec6b12c14bc66f98202e7af734baa3ddcda0ad12ded3"
+            ],
+            [
+              "artifact-c66c336f8dc24cbc8fb261d593c6a905",
+              "7d078c3fc604fe5b4eb4a99b74cb40c062b4e67fa2d87e17631bb06dfd2a340c"
+            ]
+          ],
+          "compare": [
+            [
+              "artifact-0272de2832d546beb080ced63eb87037",
+              "3c15679e2043ca60c9c4f2ea76a2f99c701bba0aa0cb43334a0f07493e9cbb43"
+            ],
+            [
+              "artifact-1a3636f4c9dc4b3e8ce537e60b96a446",
+              "b96bc4163432a2f817bdb1695e300380ed1048aaf57472c66cc57c63eb6e7877"
+            ],
+            [
+              "artifact-a28add0b46c84617b87765bfcfdfd0e5",
+              "db759685fe163786a769cedbddd261847f4cdecf33a7c06ee2271b282690e08a"
+            ],
+            [
+              "artifact-f3ff156750b443748190e0d608723981",
+              "6a35a3b078d3010e0afb9f775028241781a5687b21496b4c4f34eef2a046e44f"
+            ]
+          ]
+        },
+        "artifacts_after_restart": {
+          "screen": [
+            [
+              "artifact-2e55bb3f652b4354a4cb4c184cc7b47d",
+              "261ad1013b5b3152b4facbd823a16c240fc64e8f57fb3640dc9edecc219fcf44"
+            ],
+            [
+              "artifact-7fe64e4d55da4a02abca37c718e6e2b0",
+              "46f06d59a1371258a03244791df0a345109134ebd67277a72d4828d5c0cf5822"
+            ],
+            [
+              "artifact-a4b547e0c5604c4da593ccbc31194a05",
+              "657ee5cae772df1f2b499777d5e14617fc59264744febd99e2950cd7e149d8b4"
+            ]
+          ],
+          "inspect": [
+            [
+              "artifact-790911deca91411b913f2f5042c0ed95",
+              "ff98de2fc4a74afff5e5ce806b4cc3558ae90a68694f3b9e368562fa3494dd14"
+            ],
+            [
+              "artifact-90b4ae4024584d2db5ce0242cf2bc05d",
+              "6f661ddb5fa57773bad0c00e8c55b743a2eaeacbf39a61dd2bebb6c88abeb15b"
+            ],
+            [
+              "artifact-baec807caf3f4304a377f47c1e5a4326",
+              "82e0371cfa2c51e04888ec6b12c14bc66f98202e7af734baa3ddcda0ad12ded3"
+            ],
+            [
+              "artifact-c66c336f8dc24cbc8fb261d593c6a905",
+              "7d078c3fc604fe5b4eb4a99b74cb40c062b4e67fa2d87e17631bb06dfd2a340c"
+            ]
+          ],
+          "compare": [
+            [
+              "artifact-0272de2832d546beb080ced63eb87037",
+              "3c15679e2043ca60c9c4f2ea76a2f99c701bba0aa0cb43334a0f07493e9cbb43"
+            ],
+            [
+              "artifact-1a3636f4c9dc4b3e8ce537e60b96a446",
+              "b96bc4163432a2f817bdb1695e300380ed1048aaf57472c66cc57c63eb6e7877"
+            ],
+            [
+              "artifact-a28add0b46c84617b87765bfcfdfd0e5",
+              "db759685fe163786a769cedbddd261847f4cdecf33a7c06ee2271b282690e08a"
+            ],
+            [
+              "artifact-f3ff156750b443748190e0d608723981",
+              "6a35a3b078d3010e0afb9f775028241781a5687b21496b4c4f34eef2a046e44f"
+            ]
+          ]
+        },
+        "compare_attempt": 1
+      }
+    },
+    {
+      "check": "accept_crash:unfinished_work_resumed_by_fresh_process",
+      "passed": true,
+      "evidence": {
+        "final_status": "complete",
+        "final_epoch": 2,
+        "downstream": {
+          "assess": {
+            "status": "complete",
+            "epoch": 2,
+            "attempt": 1
+          },
+          "review": {
+            "status": "complete",
+            "epoch": 2,
+            "attempt": 1
+          },
+          "report": {
+            "status": "complete",
+            "epoch": 2,
+            "attempt": 1
+          }
+        },
+        "recovery_events": [
+          {
+            "sequence": 2,
+            "epoch": 1
+          },
+          {
+            "sequence": 9,
+            "epoch": 2
+          }
+        ],
+        "seconds_from_restart_to_terminal": 13.48,
+        "assessments": 2,
+        "note": "Resumption needs no manual call: the fresh coordinator enqueues running runs and takes over once the dead process's 12 s lease expires."
+      }
+    },
+    {
+      "check": "accept_crash:event_history_contiguous",
+      "passed": true,
+      "evidence": {
+        "events": 16,
+        "through_sequence": 16
+      }
+    },
+    {
+      "check": "reserve_crash:process_died_at_hook",
+      "passed": true,
+      "evidence": {
+        "exit_code": 87,
+        "hook": "SAFE_HARBOR_CRASH_AFTER_RESERVE=compute_features"
+      }
+    },
+    {
+      "check": "reserve_crash:reservation_durable_at_death",
+      "passed": true,
+      "evidence": {
+        "compare_task": {
+          "status": "running",
+          "attempt": 1,
+          "reservation": {
+            "tokens": 1000,
+            "tools": 3,
+            "cost_usd": 0.0,
+            "operation_id": "reserve:e2e-recovery-8fe81b8f44864a60b4b9ff2616766747:pansio-1:compare:r0:1:attempt-254986a7e4e440279a8207bf0838bf44"
+          }
+        },
+        "budget_at_death": {
+          "token_limit": 60000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 1000,
+          "uncertain_tokens": 0,
+          "reserved_tools": 3,
+          "reserved_cost_usd": 0.0
+        },
+        "reserve_operations": [
+          "reserve:e2e-recovery-8fe81b8f44864a60b4b9ff2616766747:pansio-1:compare:r0:1:attempt-254986a7e4e440279a8207bf0838bf44"
+        ]
+      }
+    },
+    {
+      "check": "reserve_crash:uncertain_expenditure_recorded",
+      "passed": true,
+      "evidence": {
+        "final_budget": {
+          "token_limit": 60000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 16,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_cost_usd": 0.0
+        },
+        "recovery_task_record": {
+          "status": "queued",
+          "attempt": 1,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "tool_calls_measured_from_worker_traces": 13,
+        "tool_calls_ledger": 16,
+        "interrupted_tool_reservation_charged": 3,
+        "usage_note": "1000 operational reservation units; no model call happened, and none is reported as model usage."
+      }
+    },
+    {
+      "check": "reserve_crash:unfinished_work_resumed_and_prior_outputs_kept",
+      "passed": true,
+      "evidence": {
+        "final_status": "complete",
+        "compare_attempt": 2,
+        "compare_accept_operations": [
+          "accept:e2e-recovery-8fe81b8f44864a60b4b9ff2616766747:pansio-1:compare:r0:2:2"
+        ],
+        "prior_outputs_unchanged": true
+      }
+    },
+    {
+      "check": "sigkill:killed_mid_execution",
+      "passed": true,
+      "evidence": {
+        "exit_code": -9,
+        "interrupted_tasks": [
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:olonne-18:inspect:r0",
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:pansio-1:inspect:r0"
+        ],
+        "completed_before_kill": [
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:olonne-18:screen:r0",
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:pansio-1:screen:r0"
+        ],
+        "budget_at_death": {
+          "token_limit": 60000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 4,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 1000,
+          "uncertain_tokens": 0,
+          "reserved_tools": 6,
+          "reserved_cost_usd": 0.0
+        }
+      }
+    },
+    {
+      "check": "sigkill:completed_outputs_preserved",
+      "passed": true,
+      "evidence": {
+        "preserved_tasks": 2,
+        "identical": true
+      }
+    },
+    {
+      "check": "sigkill:interrupted_work_resumed",
+      "passed": true,
+      "evidence": {
+        "final_status": "complete",
+        "interrupted": {
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:olonne-18:inspect:r0": {
+            "status": "complete",
+            "attempt": 2
+          },
+          "e2e-recovery-b746f17640444441bfc3b94633a6c5b9:pansio-1:inspect:r0": {
+            "status": "complete",
+            "attempt": 2
+          }
+        }
+      }
+    },
+    {
+      "check": "sigkill:uncertain_expenditure_recorded",
+      "passed": true,
+      "evidence": {
+        "final_budget": {
+          "token_limit": 60000,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 32,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_cost_usd": 0.0
+        },
+        "expected_uncertain_tokens": 1000
+      }
+    },
+    {
+      "check": "sigkill:worker_cap_held_across_restart",
+      "passed": true,
+      "evidence": {
+        "max_concurrent_running_from_event_replay": 2
+      }
+    }
+  ],
+  "processes": [
+    {
+      "pid": 77806,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_ACCEPT": "compute_features"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-1.log",
+      "started_at": "2026-09-26T19:03:10.229207+00:00",
+      "exit_code": 86,
+      "ended_at": "2026-09-26T19:03:12.752494+00:00"
+    },
+    {
+      "pid": 77808,
+      "hooks": {},
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-2.log",
+      "started_at": "2026-09-26T19:03:12.756163+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:03:26.526503+00:00"
+    },
+    {
+      "pid": 77835,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "compute_features",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-3.log",
+      "started_at": "2026-09-26T19:03:26.549923+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:03:29.100857+00:00"
+    },
+    {
+      "pid": 77839,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-4.log",
+      "started_at": "2026-09-26T19:03:29.111811+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:03:42.003571+00:00"
+    },
+    {
+      "pid": 77846,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "3",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "500"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-5.log",
+      "started_at": "2026-09-26T19:03:42.036254+00:00",
+      "killed_with": "SIGKILL",
+      "exit_code": -9,
+      "ended_at": "2026-09-26T19:03:47.692943+00:00"
+    },
+    {
+      "pid": 77860,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "500"
+      },
+      "log": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/process-6.log",
+      "started_at": "2026-09-26T19:03:47.696291+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:04:00.814795+00:00"
+    }
+  ],
+  "runs": {
+    "accept_then_die": {
+      "run_id": "run-0f39b2989de64f57b452c274cbfd94fb",
+      "export": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/run-0f39b2989de64f57b452c274cbfd94fb.export.json"
+    },
+    "reserve_then_die": {
+      "run_id": "e2e-recovery-8fe81b8f44864a60b4b9ff2616766747",
+      "export": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/e2e-recovery-8fe81b8f44864a60b4b9ff2616766747.export.json"
+    },
+    "external_sigkill": {
+      "run_id": "e2e-recovery-b746f17640444441bfc3b94633a6c5b9",
+      "export": "/Users/dmytro/Downloads/MangoDB26-wt-e2e-runtime-journeys/artifacts/safe_harbor/recovery/20260926T150309/e2e-recovery-b746f17640444441bfc3b94633a6c5b9.export.json"
+    }
+  },
+  "finished_at": "2026-09-26T19:04:00.814969+00:00",
+  "passed": true,
+  "summary": {
+    "checks": 15,
+    "failed": []
+  }
+}

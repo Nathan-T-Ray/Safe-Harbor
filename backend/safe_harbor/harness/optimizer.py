@@ -7,13 +7,16 @@ free. This module never supplies a developer-authored winning candidate.
 from __future__ import annotations
 
 from copy import deepcopy
+import hashlib
 import json
 import os
+from pathlib import Path
 import time
 from typing import Any
 
 from openai import OpenAI
 from safe_harbor.harness import apply_patch, get_harness, save_harness
+from safe_harbor.harness.specification import SCIENTIFIC_INSTRUCTIONS
 from safe_harbor.runtime.ledger import LedgerError, digest, now
 from safe_harbor.runtime.pricing import request_cost_bound
 
@@ -27,8 +30,57 @@ insert_reviewer: {op:'insert_reviewer',after_role_id:string,role:{role_id:string
 split_role: {op:'split_role',role_id:string,roles:[newRole,newRole]}. The first inherits original dependencies, second follows first; both require new IDs and together retain the original tools. A newRole has the same fields as above, but kind can be any approved task kind.
 change_context: {op:'change_context',role_id:string,context_policy:'relevant_evidence'|'numerical_first'|'contradictions_first'}
 reassign_tools: {op:'reassign_tools',from_role_id:string,to_role_id:string,tools:string[]}
-Do not put depends_on, limits, model settings, scientific thresholds, criteria, reference answers, or evaluation rules in a patch. State why the observed development traces motivate the change, and what validation could disprove. A rejected proposal is an acceptable outcome. Never claim this proposal establishes biological safety or causal attribution.
+Parent roles inherit role_defaults and use exact shared instruction fragments. Development runs inherit split and harness_hash_by_arm, use score_columns for score_summary, task_columns for task rows and role_metadata_by_arm for kind/context_policy; prepend task_id_prefix to task_id and depends_on values for exact saved IDs. These lossless encodings are context representations, not execution changes. Do not put depends_on, limits, model settings, scientific thresholds, criteria, reference answers, or evaluation rules in a patch. State what development traces motivate the change and what validation could disprove. Rejection is acceptable. Never claim biological safety or causal attribution.
 """
+
+
+def _parent_context(parent: dict) -> dict:
+    """Losslessly factor repeated public instructions; never change the saved spec."""
+    from safe_harbor.evaluation.baselines import OUTPUT_CONTRACT
+    compact = deepcopy(parent)
+    fragments = {"scientific_instructions": SCIENTIFIC_INSTRUCTIONS, "answer_contract": OUTPUT_CONTRACT}
+    for role in compact["roles"]:
+        for key, text in fragments.items():
+            role["instructions"] = role["instructions"].replace(text, f"[shared_instruction:{key}]")
+    defaults = {key: deepcopy(value) for key, value in compact["roles"][0].items() if key != "role_id" and all(role.get(key) == value for role in compact["roles"])}
+    for role in compact["roles"]:
+        for key in defaults:
+            role.pop(key)
+    compact["role_defaults"] = defaults
+    compact["context_representation"] = "Inherit role_defaults then expand [shared_instruction:key]. The original harness_hash identifies the exact unmodified executable specification."
+    compact["shared_instruction_fragments"] = fragments
+    reconstructed = deepcopy(compact)
+    reconstructed.pop("context_representation")
+    reconstructed.pop("shared_instruction_fragments")
+    reconstructed.pop("role_defaults")
+    reconstructed["roles"] = [{**deepcopy(defaults), **role} for role in reconstructed["roles"]]
+    for role in reconstructed["roles"]:
+        for key, text in fragments.items():
+            role["instructions"] = role["instructions"].replace(f"[shared_instruction:{key}]", text)
+    if reconstructed != parent:
+        raise LedgerError("Optimizer parent instruction packing was not lossless", 422)
+    return compact
+
+
+TASK_COLUMNS = ("task_id", "role_id", "status", "attempt", "depends_on", "worker_observations")
+SCORE_COLUMNS = ("required_correct", "required_total", "required_decisions_correct", "required_decisions_total", "unsupported_count", "coverage", "completed", "support_ok")
+
+
+def _packed_development(packet: list[dict]) -> dict:
+    """Exact columnar encoding with deduplicated role kind/context metadata."""
+    output, metadata_by_arm, hashes_by_arm = [], {}, {}
+    for item in packet:
+        if item["arm"] in hashes_by_arm and hashes_by_arm[item["arm"]] != item["harness_hash"]:
+            raise LedgerError("Development arm changed harness identity", 422)
+        hashes_by_arm[item["arm"]] = item["harness_hash"]
+        role_metadata = metadata_by_arm.setdefault(item["arm"], {})
+        for task in item["tasks"]:
+            metadata = {key: task[key] for key in ("kind", "context_policy")}
+            if task["role_id"] in role_metadata and role_metadata[task["role_id"]] != metadata:
+                raise LedgerError("Frozen role context changed inside development traces", 422)
+            role_metadata[task["role_id"]] = metadata
+        output.append({**{key: value for key, value in item.items() if key not in {"tasks", "split", "harness_hash", "score_summary"}}, "score_summary": [item["score_summary"][key] for key in SCORE_COLUMNS], "tasks": [[task[key] for key in TASK_COLUMNS] for task in item["tasks"]]})
+    return {"split": "development", "harness_hash_by_arm": hashes_by_arm, "score_columns": list(SCORE_COLUMNS), "task_columns": list(TASK_COLUMNS), "role_metadata_by_arm": metadata_by_arm, "runs": output}
 
 
 def _public_development_packet(ledger, results: list[dict]) -> tuple[list[dict], list[dict], list[str]]:
@@ -54,8 +106,16 @@ def _public_development_packet(ledger, results: list[dict]) -> tuple[list[dict],
             if run.get("experiment_id") != result.get("experiment_id") or run.get("comparison_manifest_hash") != result.get("comparison_manifest_hash") or run.get("case_context", {}).get("case_id") != result.get("case_id") or run.get("evaluation_arm") != result.get("arm"):
                 raise LedgerError("Development traces do not match the actual frozen run binding", 403)
             tasks = list(ledger.db.tasks.find({"run_id": run_id}, {"_id": 0}).sort("task_id", 1))
+            # Run namespaces dominate repeated IDs. This reversible encoding
+            # retains actual topology without using most of the optimizer cap
+            # to repeat the same run prefix and parent-role question/instructions.
+            prefix = run_id + ":"
+            relative_ids = all(task["task_id"].startswith(prefix) and all(value.startswith(prefix) for value in task["depends_on"]) for task in tasks)
+            item["task_id_prefix"] = prefix if relative_ids else ""
             for task in tasks:
-                summary = {key: task.get(key) for key in ("task_id", "role_id", "kind", "question", "depends_on", "allowed_tools", "context_policy", "status", "attempt")}
+                summary = {key: task.get(key) for key in ("role_id", "kind", "context_policy", "status", "attempt")}
+                summary["task_id"] = task["task_id"][len(item["task_id_prefix"]):]
+                summary["depends_on"] = [value[len(item["task_id_prefix"]):] for value in task["depends_on"]]
                 summary["worker_observations"] = []
                 for artifact_id in task.get("result_artifact_ids", []):
                     artifact = ledger.db.artifacts.find_one({"artifact_id": artifact_id, "run_id": run_id}, {"_id": 0})
@@ -111,7 +171,8 @@ def propose_harness(ledger, experiment_id: str, parent_hash: str, development_re
     assigned_run_budget = manifest.get("budget")
     if not assigned_run_budget or manifest.get("model") != model_snapshot:
         raise LedgerError("Optimizer must use the frozen experiment model and assigned run budget", 422)
-    source = {"evaluation_id": evaluation_id, "experiment_id": experiment_id, "type": "optimizer_attempt", "mode": "real_model", "parent_hash": parent_hash, "model_snapshot": deepcopy(model_snapshot), "assigned_run_budget": deepcopy(assigned_run_budget), "optimizer_budget": deepcopy(budget), "development_results_hash": digest(development_results), "created_at": now()}
+    packing = {"schema_version": 1, "implementation_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(), "source_parent_harness_hash": parent_hash, "parent_instruction_encoding": "verified lossless defaults/shared fragments", "task_id_encoding": "task_columns decode each task row; prepend run task_id_prefix to task_id and depends_on entries"}
+    source = {"evaluation_id": evaluation_id, "experiment_id": experiment_id, "type": "optimizer_attempt", "mode": "real_model", "parent_hash": parent_hash, "model_snapshot": deepcopy(model_snapshot), "assigned_run_budget": deepcopy(assigned_run_budget), "optimizer_budget": deepcopy(budget), "development_results_hash": digest(development_results), "context_packing": packing, "created_at": now()}
     provider = model_snapshot.get("provider")
     model_id = model_snapshot.get("model_id")
     reserved_tokens = min(MAX_OPTIMIZER_RESERVED_TOKENS, int(budget.get("token_limit", 0)))
@@ -123,7 +184,9 @@ def propose_harness(ledger, experiment_id: str, parent_hash: str, development_re
     development_experiments = {result.get("experiment_id") for result in development_results}
     if development_experiments != {experiment_id} or any(result.get("comparison_manifest_hash") != experiment.get("comparison_manifest_hash") for result in development_results):
         raise LedgerError("Optimizer development results must belong to this experiment", 422)
-    user_packet = {"parent_harness": parent, "development_results": packet, "omitted_trace_artifact_ids": omitted, "fixed_model_snapshot": model_snapshot, "same_assigned_budget_for_every_arm": assigned_run_budget, "proposal_limit": 1}
+    context_model = {key: value for key, value in model_snapshot.items() if key != "model_pricing"}
+    context_model["pricing_hash"] = (model_snapshot.get("model_pricing") or {}).get("pricing_hash")
+    user_packet = {"parent_harness": _parent_context(parent), "development_results": packet, "fixed_model_snapshot": context_model, "same_assigned_budget_for_every_arm": assigned_run_budget, "context_packing": packing, "proposal_limit": 1}
     pricing = model_snapshot.get("model_pricing")
     output_cap = int(model_snapshot.get("max_output_tokens", 1800))
     def blocked_preflight(reason, bounds=None):
@@ -136,10 +199,17 @@ def propose_harness(ledger, experiment_id: str, parent_hash: str, development_re
     # protocol allowance, and output. UTF-8 bytes are a conservative text-token
     # upper bound, shared with the worker's preflight accounting.
     while True:
-        messages = [{"role": "system", "content": SYSTEM_INSTRUCTIONS}, {"role": "user", "content": json.dumps(user_packet, ensure_ascii=False)}]
+        user_packet["development_results"] = _packed_development(packet)
+        # IDs of omitted observations remain exact in the response artifact and
+        # durable read set. A digest/count in model context avoids spending the
+        # optimizer budget repeatedly listing evidence it cannot retrieve.
+        user_packet["omitted_trace_manifest"] = {"count": len(omitted), "sha256": digest(omitted), "exact_ids_recorded_in": f"{experiment_id}:optimizer-response/omitted_trace_artifact_ids"}
+        messages = [{"role": "system", "content": SYSTEM_INSTRUCTIONS}, {"role": "user", "content": json.dumps(user_packet, ensure_ascii=False, separators=(",", ":"))}]
         request_record = {"model": model_id, "temperature": model_snapshot.get("temperature", 0), "max_tokens": output_cap, "response_format": {"type": "json_object"}, "messages": messages, "extra_body": {"provider": pricing["provider_routing"], "plugins": []}}
         input_bytes = len(json.dumps(request_record, ensure_ascii=False).encode("utf-8"))
-        input_bound = input_bytes + 512
+        # Match the worker's framing allowance so the optimizer cannot obtain a
+        # looser monetary/token boundary than the arms it proposes to change.
+        input_bound = input_bytes + 4096 + 256 * len(messages)
         total_bound = input_bound + output_cap
         if total_bound <= reserved_tokens and input_bytes <= int(model_snapshot.get("context_limit_bytes", 60000)):
             break

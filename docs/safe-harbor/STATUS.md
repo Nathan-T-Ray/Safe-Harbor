@@ -4,7 +4,7 @@
 
 | Package | Owner | Actual status |
 |---|---|---|
-| F01–F04 | codex-integrator | Standalone repo, contracts, locks, startup and dedicated MongoDB proven; real model configuration pending |
+| F01–F04 | codex-integrator | Standalone repo, contracts, locks, startup and dedicated MongoDB proven; model configuration supplied; first genuine investigation in progress |
 | D01–D07 | codex-data | Five real supplements, 15 source hashes, GRCh38 coordinates, sequences, Comp/PseudoGene GENCODE v36 and bounded numerical tools verified |
 | D08–D09 | codex-integrator | Independent raw-file calculation agrees with 27 persisted numbers; nine grouped audit cases and promotion rule frozen; no human review claimed |
 | R01–R09 | codex-runtime | Real API/Mongo crash, idempotency and active revision journeys passed; real provider path remains untested |
@@ -19,4 +19,4 @@ Scientific context is H1 human embryonic stem cells against the GRCh38 reference
 
 Evidence includes `artifacts/manifests/independent-numerical-api-audit.json`, `replay-integrity.json`, `replay-reference-versions.json`, `safe-harbor-foundation.json`, and operational process/revision reports under `artifacts/safe_harbor/`. These are deterministic operational runs and recorded replays, not real model investigations or proof of model improvement.
 
-Current integration services: dedicated `safe-harbor-dev` replica set on localhost:27021, API:8016 and UI:5176. No Atlas connectivity claim is made. OpenRouter key/model configuration is pending. Genuine model investigation, automatic model-generated structural proposal, fair model comparison and final canonical real recording remain release gates.
+Current integration services: dedicated `safe-harbor-dev` replica set on localhost:27021, API:8016 and UI:5176. No Atlas connectivity claim is made. OpenRouter is configured server-side with `deepseek/deepseek-v4.1-flash`. The first genuine worker traces have committed tool calls and provider-reported usage; the complete assessment/comparison remains in progress. Genuine model investigation, automatic model-generated structural proposal, fair model comparison and final canonical real recording remain release gates.

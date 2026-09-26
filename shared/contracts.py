@@ -31,7 +31,7 @@ class ReadSet(Record):
     version: int|str
     kind: Literal['artifact','query_scope','criteria']
 class Budget(Record):
-    token_limit: int=60000
+    token_limit: int=200000
     tool_limit: int=40
     cost_limit_usd: float=5.0
     tokens_used: int=0

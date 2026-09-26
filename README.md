@@ -16,6 +16,6 @@ Current active lanes: runtime R10–R12; evaluation H03–H05; automatic harness
 
 GRCh38 reference, H1 context, publication-derived Pansio-1, Olônne-18 and Keppel-19. Real source tables, hashes, reference sequence and GENCODE v36 annotations are ingested. React genome/graph/evidence/replay UI, FastAPI/MongoDB transactional ledger, LangGraph checkpoints, scoped calculations and saved executable harness are implemented and being integrated.
 
-A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim or model-improvement result is made. Real model credentials and fair comparison execution remain pending.
+A computational pass covers named criteria only; endpoint support requires named assay/context. Missing required evidence means incomplete. No global biological-safety claim or model-improvement result is made. The configured real-model investigation and fair comparison are being verified; no improvement result is claimed.
 
 **NO UNIT TESTS. NO COMPONENT TESTS. E2E ONLY.** Build, type, syntax, schema and data-integrity checks are permitted.

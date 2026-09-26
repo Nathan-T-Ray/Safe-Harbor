@@ -76,6 +76,7 @@ def build_context_packet(ledger, run: dict, task: dict) -> dict:
         "context_policy": task.get("context_policy"), "harness_hash": run["harness_hash"],
         "context_selection_trace": selection_trace,
         "remaining_budget": run["budget"], "evidence_availability": run["evidence_availability"][task["candidate_id"]],
+        "task_limits": {**task["budget"], "tool_allowance_includes": "Both scientific tools and retrieve_evidence; the run-level limit is not this task's allowance."},
         "limitations": ["Only the publication-derived shortlist is investigated.", "GRCh38 is a reference assembly, not a newly sequenced H1 genome.", "Control overlap and proximity cannot establish biological safety or causality."],
     }
     while len(json.dumps(packet, ensure_ascii=False).encode()) > 60000 and packet["evidence"]:
@@ -197,11 +198,30 @@ def proposal_to_assessment(ledger, run: dict, task: dict, proposal: dict, result
 
 
 def execute_worker(ledger, run: dict, task: dict) -> dict:
+    state = {}
+    try:
+        return _execute_worker(ledger, run, task, state)
+    except Exception as exc:
+        # A received response remains inspectable even when its proposed action is
+        # rejected. The coordinator settles this diagnostic in the failure event.
+        if state:
+            usage = dict(state["usage"])
+            usage.update(tool_calls=len(state["calls"]), cost_usd=sum(float(cost) for cost in state.get("costs", []) if cost is not None), duration_seconds=round(time.monotonic() - state["started"], 4))
+            uncertain = bool(state.get("request_in_flight") or usage.get("tokens_uncertain"))
+            failure = {"usage": usage, "tokens_uncertain": uncertain, "cost_uncertain": bool(state.get("request_in_flight") or any(cost is None for cost in state.get("costs", []))), "request_in_flight": bool(state.get("request_in_flight"))}
+            trace = {"mode": run["mode"], "status": "failed", "error": f"{type(exc).__name__}: {exc}", "role_id": task["role_id"], "context_packet": state["packet"], "messages": state["messages"], "tool_calls": state["calls"], "provider_responses": state.get("provider_responses", []), "request_token_bounds": state["request_bounds"], **failure}
+            failure["artifact"] = _artifact(run, task, "worker_failure_trace", trace)
+            exc.worker_failure = failure
+        raise
+
+
+def _execute_worker(ledger, run: dict, task: dict, state: dict) -> dict:
     started = time.monotonic()
     packet = build_context_packet(ledger, run, task)
     results, calls, messages, proposal = [], [], [], {}
     usage = {"tokens": 0, "tool_calls": 0, "model_calls": 0, "cost_usd": 0.0 if run["mode"] == "deterministic" else None}
     request_bounds = []
+    state.update(started=started, packet=packet, results=results, calls=calls, messages=messages, usage=usage, request_bounds=request_bounds, provider_responses=[])
     deterministic_task = run["mode"] == "deterministic" or (run.get("baseline_arm") == "R0" and task["kind"] != "assess_candidate")
     if deterministic_task:
         usage["cost_usd"] = 0.0
@@ -216,7 +236,8 @@ def execute_worker(ledger, run: dict, task: dict) -> dict:
             "You investigate publication-derived GRCh38 candidate regions in H1 human embryonic stem cells. "
             "Answer the assigned question from numerical evidence and methods. Never invent values, criteria or source IDs. "
             "Select useful approved tools. Numerical operations must be performed by tools. Missing evidence stays incomplete/unknown. "
-            "You may request several independent approved tools together within the stated tool-call allowance. "
+            f"This task permits at most {task['budget']['max_tool_calls']} total tool calls, including retrieve_evidence, and {task['budget']['max_model_calls']} model responses. "
+            "You may request several independent approved tools together within that task allowance; do not request more. "
             "A control overlap or distance cannot establish safety or causality. No global safe label. "
             "Return a JSON object with conclusion, unresolved_questions, limitations, evidence_ids and numerical_findings. "
             "Do not quote the paper's interpretive conclusion. " + task.get("instructions", "")
@@ -224,8 +245,10 @@ def execute_worker(ledger, run: dict, task: dict) -> dict:
         if task["kind"] in ("assess_candidate", "review_candidate", "publish_shortlist"):
             system += " " + OUTPUT_CONTRACT
         messages = [{"role": "system", "content": system}, {"role": "user", "content": json.dumps(packet, ensure_ascii=False)}]
+        state["messages"] = messages
         tools = science().tool_definitions(task["allowed_tools"]) + [RETRIEVAL_DEFINITION]
         costs = []
+        state["costs"] = costs
         cumulative_cost_bound = 0.0
         for call_index in range(task["budget"]["max_model_calls"]):
             remaining_tools = task["budget"]["max_tool_calls"] - len(calls)
@@ -241,12 +264,15 @@ def execute_worker(ledger, run: dict, task: dict) -> dict:
             reservation = ledger.extend_reservation(run["run_id"], task["task_id"], task["coordinator_epoch"], total_bound, cumulative_cost_bound)
             task["reservation"] = reservation
             request_bounds.append({"call_index": call_index, "input_utf8_bytes": len(serialized_input), "input_bound": input_bound, "output_cap": output_cap, "cumulative_reserved_tokens": reservation["tokens"], "call_cost_bound_usd": call_cost_bound, "pricing_hash": run["model_pricing"]["pricing_hash"]})
+            state["request_in_flight"] = True
             response = client.chat.completions.create(
                 model=run["model_id"], messages=messages,
                 max_tokens=output_cap,
-                temperature=run.get("model_settings", {}).get("temperature", 0), **({"tools": tools, "tool_choice": "auto", "parallel_tool_calls": True} if may_use_tools else {"response_format": {"type": "json_object"}}),
+                temperature=run.get("model_settings", {}).get("temperature", 0), **({"tools": tools, "tool_choice": "auto"} if may_use_tools else {"response_format": {"type": "json_object"}}),
                 extra_body={"provider": run["model_pricing"]["provider_routing"], "plugins": []},
             )
+            state["request_in_flight"] = False
+            state["provider_responses"].append({"call_index": call_index, "response": response.model_dump(mode="json")})
             usage["model_calls"] += 1
             if response.usage:
                 usage["tokens"] += response.usage.total_tokens
@@ -290,5 +316,5 @@ def execute_worker(ledger, run: dict, task: dict) -> dict:
     if task["kind"] == "publish_shortlist":
         dossier = proposal_to_assessment(ledger, run, task, proposal, results, artifacts)
         artifacts.append(_artifact(run, task, "versioned_dossier", {"candidate_id": task["candidate_id"], "validated_summary": dossier, "raw_model_proposal": proposal, "upstream_task_ids": task["depends_on"], "limitations": packet["limitations"]}))
-    artifacts.append(_artifact(run, task, "worker_trace", {"mode": run["mode"], "execution_adapter": "deterministic_operational" if deterministic_task else "openrouter", "role_id": task["role_id"], "context_packet": packet, "tool_calls": calls, "messages": messages, "proposal": proposal, "usage": usage, "request_token_bounds": request_bounds, "context_characters": len(json.dumps(packet))}))
+    artifacts.append(_artifact(run, task, "worker_trace", {"mode": run["mode"], "execution_adapter": "deterministic_operational" if deterministic_task else "openrouter", "role_id": task["role_id"], "context_packet": packet, "tool_calls": calls, "messages": messages, "provider_responses": state["provider_responses"], "proposal": proposal, "usage": usage, "request_token_bounds": request_bounds, "context_characters": len(json.dumps(packet))}))
     return {"run_id": run["run_id"], "task_id": task["task_id"], "epoch": task["coordinator_epoch"], "attempt": task["attempt"], "input_read_set": task["input_read_set"], "artifacts": artifacts, "assessments": assessments, "usage": usage}

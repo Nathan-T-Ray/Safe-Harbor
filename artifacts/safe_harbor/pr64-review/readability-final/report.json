@@ -1,0 +1,2579 @@
+{
+  "ticket": "SH-U14",
+  "journey": "readability / keyboard / motion / text alternatives at 1280×720",
+  "mode": "deterministic_operational",
+  "mock_transport": false,
+  "model_calls": 0,
+  "biological_interpretation_tested": false,
+  "base": "http://127.0.0.1:5176",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "run_id": "run-28dc4401b6ad46779c05d36bba5ca429",
+  "health": {
+    "status": "ok",
+    "database": "safe_harbor",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true,
+    "schema_version": 1
+  },
+  "thresholds": {
+    "min_critical_px": 12,
+    "min_conclusion_px": 18,
+    "min_contrast": 4.5
+  },
+  "summary": {
+    "total": 49,
+    "passed": 49,
+    "failed": 0,
+    "failed_by_severity": {}
+  },
+  "checks": [
+    {
+      "id": "no horizontal page scroll at 1280",
+      "category": "layout",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "scrollWidth": 1280
+      }
+    },
+    {
+      "id": "standard mode: conclusion text ≥ 18px",
+      "category": "large-conclusion",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "minimum_px": 18,
+        "measured": [
+          {
+            "text": "Deterministic operational execution completed the assigned calculation",
+            "px": 18,
+            "contrast": 14.53,
+            "truncated": false,
+            "inViewport": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "standard mode: conclusion fully inside the 720px viewport without scrolling",
+      "category": "large-conclusion",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "measured": [
+          {
+            "px": 18,
+            "inViewport": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "standard mode: critical text ≥ 12px",
+      "category": "font-size",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "minimum_px": 12,
+        "failing_elements": [],
+        "audit": [
+          {
+            "element": "candidate name",
+            "selector": ".candidate-card strong",
+            "count": 3,
+            "min_px": 16,
+            "min_contrast": 11.28,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate coordinate",
+            "selector": ".candidate-coordinate",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 6.79,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate status",
+            "selector": ".candidate-status",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 8.73,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode label",
+            "selector": ".mode-word",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.63,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode explanation",
+            "selector": ".mode-notice > span:not(.mode-word)",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.13,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "live/recorded pill",
+            "selector": ".pill",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 5.98,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "zoom breadcrumb",
+            "selector": ".genome-breadcrumb button",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 7.64,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis label",
+            "selector": ".status-axes span",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis value",
+            "selector": ".status-axes strong",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 13.49,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "still-to-resolve text",
+            "selector": ".question-callout p",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "scientific footnote",
+            "selector": ".scientific-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 6.17,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "stage label",
+            "selector": ".stage-labels span",
+            "count": 5,
+            "min_px": 13,
+            "min_contrast": 10.72,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task status word",
+            "selector": ".task-state",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 10.05,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task name",
+            "selector": ".task-node strong",
+            "count": 6,
+            "min_px": 17,
+            "min_contrast": 11.53,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task question",
+            "selector": ".task-question",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 8.5,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status legend",
+            "selector": ".graph-footer span",
+            "count": 6,
+            "min_px": 12,
+            "min_contrast": 7.66,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "timeline event",
+            "selector": ".timeline-event",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.94,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "chromosome axis label (SVG)",
+            "selector": ".genome-canvas svg text.svg-label",
+            "count": 24,
+            "min_px": 15.42,
+            "min_contrast": 8.46,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "genome footnote",
+            "selector": ".genome-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "coordinate footer",
+            "selector": ".coordinate-footer span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 5.93,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "standard mode: critical text contrast ≥ 4.5:1",
+      "category": "contrast",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "failing_elements": []
+      }
+    },
+    {
+      "id": "stage labels: five words present and readable",
+      "category": "stage-labels",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "measured": [
+          {
+            "text": "1Screen",
+            "px": 13,
+            "contrast": 10.72,
+            "truncated": false,
+            "inViewport": false
+          },
+          {
+            "text": "2Investigate",
+            "px": 13,
+            "contrast": 10.72,
+            "truncated": false,
+            "inViewport": false
+          },
+          {
+            "text": "3Compare",
+            "px": 13,
+            "contrast": 10.72,
+            "truncated": false,
+            "inViewport": false
+          },
+          {
+            "text": "4Review",
+            "px": 13,
+            "contrast": 10.72,
+            "truncated": false,
+            "inViewport": false
+          },
+          {
+            "text": "5Report",
+            "px": 13,
+            "contrast": 10.72,
+            "truncated": false,
+            "inViewport": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "stage step numbers ≥ 12px",
+      "category": "stage-labels",
+      "status": "pass",
+      "severity": "minor",
+      "details": {
+        "measured": [
+          {
+            "text": "1",
+            "px": 12,
+            "contrast": 7.61
+          },
+          {
+            "text": "2",
+            "px": 12,
+            "contrast": 7.61
+          },
+          {
+            "text": "3",
+            "px": 12,
+            "contrast": 7.61
+          },
+          {
+            "text": "4",
+            "px": 12,
+            "contrast": 7.61
+          },
+          {
+            "text": "5",
+            "px": 12,
+            "contrast": 7.61
+          }
+        ]
+      }
+    },
+    {
+      "id": "presentation mode: conclusion text ≥ 18px",
+      "category": "large-conclusion",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "measured": [
+          {
+            "text": "Deterministic operational execution completed the assigned calculation",
+            "px": 20,
+            "contrast": 14.53,
+            "truncated": false,
+            "inViewport": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "presentation mode: conclusion fully inside the 720px viewport",
+      "category": "large-conclusion",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "measured": [
+          {
+            "px": 20,
+            "inViewport": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "presentation mode: critical text ≥ 12px",
+      "category": "font-size",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "minimum_px": 12,
+        "failing_elements": [],
+        "audit": [
+          {
+            "element": "candidate name",
+            "selector": ".candidate-card strong",
+            "count": 3,
+            "min_px": 16,
+            "min_contrast": 11.28,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate coordinate",
+            "selector": ".candidate-coordinate",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 6.79,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate status",
+            "selector": ".candidate-status",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 8.73,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "live/recorded pill",
+            "selector": ".pill",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 5.98,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "zoom breadcrumb",
+            "selector": ".genome-breadcrumb button",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 7.64,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis label",
+            "selector": ".status-axes span",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis value",
+            "selector": ".status-axes strong",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 13.49,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "still-to-resolve text",
+            "selector": ".question-callout p",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "scientific footnote",
+            "selector": ".scientific-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 6.17,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "stage label",
+            "selector": ".stage-labels span",
+            "count": 5,
+            "min_px": 13,
+            "min_contrast": 10.72,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "timeline event",
+            "selector": ".timeline-event",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.94,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "chromosome axis label (SVG)",
+            "selector": ".genome-canvas svg text.svg-label",
+            "count": 24,
+            "min_px": 15.42,
+            "min_contrast": 8.46,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "genome footnote",
+            "selector": ".genome-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "coordinate footer",
+            "selector": ".coordinate-footer span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 5.93,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "presentation mode: critical text contrast ≥ 4.5:1",
+      "category": "contrast",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "failing_elements": []
+      }
+    },
+    {
+      "id": "presentation mode: graph stage labels visible without scrolling",
+      "category": "layout",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "documentHeight": 1360,
+        "graphTop": 322,
+        "timelineTop": 1190
+      }
+    },
+    {
+      "id": "genome: SVG has role=img and an accessible name",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "svgs": [
+          {
+            "role": "img",
+            "label": "Human GRCh38 chromosomes with publication-derived candidate markers"
+          }
+        ]
+      }
+    },
+    {
+      "id": "genome: selected candidate marker state exposed without color (aria-pressed/aria-current or text)",
+      "category": "color-independence",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "markers": [
+          {
+            "label": "Select Pansio-1",
+            "pressed": "true",
+            "current": null
+          },
+          {
+            "label": "Select Olônne-18",
+            "pressed": "false",
+            "current": null
+          },
+          {
+            "label": "Select Keppel-19",
+            "pressed": "false",
+            "current": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "chromosome: SVG has role=img and an accessible name",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "svgs": [
+          {
+            "role": "img",
+            "label": "chr1, selected candidate at 113339960"
+          }
+        ]
+      }
+    },
+    {
+      "id": "locus: SVG has role=img and an accessible name",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "svgs": [
+          {
+            "role": "img",
+            "label": "Coordinate-correct annotation view for chr1:113,339,961–113,340,514"
+          }
+        ]
+      }
+    },
+    {
+      "id": "locus: displayed gene names/strands available as text outside the role=img SVG",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "gene_labels_in_svg": [
+          "MAGI3"
+        ],
+        "exposed_as_accessible_text": [
+          "MAGI3"
+        ]
+      }
+    },
+    {
+      "id": "sequence: SVG has role=img and an accessible name",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "svgs": []
+      }
+    },
+    {
+      "id": "sequence: strip has a text alternative",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "minor",
+      "details": {
+        "aria_label": "Actual reference sequence",
+        "role": null
+      }
+    },
+    {
+      "id": "sequence: in-candidate bases marked by a non-color cue",
+      "category": "color-independence",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "inside_candidate_style": {
+          "borderBottom": "solid 1px",
+          "fontWeight": "400",
+          "textDecoration": "none"
+        }
+      }
+    },
+    {
+      "id": "locus zoom: critical text ≥ 12px",
+      "category": "font-size",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "minimum_px": 12,
+        "failing_elements": [],
+        "audit": [
+          {
+            "element": "candidate name",
+            "selector": ".candidate-card strong",
+            "count": 3,
+            "min_px": 16,
+            "min_contrast": 11.28,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate coordinate",
+            "selector": ".candidate-coordinate",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 6.79,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate status",
+            "selector": ".candidate-status",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 8.73,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode label",
+            "selector": ".mode-word",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.63,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode explanation",
+            "selector": ".mode-notice > span:not(.mode-word)",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.13,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "live/recorded pill",
+            "selector": ".pill",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 5.98,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "zoom breadcrumb",
+            "selector": ".genome-breadcrumb button",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 7.64,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis label",
+            "selector": ".status-axes span",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis value",
+            "selector": ".status-axes strong",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 13.49,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "still-to-resolve text",
+            "selector": ".question-callout p",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "scientific footnote",
+            "selector": ".scientific-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 6.17,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "stage label",
+            "selector": ".stage-labels span",
+            "count": 5,
+            "min_px": 13,
+            "min_contrast": 10.72,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task status word",
+            "selector": ".task-state",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 10.05,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task name",
+            "selector": ".task-node strong",
+            "count": 6,
+            "min_px": 17,
+            "min_contrast": 11.53,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task question",
+            "selector": ".task-question",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 8.5,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status legend",
+            "selector": ".graph-footer span",
+            "count": 6,
+            "min_px": 12,
+            "min_contrast": 7.66,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "timeline event",
+            "selector": ".timeline-event",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.94,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "chromosome axis label (SVG)",
+            "selector": ".genome-canvas svg text.svg-label",
+            "count": 6,
+            "min_px": 15.26,
+            "min_contrast": 8.46,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "gene label (SVG)",
+            "selector": ".genome-canvas svg text.svg-gene",
+            "count": 1,
+            "min_px": 15.26,
+            "min_contrast": 10.49,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "track heading",
+            "selector": ".track-heading span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 8.92,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "genome footnote",
+            "selector": ".genome-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "coordinate footer",
+            "selector": ".coordinate-footer span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 5.93,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "locus zoom: critical text contrast ≥ 4.5:1",
+      "category": "contrast",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "failing_elements": []
+      }
+    },
+    {
+      "id": "sequence zoom: critical text ≥ 12px",
+      "category": "font-size",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "minimum_px": 12,
+        "failing_elements": [],
+        "audit": [
+          {
+            "element": "candidate name",
+            "selector": ".candidate-card strong",
+            "count": 3,
+            "min_px": 16,
+            "min_contrast": 11.28,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate coordinate",
+            "selector": ".candidate-coordinate",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 6.79,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "candidate status",
+            "selector": ".candidate-status",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 8.73,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode label",
+            "selector": ".mode-word",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.63,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "mode explanation",
+            "selector": ".mode-notice > span:not(.mode-word)",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.13,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "live/recorded pill",
+            "selector": ".pill",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 5.98,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "zoom breadcrumb",
+            "selector": ".genome-breadcrumb button",
+            "count": 4,
+            "min_px": 12,
+            "min_contrast": 7.64,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis label",
+            "selector": ".status-axes span",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status axis value",
+            "selector": ".status-axes strong",
+            "count": 3,
+            "min_px": 12,
+            "min_contrast": 13.49,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "still-to-resolve text",
+            "selector": ".question-callout p",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "scientific footnote",
+            "selector": ".scientific-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 6.17,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "stage label",
+            "selector": ".stage-labels span",
+            "count": 5,
+            "min_px": 13,
+            "min_contrast": 10.72,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task status word",
+            "selector": ".task-state",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 10.05,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task name",
+            "selector": ".task-node strong",
+            "count": 6,
+            "min_px": 17,
+            "min_contrast": 11.53,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "task question",
+            "selector": ".task-question",
+            "count": 6,
+            "min_px": 15,
+            "min_contrast": 8.5,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "status legend",
+            "selector": ".graph-footer span",
+            "count": 6,
+            "min_px": 12,
+            "min_contrast": 7.66,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "timeline event",
+            "selector": ".timeline-event",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 9.94,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "track heading",
+            "selector": ".track-heading span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 8.92,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "sequence coordinate label",
+            "selector": ".sequence-label",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 7.27,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 2,
+            "examples": [
+              {
+                "text": "113,339,941",
+                "px": 12,
+                "contrast": 7.27,
+                "truncated": true,
+                "inViewport": true
+              },
+              {
+                "text": "113,339,991",
+                "px": 12,
+                "contrast": 7.27,
+                "truncated": true,
+                "inViewport": true
+              }
+            ]
+          },
+          {
+            "element": "genome footnote",
+            "selector": ".genome-footnote",
+            "count": 1,
+            "min_px": 12,
+            "min_contrast": 7.07,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          },
+          {
+            "element": "coordinate footer",
+            "selector": ".coordinate-footer span",
+            "count": 2,
+            "min_px": 12,
+            "min_contrast": 5.93,
+            "below_min_px": 0,
+            "below_contrast": 0,
+            "truncated": 0,
+            "examples": []
+          }
+        ]
+      }
+    },
+    {
+      "id": "sequence zoom: critical text contrast ≥ 4.5:1",
+      "category": "contrast",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "failing_elements": []
+      }
+    },
+    {
+      "id": "status: candidate cards, assessment axes, task nodes, legend and connection use words",
+      "category": "color-independence",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "candidateStatus": [
+          "incomplete screen",
+          "incomplete screen",
+          "incomplete screen"
+        ],
+        "axes": [
+          {
+            "label": "Computational screen",
+            "value": "incomplete"
+          },
+          {
+            "label": "Experimental evidence",
+            "value": "unknown"
+          },
+          {
+            "label": "Evidence freshness",
+            "value": "current"
+          }
+        ],
+        "taskStates": [
+          "✓ complete"
+        ],
+        "legend": [
+          "○ Queued",
+          "◌ Running",
+          "✓ Complete",
+          "↻ Reopened",
+          "! Blocked",
+          "14 shared evidence records"
+        ],
+        "connection": "Ledger connected",
+        "livePill": "LIVE"
+      }
+    },
+    {
+      "id": "genome legend: explains both marker colors (selected vs other candidates)",
+      "category": "color-independence",
+      "status": "pass",
+      "severity": "minor",
+      "details": {
+        "marker_fills": [
+          "none",
+          "#7ee8dd",
+          "#dcae67",
+          "#dcae67"
+        ],
+        "footnote": " Ring: selected candidate · other markers: published candidatesNeutral regions have not been investigated"
+      }
+    },
+    {
+      "id": "keyboard: candidate rail reachable with Tab",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "tab_presses": 1,
+        "focus_order": [
+          "01Pansio-1chr1:113,339,961–113,340,514○ Not yet assessed"
+        ]
+      }
+    },
+    {
+      "id": "keyboard: focused candidate card shows a visible focus indicator",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "tag": "button",
+        "text": "01Pansio-1chr1:113,339,961–113,340,514○ Not yet assessed",
+        "cls": "candidate-card selected",
+        "outline": "solid 2px",
+        "focusVisible": true,
+        "inBreadcrumb": false,
+        "inRail": true,
+        "inGraph": false,
+        "inSvg": false
+      }
+    },
+    {
+      "id": "keyboard: Enter on second candidate selects it (aria-pressed + assessment heading)",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "focused": {
+          "text": "02Olônne-18chr18:56,534,775–56,536,439○ ",
+          "cls": "candidate-card "
+        },
+        "pressed": [
+          {
+            "name": "Pansio-1",
+            "pressed": "false"
+          },
+          {
+            "name": "Olônne-18",
+            "pressed": "true"
+          },
+          {
+            "name": "Keppel-19",
+            "pressed": "false"
+          }
+        ],
+        "heading": "Olônne-18"
+      }
+    },
+    {
+      "id": "keyboard: zoom breadcrumb reachable with Tab",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "tab_presses": 7,
+        "last": [
+          "Investigation execution mode",
+          "New investigation →",
+          "Open an existing run",
+          "Genome",
+          "chr18",
+          "Locus"
+        ]
+      }
+    },
+    {
+      "id": "keyboard: Enter on breadcrumb \"Locus\" changes zoom",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "active": "Locus",
+        "current": "step",
+        "track": "GENCODE v36Complete coverage of displayed window",
+        "focusStillInNav": true
+      }
+    },
+    {
+      "id": "keyboard: focus is retained on the breadcrumb after zoom change",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "active": "Locus",
+        "current": "step",
+        "track": "GENCODE v36Complete coverage of displayed window",
+        "focusStillInNav": true
+      }
+    },
+    {
+      "id": "breadcrumb: current zoom level exposed to assistive tech (aria-current)",
+      "category": "text-alternatives",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "active": "Locus",
+        "current": "step",
+        "track": "GENCODE v36Complete coverage of displayed window",
+        "focusStillInNav": true
+      }
+    },
+    {
+      "id": "keyboard: Tab+Enter advances breadcrumb to \"Sequence\"",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "active": "Sequence"
+      }
+    },
+    {
+      "id": "keyboard: genome SVG candidate markers focusable and operable",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "found": {
+          "tag": "g",
+          "text": "Select Pansio-1",
+          "cls": "marker",
+          "outline": "solid 2px",
+          "focusVisible": true,
+          "inBreadcrumb": false,
+          "inRail": false,
+          "inGraph": false,
+          "inSvg": true
+        },
+        "seen": [
+          "chr18",
+          "Locus",
+          "Sequence",
+          "Select Pansio-1"
+        ]
+      }
+    },
+    {
+      "id": "keyboard: investigation graph task nodes reachable with Tab",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "found": {
+          "tag": "div",
+          "text": "Screen criteria, complete",
+          "cls": "react-flow__node react-flow__node-task selectable",
+          "outline": "none 3px",
+          "focusVisible": true,
+          "inBreadcrumb": false,
+          "inRail": false,
+          "inGraph": true,
+          "inSvg": false
+        },
+        "last": [
+          "g.react-flow__edge react-flow__edge-smoothstep nopan selectable",
+          "g.react-flow__edge react-flow__edge-smoothstep nopan selectable",
+          "g.react-flow__edge react-flow__edge-smoothstep nopan selectable",
+          "g.react-flow__edge react-flow__edge-smoothstep nopan selectable",
+          "div.react-flow__node react-flow__node-task selectable"
+        ]
+      }
+    },
+    {
+      "id": "keyboard: Enter on a task node opens the evidence inspector",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "drawer_open": true
+      }
+    },
+    {
+      "id": "keyboard: focus moves into the opened dialog",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "focusInDrawer": true
+      }
+    },
+    {
+      "id": "keyboard: Escape closes the dialog",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {}
+    },
+    {
+      "id": "keyboard: evidence inspector opens from keyboard (Enter)",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "drawer_open": true
+      }
+    },
+    {
+      "id": "keyboard: opened evidence dialog receives focus",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "inDrawer": true,
+        "active": "×"
+      }
+    },
+    {
+      "id": "keyboard: Escape closes the evidence dialog",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "closed": true
+      }
+    },
+    {
+      "id": "keyboard: focus returns to the invoking control after Escape",
+      "category": "keyboard",
+      "status": "pass",
+      "severity": "minor",
+      "details": {
+        "active_after_close": "Inspect evidence & calculations →"
+      }
+    },
+    {
+      "id": "default motion: no infinite animation carries information",
+      "category": "motion",
+      "status": "pass",
+      "severity": "major",
+      "details": {
+        "canvasAnimation": "arrive",
+        "infinite": []
+      }
+    },
+    {
+      "id": "reduced motion: zoom transition animation disabled",
+      "category": "motion",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "matches": true,
+        "canvasAnimation": "none",
+        "buttonTransition": "0s",
+        "running": 0
+      }
+    },
+    {
+      "id": "reduced motion: control transitions disabled",
+      "category": "motion",
+      "status": "pass",
+      "severity": "minor",
+      "details": {
+        "matches": true,
+        "canvasAnimation": "none",
+        "buttonTransition": "0s",
+        "running": 0
+      }
+    },
+    {
+      "id": "reduced motion: no running animations after zoom change",
+      "category": "motion",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "matches": true,
+        "canvasAnimation": "none",
+        "buttonTransition": "0s",
+        "running": 0
+      }
+    },
+    {
+      "id": "reduced motion: replay step shows recorded state, event and position as text",
+      "category": "motion",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "pill": "RECORDED REPLAY",
+        "event": "run · created",
+        "count": "1 / 39",
+        "running": 0
+      }
+    },
+    {
+      "id": "no uncaught page errors during journey",
+      "category": "stability",
+      "status": "pass",
+      "severity": "critical",
+      "details": {
+        "errors": []
+      }
+    }
+  ],
+  "audits": {
+    "standard": [
+      {
+        "element": "candidate name",
+        "selector": ".candidate-card strong",
+        "count": 3,
+        "min_px": 16,
+        "min_contrast": 11.28,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate coordinate",
+        "selector": ".candidate-coordinate",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 6.79,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate status",
+        "selector": ".candidate-status",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 8.73,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode label",
+        "selector": ".mode-word",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.63,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode explanation",
+        "selector": ".mode-notice > span:not(.mode-word)",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.13,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "live/recorded pill",
+        "selector": ".pill",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 5.98,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "zoom breadcrumb",
+        "selector": ".genome-breadcrumb button",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 7.64,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis label",
+        "selector": ".status-axes span",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis value",
+        "selector": ".status-axes strong",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 13.49,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "still-to-resolve text",
+        "selector": ".question-callout p",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "scientific footnote",
+        "selector": ".scientific-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 6.17,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "stage label",
+        "selector": ".stage-labels span",
+        "count": 5,
+        "min_px": 13,
+        "min_contrast": 10.72,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task status word",
+        "selector": ".task-state",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 10.05,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task name",
+        "selector": ".task-node strong",
+        "count": 6,
+        "min_px": 17,
+        "min_contrast": 11.53,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task question",
+        "selector": ".task-question",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 8.5,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status legend",
+        "selector": ".graph-footer span",
+        "count": 6,
+        "min_px": 12,
+        "min_contrast": 7.66,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "timeline event",
+        "selector": ".timeline-event",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.94,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "chromosome axis label (SVG)",
+        "selector": ".genome-canvas svg text.svg-label",
+        "count": 24,
+        "min_px": 15.42,
+        "min_contrast": 8.46,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "genome footnote",
+        "selector": ".genome-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "coordinate footer",
+        "selector": ".coordinate-footer span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 5.93,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      }
+    ],
+    "presentation": [
+      {
+        "element": "candidate name",
+        "selector": ".candidate-card strong",
+        "count": 3,
+        "min_px": 16,
+        "min_contrast": 11.28,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate coordinate",
+        "selector": ".candidate-coordinate",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 6.79,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate status",
+        "selector": ".candidate-status",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 8.73,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "live/recorded pill",
+        "selector": ".pill",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 5.98,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "zoom breadcrumb",
+        "selector": ".genome-breadcrumb button",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 7.64,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis label",
+        "selector": ".status-axes span",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis value",
+        "selector": ".status-axes strong",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 13.49,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "still-to-resolve text",
+        "selector": ".question-callout p",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "scientific footnote",
+        "selector": ".scientific-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 6.17,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "stage label",
+        "selector": ".stage-labels span",
+        "count": 5,
+        "min_px": 13,
+        "min_contrast": 10.72,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "timeline event",
+        "selector": ".timeline-event",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.94,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "chromosome axis label (SVG)",
+        "selector": ".genome-canvas svg text.svg-label",
+        "count": 24,
+        "min_px": 15.42,
+        "min_contrast": 8.46,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "genome footnote",
+        "selector": ".genome-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "coordinate footer",
+        "selector": ".coordinate-footer span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 5.93,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      }
+    ],
+    "locus": [
+      {
+        "element": "candidate name",
+        "selector": ".candidate-card strong",
+        "count": 3,
+        "min_px": 16,
+        "min_contrast": 11.28,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate coordinate",
+        "selector": ".candidate-coordinate",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 6.79,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate status",
+        "selector": ".candidate-status",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 8.73,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode label",
+        "selector": ".mode-word",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.63,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode explanation",
+        "selector": ".mode-notice > span:not(.mode-word)",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.13,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "live/recorded pill",
+        "selector": ".pill",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 5.98,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "zoom breadcrumb",
+        "selector": ".genome-breadcrumb button",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 7.64,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis label",
+        "selector": ".status-axes span",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis value",
+        "selector": ".status-axes strong",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 13.49,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "still-to-resolve text",
+        "selector": ".question-callout p",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "scientific footnote",
+        "selector": ".scientific-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 6.17,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "stage label",
+        "selector": ".stage-labels span",
+        "count": 5,
+        "min_px": 13,
+        "min_contrast": 10.72,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task status word",
+        "selector": ".task-state",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 10.05,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task name",
+        "selector": ".task-node strong",
+        "count": 6,
+        "min_px": 17,
+        "min_contrast": 11.53,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task question",
+        "selector": ".task-question",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 8.5,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status legend",
+        "selector": ".graph-footer span",
+        "count": 6,
+        "min_px": 12,
+        "min_contrast": 7.66,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "timeline event",
+        "selector": ".timeline-event",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.94,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "chromosome axis label (SVG)",
+        "selector": ".genome-canvas svg text.svg-label",
+        "count": 6,
+        "min_px": 15.26,
+        "min_contrast": 8.46,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "gene label (SVG)",
+        "selector": ".genome-canvas svg text.svg-gene",
+        "count": 1,
+        "min_px": 15.26,
+        "min_contrast": 10.49,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "track heading",
+        "selector": ".track-heading span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 8.92,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "genome footnote",
+        "selector": ".genome-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "coordinate footer",
+        "selector": ".coordinate-footer span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 5.93,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      }
+    ],
+    "sequence": [
+      {
+        "element": "candidate name",
+        "selector": ".candidate-card strong",
+        "count": 3,
+        "min_px": 16,
+        "min_contrast": 11.28,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate coordinate",
+        "selector": ".candidate-coordinate",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 6.79,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "candidate status",
+        "selector": ".candidate-status",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 8.73,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode label",
+        "selector": ".mode-word",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.63,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "mode explanation",
+        "selector": ".mode-notice > span:not(.mode-word)",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.13,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "live/recorded pill",
+        "selector": ".pill",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 5.98,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "zoom breadcrumb",
+        "selector": ".genome-breadcrumb button",
+        "count": 4,
+        "min_px": 12,
+        "min_contrast": 7.64,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis label",
+        "selector": ".status-axes span",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status axis value",
+        "selector": ".status-axes strong",
+        "count": 3,
+        "min_px": 12,
+        "min_contrast": 13.49,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "still-to-resolve text",
+        "selector": ".question-callout p",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "scientific footnote",
+        "selector": ".scientific-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 6.17,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "stage label",
+        "selector": ".stage-labels span",
+        "count": 5,
+        "min_px": 13,
+        "min_contrast": 10.72,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task status word",
+        "selector": ".task-state",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 10.05,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task name",
+        "selector": ".task-node strong",
+        "count": 6,
+        "min_px": 17,
+        "min_contrast": 11.53,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "task question",
+        "selector": ".task-question",
+        "count": 6,
+        "min_px": 15,
+        "min_contrast": 8.5,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "status legend",
+        "selector": ".graph-footer span",
+        "count": 6,
+        "min_px": 12,
+        "min_contrast": 7.66,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "timeline event",
+        "selector": ".timeline-event",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 9.94,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "track heading",
+        "selector": ".track-heading span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 8.92,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "sequence coordinate label",
+        "selector": ".sequence-label",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 7.27,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 2,
+        "examples": [
+          {
+            "text": "113,339,941",
+            "px": 12,
+            "contrast": 7.27,
+            "truncated": true,
+            "inViewport": true
+          },
+          {
+            "text": "113,339,991",
+            "px": 12,
+            "contrast": 7.27,
+            "truncated": true,
+            "inViewport": true
+          }
+        ]
+      },
+      {
+        "element": "genome footnote",
+        "selector": ".genome-footnote",
+        "count": 1,
+        "min_px": 12,
+        "min_contrast": 7.07,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      },
+      {
+        "element": "coordinate footer",
+        "selector": ".coordinate-footer span",
+        "count": 2,
+        "min_px": 12,
+        "min_contrast": 5.93,
+        "below_min_px": 0,
+        "below_contrast": 0,
+        "truncated": 0,
+        "examples": []
+      }
+    ]
+  },
+  "text_alternatives": [
+    {
+      "level": "genome",
+      "svgs": [
+        {
+          "role": "img",
+          "label": "Human GRCh38 chromosomes with publication-derived candidate markers",
+          "title": null,
+          "textNodes": 24,
+          "texts": [
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14"
+          ]
+        }
+      ],
+      "outsideText": "Ring: selected candidate · other markers: published candidatesNeutral regions have not been investigated",
+      "sequenceLabel": null,
+      "sequenceRole": null
+    },
+    {
+      "level": "chromosome",
+      "svgs": [
+        {
+          "role": "img",
+          "label": "chr1, selected candidate at 113339960",
+          "title": null,
+          "textNodes": 3,
+          "texts": [
+            "Pansio-1",
+            "1",
+            "248,956,422"
+          ]
+        }
+      ],
+      "outsideText": "chr1248,956,422 reference bases Inspect selected locus →",
+      "sequenceLabel": null,
+      "sequenceRole": null
+    },
+    {
+      "level": "locus",
+      "svgs": [
+        {
+          "role": "img",
+          "label": "Coordinate-correct annotation view for chr1:113,339,961–113,340,514",
+          "title": null,
+          "textNodes": 7,
+          "texts": [
+            "113,239,961",
+            "113,290,100",
+            "113,340,238",
+            "113,390,377",
+            "113,440,515",
+            "Pansio-1",
+            "MAGI3 →"
+          ]
+        }
+      ],
+      "outsideText": "GENCODE v36Complete coverage of displayed window Displayed genes and strands · exact coordinatesMAGI3 → (plus strand) · 113,390,515–113,685,923 SVG reference viewer · merged gene spans, not exon models1 genes Read frozen reference bases →",
+      "sequenceLabel": null,
+      "sequenceRole": null
+    },
+    {
+      "level": "sequence",
+      "svgs": [],
+      "outsideText": "chr1:113,339,941–113,340,040GRCh38 · 100 actual reference bases 113,339,941AGCAAGCTGAATGTCCATTGGTGGATGAATGAATAAAGATGATGTGGTAT113,339,991GTACATACAATGGAATATTAGCCTTGGAAAAGAAGGAAATACTTTCACAT ← 50 bp50 bp →Frozen window: 113,339,861–113,340,614 Highlighted bases fall inside the published candidate interval. Reference sequence is not a personalized H1 genome. Source letter case is normalized to uppercas",
+      "sequenceLabel": "Actual reference sequence",
+      "sequenceRole": null
+    }
+  ],
+  "screenshots": [
+    "artifacts/safe_harbor/pr64-review/readability-final/01-initial-1280x720.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/02-run-complete-standard.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/03-presentation-mode.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/04-zoom-genome.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/04-zoom-chromosome.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/04-zoom-locus.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/04-zoom-sequence.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/05-keyboard-candidate-selected.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/06-keyboard-breadcrumb-sequence.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/07a-keyboard-task-inspector.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/07-keyboard-evidence-inspector.png",
+    "artifacts/safe_harbor/pr64-review/readability-final/08-reduced-motion-replay.png"
+  ],
+  "browser_errors": [],
+  "duration_ms": 14629
+}

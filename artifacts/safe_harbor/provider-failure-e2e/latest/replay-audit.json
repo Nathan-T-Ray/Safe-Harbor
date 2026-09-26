@@ -1,0 +1,17 @@
+{
+  "mode": "mock",
+  "purpose": "Read-only audit of atomic failed-response replay and accounting, not model inference.",
+  "run_id": "mock-provider-e2e-39757e91cfb949e9a60594c2c50ed03b",
+  "database": "safe_harbor_provider_failure_1790450109",
+  "failure_sequence": 5,
+  "checks": {
+    "failure_artifact_absent_before_event": true,
+    "failure_artifact_present_at_event": true,
+    "hash_matches_bytes": true,
+    "same_event_updates_task_and_budget": true,
+    "prior_budget_has_no_future_usage": true,
+    "failed_response_keeps_mock_label": true,
+    "failure_op_accepted": true
+  },
+  "passed": true
+}

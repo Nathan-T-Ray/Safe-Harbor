@@ -31,11 +31,22 @@ TERMINAL = {"complete", "blocked", "failed", "budget_exhausted"}
 ROOT = Path(__file__).resolve().parents[3]
 
 
+class PendingCaseExecution(RuntimeError):
+    """The driver must not dispatch another arm while an old call may spend."""
+    pass
+
+
 def _evaluation_fingerprints() -> dict:
     paths = {"reference_answers_sha256": ROOT/"data/safe_harbor/evaluator/reference_answers.json",
              "scoring_implementation_sha256": Path(__file__).with_name("scoring.py"),
              "case_manifest_sha256": ROOT/"data/safe_harbor/evaluator/splits.json"}
-    return {key: hashlib.sha256(path.read_bytes()).hexdigest() for key, path in paths.items()}
+    fingerprints = {key: hashlib.sha256(path.read_bytes()).hexdigest() for key, path in paths.items()}
+    production = list((ROOT/"backend/safe_harbor/runtime").glob("*.py"))
+    production += [ROOT/"backend/safe_harbor/science"/name for name in ("__init__.py", "catalog.py", "calculations.py", "expression_tools.py", "tools.py")]
+    production += [ROOT/"backend/safe_harbor/harness"/name for name in ("__init__.py", "specification.py")]
+    production += [ROOT/"shared/contracts.py", ROOT/"backend/safe_harbor/api.py"]
+    fingerprints["production_implementation_sha256"] = {str(path.relative_to(ROOT)): hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(production)}
+    return fingerprints
 
 
 def _promotion_rule() -> dict:
@@ -107,7 +118,7 @@ def create_experiment(*, ledger, request: dict, create_run) -> dict:
                 "evaluation_fingerprints": _evaluation_fingerprints(),
                 "promotion_rule": rule, "baselines": {k: v["harness_hash"] for k,v in baselines.items()},
                 "isolation": "Fresh run ID per case and arm; only that run's ancestors are retrievable; no derived answers shared across arms.",
-                "paired_repetitions": 1, "order": "H0/R0 alternate by case; candidate H1 added only after development proposal; final after selection",
+                "paired_repetitions": 1, "case_timeout_seconds": float(os.getenv("SAFE_HARBOR_EVALUATION_CASE_TIMEOUT", "900")), "order": "H0/R0 alternate by case; candidate H1 added only after development proposal; final after selection",
                 "optimizer_budget": {"token_limit": 30000, "tool_limit": 0, "cost_limit_usd": 1.0}}
     experiment_id = identifier("experiment")
     experiment = {"evaluation_id": experiment_id, "experiment_id": experiment_id, "schema_version": 1, "mode": mode,
@@ -175,7 +186,7 @@ def _run_case(ledger, experiment: dict, case: dict, arm: str, harness_hash: str,
         if experiment["mode"] == "real_model" and os.getenv("MODEL_ID") != experiment["comparison_manifest"]["model"]["model_id"]:
             raise LedgerError("Model identity changed after experiment freeze", 409)
         if _evaluation_fingerprints() != experiment["comparison_manifest"]["evaluation_fingerprints"]:
-            raise LedgerError("Reference answers, scoring implementation or case assignments changed after experiment freeze", 409)
+            raise LedgerError("Reference answers, scoring/case definitions or production implementations changed after experiment freeze", 409)
         current = get_catalog()
         if current["data_version"] != experiment["comparison_manifest"]["data_version"] or current["provenance"]["criteria_sha256"] != experiment["comparison_manifest"]["criteria_sha256"] or {s["source_id"]: s["sha256"] for s in current["provenance"]["sources"]} != experiment["comparison_manifest"]["source_hashes"]:
             raise LedgerError("Input data or criteria changed after experiment freeze", 409)
@@ -194,7 +205,7 @@ def _run_case(ledger, experiment: dict, case: dict, arm: str, harness_hash: str,
         latest["results"] = [r for r in latest["results"] if (r["case_id"], r["arm"]) != (case["case_id"], arm)] + [deepcopy(result)]
         _persist(ledger, latest)
         coordinator.enqueue(run_id)
-        deadline = time.monotonic()+float(os.getenv("SAFE_HARBOR_EVALUATION_CASE_TIMEOUT", "600"))
+        deadline = time.monotonic()+experiment["comparison_manifest"]["case_timeout_seconds"]
         while time.monotonic() < deadline:
             run = ledger.get_run(run_id)
             if run["status"] in TERMINAL:
@@ -225,13 +236,20 @@ def _run_case(ledger, experiment: dict, case: dict, arm: str, harness_hash: str,
         # Failures still appear in required-output denominators; uncertainty is
         # retained instead of treating interrupted/model-unreported calls as free.
         snapshot = ledger.snapshot(run_id) if run_id else {"run": {"status": "failed"}, "artifacts": [], "tasks": []}
+        scoring_started = time.monotonic()
         result["score"] = score_case(case, load_reference(case["case_id"]), extract_run_output(snapshot))
+        result["scoring_duration_seconds"] = round(time.monotonic()-scoring_started, 6)
         result["usage"]["duration_seconds"] = round(time.monotonic()-started, 4)
         result["usage"]["usage_complete"] = False
         if run_id:
             b = snapshot["run"]["budget"]
             result["usage"].update(tokens=b.get("tokens_used"), tool_calls=b.get("tool_calls",0), model_calls=b.get("model_calls",0), cost_usd=b.get("cost_usd"),
-                                    uncertain_tokens=b.get("uncertain_tokens",0)+b.get("reserved_tokens",0))
+                                    uncertain_tokens=b.get("uncertain_tokens",0)+b.get("reserved_tokens",0),
+                                    uncertain_cost_usd=b.get("uncertain_cost_usd",0)+b.get("reserved_cost_usd",0))
+            if snapshot["run"]["status"] not in TERMINAL:
+                result["execution_still_active"] = True
+                result["status"] = "pending_terminal_reconciliation"
+                result["error"] += "; coordinator execution may still finish or incur already-reserved expenditure; no later comparison arm will dispatch"
     return result
 
 
@@ -246,12 +264,21 @@ def run_arm(ledger, experiment_id: str, arm: str, harness_hash: str, cases: list
         experiment = ledger.db.evaluations.find_one({"evaluation_id": experiment_id}, {"_id": 0})
         experiment["results"] = [r for r in experiment["results"] if (r["case_id"],r["arm"]) != (case["case_id"],arm)] + [result]
         _persist(ledger, experiment)
+        if result.get("execution_still_active"):
+            raise PendingCaseExecution(result["run_id"])
     return outputs
 
 
 def _drive_safely(ledger, experiment_id: str, create_run):
     try:
         _drive(ledger, experiment_id, create_run)
+    except PendingCaseExecution as exc:
+        experiment = ledger.db.evaluations.find_one({"evaluation_id": experiment_id}, {"_id": 0})
+        experiment.update(status="blocked", blockers=["A case remains active after the experiment deadline; pending usage must be reconciled before any complete comparison or later arm. No automatic experiment restart."], pending_run_ids=[str(exc)], usage_reconciliation_required=True)
+        for row in experiment["results"]:
+            if row["status"] in ("pending", "awaiting_proposal"):
+                row.update(status="not_run_prior_case_pending", error="Experiment stopped before this assignment because a prior run is still active.", usage=_zero_usage())
+        _persist(ledger, experiment)
     except Exception as exc:
         ledger.db.evaluations.update_one({"evaluation_id": experiment_id}, {"$set": {"status": "failed", "error": f"{type(exc).__name__}: {exc}", "updated_at": now()}})
     finally:

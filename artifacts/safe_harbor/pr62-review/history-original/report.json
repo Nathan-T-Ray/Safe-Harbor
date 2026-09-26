@@ -1,0 +1,335 @@
+{
+  "ticket": "SH-Q10",
+  "started_at": "2026-09-26T19:13:11.161624+00:00",
+  "database": "safe_harbor_history_1790449990",
+  "mode": "deterministic_operational",
+  "harness_mode": "mock",
+  "mode_note": "Mock harness fixture; real deterministic science tools; no model calls; no biological conclusion.",
+  "processes": [
+    {
+      "index": 1,
+      "pid": 95292,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_ACCEPT": "inspect_evidence"
+      },
+      "log": "/Users/nathanray/safe-harbor-standalone/artifacts/safe_harbor/pr62-review/history-original/process-1.log",
+      "started_at": "2026-09-26T19:13:11.206296+00:00",
+      "exit_code": 86,
+      "ended_at": "2026-09-26T19:13:15.152059+00:00"
+    },
+    {
+      "index": 2,
+      "pid": 95371,
+      "hooks": {},
+      "log": "/Users/nathanray/safe-harbor-standalone/artifacts/safe_harbor/pr62-review/history-original/process-2.log",
+      "started_at": "2026-09-26T19:13:15.179468+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:13:26.273284+00:00"
+    },
+    {
+      "index": 3,
+      "pid": 95481,
+      "hooks": {},
+      "log": "/Users/nathanray/safe-harbor-standalone/artifacts/safe_harbor/pr62-review/history-original/process-3.log",
+      "started_at": "2026-09-26T19:13:26.285270+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:13:28.150749+00:00"
+    }
+  ],
+  "checks": [
+    {
+      "check": "process_1_crashed_after_last_intervening_accept",
+      "passed": true,
+      "exit_code": 86
+    },
+    {
+      "check": "history_accepted_before_crash",
+      "passed": true,
+      "origin_status": "complete",
+      "last_intervening_status": "complete"
+    },
+    {
+      "check": "recall_not_run_before_crash",
+      "passed": true
+    },
+    {
+      "check": "recall_executed_in_fresh_epoch",
+      "passed": true,
+      "origin_epoch": 1,
+      "recall_epochs": [
+        2,
+        2
+      ],
+      "run_epoch": 2
+    },
+    {
+      "check": "no_model_usage",
+      "passed": true,
+      "model_calls": 0,
+      "tokens_used": 0
+    },
+    {
+      "check": "origin_evidence_exists_and_hashes_verify",
+      "passed": true,
+      "origin_evidence": [
+        {
+          "artifact_id": "artifact-4584bc655b8e4dbbab58dc9f0bf53091",
+          "kind": "scientific_tool_result",
+          "tool_name": "inspect_candidate",
+          "content_hash": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+          "hash_verified": true,
+          "retrieval_bytes": 8994
+        },
+        {
+          "artifact_id": "artifact-c5666636a02749f5ab28c64d41c7cbea",
+          "kind": "scientific_tool_result",
+          "tool_name": "screen_candidate",
+          "content_hash": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+          "hash_verified": true,
+          "retrieval_bytes": 9984
+        }
+      ]
+    },
+    {
+      "check": "history_is_ordered_and_complete",
+      "passed": true,
+      "event_count": 52
+    },
+    {
+      "check": "context_characters_recorded_matches_packet",
+      "passed": true
+    },
+    {
+      "check": "original_objective_in_packet",
+      "passed": true
+    },
+    {
+      "check": "exact_older_evidence_referenced",
+      "passed": false,
+      "inline": 0,
+      "omitted_referenced": 0
+    },
+    {
+      "check": "evidence_selection_within_code_bound",
+      "passed": true,
+      "selected_characters": 26812,
+      "limit": 28000
+    },
+    {
+      "check": "packet_smaller_than_full_history",
+      "passed": true,
+      "packet_bytes": 45317,
+      "export_bytes": 3224697,
+      "events_bytes": 1807429
+    },
+    {
+      "check": "bounded_retrieval_smaller_than_full_history",
+      "passed": true,
+      "bounded_bytes": 67571,
+      "export_bytes": 3224697
+    }
+  ],
+  "code_findings": [
+    {
+      "id": "context_direct_dependencies_only",
+      "where": "backend/safe_harbor/runtime/worker.py:43-49",
+      "observation": "build_context_packet gathers evidence only from the task's direct depends_on parents; older ancestors' artifacts are neither included nor listed in omitted_artifact_ids. Older evidence reaches a later task only when explicitly declared as a dependency."
+    },
+    {
+      "id": "evidence_bound_not_packet_bound",
+      "where": "backend/safe_harbor/runtime/worker.py:55,62; backend/safe_harbor/harness/__init__.py:63-69",
+      "observation": "The 28000-character bound applies to selected evidence. Objective, candidate, criteria, input_read_set and budget are added without any whole-packet limit."
+    },
+    {
+      "id": "no_bounded_artifact_discovery_endpoint",
+      "where": "backend/safe_harbor/api.py:130-146; backend/safe_harbor/runtime/ledger.py:355-366",
+      "observation": "The API retrieves an artifact only by exact ID. Discovering a task's result_artifact_ids via the API requires /snapshot (server replays every event) or paging /events. This E2E reads the single materialized task document from MongoDB to obtain IDs."
+    },
+    {
+      "id": "dependency_lookup_not_run_scoped",
+      "where": "backend/safe_harbor/runtime/worker.py:44",
+      "observation": "Parent task lookup filters by task_id only (no run_id). Task IDs embed run_id, so this is not exercised as a defect here."
+    }
+  ],
+  "run_id": "history-e2e-4f96c34a8d874d82a5b525d26db94354",
+  "candidate_id": "pansio-1",
+  "task_count": 24,
+  "intervening_tasks": 21,
+  "objective": "SH-Q10 operational history E2E: keep the original objective and exact older evidence reachable from bounded context after restart. No biological inference or model execution.",
+  "before_restart": {
+    "through_sequence": 46,
+    "runtime_checkpoints": 65
+  },
+  "history": {
+    "event_count": 52,
+    "through_sequence": 52,
+    "export_response_bytes": 3224697,
+    "export_serialized": {
+      "characters": 3366596,
+      "utf8_bytes": 3366596
+    },
+    "events_serialized": {
+      "characters": 1807429,
+      "utf8_bytes": 1807429
+    },
+    "events_api_pages": 1,
+    "events_api_response_bytes": 1732626,
+    "artifact_count": 47,
+    "task_count": 24
+  },
+  "context_packets": {
+    "recall_declared": {
+      "task_id": "history-e2e-4f96c34a8d874d82a5b525d26db94354:pansio-1:recall_declared:r0",
+      "worker_trace_artifact_id": "artifact-7949139fc4ce4a12b820800bbac0088a",
+      "worker_trace_retrieval_bytes": 48593,
+      "recorded_context_characters": 45317,
+      "measured_packet": {
+        "characters": 45317,
+        "utf8_bytes": 45317
+      },
+      "evidence_serialized": {
+        "characters": 26822,
+        "utf8_bytes": 26822
+      },
+      "evidence_count": 5,
+      "omitted_count": 18,
+      "context_selection_trace": {
+        "policy": "relevant_evidence",
+        "max_characters": 28000,
+        "selected_characters": 26812,
+        "available_count": 23,
+        "included_artifact_ids": [
+          "artifact-4584bc655b8e4dbbab58dc9f0bf53091",
+          "artifact-c5666636a02749f5ab28c64d41c7cbea",
+          "artifact-15fcf5698d8942c0a6a5a88a5a973be6",
+          "artifact-e1e598d1382044fc8e601e7c65afe16d",
+          "artifact-8f93b424f09748ff842b1098aa130767"
+        ],
+        "omitted_artifact_ids": [
+          "artifact-11d74589b9fd46b79305037853a94b34",
+          "artifact-46804a44714d44f5af2426d6ae2f6030",
+          "artifact-d95e5815a12f43699638bb0bb1edabbc",
+          "artifact-88609b6dc4a94df6a6cce4c983351e2b",
+          "artifact-f319eaf792c4494b9a9222bddde4fefe",
+          "artifact-d8cd30bfeb81473b969f04c468dea8f3",
+          "artifact-cf3fe66aa95b4afdad092a405dff5949",
+          "artifact-86f2d61a51924853a4171cd00b83af8b",
+          "artifact-8e8af970a57a41b49797c2b3f7d2494b",
+          "artifact-4253c087a2dd4e69ace24d3aedbfe60c",
+          "artifact-9bf7b2b4cc494f7c87ca2b0a79f58999",
+          "artifact-7b5cab9f7e77435b936cd7913bbad57f",
+          "artifact-910ef39e1b254eb1ac3c23f53b98660c",
+          "artifact-37c1dcf4d17d4e6da545485ca91fab17",
+          "artifact-3a77b704f3d5400ebaea35198deb9460",
+          "artifact-c3df99a7327b4562a3d0559a7ee4d6f7",
+          "artifact-091bebfc2ae04719bb056a2e624e0cba",
+          "artifact-3fa0f75b9abb48e2a50413a3cbf85779"
+        ]
+      },
+      "objective_present": true,
+      "origin_references": [
+        {
+          "artifact_id": "artifact-4584bc655b8e4dbbab58dc9f0bf53091",
+          "tool_name": "inspect_candidate",
+          "inline": true,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": false,
+          "id_anywhere_in_packet": true
+        },
+        {
+          "artifact_id": "artifact-c5666636a02749f5ab28c64d41c7cbea",
+          "tool_name": "screen_candidate",
+          "inline": true,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": false,
+          "id_anywhere_in_packet": true
+        }
+      ],
+      "packet_to_export_ratio": 0.0141
+    },
+    "recall_chain_only": {
+      "task_id": "history-e2e-4f96c34a8d874d82a5b525d26db94354:pansio-1:recall_chain_only:r0",
+      "worker_trace_artifact_id": "artifact-8e012804b95f4b20b6b6ff2f5ada7271",
+      "worker_trace_retrieval_bytes": 47479,
+      "recorded_context_characters": 44135,
+      "measured_packet": {
+        "characters": 44135,
+        "utf8_bytes": 44135
+      },
+      "evidence_serialized": {
+        "characters": 25744,
+        "utf8_bytes": 25744
+      },
+      "evidence_count": 7,
+      "omitted_count": 16,
+      "context_selection_trace": {
+        "policy": "relevant_evidence",
+        "max_characters": 28000,
+        "selected_characters": 25730,
+        "available_count": 23,
+        "included_artifact_ids": [
+          "artifact-15fcf5698d8942c0a6a5a88a5a973be6",
+          "artifact-e1e598d1382044fc8e601e7c65afe16d",
+          "artifact-8f93b424f09748ff842b1098aa130767",
+          "artifact-11d74589b9fd46b79305037853a94b34",
+          "artifact-46804a44714d44f5af2426d6ae2f6030",
+          "artifact-d95e5815a12f43699638bb0bb1edabbc",
+          "artifact-88609b6dc4a94df6a6cce4c983351e2b"
+        ],
+        "omitted_artifact_ids": [
+          "artifact-f319eaf792c4494b9a9222bddde4fefe",
+          "artifact-d8cd30bfeb81473b969f04c468dea8f3",
+          "artifact-cf3fe66aa95b4afdad092a405dff5949",
+          "artifact-86f2d61a51924853a4171cd00b83af8b",
+          "artifact-8e8af970a57a41b49797c2b3f7d2494b",
+          "artifact-4253c087a2dd4e69ace24d3aedbfe60c",
+          "artifact-9bf7b2b4cc494f7c87ca2b0a79f58999",
+          "artifact-7b5cab9f7e77435b936cd7913bbad57f",
+          "artifact-910ef39e1b254eb1ac3c23f53b98660c",
+          "artifact-37c1dcf4d17d4e6da545485ca91fab17",
+          "artifact-3a77b704f3d5400ebaea35198deb9460",
+          "artifact-c3df99a7327b4562a3d0559a7ee4d6f7",
+          "artifact-091bebfc2ae04719bb056a2e624e0cba",
+          "artifact-3fa0f75b9abb48e2a50413a3cbf85779",
+          "artifact-4584bc655b8e4dbbab58dc9f0bf53091",
+          "artifact-c5666636a02749f5ab28c64d41c7cbea"
+        ]
+      },
+      "objective_present": true,
+      "origin_references": [
+        {
+          "artifact_id": "artifact-4584bc655b8e4dbbab58dc9f0bf53091",
+          "tool_name": "inspect_candidate",
+          "inline": false,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": true,
+          "id_anywhere_in_packet": true
+        },
+        {
+          "artifact_id": "artifact-c5666636a02749f5ab28c64d41c7cbea",
+          "tool_name": "screen_candidate",
+          "inline": false,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": true,
+          "id_anywhere_in_packet": true
+        }
+      ],
+      "packet_to_export_ratio": 0.0137
+    }
+  },
+  "bounded_retrieval_bytes": 67571,
+  "findings": [
+    {
+      "id": "transitive_older_evidence",
+      "measured": true,
+      "status": "supported",
+      "detail": "Origin evidence IDs appeared in the chain-only packet.",
+      "affects_acceptance": false
+    }
+  ],
+  "passed": false,
+  "finished_at": "2026-09-26T19:13:28.199243+00:00",
+  "failed_checks": [
+    "exact_older_evidence_referenced"
+  ]
+}

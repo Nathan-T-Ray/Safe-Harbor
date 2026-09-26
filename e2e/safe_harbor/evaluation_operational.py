@@ -31,6 +31,7 @@ def main():
     parser.add_argument("--blocked-experiment-id")
     parser.add_argument("--output", default="artifacts/safe_harbor/evaluation-e2e/latest-report.json")
     parser.add_argument("--timeout", type=float, default=180)
+    parser.add_argument("--expect-timeout-block", action="store_true", help="Use an isolated API with a tiny frozen case timeout and deterministic before-accept delay.")
     args = parser.parse_args()
     base = args.base_url.rstrip("/")
     def get(path):
@@ -51,6 +52,30 @@ def main():
             break
         assert time.monotonic() < deadline, "Experiment did not complete within the E2E deadline"
         time.sleep(.5)
+    if args.expect_timeout_block:
+        assert experiment["mode"] == "deterministic" and experiment["status"] == "blocked"
+        assert experiment["usage_reconciliation_required"] and len(experiment["pending_run_ids"]) == 1
+        assert len(experiment["results"]) == 24
+        active = [row for row in experiment["results"] if row.get("run_id")]
+        assert len(active) == 1 and active[0]["status"] == "pending_terminal_reconciliation"
+        assert active[0]["usage"]["usage_complete"] is False and "report" not in experiment
+        assert all(row["status"] == "not_run_prior_case_pending" for row in experiment["results"] if not row.get("run_id"))
+        pending_id = experiment["pending_run_ids"][0]
+        while get("/runs/"+pending_id+"/snapshot")["run"]["status"] not in {"complete", "blocked", "failed", "budget_exhausted"}:
+            assert time.monotonic() < deadline
+            time.sleep(.5)
+        after = get("/experiments/"+experiment_id)
+        assert after["status"] == "blocked" and len([row for row in after["results"] if row.get("run_id")]) == 1
+        assert "report" not in after
+        report = {"mode": "deterministic_operational_timeout_e2e", "experiment_id": experiment_id, "pending_run_id": pending_id,
+                  "assigned_records": 24, "dispatched_case_runs": 1, "later_arms_dispatched": 0, "model_calls": 0,
+                  "complete_cost_report_issued": False, "usage_reconciliation_required": True,
+                  "checks": ["Actual API/coordinator/MongoDB", "Deadline freezes with run", "Active-run timeout blocks whole experiment", "All later assignments explicit unexecuted", "No complete totals before terminal reconciliation", "Terminal run does not silently resume experiment"]}
+        destination = Path(args.output)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_text(json.dumps(report, indent=2)+"\n")
+        print(json.dumps(report))
+        return
     assert experiment["mode"] == "deterministic" and experiment["status"] == "operational_complete", experiment.get("error")
     rows = experiment["results"]
     assert len(rows) == 24 and len({(r["case_id"], r["arm"]) for r in rows}) == 24

@@ -1,0 +1,195 @@
+{
+ "ticket": "SH-Q01",
+ "started_at": "2026-09-26T19:08:37.401066+00:00",
+ "mode": "real_model",
+ "database": "safe_harbor_q01_20260926T150837",
+ "model_id": "deepseek/deepseek-v4.1-flash",
+ "model_provider": "openrouter",
+ "candidate_id": "pansio-1",
+ "budget_request": null,
+ "attempts": [
+  {
+   "attempt": 1,
+   "run_id": "run-684f2e5a20ec4c5f91f3066d030b9b0f",
+   "status": "blocked",
+   "duration_seconds": 26.3,
+   "budget": {
+    "token_limit": 60000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 12674,
+    "tool_calls": 6,
+    "model_calls": 2,
+    "cost_usd": 0.001614984,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 18440,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_cost_usd": 0.5
+   },
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "failed",
+     "error": "LedgerError: Next model request exceeds the remaining token budget"
+    },
+    {
+     "kind": "compute_features",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  },
+  {
+   "attempt": 2,
+   "run_id": "run-a6ed0a160b90409a92f3a0fa5fd58a59",
+   "status": "blocked",
+   "duration_seconds": 24.2,
+   "budget": {
+    "token_limit": 60000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 12655,
+    "tool_calls": 6,
+    "model_calls": 2,
+    "cost_usd": 0.001607284,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 18440,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_cost_usd": 0.5
+   },
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "failed",
+     "error": "LedgerError: This investigation is scoped to H1; H9 evidence requires a separately labeled context"
+    },
+    {
+     "kind": "compute_features",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  },
+  {
+   "attempt": 3,
+   "run_id": "run-71c4dfdeac3f48b58a4ccd6bc9483a9d",
+   "status": "blocked",
+   "duration_seconds": 28.3,
+   "budget": {
+    "token_limit": 60000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 12667,
+    "tool_calls": 6,
+    "model_calls": 2,
+    "cost_usd": 0.0015941015999999999,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 18440,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0,
+    "uncertain_cost_usd": 0.5
+   },
+   "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+   "tasks": [
+    {
+     "kind": "screen_regions",
+     "status": "complete",
+     "error": null
+    },
+    {
+     "kind": "inspect_evidence",
+     "status": "failed",
+     "error": "LedgerError: Next model request exceeds the remaining token budget"
+    },
+    {
+     "kind": "compute_features",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "assess_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "review_candidate",
+     "status": "queued",
+     "error": null
+    },
+    {
+     "kind": "publish_shortlist",
+     "status": "queued",
+     "error": null
+    }
+   ]
+  }
+ ],
+ "checks": [
+  {
+   "check": "api healthy with MongoDB authority and model configured",
+   "passed": true,
+   "evidence": {
+    "status": "ok",
+    "database": "safe_harbor_q01_20260926T150837",
+    "authoritative_store": "MongoDB",
+    "model_available": true,
+    "coordinator_available": true,
+    "schema_version": 1
+   }
+  },
+  {
+   "check": "a real-model run reached complete within the attempt limit",
+   "passed": false,
+   "evidence": {
+    "attempts": 3
+   }
+  }
+ ],
+ "findings": [],
+ "finished_at": "2026-09-26T19:09:58.609104+00:00",
+ "passed": false
+}
