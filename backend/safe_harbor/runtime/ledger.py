@@ -4,15 +4,13 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
-import os
 import time
 import uuid
 from datetime import datetime, timezone
 from typing import Any, Callable
 
-from pymongo import ASCENDING, MongoClient
-from pymongo.read_concern import ReadConcern
-from pymongo.write_concern import WriteConcern
+from pymongo import ASCENDING
+from safe_harbor.mongo import database_name, make_client, mongo_uri, transaction_options
 from shared.contracts import Artifact, Assessment
 
 
@@ -42,9 +40,9 @@ class LedgerError(Exception):
 
 class Ledger:
     def __init__(self, uri: str | None = None, database: str | None = None):
-        self.uri = uri or os.getenv("MONGODB_URI") or "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev"
-        self.client = MongoClient(self.uri, serverSelectionTimeoutMS=5000, tz_aware=True)
-        self.db = self.client[database or os.getenv("MONGODB_DATABASE", "safe_harbor")]
+        self.uri = uri or mongo_uri()
+        self.client = make_client(self.uri)
+        self.db = self.client[database or database_name()]
 
     def initialize(self):
         hello = self.client.admin.command("hello")
@@ -63,7 +61,7 @@ class Ledger:
 
     def _transaction(self, callback: Callable):
         with self.client.start_session() as session:
-            return session.with_transaction(callback, read_concern=ReadConcern("snapshot"), write_concern=WriteConcern("majority"))
+            return session.with_transaction(callback, **transaction_options())
 
     def get_run(self, run_id: str, session=None) -> dict:
         run = self.db.runs.find_one({"run_id": run_id}, {"_id": 0}, session=session)

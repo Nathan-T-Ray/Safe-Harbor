@@ -14,7 +14,9 @@ from urllib.parse import urlsplit
 
 import certifi
 from dotenv import load_dotenv
-from pymongo import MongoClient
+from pymongo import MongoClient, ReadPreference
+from pymongo.read_concern import ReadConcern
+from pymongo.write_concern import WriteConcern
 
 ROOT = Path(__file__).resolve().parents[2]
 load_dotenv(ROOT / ".env", override=False)
@@ -77,3 +79,17 @@ def client_options(uri: str) -> dict:
 def make_client(uri: str | None = None, **overrides) -> MongoClient:
     uri = uri or mongo_uri()
     return MongoClient(uri, **{**client_options(uri), **overrides})
+
+
+def transaction_options() -> dict:
+    """Options for ClientSession.with_transaction, valid on every Atlas tier (M0 included).
+
+    Snapshot reads with a majority commit give a consistent view across the multi-document
+    ledger writes; transactions must read from the primary, so it is pinned here even if the
+    connection string carries a different readPreference.
+    """
+    return {
+        "read_concern": ReadConcern("snapshot"),
+        "write_concern": WriteConcern("majority"),
+        "read_preference": ReadPreference.PRIMARY,
+    }

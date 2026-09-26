@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib
+import logging
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
@@ -9,15 +10,37 @@ from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, ConfigDict, ValidationError
+from pymongo.errors import PyMongoError
 
 from shared.contracts import Budget, CreateExperiment, CreateRun, EvidenceRevision, Run
+from safe_harbor.mongo import MongoConfigurationError, describe_target
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, LedgerError, digest, identifier, now
 from safe_harbor.runtime.model_settings import freeze_generation_settings
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
-ledger = Ledger()
+logger = logging.getLogger("uvicorn.error")
+
+
+class UnconfiguredLedger:
+    """Stand-in when MONGODB_URI is missing: the API still starts, and every route that needs
+    MongoDB answers 503 with the configuration message instead of failing at import."""
+
+    def __init__(self, error: MongoConfigurationError):
+        self.error = error
+
+    def __getattr__(self, name):
+        raise self.error
+
+
+try:
+    ledger = Ledger()
+    mongo_configuration_error = None
+except MongoConfigurationError as exc:
+    ledger = UnconfiguredLedger(exc)
+    mongo_configuration_error = exc
 coordinator = None
 
 
@@ -42,6 +65,12 @@ REVISION_FIXTURES = [
 @asynccontextmanager
 async def lifespan(app):
     global coordinator
+    if mongo_configuration_error is not None:
+        logger.error("Safe Harbor API started without MongoDB: %s", mongo_configuration_error)
+        yield
+        return
+    target = describe_target(ledger.uri)
+    logger.info("MongoDB target: %s host=%s database=%s", target["kind"], target["host"], ledger.db.name)
     ledger.initialize()
     try:
         module = importlib.import_module("safe_harbor.runtime.coordinator")
@@ -63,20 +92,29 @@ app.add_middleware(CORSMiddleware, allow_origins=["http://localhost:5173", "http
 
 @app.exception_handler(LedgerError)
 async def ledger_error(request, exc):
-    from fastapi.responses import JSONResponse
     return JSONResponse(status_code=exc.code, content={"detail": str(exc)})
+
+
+@app.exception_handler(MongoConfigurationError)
+async def mongo_configuration_error_handler(request, exc):
+    return JSONResponse(status_code=503, content={"detail": str(exc)})
 
 
 @app.exception_handler(ValidationError)
 async def schema_error(request, exc):
-    from fastapi.responses import JSONResponse
     return JSONResponse(status_code=422, content={"detail": "Record failed schema validation", "errors": exc.errors(include_context=False)})
 
 
 @app.get("/health")
 def health():
-    ledger.client.admin.command("ping")
-    return {"status": "ok", "database": ledger.db.name, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "schema_version": 1}
+    if mongo_configuration_error is not None:
+        return JSONResponse(status_code=503, content={"status": "unavailable", "detail": str(mongo_configuration_error), "mongodb": None, "authoritative_store": "MongoDB", "schema_version": 1})
+    target = {**describe_target(ledger.uri), "database": ledger.db.name}
+    try:
+        ledger.client.admin.command("ping")
+    except PyMongoError as exc:
+        return JSONResponse(status_code=503, content={"status": "unavailable", "detail": f"MongoDB is unreachable ({type(exc).__name__}); check the Atlas network access list and credentials.", "mongodb": target, "authoritative_store": "MongoDB", "schema_version": 1})
+    return {"status": "ok", "database": ledger.db.name, "mongodb": target, "authoritative_store": "MongoDB", "model_available": model_available(), "coordinator_available": coordinator is not None, "schema_version": 1}
 
 
 @app.get("/catalog")

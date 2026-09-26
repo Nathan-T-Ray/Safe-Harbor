@@ -3,10 +3,9 @@ from __future__ import annotations
 
 from copy import deepcopy
 import json
-import os
 from contextlib import contextmanager
 
-from pymongo import MongoClient
+from safe_harbor.mongo import database_name, make_client
 from safe_harbor.runtime.ledger import LedgerError
 from .specification import POLICIES, apply_patch, baseline_harness, canonical_hash, validate_harness
 
@@ -16,9 +15,9 @@ def _database(database=None):
     if database is not None:
         yield database
         return
-    client = MongoClient(os.getenv("MONGODB_URI", "mongodb://127.0.0.1:27021/?replicaSet=safe-harbor-dev"), serverSelectionTimeoutMS=5000)
+    client = make_client()
     try:
-        yield client[os.getenv("MONGODB_DATABASE", "safe_harbor")]
+        yield client[database_name()]
     finally:
         client.close()
 
