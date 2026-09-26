@@ -21,7 +21,7 @@ from safe_harbor.runtime.ledger import LedgerError, digest, now
 from safe_harbor.runtime.pricing import request_cost_bound
 
 MAX_DEVELOPMENT_CONTEXT_CHARACTERS = 28000
-MAX_OPTIMIZER_RESERVED_TOKENS = 30000
+MAX_OPTIMIZER_RESERVED_TOKENS = 40000
 SYSTEM_INSTRUCTIONS = """You propose one bounded executable change to the Safe Harbor investigation harness from DEVELOPMENT traces only.
 Keep scientific criteria, reference answers, input data, model identity/settings, assigned total run budget, evaluation rules, and outer tool permissions unchanged. Do not invent measured benefits. A validation process will accept or reject your proposal independently.
 Return exactly one JSON object with keys rationale (a concise string) and patch. The patch has exactly one key operations containing 1–4 supported operations. Include at least one insert_reviewer or split_role so executed topology genuinely changes; do not merely rename roles. You may additionally reassign approved tools or change context selection. Retain every original task kind and the complete approved tool set. There can be at most eight roles, four tools per role, four tool calls and two model calls per role. New review/assessment work must remain upstream of reporting.
@@ -205,7 +205,7 @@ def propose_harness(ledger, experiment_id: str, parent_hash: str, development_re
         # optimizer budget repeatedly listing evidence it cannot retrieve.
         user_packet["omitted_trace_manifest"] = {"count": len(omitted), "sha256": digest(omitted), "exact_ids_recorded_in": f"{experiment_id}:optimizer-response/omitted_trace_artifact_ids"}
         messages = [{"role": "system", "content": SYSTEM_INSTRUCTIONS}, {"role": "user", "content": json.dumps(user_packet, ensure_ascii=False, separators=(",", ":"))}]
-        request_record = {"model": model_id, "temperature": model_snapshot.get("temperature", 0), "max_tokens": output_cap, "response_format": {"type": "json_object"}, "messages": messages, "extra_body": {"provider": pricing["provider_routing"], "plugins": []}}
+        request_record = {"model": model_id, "temperature": model_snapshot.get("temperature", 0), "max_tokens": output_cap, "response_format": {"type": "json_object"}, "messages": messages, "extra_body": {"provider": pricing["provider_routing"], "plugins": [], **({"reasoning": model_snapshot["reasoning"]} if "reasoning" in model_snapshot else {})}}
         input_bytes = len(json.dumps(request_record, ensure_ascii=False).encode("utf-8"))
         # Match the worker's framing allowance so the optimizer cannot obtain a
         # looser monetary/token boundary than the arms it proposes to change.

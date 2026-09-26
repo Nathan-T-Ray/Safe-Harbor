@@ -1,0 +1,700 @@
+{
+  "evaluation_id": "optimizer:experiment-5d8ef28995924af7b65ab6ef4deb3273",
+  "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+  "type": "optimizer_attempt",
+  "mode": "real_model",
+  "parent_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "model_snapshot": {
+    "provider": "openrouter",
+    "model_id": "deepseek/deepseek-v4.1-flash",
+    "temperature": 0,
+    "max_output_tokens": 3000,
+    "context_limit_bytes": 60000,
+    "model_pricing": {
+      "model_id": "deepseek/deepseek-v4.1-flash",
+      "provider_slug": "deepinfra/fp8",
+      "source_url": "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash/endpoints",
+      "frozen_at": "2026-09-26T19:16:22.743571+00:00",
+      "pricing": {
+        "prompt": "0.00000014",
+        "completion": "0.00000042",
+        "input_cache_read": "0.0000000042",
+        "discount": 0.3
+      },
+      "prompt_usd_per_token_bound": 1.4e-07,
+      "completion_usd_per_token_bound": 4.2e-07,
+      "request_usd_bound": 0.0,
+      "provider_routing": {
+        "only": [
+          "deepinfra/fp8"
+        ],
+        "allow_fallbacks": false,
+        "require_parameters": true,
+        "max_price": {
+          "prompt": 0.14,
+          "completion": 0.42,
+          "request": 0.0
+        }
+      },
+      "policy": "Text-only calls, fixed endpoint, provider price ceilings, no server plugins or automatic fallback; unreported usage remains uncertain.",
+      "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607"
+    },
+    "cache_policy": "no_application_answer_cache; provider caching is not controlled and usage remains provisional"
+  },
+  "assigned_run_budget": {
+    "token_limit": 400000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0
+  },
+  "optimizer_budget": {
+    "token_limit": 30000,
+    "tool_limit": 0,
+    "cost_limit_usd": 1.0
+  },
+  "development_results_hash": "7424ede9a66c6c4128f8e7ca97e1afd0206930103fafd53d68f074dd5ea38941",
+  "context_packing": {
+    "schema_version": 1,
+    "implementation_sha256": "54397673d6e7ed0954bc44f8dfebd9d862297005eb777d6d047a3fc456da4db6",
+    "source_parent_harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+    "parent_instruction_encoding": "verified lossless defaults/shared fragments",
+    "task_id_encoding": "task_columns decode each task row; prepend run task_id_prefix to task_id and depends_on entries"
+  },
+  "created_at": "2026-09-26T19:23:43.816818+00:00",
+  "status": "rejected_invalid_proposal",
+  "request_hash": "1d55e18f0e553477e0d240d5d380699ca156e9b7e21b2a4068d26381fa830d94",
+  "reserved_tokens": 28085,
+  "reserved_cost_usd": 0.0047719,
+  "preflight": {
+    "input_utf8_bytes": 20477,
+    "input_bound": 25085,
+    "output_cap": 3000,
+    "reserved_tokens": 28085,
+    "reserved_cost_usd": 0.0047719,
+    "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+    "provider_routing": {
+      "only": [
+        "deepinfra/fp8"
+      ],
+      "allow_fallbacks": false,
+      "require_parameters": true,
+      "max_price": {
+        "prompt": 0.14,
+        "completion": 0.42,
+        "request": 0.0
+      }
+    },
+    "omitted_trace_artifact_ids": [
+      "artifact-127a27ed210b4835aef594d22f6fc863",
+      "artifact-bc7c858c06e6442d8b453fa26890751b",
+      "artifact-cb98834706744521afcc9863b6d4864d",
+      "artifact-f4ec92c1c9784f32bc1e748f96bbe5d4",
+      "artifact-296383d1d5564abe952cea46d23fcac3",
+      "artifact-0c1c79ac707b4527a94041c207a30dc5",
+      "artifact-a056dbd59f984215a9cf8c19c21b8e19",
+      "artifact-a5a106cee45a44cf876ce7e2d4d0aa59",
+      "artifact-09ffb499c3de4f929c0e8ad1fd8bd08a",
+      "artifact-720de5b41f1c4c508aac8219645d4d7b",
+      "artifact-1abbd67ab12042869a9755808597d082",
+      "artifact-a257e903bd5644518b3e9b9eb5d7b6b5",
+      "artifact-ea48d2c6a28d4dc6b6bbec8be6cccf7c",
+      "artifact-195eae49dfb14daf8ba2713fc141e8c2",
+      "artifact-3d11fee2ff72429891e86522168ad7ce",
+      "artifact-4c68765b0dd744a98e99be026f37027a",
+      "artifact-03d210112eaf499b91a707b4372da5dd",
+      "artifact-b188451cd6744a0dbb92783b689bcd52",
+      "artifact-bdc3b595a7a1413ebb35728d1a12d479",
+      "artifact-19e26812f4874db3b2b92ab8493ea0ce",
+      "artifact-0283dd1022ee445194112728faa18f4e",
+      "artifact-30d8c603851d428281c6499c50fa6add",
+      "artifact-1483dbc7d9ea4459b54693b79d5bd43a",
+      "artifact-62e4f9875d154397949af00f4705e5b3",
+      "artifact-5310ef73efe24d44bf532173924be398",
+      "artifact-a5e41903b7ac430da98beb7d88fc1259",
+      "artifact-afbd8dd5b1d746b7b3cb4106e5a5b869",
+      "artifact-f6c83568618d4d1d9b109cff47cb0e51",
+      "artifact-569f83efdc644b26820bfdca9802d7d0",
+      "artifact-3f405debee86451590e82297c44ed2e1",
+      "artifact-01ad2969aa24476193d2666f1732af79",
+      "artifact-0cdc38d17b024e55801d4cf74484e3c9",
+      "artifact-4701abe33fd241f69ac360c6352fff30",
+      "artifact-3c3068dd32f64c5497e275f5209c8ca9",
+      "artifact-d5bbc1538e9e4a958dff8d45c5dc02bf",
+      "artifact-3bf86987c156463495aa686d757fdac8",
+      "artifact-78714b00d5c84f0891d6372f8bd61354",
+      "artifact-4c58b0dfc86f417e9e76b578e09b6409",
+      "artifact-d845a21a6b904b078e9c4e5c7c9ee3f6",
+      "artifact-05443d17cafe4834b8dc764bb173b7dc",
+      "artifact-082ee8a106034430a433e2a45f9388e5",
+      "artifact-eb4688e22a7c4a79948f4b802fcaac51",
+      "artifact-0425487f9d3d426dbb3a456bc1fc112a",
+      "artifact-541fbef8f4b54b10ae8e182ce3490504",
+      "artifact-6b70ee2cdc734887bbe2823990f8cfbc",
+      "artifact-268415df41514bc380e3d99bfb13a84a",
+      "artifact-275f0c3e6fc84c898efb31570cb2ad29",
+      "artifact-bb839bb461c84c24ac55c3056669abb2",
+      "artifact-03eb45e38976413f8862e4ba4210a401",
+      "artifact-d6c5ee53b3354868a219a97cff6ba666",
+      "artifact-c4ff6f34fc6d43799f9004920c4c10de",
+      "artifact-6a901b02950648a5a3151064b1a8d137",
+      "artifact-7c3a8582841846429c16fc3a79555903",
+      "artifact-953a7797778b421b8fa3016b987fc1d2",
+      "artifact-2e1cf920b1d2424397b56fa174c12af6",
+      "artifact-ee197b6e70904db282b01c0f35d28683",
+      "artifact-1388acfc2ce54374bff9d25022017be0",
+      "artifact-402be71f6071447cb92e9c1a7d154023",
+      "artifact-92603113a3754c0e856f6d2ec42649a4",
+      "artifact-1b90325ca104408e8017b6f0d32102c5",
+      "artifact-d5302dc06c8a4578879633320f35a63a",
+      "artifact-35316c0daf21493f9ad56a48b0a32cc5",
+      "artifact-faa20ca2cc324261ae20090c2bb4f45a",
+      "artifact-19e7c7c3c4a54a34b915ca732a578584",
+      "artifact-c7e6c718876148cd88595b6c9f4e682e",
+      "artifact-f26d316f19594917b9d7df50d9d62865",
+      "artifact-8198ca1b85af4ffdad745ee0b7c6c9e6",
+      "artifact-a84c8fde5151429bb5d32c04345f6698",
+      "artifact-f9410372fe634d8a9f542774383b6455",
+      "artifact-09ebe48e43db4585ba34c377d3cb328a",
+      "artifact-838786d80ed3452f821b8dadd7f0cef1",
+      "artifact-6d75001244d44b21be1a6aaa56036ff2",
+      "artifact-a01de52bf0b84b7eb4b53632779a8dbe",
+      "artifact-37ddea0d68c24d1b8aaea31b24d2a1c7",
+      "artifact-a4d702e01e4d41628c4e6a5ce0937a1a",
+      "artifact-9a600afec4874b98ab94c32967a5ea26",
+      "artifact-3c1fd46c26ad47bbb2e07b1d812b3f56",
+      "artifact-d40832fa1b4e4107aaa369ae55440842",
+      "artifact-81588636a4d4425da5220910ba66f078",
+      "artifact-b430aaf42096411f82202d44a69f533e",
+      "artifact-eb6cb815fc624e618d721eff755a567f",
+      "artifact-638bbcdb7af44c319da6792dd557321d",
+      "artifact-4af01ff4eed4478196538e25a081f99d",
+      "artifact-7afc2facf66a4e7586a61df818bef9d5",
+      "artifact-68d549b74a9747c7861cdd2597564340",
+      "artifact-79cea231950544a0ae45d80d4f080a7c"
+    ]
+  },
+  "reservation_deadline": 1790450743.8688798,
+  "input_read_set": [
+    {
+      "key": "artifact-79cea231950544a0ae45d80d4f080a7c",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-68d549b74a9747c7861cdd2597564340",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-7afc2facf66a4e7586a61df818bef9d5",
+      "version": "efb27bc85789bb31bd1ecb01d0442e9e33619937d4e9ec25ab19ec64b1dde479",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-4af01ff4eed4478196538e25a081f99d",
+      "version": "213095f49dd493bd6df0311bd78aef7efaa33d4abce3a380f6926ae5f634dcb0",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-638bbcdb7af44c319da6792dd557321d",
+      "version": "ca6c73181d74c4d8e95841173862efc77415b9dd8bd0bd1f05f176da186f4a03",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-127a27ed210b4835aef594d22f6fc863",
+      "version": "0796f5d27297c6c29cc3d951651273ef05efd8c1aa593a2eff8ec728c2730d9e",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-bc7c858c06e6442d8b453fa26890751b",
+      "version": "dd0f1100598e6fb49658748bcaa80626e6191b312236815c85772b97fe160d53",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-eb6cb815fc624e618d721eff755a567f",
+      "version": "4e2770cf031026d1ee8448f716784d6ba413085fa07688a476bd6e0deb90b7e0",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-cb98834706744521afcc9863b6d4864d",
+      "version": "b414218071fb8263d4254ed8cbfe5d4a541491466978e956633490f7fc57fd4d",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-b430aaf42096411f82202d44a69f533e",
+      "version": "105534ee348e967a53c84599568911c17bf3f3e1eaa3c97e6910bcc84f36ad46",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-f4ec92c1c9784f32bc1e748f96bbe5d4",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-296383d1d5564abe952cea46d23fcac3",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-0c1c79ac707b4527a94041c207a30dc5",
+      "version": "f588a88dddcdfc1353e867e5662dea70e3fb20569bfcebd80089be3d019146cf",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a056dbd59f984215a9cf8c19c21b8e19",
+      "version": "cfc461b80f5c80e92870beb85d9044c9c9c981e233be663841d458da5dc259c6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a5a106cee45a44cf876ce7e2d4d0aa59",
+      "version": "b907434fb93dcfb87009114b055dbd024a89f5850ba0d3b2dc7f5cb330969843",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-4d4315b7570e46e182cb60e7833951ca",
+      "version": "a71334a551ab05b3ee5a0f97e55f5a2e7e95400088e46dc391ade30663c3bfcd",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-09ffb499c3de4f929c0e8ad1fd8bd08a",
+      "version": "e084d488708fcbab004c38196bd508d29cc5a6859bb0b922c505afe487b23bef",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-720de5b41f1c4c508aac8219645d4d7b",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-1abbd67ab12042869a9755808597d082",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a257e903bd5644518b3e9b9eb5d7b6b5",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-c6fa0a62631a414e93c541e97d437b63",
+      "version": "24ce1deffc5b69529cdaf2cd78ca354a3785c0ff87c5e8fd348c9628f672abf9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-ea48d2c6a28d4dc6b6bbec8be6cccf7c",
+      "version": "a4e8512ccfb6e23a1aa557cabe1afa2c05dd05a44420ae56e52a8daf7847ef2b",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-195eae49dfb14daf8ba2713fc141e8c2",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-3d11fee2ff72429891e86522168ad7ce",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-4c68765b0dd744a98e99be026f37027a",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-03d210112eaf499b91a707b4372da5dd",
+      "version": "9834b176a3b4fc1ef756e7b369e88b224248a6a4e899ed74db4ec787e2e5ccda",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-b188451cd6744a0dbb92783b689bcd52",
+      "version": "381200d6c2aa5c35ffcbe0a4f97cbcb1a25b93c33e0a4c8fe6033fe92910a084",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-bdc3b595a7a1413ebb35728d1a12d479",
+      "version": "1f843f3bc509fa37837d45de939084bd4ca960ba895f755065a6265dd4898975",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-19e26812f4874db3b2b92ab8493ea0ce",
+      "version": "2e37d7c59e52567a868f3c5e2bb565a56ae0a5401625a6430e187249c9f14323",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-0283dd1022ee445194112728faa18f4e",
+      "version": "f2d04982e32d3a2bd23e351f1c40716d4cd876b39f69e7b3907422aff73d39a2",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-30d8c603851d428281c6499c50fa6add",
+      "version": "83465b493ef9590cd632b604650b3250e742589f7523374028ece0f2e0b33247",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-66834eeed59048fdae794821b7bc1b50",
+      "version": "8670fe9cdde6f4be4e9435f940db7717d4bf767630429c9edb1263944699e7c4",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-1483dbc7d9ea4459b54693b79d5bd43a",
+      "version": "f678f9621bb1da79c5c4c462834e6e8a99b80fc0519111e439948edbb95f2f42",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-62e4f9875d154397949af00f4705e5b3",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-5310ef73efe24d44bf532173924be398",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-81588636a4d4425da5220910ba66f078",
+      "version": "a45b0a32da12a9a1c25f73afe55890f90f0bb79b073a3a8155a7eee78788c6fb",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-6c4a18cb1dc540f593316d055477ac7b",
+      "version": "989beff504854cdfc56f4592b144302a829d8bdfa1f5b27e126323f7fc70d5d1",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a5e41903b7ac430da98beb7d88fc1259",
+      "version": "cbc15afb8f5a7ae46b853407fbbd3be72cd2572a630d7482e6083c9100e83105",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-afbd8dd5b1d746b7b3cb4106e5a5b869",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-f6c83568618d4d1d9b109cff47cb0e51",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-d40832fa1b4e4107aaa369ae55440842",
+      "version": "1c0ef076323d959399ef4a0c4a8ef16fc4397a53f071cb0bf3316867ca3fd110",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-569f83efdc644b26820bfdca9802d7d0",
+      "version": "254039cfcae992ee3629ee1e80c5ce6a692e2d0b5a0f68bf831a148e2be3007f",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-3f405debee86451590e82297c44ed2e1",
+      "version": "457c4a92293522e3dd4737bc4276b13b99b6aec5b0e0e429ae26a3891d1c6cd9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-01ad2969aa24476193d2666f1732af79",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-0cdc38d17b024e55801d4cf74484e3c9",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-4701abe33fd241f69ac360c6352fff30",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-3c3068dd32f64c5497e275f5209c8ca9",
+      "version": "6e8baf46939654302c7c4305d7b65619bac6475b6015c629e949bec9204fc546",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-d5bbc1538e9e4a958dff8d45c5dc02bf",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-3bf86987c156463495aa686d757fdac8",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-78714b00d5c84f0891d6372f8bd61354",
+      "version": "381200d6c2aa5c35ffcbe0a4f97cbcb1a25b93c33e0a4c8fe6033fe92910a084",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-4c58b0dfc86f417e9e76b578e09b6409",
+      "version": "cfc461b80f5c80e92870beb85d9044c9c9c981e233be663841d458da5dc259c6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-d845a21a6b904b078e9c4e5c7c9ee3f6",
+      "version": "41d0e92b68dd7c5a5166274d6615bedae316b9d8075f0f448b5e4ca5a5b010bd",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-ef5d8b69073d46b09d54bf50f1d987b0",
+      "version": "ecf63df35093fc2511fa5af79331bdccee3ec3fd2a9f34213e3ee933e3ddc425",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-05443d17cafe4834b8dc764bb173b7dc",
+      "version": "ab0afb4e4ea87b6e0fe4abe0bbd393df01743e5f573fc71d6de7e5b43836cb5b",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-082ee8a106034430a433e2a45f9388e5",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-eb4688e22a7c4a79948f4b802fcaac51",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-0425487f9d3d426dbb3a456bc1fc112a",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-1b860ce43dc345f5a36a5eff61edfe91",
+      "version": "f22c605dd39c5c3b67688b2156f061a7d95dc97cb4d2a7be37846ef9c10e8c64",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-541fbef8f4b54b10ae8e182ce3490504",
+      "version": "69ec9c8d7de2d2284a5c77a69ea12aa95e36a15e02775b69e4e5f30317eaa8e9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-6b70ee2cdc734887bbe2823990f8cfbc",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-268415df41514bc380e3d99bfb13a84a",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-275f0c3e6fc84c898efb31570cb2ad29",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-bb839bb461c84c24ac55c3056669abb2",
+      "version": "8ebdc53610d7bd84010f5834d0a71fbf0a108dba29be734fba07ffa31ef57451",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-03eb45e38976413f8862e4ba4210a401",
+      "version": "381200d6c2aa5c35ffcbe0a4f97cbcb1a25b93c33e0a4c8fe6033fe92910a084",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-d6c5ee53b3354868a219a97cff6ba666",
+      "version": "1f843f3bc509fa37837d45de939084bd4ca960ba895f755065a6265dd4898975",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-c4ff6f34fc6d43799f9004920c4c10de",
+      "version": "2e37d7c59e52567a868f3c5e2bb565a56ae0a5401625a6430e187249c9f14323",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-6a901b02950648a5a3151064b1a8d137",
+      "version": "f2d04982e32d3a2bd23e351f1c40716d4cd876b39f69e7b3907422aff73d39a2",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-7c3a8582841846429c16fc3a79555903",
+      "version": "78ad09b0cfc01ad57765598d3b53e2c6c25700bfd4e69d3827d5836be7aad262",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-953a7797778b421b8fa3016b987fc1d2",
+      "version": "b914204d2c4db00248141d680bc403e935b793ff5a66d66f79bc3694506b0adc",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-2e1cf920b1d2424397b56fa174c12af6",
+      "version": "4016b86872ee4e257158d4ca5b245cfb35d594040337f3ebfb4eb3beac463fd2",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-ee197b6e70904db282b01c0f35d28683",
+      "version": "08580bbd9a7cf1713bf4d45c4a41d1a544589ed91863fa12cca2e176036bf556",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-1388acfc2ce54374bff9d25022017be0",
+      "version": "865928bb65cab4f46d7a0f5d901d6d40f1bead0c3d714973b129cb9726106678",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-b323d45c0af04b26a48b15ad867bf071",
+      "version": "fb20a6e45d717e565832e3a3b365251556c09004f7447e536bb8c53a1ca981cd",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-402be71f6071447cb92e9c1a7d154023",
+      "version": "62285f77e37669d2ff54e78f0b6fc66afbc5e958ba3e9f153d04b3c8ca1cb4c2",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-92603113a3754c0e856f6d2ec42649a4",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-1b90325ca104408e8017b6f0d32102c5",
+      "version": "08580bbd9a7cf1713bf4d45c4a41d1a544589ed91863fa12cca2e176036bf556",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-d5302dc06c8a4578879633320f35a63a",
+      "version": "865928bb65cab4f46d7a0f5d901d6d40f1bead0c3d714973b129cb9726106678",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-35316c0daf21493f9ad56a48b0a32cc5",
+      "version": "4016b86872ee4e257158d4ca5b245cfb35d594040337f3ebfb4eb3beac463fd2",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-0663b52f499d4acfa39c91aafae7daef",
+      "version": "16f466ad50fdbf8833fe13a1ecd457c0df76ed3f3e41d1ceecfe23d609b5778e",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-faa20ca2cc324261ae20090c2bb4f45a",
+      "version": "8cfa6f292284e09574b2de377c354d58d8e4b070f2ecfa99b95bc57287e00ab9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-19e7c7c3c4a54a34b915ca732a578584",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-c7e6c718876148cd88595b6c9f4e682e",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-f26d316f19594917b9d7df50d9d62865",
+      "version": "16c06f71a6911a74ad01e84dd2a9fdadcaee00a992c463d70cbae180da4f8580",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-8198ca1b85af4ffdad745ee0b7c6c9e6",
+      "version": "457c4a92293522e3dd4737bc4276b13b99b6aec5b0e0e429ae26a3891d1c6cd9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a84c8fde5151429bb5d32c04345f6698",
+      "version": "95aef60e92f21cbeb7dd521328e940f66a87917b537a887aa5063b1034b0f9ac",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-f9410372fe634d8a9f542774383b6455",
+      "version": "40e5cbfe8d5df39f429180b3e1036ab21b58b6209e10eb2dfad7b9092b8647df",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-09ebe48e43db4585ba34c377d3cb328a",
+      "version": "06421c1e344849c8e0813637a1e39c8eab3589775dd0924898259e64e68020b6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-838786d80ed3452f821b8dadd7f0cef1",
+      "version": "d0eeb1d6eb1320be895f214f24f2eb13a1972ce4367e80d5d82b4439c3c88e77",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-6d75001244d44b21be1a6aaa56036ff2",
+      "version": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a01de52bf0b84b7eb4b53632779a8dbe",
+      "version": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-37ddea0d68c24d1b8aaea31b24d2a1c7",
+      "version": "381200d6c2aa5c35ffcbe0a4f97cbcb1a25b93c33e0a4c8fe6033fe92910a084",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-a4d702e01e4d41628c4e6a5ce0937a1a",
+      "version": "cfc461b80f5c80e92870beb85d9044c9c9c981e233be663841d458da5dc259c6",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-9a600afec4874b98ab94c32967a5ea26",
+      "version": "ce563422ef1055e7ee91f520b8a5ed9096f3a3b318eb5243716e4651893dd2c4",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-f689c052d66042ff90e1a86edc80c263",
+      "version": "a5f98f8010e535fd3e86b1ad4ee6c5fa3c2e127f011e622e2b9a16b23470a902",
+      "kind": "artifact"
+    },
+    {
+      "key": "artifact-3c1fd46c26ad47bbb2e07b1d812b3f56",
+      "version": "099f338fc218bc50a7a3daa74dc25b26f7f9178ded41804bb353e61486f2a1e0",
+      "kind": "artifact"
+    }
+  ],
+  "started_at": "2026-09-26T19:23:43.868881+00:00",
+  "usage": {
+    "tokens": 8672,
+    "tool_calls": 0,
+    "model_calls": 1,
+    "cost_usd": 0.00205408,
+    "duration_seconds": 34.95036,
+    "usage_complete": true,
+    "reserved_tokens": 28085,
+    "uncertain_tokens": 0,
+    "uncertain_cost_usd": 0.0,
+    "reserved_cost_usd": 0.0047719,
+    "provider_usage": {
+      "completion_tokens": 3000,
+      "prompt_tokens": 5672,
+      "total_tokens": 8672,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 3000,
+        "rejected_prediction_tokens": null,
+        "text_tokens": null,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "image_tokens": null,
+        "text_tokens": null,
+        "video_tokens": 0
+      },
+      "cost": 0.00205408,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00205408,
+        "upstream_inference_prompt_cost": 0.00079408,
+        "upstream_inference_completions_cost": 0.00126
+      }
+    },
+    "budget_breach": false,
+    "cost_budget_breach": false
+  },
+  "candidate_hash": null,
+  "proposal_artifact_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273:optimizer-response",
+  "error": "Expecting value: line 1 column 1 (char 0)",
+  "finished_at": "2026-09-26T19:24:18.829742+00:00"
+}

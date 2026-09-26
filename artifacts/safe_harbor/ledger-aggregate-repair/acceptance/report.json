@@ -1,0 +1,59 @@
+{
+  "mode": "deterministic_operational",
+  "harness_mode": "mock",
+  "model_calls": 0,
+  "purpose": "Actual API/process/MongoDB acceptance boundary; real screen tool inputs, deliberately corrupted proposed copies explicitly labelled.",
+  "passed": true,
+  "database": "safe_harbor_aggregate_1790450637",
+  "api_pid": 99477,
+  "cases": [
+    {
+      "fixture_id": "unchanged",
+      "run_id": "mock-acceptance-e2e-be9dcccb84764f02a33b6b2831bf08e6",
+      "accepted": true,
+      "reason": null,
+      "unchanged_on_rejection": true,
+      "screen_status": "incomplete"
+    },
+    {
+      "fixture_id": "forged_pass",
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "accepted": false,
+      "reason": "Assessment screen status contradicts the frozen required-criteria aggregate",
+      "unchanged_on_rejection": true,
+      "screen_status": null
+    },
+    {
+      "fixture_id": "missing_required_rows",
+      "run_id": "mock-acceptance-e2e-99657578ce2448579e0c782c5aae67fe",
+      "accepted": false,
+      "reason": "Assessment screen status contradicts the frozen required-criteria aggregate",
+      "unchanged_on_rejection": true,
+      "screen_status": null
+    },
+    {
+      "fixture_id": "forged_evidence",
+      "run_id": "mock-acceptance-e2e-4b54139136c64a5ea79f8c15acbf9e13",
+      "accepted": false,
+      "reason": "Assessment criterion differs from consumed scientific evidence",
+      "unchanged_on_rejection": true,
+      "screen_status": null
+    },
+    {
+      "fixture_id": "invented_available_criterion",
+      "run_id": "mock-acceptance-e2e-bb294f9ed756477bb6d17a49a5ef7dba",
+      "accepted": false,
+      "reason": "Assessment criterion differs from consumed scientific evidence",
+      "unchanged_on_rejection": true,
+      "screen_status": null
+    },
+    {
+      "fixture_id": "wrong_context",
+      "run_id": "mock-acceptance-e2e-f15766c804d741b89676b9bf2754fdd9",
+      "accepted": false,
+      "reason": "Assessment assembly or cell context differs from its investigation",
+      "unchanged_on_rejection": true,
+      "screen_status": null
+    }
+  ]
+}

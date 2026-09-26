@@ -107,8 +107,9 @@ def create_experiment(*, ledger, request: dict, create_run) -> dict:
                 "require_complete_usage_for_cost": True, "status": "promotion_module_unavailable"}
     split_bytes = (ROOT/"data/safe_harbor/evaluator/splits.json").read_bytes()
     split_package = json.loads(split_bytes)
-    model_snapshot = {"provider": "openrouter", "model_id": os.getenv("MODEL_ID"), "temperature": 0,
-                      "max_output_tokens": max(512, min(8192, int(os.getenv("MODEL_MAX_OUTPUT_TOKENS", "3000")))), "context_limit_bytes": 60000, "model_pricing": pricing, "cache_policy": "no_application_answer_cache; provider caching is not controlled and usage remains provisional"}
+    from safe_harbor.runtime.model_settings import freeze_generation_settings
+    model_snapshot = {"provider": "openrouter", "model_id": os.getenv("MODEL_ID"),
+                      **freeze_generation_settings(), "model_pricing": pricing, "cache_policy": "no_application_answer_cache; provider caching is not controlled and usage remains provisional"}
     manifest = {"schema_version": 1, "model": model_snapshot, "budget": dict(DEFAULT_BUDGET),
                 "data_version": source["data_version"], "source_hashes": {s["source_id"]: s["sha256"] for s in source["provenance"]["sources"]},
                 "criteria_sha256": source["provenance"]["criteria_sha256"],
@@ -119,7 +120,7 @@ def create_experiment(*, ledger, request: dict, create_run) -> dict:
                 "promotion_rule": rule, "baselines": {k: v["harness_hash"] for k,v in baselines.items()},
                 "isolation": "Fresh run ID per case and arm; only that run's ancestors are retrievable; no derived answers shared across arms.",
                 "paired_repetitions": 1, "case_timeout_seconds": float(os.getenv("SAFE_HARBOR_EVALUATION_CASE_TIMEOUT", "900")), "order": "H0/R0 alternate by case; candidate H1 added only after development proposal; final after selection",
-                "optimizer_budget": {"token_limit": 30000, "tool_limit": 0, "cost_limit_usd": 1.0}}
+                "optimizer_budget": {"token_limit": 40000, "tool_limit": 0, "cost_limit_usd": 1.0}}
     experiment_id = identifier("experiment")
     experiment = {"evaluation_id": experiment_id, "experiment_id": experiment_id, "schema_version": 1, "mode": mode,
                   "kind": "harness_comparison", "status": "queued", "created_at": now(), "updated_at": now(),
@@ -165,7 +166,7 @@ def _bind_case(ledger, run_id: str, case: dict, experiment: dict, arm: str):
         run = ledger.get_run(run_id, session)
         if run.get("mode") == "real_model" and (run.get("model_pricing") or {}).get("pricing_hash") != (experiment["model_snapshot"].get("model_pricing") or {}).get("pricing_hash"):
             raise LedgerError("Provider pricing/routing changed after experiment freeze", 409)
-        if run.get("mode") == "real_model" and run.get("model_settings") != {key: experiment["model_snapshot"][key] for key in ("temperature", "max_output_tokens", "context_limit_bytes")}:
+        if run.get("mode") == "real_model" and run.get("model_settings") != {key: experiment["model_snapshot"][key] for key in ("temperature", "max_output_tokens", "context_limit_bytes", "reasoning") if key in experiment["model_snapshot"]}:
             raise LedgerError("Model generation/context settings changed after experiment freeze", 409)
         if run["status"] != "queued" or any(t["attempt"] for t in ledger.db.tasks.find({"run_id": run_id}, session=session)):
             raise LedgerError("Evaluation case must be bound before dispatch", 409)

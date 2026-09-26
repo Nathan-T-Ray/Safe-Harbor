@@ -269,7 +269,7 @@ def _execute_worker(ledger, run: dict, task: dict, state: dict) -> dict:
                 model=run["model_id"], messages=messages,
                 max_tokens=output_cap,
                 temperature=run.get("model_settings", {}).get("temperature", 0), **({"tools": tools, "tool_choice": "auto"} if may_use_tools else {"response_format": {"type": "json_object"}}),
-                extra_body={"provider": run["model_pricing"]["provider_routing"], "plugins": []},
+                extra_body={"provider": run["model_pricing"]["provider_routing"], "plugins": [], **({"reasoning": run["model_settings"]["reasoning"]} if "reasoning" in run.get("model_settings", {}) else {})},
             )
             state["request_in_flight"] = False
             state["provider_responses"].append({"call_index": call_index, "response": response.model_dump(mode="json")})

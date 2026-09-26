@@ -1,0 +1,1096 @@
+{
+  "schema_version": 1,
+  "exported_at": "2026-09-26T19:24:01.181684+00:00",
+  "through_sequence": 3,
+  "mode": "deterministic",
+  "authoritative_store": "MongoDB application ledger",
+  "snapshot": {
+    "schema_version": 1,
+    "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+    "through_sequence": 3,
+    "run": {
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "schema_version": 1,
+      "objective": "Operational fixture, no model inference.",
+      "mode": "deterministic",
+      "status": "running",
+      "candidate_ids": [
+        "pansio-1"
+      ],
+      "assembly": "GRCh38",
+      "cell_context": "H1 human embryonic stem cells",
+      "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+      "run_revision": 3,
+      "through_sequence": 3,
+      "coordinator_epoch": 1,
+      "budget": {
+        "token_limit": 60000,
+        "tool_limit": 40,
+        "cost_limit_usd": 5.0,
+        "tokens_used": 0,
+        "tool_calls": 0,
+        "model_calls": 0,
+        "cost_usd": null,
+        "reserved_tokens": 0,
+        "uncertain_tokens": 0,
+        "reserved_tools": 1,
+        "reserved_cost_usd": 0
+      },
+      "created_at": "2026-09-26T19:24:01.089860+00:00",
+      "evidence_versions": {
+        "criteria:v1": 1,
+        "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "scope:pansio-1:catalog": 1,
+        "scope:pansio-1:annotation": 1,
+        "scope:pansio-1:expression": 1,
+        "scope:pansio-1:sequence": 1,
+        "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1"
+      },
+      "evidence_availability": {
+        "pansio-1": {
+          "control_evidence": true
+        }
+      },
+      "operational_fixture": true,
+      "coordinator_owner": "isolated-acceptance-fixture",
+      "lease_updated_at": "2026-09-26T19:24:01.098857+00:00",
+      "lease_expires_at": 1790450653.098861
+    },
+    "candidates": [
+      {
+        "candidate_id": "pansio-1",
+        "name": "Pansio-1",
+        "assembly": "GRCh38",
+        "chromosome": "chr1",
+        "start": 113339960,
+        "end": 113340514,
+        "coordinate_system": "zero_based_half_open",
+        "cell_context": "H1 human embryonic stem cells",
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "group_id": "autio-chr1-113000001-114000000",
+        "source_coordinates": {
+          "assembly": "GRCh38",
+          "chromosome": "1",
+          "start": 113339961,
+          "end": 113340514,
+          "width": 554,
+          "coordinate_system": "one_based_closed",
+          "conversion": "internal_start = source_start - 1; internal_end = source_end",
+          "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+          "source_id": "elife-79592-supp1.xlsx",
+          "sheet": "overlap safe-active",
+          "row": 5,
+          "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+        },
+        "evidence_ids": [
+          "source:supp1",
+          "source:supp5:pansio-1"
+        ],
+        "origin": "publication-derived candidate shortlist",
+        "publication_blat_ratio": 0.26895306859205775
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0",
+        "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+        "candidate_id": "pansio-1",
+        "kind": "assess_candidate",
+        "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+        "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+            "version": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+            "kind": "artifact"
+          },
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:annotation",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "assess",
+        "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+        "allowed_tools": [
+          "screen_candidate"
+        ],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 1,
+          "max_model_calls": 1
+        },
+        "status": "running",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "",
+        "plan_revision": 0,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "started_at": "2026-09-26T19:24:01.106348+00:00",
+        "coordinator_epoch": 1,
+        "reservation": {
+          "tokens": 0,
+          "tools": 1,
+          "cost_usd": 0,
+          "operation_id": "reserve:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0:1:attempt-01500ccbfd70429ba1fdac028e281161"
+        }
+      }
+    ],
+    "artifacts": [
+      {
+        "artifact_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+        "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+        "kind": "source_manifest",
+        "revision": 1,
+        "content_hash": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+        "data": {
+          "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+          "criteria": {
+            "criteria_version": "safe-harbor-criteria-v1",
+            "immutable_to_harness_optimizer": true,
+            "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+            "source_section": "Materials and methods: In silico search for putative GSH",
+            "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+            "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+            "criteria": [
+              {
+                "criterion_id": "outside_gene_body",
+                "required": true,
+                "comparison": "overlap_count == 0",
+                "inputs": [
+                  "candidate_interval",
+                  "GENCODE_v36_transcript_spans"
+                ],
+                "description": "Candidate interval does not overlap an annotated transcription unit.",
+                "missing_data": "incomplete"
+              },
+              {
+                "criterion_id": "tss_distance",
+                "required": true,
+                "comparison": "distance_bp > 50000",
+                "threshold_bp": 50000,
+                "inputs": [
+                  "candidate_interval",
+                  "GENCODE_v36_transcript_TSS"
+                ],
+                "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+                "missing_data": "incomplete",
+                "distance_metric": "nearest_reference_base_distance_bp"
+              },
+              {
+                "criterion_id": "mirna_distance",
+                "required": true,
+                "comparison": "distance_bp > 300000",
+                "threshold_bp": 300000,
+                "inputs": [
+                  "candidate_interval",
+                  "GENCODE_v36_miRNA_gene_spans"
+                ],
+                "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+                "missing_data": "incomplete",
+                "distance_metric": "nearest_reference_base_distance_bp"
+              },
+              {
+                "criterion_id": "lncrna_distance",
+                "required": true,
+                "comparison": "distance_bp > 100000",
+                "threshold_bp": 100000,
+                "inputs": [
+                  "candidate_interval",
+                  "GENCODE_v36_lncRNA_gene_spans"
+                ],
+                "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+                "missing_data": "incomplete",
+                "distance_metric": "nearest_reference_base_distance_bp"
+              },
+              {
+                "criterion_id": "cancer_gene_distance",
+                "required": true,
+                "comparison": "distance_bp > 300000",
+                "threshold_bp": 300000,
+                "inputs": [
+                  "candidate_interval",
+                  "licensed_cancer_gene_coordinates"
+                ],
+                "availability": "unavailable",
+                "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+                "missing_data": "incomplete",
+                "distance_metric": "nearest_reference_base_distance_bp"
+              },
+              {
+                "criterion_id": "outside_dhs_buffer",
+                "required": true,
+                "comparison": "overlap_count == 0",
+                "buffer_bp": 2000,
+                "inputs": [
+                  "candidate_interval",
+                  "ENCFF503GCK_with_assembly_provenance"
+                ],
+                "availability": "unavailable",
+                "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+                "missing_data": "incomplete"
+              },
+              {
+                "criterion_id": "outside_ultraconserved_regions",
+                "required": true,
+                "comparison": "overlap_count == 0",
+                "inputs": [
+                  "candidate_interval",
+                  "versioned_GRCh38_ultraconserved_regions"
+                ],
+                "availability": "unavailable",
+                "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+                "missing_data": "incomplete"
+              }
+            ],
+            "experimental_endpoints": [
+              {
+                "endpoint_id": "transcriptome_perturbation",
+                "assay": "RNA-seq, DEseq2",
+                "cell_context": "H1 human embryonic stem cells",
+                "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+                "gene_unit": "unique versioned Ensembl gene ID",
+                "thresholds": {
+                  "abs_log2_fold_change_gte": 1,
+                  "fdr_lte": 0.01
+                },
+                "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+                "exclusion_threshold": null,
+                "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+              },
+              {
+                "endpoint_id": "nearest_gene_expression",
+                "assay": "qPCR",
+                "cell_context": "H1 human embryonic stem cells",
+                "genes": [
+                  "MAGI3",
+                  "TXNL1",
+                  "ZNRF4"
+                ],
+                "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+                "exclusion_threshold": null,
+                "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+              }
+            ],
+            "evidence_rules": {
+              "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+              "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+              "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+              "H9": "Separate cell context, not automatically applicable to H1."
+            },
+            "distance_convention": {
+              "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+              "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+              "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+            }
+          }
+        },
+        "evidence_ids": [],
+        "input_read_set": [],
+        "provenance": {
+          "mode": "mock",
+          "purpose": "Operational fixture; real frozen criteria"
+        },
+        "created_at": "2026-09-26T19:24:01.089971+00:00"
+      }
+    ],
+    "assessments": [],
+    "harness_versions": [
+      {
+        "mode": "mock",
+        "proposal_mode": "mock",
+        "name": "Authoritative acceptance fixture",
+        "roles": [
+          {
+            "role_id": "assess",
+            "kind": "assess_candidate",
+            "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+            "depends_on": [],
+            "allowed_tools": [
+              "screen_candidate"
+            ],
+            "max_tool_calls": 1,
+            "max_model_calls": 1
+          }
+        ],
+        "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975"
+      }
+    ],
+    "evaluations": []
+  },
+  "events": [
+    {
+      "schema_version": 1,
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "sequence": 1,
+      "event_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:1",
+      "operation_id": "create:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "occurred_at": "2026-09-26T19:24:01.090760+00:00",
+      "type": "state.committed",
+      "cause": "run.created",
+      "run_revision": 1,
+      "upserts": {
+        "candidates": [
+          {
+            "candidate_id": "pansio-1",
+            "name": "Pansio-1",
+            "assembly": "GRCh38",
+            "chromosome": "chr1",
+            "start": 113339960,
+            "end": 113340514,
+            "coordinate_system": "zero_based_half_open",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "group_id": "autio-chr1-113000001-114000000",
+            "source_coordinates": {
+              "assembly": "GRCh38",
+              "chromosome": "1",
+              "start": 113339961,
+              "end": 113340514,
+              "width": 554,
+              "coordinate_system": "one_based_closed",
+              "conversion": "internal_start = source_start - 1; internal_end = source_end",
+              "basis": "Supplement 1 width=end-start+1; matched Supplement 5 sheet title; study GRCh38 methods",
+              "source_id": "elife-79592-supp1.xlsx",
+              "sheet": "overlap safe-active",
+              "row": 5,
+              "sha256": "faa4ed0a0dfd246368ada4013c0fcf61166b9d8c9c14e42eef055f0bede596dc"
+            },
+            "evidence_ids": [
+              "source:supp1",
+              "source:supp5:pansio-1"
+            ],
+            "origin": "publication-derived candidate shortlist",
+            "publication_blat_ratio": 0.26895306859205775
+          }
+        ],
+        "tasks": [
+          {
+            "task_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0",
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "candidate_id": "pansio-1",
+            "kind": "assess_candidate",
+            "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+            "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [],
+            "role_id": "assess",
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+            "allowed_tools": [
+              "screen_candidate"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 1,
+              "max_model_calls": 1
+            },
+            "status": "queued",
+            "attempt": 0,
+            "context_policy": "relevant_evidence",
+            "instructions": "",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ]
+          }
+        ],
+        "harness_versions": [
+          {
+            "mode": "mock",
+            "proposal_mode": "mock",
+            "name": "Authoritative acceptance fixture",
+            "roles": [
+              {
+                "role_id": "assess",
+                "kind": "assess_candidate",
+                "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+                "depends_on": [],
+                "allowed_tools": [
+                  "screen_candidate"
+                ],
+                "max_tool_calls": 1,
+                "max_model_calls": 1
+              }
+            ],
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975"
+          }
+        ],
+        "artifacts": [
+          {
+            "artifact_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "kind": "source_manifest",
+            "revision": 1,
+            "content_hash": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+            "data": {
+              "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "criteria": {
+                "criteria_version": "safe-harbor-criteria-v1",
+                "immutable_to_harness_optimizer": true,
+                "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+                "source_section": "Materials and methods: In silico search for putative GSH",
+                "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+                "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+                "criteria": [
+                  {
+                    "criterion_id": "outside_gene_body",
+                    "required": true,
+                    "comparison": "overlap_count == 0",
+                    "inputs": [
+                      "candidate_interval",
+                      "GENCODE_v36_transcript_spans"
+                    ],
+                    "description": "Candidate interval does not overlap an annotated transcription unit.",
+                    "missing_data": "incomplete"
+                  },
+                  {
+                    "criterion_id": "tss_distance",
+                    "required": true,
+                    "comparison": "distance_bp > 50000",
+                    "threshold_bp": 50000,
+                    "inputs": [
+                      "candidate_interval",
+                      "GENCODE_v36_transcript_TSS"
+                    ],
+                    "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+                    "missing_data": "incomplete",
+                    "distance_metric": "nearest_reference_base_distance_bp"
+                  },
+                  {
+                    "criterion_id": "mirna_distance",
+                    "required": true,
+                    "comparison": "distance_bp > 300000",
+                    "threshold_bp": 300000,
+                    "inputs": [
+                      "candidate_interval",
+                      "GENCODE_v36_miRNA_gene_spans"
+                    ],
+                    "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+                    "missing_data": "incomplete",
+                    "distance_metric": "nearest_reference_base_distance_bp"
+                  },
+                  {
+                    "criterion_id": "lncrna_distance",
+                    "required": true,
+                    "comparison": "distance_bp > 100000",
+                    "threshold_bp": 100000,
+                    "inputs": [
+                      "candidate_interval",
+                      "GENCODE_v36_lncRNA_gene_spans"
+                    ],
+                    "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+                    "missing_data": "incomplete",
+                    "distance_metric": "nearest_reference_base_distance_bp"
+                  },
+                  {
+                    "criterion_id": "cancer_gene_distance",
+                    "required": true,
+                    "comparison": "distance_bp > 300000",
+                    "threshold_bp": 300000,
+                    "inputs": [
+                      "candidate_interval",
+                      "licensed_cancer_gene_coordinates"
+                    ],
+                    "availability": "unavailable",
+                    "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+                    "missing_data": "incomplete",
+                    "distance_metric": "nearest_reference_base_distance_bp"
+                  },
+                  {
+                    "criterion_id": "outside_dhs_buffer",
+                    "required": true,
+                    "comparison": "overlap_count == 0",
+                    "buffer_bp": 2000,
+                    "inputs": [
+                      "candidate_interval",
+                      "ENCFF503GCK_with_assembly_provenance"
+                    ],
+                    "availability": "unavailable",
+                    "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+                    "missing_data": "incomplete"
+                  },
+                  {
+                    "criterion_id": "outside_ultraconserved_regions",
+                    "required": true,
+                    "comparison": "overlap_count == 0",
+                    "inputs": [
+                      "candidate_interval",
+                      "versioned_GRCh38_ultraconserved_regions"
+                    ],
+                    "availability": "unavailable",
+                    "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+                    "missing_data": "incomplete"
+                  }
+                ],
+                "experimental_endpoints": [
+                  {
+                    "endpoint_id": "transcriptome_perturbation",
+                    "assay": "RNA-seq, DEseq2",
+                    "cell_context": "H1 human embryonic stem cells",
+                    "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+                    "gene_unit": "unique versioned Ensembl gene ID",
+                    "thresholds": {
+                      "abs_log2_fold_change_gte": 1,
+                      "fdr_lte": 0.01
+                    },
+                    "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+                    "exclusion_threshold": null,
+                    "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+                  },
+                  {
+                    "endpoint_id": "nearest_gene_expression",
+                    "assay": "qPCR",
+                    "cell_context": "H1 human embryonic stem cells",
+                    "genes": [
+                      "MAGI3",
+                      "TXNL1",
+                      "ZNRF4"
+                    ],
+                    "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+                    "exclusion_threshold": null,
+                    "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+                  }
+                ],
+                "evidence_rules": {
+                  "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+                  "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+                  "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+                  "H9": "Separate cell context, not automatically applicable to H1."
+                },
+                "distance_convention": {
+                  "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+                  "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+                  "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+                }
+              }
+            },
+            "evidence_ids": [],
+            "input_read_set": [],
+            "provenance": {
+              "mode": "mock",
+              "purpose": "Operational fixture; real frozen criteria"
+            },
+            "created_at": "2026-09-26T19:24:01.089971+00:00"
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "schema_version": 1,
+            "objective": "Operational fixture, no model inference.",
+            "mode": "deterministic",
+            "status": "blocked",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+            "run_revision": 1,
+            "through_sequence": 1,
+            "coordinator_epoch": 0,
+            "budget": {
+              "token_limit": 60000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T19:24:01.089860+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:sequence": 1,
+              "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1"
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "sequence": 2,
+      "event_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:2",
+      "operation_id": "claim-5933144f0f644fc581a2effe6a2f8e02",
+      "occurred_at": "2026-09-26T19:24:01.099211+00:00",
+      "type": "state.committed",
+      "cause": "coordinator.recovered",
+      "run_revision": 2,
+      "upserts": {
+        "tasks": [],
+        "runs": [
+          {
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "schema_version": 1,
+            "objective": "Operational fixture, no model inference.",
+            "mode": "deterministic",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+            "run_revision": 2,
+            "through_sequence": 2,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 60000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0
+            },
+            "created_at": "2026-09-26T19:24:01.089860+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:sequence": 1,
+              "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1"
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "coordinator_owner": "isolated-acceptance-fixture",
+            "lease_updated_at": "2026-09-26T19:24:01.098857+00:00",
+            "lease_expires_at": 1790450653.098861
+          }
+        ]
+      }
+    },
+    {
+      "schema_version": 1,
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "sequence": 3,
+      "event_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:3",
+      "operation_id": "reserve:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0:1:attempt-01500ccbfd70429ba1fdac028e281161",
+      "occurred_at": "2026-09-26T19:24:01.106425+00:00",
+      "type": "state.committed",
+      "cause": "task.started",
+      "run_revision": 3,
+      "upserts": {
+        "tasks": [
+          {
+            "task_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0",
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "candidate_id": "pansio-1",
+            "kind": "assess_candidate",
+            "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+            "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+            "decision_target": "expression_exclusion_concern",
+            "depends_on": [],
+            "input_read_set": [
+              {
+                "key": "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+                "version": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+                "kind": "artifact"
+              },
+              {
+                "key": "criteria:v1",
+                "version": 1,
+                "kind": "criteria"
+              },
+              {
+                "key": "scope:pansio-1:annotation",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "scope:pansio-1:catalog",
+                "version": 1,
+                "kind": "query_scope"
+              },
+              {
+                "key": "source:data_version",
+                "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+                "kind": "artifact"
+              }
+            ],
+            "role_id": "assess",
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+            "allowed_tools": [
+              "screen_candidate"
+            ],
+            "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+            "budget": {
+              "max_tool_calls": 1,
+              "max_model_calls": 1
+            },
+            "status": "running",
+            "attempt": 1,
+            "context_policy": "relevant_evidence",
+            "instructions": "",
+            "plan_revision": 0,
+            "runtime_tools": [
+              "retrieve_evidence"
+            ],
+            "started_at": "2026-09-26T19:24:01.106348+00:00",
+            "coordinator_epoch": 1,
+            "reservation": {
+              "tokens": 0,
+              "tools": 1,
+              "cost_usd": 0,
+              "operation_id": "reserve:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0:1:attempt-01500ccbfd70429ba1fdac028e281161"
+            }
+          }
+        ],
+        "runs": [
+          {
+            "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+            "schema_version": 1,
+            "objective": "Operational fixture, no model inference.",
+            "mode": "deterministic",
+            "status": "running",
+            "candidate_ids": [
+              "pansio-1"
+            ],
+            "assembly": "GRCh38",
+            "cell_context": "H1 human embryonic stem cells",
+            "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+            "run_revision": 3,
+            "through_sequence": 3,
+            "coordinator_epoch": 1,
+            "budget": {
+              "token_limit": 60000,
+              "tool_limit": 40,
+              "cost_limit_usd": 5.0,
+              "tokens_used": 0,
+              "tool_calls": 0,
+              "model_calls": 0,
+              "cost_usd": null,
+              "reserved_tokens": 0,
+              "uncertain_tokens": 0,
+              "reserved_tools": 1,
+              "reserved_cost_usd": 0
+            },
+            "created_at": "2026-09-26T19:24:01.089860+00:00",
+            "evidence_versions": {
+              "criteria:v1": 1,
+              "source:data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+              "scope:pansio-1:catalog": 1,
+              "scope:pansio-1:annotation": 1,
+              "scope:pansio-1:expression": 1,
+              "scope:pansio-1:sequence": 1,
+              "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1"
+            },
+            "evidence_availability": {
+              "pansio-1": {
+                "control_evidence": true
+              }
+            },
+            "operational_fixture": true,
+            "coordinator_owner": "isolated-acceptance-fixture",
+            "lease_updated_at": "2026-09-26T19:24:01.098857+00:00",
+            "lease_expires_at": 1790450653.098861
+          }
+        ]
+      }
+    }
+  ],
+  "operations": [
+    {
+      "operation_id": "create:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "payload_hash": "af836a8779168777c88a1548bb68ad9dd032c99b916d4c19a9382eb3c454eb2d",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:24:01.092835+00:00",
+      "accepted_result": {
+        "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+        "sequence": 1
+      }
+    },
+    {
+      "operation_id": "claim-5933144f0f644fc581a2effe6a2f8e02",
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "payload_hash": "ceedcfc38427c777425afed76550debe418a8dc9c02960ba21f4f76e2e577f76",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:24:01.099790+00:00",
+      "accepted_result": {
+        "epoch": 1
+      }
+    },
+    {
+      "operation_id": "reserve:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0:1:attempt-01500ccbfd70429ba1fdac028e281161",
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "payload_hash": "9751df05e0aa5ad4a59e2022eb6aa5bd37763847c7dbabdc2a22a183c396dcac",
+      "status": "accepted",
+      "accepted_at": "2026-09-26T19:24:01.107364+00:00",
+      "accepted_result": {
+        "task_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0",
+        "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+        "candidate_id": "pansio-1",
+        "kind": "assess_candidate",
+        "question": "Operational acceptance fixture using real screen results; no model interpretation.",
+        "canonical_question_key": "pansio-1:assess:assess_candidate:r0",
+        "decision_target": "expression_exclusion_concern",
+        "depends_on": [],
+        "input_read_set": [
+          {
+            "key": "artifact:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+            "version": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+            "kind": "artifact"
+          },
+          {
+            "key": "criteria:v1",
+            "version": 1,
+            "kind": "criteria"
+          },
+          {
+            "key": "scope:pansio-1:annotation",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "scope:pansio-1:catalog",
+            "version": 1,
+            "kind": "query_scope"
+          },
+          {
+            "key": "source:data_version",
+            "version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+            "kind": "artifact"
+          }
+        ],
+        "role_id": "assess",
+        "harness_hash": "a9d9c7255c0f94e12998cda7027e9024fbf757da30409c8f9438f72e8c1f4975",
+        "allowed_tools": [
+          "screen_candidate"
+        ],
+        "completion_condition": "Persist an evidence-linked result and explicit remaining uncertainty.",
+        "budget": {
+          "max_tool_calls": 1,
+          "max_model_calls": 1
+        },
+        "status": "running",
+        "attempt": 1,
+        "context_policy": "relevant_evidence",
+        "instructions": "",
+        "plan_revision": 0,
+        "runtime_tools": [
+          "retrieve_evidence"
+        ],
+        "started_at": "2026-09-26T19:24:01.106348+00:00",
+        "coordinator_epoch": 1,
+        "reservation": {
+          "tokens": 0,
+          "tools": 1,
+          "cost_usd": 0,
+          "operation_id": "reserve:mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:pansio-1:assess:r0:1:attempt-01500ccbfd70429ba1fdac028e281161"
+        }
+      }
+    }
+  ],
+  "immutable_assessment_revisions": [],
+  "source_manifests": [
+    {
+      "artifact_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2:source-manifest",
+      "run_id": "mock-acceptance-e2e-ff012dd153af44aea4d0c950f3d22dc2",
+      "kind": "source_manifest",
+      "revision": 1,
+      "content_hash": "eeb233c3693bab9fa0a736ac1126c66f0efc8b7ff5be4bda1310ed222fa036d1",
+      "data": {
+        "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+        "criteria": {
+          "criteria_version": "safe-harbor-criteria-v1",
+          "immutable_to_harness_optimizer": true,
+          "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836832/#s4",
+          "source_section": "Materials and methods: In silico search for putative GSH",
+          "annotation_analysis": "GENCODE v36 is a new analysis, not an exact reproduction of Ensembl release 103 filtering or GENCODE v35 expression quantification in the publication.",
+          "aggregate_rule": "Missing any required evidence means incomplete. Otherwise any failed criterion means fail, and all passed means pass. Individual failures remain visible while aggregate evidence is incomplete.",
+          "criteria": [
+            {
+              "criterion_id": "outside_gene_body",
+              "required": true,
+              "comparison": "overlap_count == 0",
+              "inputs": [
+                "candidate_interval",
+                "GENCODE_v36_transcript_spans"
+              ],
+              "description": "Candidate interval does not overlap an annotated transcription unit.",
+              "missing_data": "incomplete"
+            },
+            {
+              "criterion_id": "tss_distance",
+              "required": true,
+              "comparison": "distance_bp > 50000",
+              "threshold_bp": 50000,
+              "inputs": [
+                "candidate_interval",
+                "GENCODE_v36_transcript_TSS"
+              ],
+              "description": "Minimum distance to any annotated transcription start site exceeds 50 kb. TSS is txStart on plus strand, txEnd-1 on minus strand; gene-body distance is a separate measurement.",
+              "missing_data": "incomplete",
+              "distance_metric": "nearest_reference_base_distance_bp"
+            },
+            {
+              "criterion_id": "mirna_distance",
+              "required": true,
+              "comparison": "distance_bp > 300000",
+              "threshold_bp": 300000,
+              "inputs": [
+                "candidate_interval",
+                "GENCODE_v36_miRNA_gene_spans"
+              ],
+              "description": "Minimum interval distance to an annotated miRNA gene exceeds 300 kb.",
+              "missing_data": "incomplete",
+              "distance_metric": "nearest_reference_base_distance_bp"
+            },
+            {
+              "criterion_id": "lncrna_distance",
+              "required": true,
+              "comparison": "distance_bp > 100000",
+              "threshold_bp": 100000,
+              "inputs": [
+                "candidate_interval",
+                "GENCODE_v36_lncRNA_gene_spans"
+              ],
+              "description": "Minimum interval distance to an annotated lncRNA gene exceeds 100 kb.",
+              "missing_data": "incomplete",
+              "distance_metric": "nearest_reference_base_distance_bp"
+            },
+            {
+              "criterion_id": "cancer_gene_distance",
+              "required": true,
+              "comparison": "distance_bp > 300000",
+              "threshold_bp": 300000,
+              "inputs": [
+                "candidate_interval",
+                "licensed_cancer_gene_coordinates"
+              ],
+              "availability": "unavailable",
+              "description": "Original study used COSMIC v92 Cancer Gene Census. Licensing and exact source unresolved; publication reporting cannot substitute for a new computed pass.",
+              "missing_data": "incomplete",
+              "distance_metric": "nearest_reference_base_distance_bp"
+            },
+            {
+              "criterion_id": "outside_dhs_buffer",
+              "required": true,
+              "comparison": "overlap_count == 0",
+              "buffer_bp": 2000,
+              "inputs": [
+                "candidate_interval",
+                "ENCFF503GCK_with_assembly_provenance"
+              ],
+              "availability": "unavailable",
+              "description": "Outside DNase hypersensitivity clusters plus or minus 2 kb; track not ingested.",
+              "missing_data": "incomplete"
+            },
+            {
+              "criterion_id": "outside_ultraconserved_regions",
+              "required": true,
+              "comparison": "overlap_count == 0",
+              "inputs": [
+                "candidate_interval",
+                "versioned_GRCh38_ultraconserved_regions"
+              ],
+              "availability": "unavailable",
+              "description": "Ultraconserved region source and original hg19-to-hg38 liftover are not reproduced.",
+              "missing_data": "incomplete"
+            }
+          ],
+          "experimental_endpoints": [
+            {
+              "endpoint_id": "transcriptome_perturbation",
+              "assay": "RNA-seq, DEseq2",
+              "cell_context": "H1 human embryonic stem cells",
+              "comparison": "Targeted clone versus reference untargeted H1; independent untargeted H1 versus the same reference control",
+              "gene_unit": "unique versioned Ensembl gene ID",
+              "thresholds": {
+                "abs_log2_fold_change_gte": 1,
+                "fdr_lte": 0.01
+              },
+              "table_coverage": "Significant-only results; no inference of zero expression or absence of all biological effects from omitted rows.",
+              "exclusion_threshold": null,
+              "interpretation": "No frozen DE-count, control-overlap or genomic-distance threshold establishes exclusion, causality or overall biological safety. Reconciliation must state limitations and unresolved questions."
+            },
+            {
+              "endpoint_id": "nearest_gene_expression",
+              "assay": "qPCR",
+              "cell_context": "H1 human embryonic stem cells",
+              "genes": [
+                "MAGI3",
+                "TXNL1",
+                "ZNRF4"
+              ],
+              "comparison": "Targeted and independent untargeted H1 cultures versus reference untargeted H1",
+              "exclusion_threshold": null,
+              "interpretation": "Numerical replicate values are provided; significance alone is not a safety or causality claim."
+            }
+          ],
+          "evidence_rules": {
+            "supported_for_endpoint": "Only a named endpoint, assay and matching cell context can receive experimental support.",
+            "conflicting": "Contradictory applicable results must be exposed and reconciled.",
+            "unknown": "Missing results or insufficient justification remain unknown; absence of a result is not a negative result.",
+            "H9": "Separate cell context, not automatically applicable to H1."
+          },
+          "distance_convention": {
+            "interval_gap_bp": "Bioframe distance: unoccupied coordinate gap between zero-based half-open intervals; overlaps and bookended intervals have gap zero.",
+            "nearest_reference_base_distance_bp": "Minimum absolute coordinate difference between bases included in the two intervals; overlapping bases give zero; disjoint intervals give Bioframe gap plus one.",
+            "criterion_metric": "The literal source thresholds >50000, >300000 and >100000 are applied to nearest_reference_base_distance_bp. Both metrics are reported. This convention is declared before run/evaluation execution and is part of the new GENCODE v36 analysis."
+          }
+        }
+      },
+      "evidence_ids": [],
+      "input_read_set": [],
+      "provenance": {
+        "mode": "mock",
+        "purpose": "Operational fixture; real frozen criteria"
+      },
+      "created_at": "2026-09-26T19:24:01.089971+00:00"
+    }
+  ],
+  "reference_assets": [],
+  "limitations": [
+    "Runtime checkpoints are separate from application acceptance transactions.",
+    "Genome base counts are not model token counts.",
+    "Original experimental workbooks remain external immutable artifacts identified by their recorded URLs and byte hashes."
+  ]
+}

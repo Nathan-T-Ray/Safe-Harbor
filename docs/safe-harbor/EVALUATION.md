@@ -10,6 +10,14 @@ The frozen real-comparison per-case cap is 400,000 tokens, 40 tool calls and USD
 
 ## Cases and evaluator boundary
 
+### Generation-setting revision after a failed real attempt
+
+The first real experiment (`experiment-5d8ef28995924af7b65ab6ef4deb3273`) used the provider's default reasoning setting and a 3,000-token completion cap. The actual optimizer response spent all 3,000 completion tokens on reasoning and returned empty final content; its proposal was rejected. Several worker responses failed in the same way. Its original manifest, failed assignments, partial answers and provider-reported costs remain recorded. This attempt does not establish model improvement or a successful competent-baseline comparison.
+
+Subsequent development preflight uses explicit `MODEL_REASONING_EFFORT=low` and `MODEL_MAX_OUTPUT_TOKENS=8192`, frozen identically for H0, R0, H1 and the optimizer. The case budget remains 400,000 tokens/40 tools/USD 5. A new experiment's separate optimizer overhead allowance is 40,000 tokens/USD 1 so the larger completion cap can coexist with its bounded development context. Historical experiments retain their 30,000-token allowance. These are configuration changes before a new comparison, not a promoted harness mutation. A larger allowance is not evidence of better quality or cost.
+
+OpenRouter documents that the completion allowance includes reasoning and final output: https://openrouter.ai/docs/guides/best-practices/reasoning-tokens . Complete development outputs must be demonstrated before the revised comparison begins.
+
 Nine audit scenarios span three publication-derived loci: Pansio-1 development, Olônne-18 validation, and Keppel-19 final. Each locus has full-source, control-evidence-withheld, and H1-context-only scenarios. Related scenarios remain in their locus split. One independent locus per split and shared publication sources sharply limit generalization.
 
 The root integrator independently computed expected numerical answers from raw XLSX and UCSC files in `reference_answers.py`; they have not been human-reviewed. Only the evaluator imports those records. Public case packets use an explicit allowlist of question, context and evidence-availability fields. Numerical references, admissible decisions and scoring rubrics are never put into worker packets or tool responses. Runtime retrieval only accepts exact artifact IDs from the current run's ancestor manifest, not paths, URLs, evaluator files, or other run IDs.

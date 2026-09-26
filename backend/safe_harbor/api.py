@@ -14,6 +14,7 @@ from pydantic import BaseModel, ConfigDict, ValidationError
 from shared.contracts import Budget, CreateExperiment, CreateRun, EvidenceRevision, Run
 from safe_harbor.runtime.compiler import compile_harness
 from safe_harbor.runtime.ledger import Ledger, LedgerError, digest, identifier, now
+from safe_harbor.runtime.model_settings import freeze_generation_settings
 
 load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 ledger = Ledger()
@@ -120,7 +121,7 @@ def create_run(body: CreateRun, *, start: bool = True) -> dict:
         model_provider="openrouter" if body.mode == "real_model" else None,
         baseline_arm=harness.get("baseline_arm", "H1" if harness.get("parent_hash") else "H0"),
         model_pricing=pricing,
-        model_settings={"temperature": 0, "max_output_tokens": min(8192, max(512, int(os.getenv("MODEL_MAX_OUTPUT_TOKENS", "3000")))), "context_limit_bytes": 60000},
+        model_settings=freeze_generation_settings(),
         scientific_contract="Published shortlist; GRCh38 reference, H1 context; no global safety label.",
     ).model_dump()
     frozen_assets = []

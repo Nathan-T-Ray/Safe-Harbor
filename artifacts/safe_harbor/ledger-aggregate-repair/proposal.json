@@ -1,0 +1,16 @@
+{
+  "status": "isolated_patch_ready_not_integrated",
+  "isolated_checkout": "/tmp/safe-harbor-ledger-repair",
+  "main_core_changed": false,
+  "ledger_base_sha256": "2d6ffcc8640e16e1b4cede7b2c98bdcd9fcfe8b7838b22a49580b66f0e16a9a1",
+  "ledger_proposed_sha256": "5d609c6ba350fd7f5c093feaea87a0263a14d0fa37ab7546a0949770bbbdaebb",
+  "patch_sha256": "ed02af3c9f78fef12374630a0dd874590539cfa52f366f11b6526ca24c12bf4e",
+  "proof": "acceptance/report.json",
+  "scope": "Authoritative required-criteria aggregation, exact consumed criterion evidence, assembly/context; no criteria, reference answers, model or evaluation changes.",
+  "limitations": [
+    "Frozen real comparison remains unchanged until integration is approved after completion.",
+    "The mixed PR65 local scorer/H9 component probes are excluded from acceptance; only actual API/process/Mongo journeys are relied upon.",
+    "Current legitimate complete source pack remains incomplete because required cancer/regulatory evidence is unavailable."
+  ],
+  "additional_proof": "api-context-regression/report.json"
+}

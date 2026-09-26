@@ -1,0 +1,42 @@
+{
+  "status": "recommendation_for_new_frozen_experiment_only",
+  "current_experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+  "observed_issue": "Actual full-source R0 response hit finish_reason length with null final content at a 3000-token combined output limit. Default reasoning high was not explicitly frozen as a request field. No response-credit recovered from reasoning.",
+  "same_model_id": "deepseek/deepseek-v4.1-flash",
+  "same_pinned_provider": "deepinfra/fp8",
+  "proposed_settings": {
+    "reasoning": {
+      "effort": "low"
+    },
+    "max_output_tokens": 8192
+  },
+  "all_comparison_arms_receive_identical_settings": true,
+  "preflight_required": "Development-only actual full R0 synthesis and H0 dossier with complete nontruncated JSON, validated numerical citations and explicit limitations; then freeze a new experiment.",
+  "public_model_metadata": {
+    "mandatory": false,
+    "default_enabled": true,
+    "supported_efforts": [
+      "max",
+      "high",
+      "low"
+    ],
+    "default_effort": "high"
+  },
+  "provider_parameters_support": [
+    "reasoning",
+    "reasoning_effort"
+  ],
+  "provider_max_completion_tokens": 131072,
+  "sources": [
+    "https://openrouter.ai/api/v1/models",
+    "https://openrouter.ai/api/v1/models/deepseek/deepseek-v4.1-flash/endpoints",
+    "https://openrouter.ai/docs/guides/best-practices/reasoning-tokens"
+  ],
+  "limitations": [
+    "No paid low-effort or 8192-token call has been made for this recommendation.",
+    "A larger limit and lower effort do not guarantee valid output or quality.",
+    "Reasoning exclude only removes returned reasoning, not billed generation or its consumption of the output cap.",
+    "Current experiment remains frozen; failures are preserved.",
+    "Optimizer output at the current 3000-token cap may also truncate despite fitting the assigned 30000-token overhead bound."
+  ]
+}

@@ -1,0 +1,44 @@
+--- a/backend/safe_harbor/runtime/ledger.py
++++ b/backend/safe_harbor/runtime/ledger.py
+@@ -275,6 +275,41 @@
+             for assessment in assessments:
+                 if assessment["candidate_id"] != task["candidate_id"]:
+                     raise LedgerError("Cross-candidate assessment rejected")
++                # The authoritative transaction enforces the same frozen aggregate
++                # rule as the worker. Missing rows cannot disappear into a pass.
++                manifest = self.db.artifacts.find_one({"run_id": run["run_id"], "artifact_id": f"{run['run_id']}:source-manifest", "kind": "source_manifest"}, {"_id": 0}, session=session)
++                frozen = (manifest or {}).get("data", {}).get("criteria", {}).get("criteria", [])
++                required = {criterion["criterion_id"] for criterion in frozen if criterion.get("required", False)}
++                known = {criterion["criterion_id"] for criterion in frozen}
++                rows = assessment["criterion_results"]
++                identifiers = [row.get("criterion_id") for row in rows]
++                if None in identifiers or len(set(identifiers)) != len(identifiers):
++                    raise LedgerError("Assessment criterion IDs must be present and unique", 422)
++                if known and set(identifiers) - known:
++                    raise LedgerError("Assessment cites a criterion outside the frozen scientific contract", 422)
++                statuses = {row["criterion_id"]: row["status"] for row in rows}
++                complete = bool(required) and required <= statuses.keys() and all(statuses[key] != "incomplete" for key in required)
++                expected = "incomplete" if not complete else "fail" if any(statuses[key] == "fail" for key in required) else "pass"
++                if assessment["screen_status"] != expected:
++                    raise LedgerError("Assessment screen status contradicts the frozen required-criteria aggregate", 422)
++                if assessment["assembly"] != run["assembly"] or assessment["cell_context"] != run["cell_context"]:
++                    raise LedgerError("Assessment assembly or cell context differs from its investigation", 422)
++                consumed = {item["key"][9:]: item["version"] for item in payload["input_read_set"] if item["key"].startswith("artifact:")}
++                prior = list(self.db.artifacts.find({"run_id": run["run_id"], "artifact_id": {"$in": list(consumed)}}, {"_id": 0}, session=session))
++                proofs = [artifact for artifact in artifacts + prior if artifact.get("kind") == "scientific_tool_result" and artifact.get("data", {}).get("tool_name") == "screen_candidate" and artifact["data"].get("candidate_id") == task["candidate_id"] and (artifact in artifacts or consumed.get(artifact["artifact_id"]) == artifact["content_hash"])]
++                proof_rows = {}
++                for proof in proofs:
++                    data = proof["data"]
++                    if data.get("assembly") != run["assembly"] or data.get("cell_context") != run["cell_context"] or data.get("data_version") != run["data_version"]:
++                        raise LedgerError("Screen evidence has incompatible assembly, cell context or source version", 422)
++                    for row in data.get("calculation", {}).get("criterion_results", []):
++                        proof_rows.setdefault(row["criterion_id"], []).append(row)
++                for row in rows:
++                    matches = proof_rows.get(row["criterion_id"], [])
++                    if matches and any(digest(row) != digest(proof) for proof in matches):
++                        raise LedgerError("Assessment criterion differs from consumed scientific evidence", 422)
++                    if not matches and (row["status"] != "incomplete" or row.get("evidence_ids")):
++                        raise LedgerError("A resolved criterion requires matching consumed screen evidence", 422)
+             if budget["tokens_used"] + budget["uncertain_tokens"] > budget["token_limit"] or budget["tool_calls"] > budget["tool_limit"] or (budget.get("cost_usd") or 0) + budget.get("uncertain_cost_usd", 0) > budget["cost_limit_usd"]:
+                 run["budget_breach"] = "Provider-reported usage exceeded its reservation; further dispatch is forbidden."
+             task.update(status="complete", completed_at=now(), result_artifact_ids=[a["artifact_id"] for a in artifacts], reservation={})
