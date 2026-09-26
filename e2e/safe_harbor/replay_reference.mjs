@@ -1,0 +1,58 @@
+// Actual browser/API/MongoDB journey: historic reference versions never use a newer catalog.
+// Supply IDs from real runs; this script creates no fictional scientific evidence.
+import { chromium } from '../../frontend/node_modules/playwright/index.mjs';
+import assert from 'node:assert/strict';
+import { mkdir, writeFile } from 'node:fs/promises';
+const base = process.env.SAFE_HARBOR_UI_URL ?? 'http://127.0.0.1:5176';
+const oldId = process.env.SAFE_HARBOR_OLD_RUN_ID;
+const frozenId = process.env.SAFE_HARBOR_FROZEN_RUN_ID;
+assert.ok(oldId && frozenId, 'Provide actual old-version and frozen-reference run IDs.');
+const read = async path => {const response = await fetch(`${base}/api${path}`);assert.ok(response.ok, `${path}: ${response.status}`);return response.json();};
+const catalog = await read('/catalog');
+const old = await read(`/runs/${oldId}/snapshot`);
+const frozen = await read(`/runs/${frozenId}/snapshot`);
+assert.notEqual(old.run.data_version,catalog.data_version,'Old run must exercise a real catalog-version mismatch.');
+const reference = frozen.artifacts.find(a=>a.kind==='reference_assets'&&a.data.candidate_id===frozen.candidates[0].candidate_id);
+assert.ok(reference,'Run must actually contain a committed reference artifact.');
+const browser = await chromium.launch({headless:true});
+const page = await browser.newPage({viewport:{width:1280,height:720},reducedMotion:'reduce'});
+const errors=[];page.on('pageerror',error=>errors.push(error.message));
+const checks=[];
+try {
+  await page.goto(`${base}/?run=${oldId}`);
+  await page.locator('.data-version').getByText(old.run.data_version,{exact:true}).waitFor();
+  await page.getByRole('navigation',{name:'Genome zoom'}).getByRole('button',{name:'Locus',exact:true}).click();
+  assert.match(await page.locator('.reference-availability').textContent(), /current catalog is a different version/);
+  assert.equal(await page.locator('.svg-gene').count(),0);
+  await page.getByRole('navigation',{name:'Genome zoom'}).getByRole('button',{name:'Sequence',exact:true}).click();
+  assert.equal(await page.locator('.sequence-row code').count(),0);
+  checks.push({check:'old_version_unavailable_without_substitution',run_id:oldId,data_version:old.run.data_version,catalog_version:catalog.data_version,passed:true});
+  await page.goto(`${base}/?run=${frozenId}`);
+  await page.locator('.reference-availability').filter({hasText:'Frozen run assets'}).waitFor();
+  await page.getByRole('navigation',{name:'Genome zoom'}).getByRole('button',{name:'Sequence',exact:true}).click();
+  const candidate=frozen.candidates[0],seq=reference.data.reference_assets.sequence;
+  const expected=seq.sequence.slice(candidate.start-20-seq.start,candidate.start+80-seq.start).toUpperCase();
+  assert.equal((await page.locator('.sequence-row code').allTextContents()).join(''),expected);
+  await page.getByRole('button',{name:'Reset replay to start',exact:true}).click();
+  await page.locator('.mode-word').filter({hasText:'CATALOG PREVIEW'}).waitFor();
+  assert.match(await page.locator('.data-version').textContent(),/No historical evidence/);
+  assert.equal(await page.locator('.sequence-row code').count(),0);
+  assert.equal(await page.locator('.endpoint').count(),0);
+  assert.equal(await page.locator('.criteria-details').count(),0);
+  checks.push({check:'seek_zero_has_no_historical_sequence_or_final_assessment',passed:true});
+  const slider=page.getByRole('slider',{name:'Replay event position'});
+  await slider.focus();await slider.press('ArrowRight');
+  await page.locator('.reference-availability').filter({hasText:'Frozen run assets'}).waitFor();
+  assert.equal(await page.locator('.sequence-count').textContent(),`1 / ${frozen.through_sequence}`);
+  assert.equal((await page.locator('.sequence-row code').allTextContents()).join(''),expected);
+  assert.equal(await page.locator('.endpoint').count(),0);
+  assert.equal(await page.locator('.criteria-details').count(),0);
+  assert.equal(await page.locator('.data-version').textContent(),frozen.run.data_version);
+  checks.push({check:'seek_one_restores_committed_reference_before_assessments',run_id:frozenId,artifact_id:reference.artifact_id,content_hash:reference.content_hash,data_version:frozen.run.data_version,verified_reference_bases:expected.length,passed:true});
+  assert.deepEqual(errors,[]);
+  await mkdir('artifacts/manifests',{recursive:true});
+  await page.screenshot({path:'artifacts/manifests/replay-reference-versions.png',fullPage:true});
+  const report={journey:'Historical reference assets and data-version integrity',mode:'deterministic_operational',mock_transport:false,model_calls:0,passed:true,checks,browser_errors:errors};
+  await writeFile('artifacts/manifests/replay-reference-versions.json',JSON.stringify(report,null,2)+'\n');
+  console.log(JSON.stringify(report));
+} finally {await browser.close();}

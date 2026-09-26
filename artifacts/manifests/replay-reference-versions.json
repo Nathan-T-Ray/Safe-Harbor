@@ -1,0 +1,30 @@
+{
+  "journey": "Historical reference assets and data-version integrity",
+  "mode": "deterministic_operational",
+  "mock_transport": false,
+  "model_calls": 0,
+  "passed": true,
+  "checks": [
+    {
+      "check": "old_version_unavailable_without_substitution",
+      "run_id": "run-2ac36c1b1c4c4580810f045c885bd098",
+      "data_version": "autio-79592-v2-gencode36-2026-09-26",
+      "catalog_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "passed": true
+    },
+    {
+      "check": "seek_zero_has_no_historical_sequence_or_final_assessment",
+      "passed": true
+    },
+    {
+      "check": "seek_one_restores_committed_reference_before_assessments",
+      "run_id": "run-61c1f8d4a138477abc0a5dfe20ce9342",
+      "artifact_id": "run-61c1f8d4a138477abc0a5dfe20ce9342:reference:pansio-1",
+      "content_hash": "a6a7ffd2528fee644d59a5a2e4a305d197212b6839ebca4cf01ba88ff734c554",
+      "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+      "verified_reference_bases": 100,
+      "passed": true
+    }
+  ],
+  "browser_errors": []
+}
