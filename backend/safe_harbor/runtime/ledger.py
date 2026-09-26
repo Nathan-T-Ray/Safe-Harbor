@@ -28,6 +28,12 @@ def identifier(prefix: str) -> str:
     return f"{prefix}-{uuid.uuid4().hex}"
 
 
+def remaining_usd_reservation(reserved: float, released: float) -> float:
+    """Remove arithmetic residue only; measured costs and uncertainty are separate."""
+    remaining = max(0.0, reserved - released)
+    return 0.0 if remaining < 1e-12 else remaining
+
+
 class LedgerError(Exception):
     def __init__(self, message: str, code: int = 409):
         super().__init__(message)
@@ -171,7 +177,7 @@ class Ledger:
                 run["budget"]["uncertain_tool_calls"] = run["budget"].get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
                 if run["mode"] == "real_model":
                     run["budget"]["uncertain_model_calls"] = run["budget"].get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
-                run["budget"]["reserved_cost_usd"] = max(0, run["budget"].get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
+                run["budget"]["reserved_cost_usd"] = remaining_usd_reservation(run["budget"].get("reserved_cost_usd", 0), reservation.get("cost_usd", 0))
                 run["budget"]["uncertain_cost_usd"] = run["budget"].get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
                 task["status"] = "queued" if task["attempt"] < 2 else "failed"
                 task["recovery_reason"] = "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
@@ -262,7 +268,7 @@ class Ledger:
             budget = run["budget"]
             budget["reserved_tokens"] -= reservation.get("tokens", 0)
             budget["reserved_tools"] = max(0, budget.get("reserved_tools", 0) - reservation.get("tools", 0))
-            budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
+            budget["reserved_cost_usd"] = remaining_usd_reservation(budget.get("reserved_cost_usd", 0), reservation.get("cost_usd", 0))
             budget["tokens_used"] += usage.get("tokens", 0)
             if usage.get("tokens_uncertain"):
                 budget["uncertain_tokens"] += max(0, reservation.get("tokens", 0) - usage.get("tokens", 0))
@@ -378,7 +384,7 @@ class Ledger:
             budget = run["budget"]
             budget["reserved_tokens"] = max(0, budget["reserved_tokens"] - reservation.get("tokens", 0))
             budget["reserved_tools"] = max(0, budget.get("reserved_tools", 0) - reservation.get("tools", 0))
-            budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
+            budget["reserved_cost_usd"] = remaining_usd_reservation(budget.get("reserved_cost_usd", 0), reservation.get("cost_usd", 0))
             artifacts = []
             if failure:
                 usage = failure["usage"]

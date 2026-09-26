@@ -1,0 +1,221 @@
+{
+  "mode": "read_only_data_integrity_audit",
+  "database": "safe_harbor",
+  "as_of": "2026-09-26T19:34:45.171025+00:00",
+  "scope": "All real_model runs present in this database, each at its stated export watermark. This audits only aggregate/context/criterion-evidence invariants, not model correctness or improvement.",
+  "runs": [
+    {
+      "run_id": "run-151bd04f042e484abd109f64ed767030",
+      "experiment_id": null,
+      "status": "blocked",
+      "through_sequence": 9,
+      "assessment_count": 0,
+      "checks": []
+    },
+    {
+      "run_id": "run-152fa7ce5acd4449a90dd77269ada8d4",
+      "experiment_id": null,
+      "status": "blocked",
+      "through_sequence": 26,
+      "assessment_count": 2,
+      "checks": [
+        {
+          "assessment_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        },
+        {
+          "assessment_id": "run-152fa7ce5acd4449a90dd77269ada8d4:pansio-1:assessment:2",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-6f2e514bda85438ead42b6b2183e1696",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 27,
+      "assessment_count": 2,
+      "checks": [
+        {
+          "assessment_id": "run-6f2e514bda85438ead42b6b2183e1696:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        },
+        {
+          "assessment_id": "run-6f2e514bda85438ead42b6b2183e1696:pansio-1:assessment:2",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-fb07b6533782474b945f97735ea7b470",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 11,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-fb07b6533782474b945f97735ea7b470:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-978d7cbfa607440caab3393654b235b7",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 12,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-978d7cbfa607440caab3393654b235b7:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-9f84fa1a50054512a912eeb18c19c10e",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "blocked",
+      "through_sequence": 12,
+      "assessment_count": 0,
+      "checks": []
+    },
+    {
+      "run_id": "run-069258e070d54e63979395991495fc2e",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 28,
+      "assessment_count": 2,
+      "checks": [
+        {
+          "assessment_id": "run-069258e070d54e63979395991495fc2e:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        },
+        {
+          "assessment_id": "run-069258e070d54e63979395991495fc2e:pansio-1:assessment:2",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-8de50bb455684db99e61b882c8f5762a",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 11,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-8de50bb455684db99e61b882c8f5762a:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-34d3c0ee67324dd7abad5e31122af0ba",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 28,
+      "assessment_count": 2,
+      "checks": [
+        {
+          "assessment_id": "run-34d3c0ee67324dd7abad5e31122af0ba:olonne-18:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        },
+        {
+          "assessment_id": "run-34d3c0ee67324dd7abad5e31122af0ba:olonne-18:assessment:2",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-501160cb8c31474fad1f5d748f26ae6e",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 11,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-501160cb8c31474fad1f5d748f26ae6e:olonne-18:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-a533a4fbe56640cd8fe701b260a6da9e",
+      "experiment_id": "experiment-5d8ef28995924af7b65ab6ef4deb3273",
+      "status": "complete",
+      "through_sequence": 12,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-a533a4fbe56640cd8fe701b260a6da9e:olonne-18:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-1c38545496844fcb858df0892a3df064",
+      "experiment_id": null,
+      "status": "complete",
+      "through_sequence": 10,
+      "assessment_count": 1,
+      "checks": [
+        {
+          "assessment_id": "run-1c38545496844fcb858df0892a3df064:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    },
+    {
+      "run_id": "run-fd79f621f4444f47aae814434998c3b9",
+      "experiment_id": null,
+      "status": "complete",
+      "through_sequence": 27,
+      "assessment_count": 2,
+      "checks": [
+        {
+          "assessment_id": "run-fd79f621f4444f47aae814434998c3b9:pansio-1:assessment:1",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        },
+        {
+          "assessment_id": "run-fd79f621f4444f47aae814434998c3b9:pansio-1:assessment:2",
+          "screen_status": "incomplete",
+          "expected_screen_status": "incomplete",
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "assessment_count": 16,
+  "violations": 0
+}

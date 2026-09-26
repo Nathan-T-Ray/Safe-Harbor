@@ -4,7 +4,7 @@ from __future__ import annotations
 import copy
 
 from safe_harbor.runtime.compiler import MAX_REPLANS, MAX_TASKS, validate_plan
-from safe_harbor.runtime.ledger import LedgerError, digest, identifier, now
+from safe_harbor.runtime.ledger import LedgerError, digest, identifier, now, remaining_usd_reservation
 from safe_harbor.runtime.worker import TOOL_SCOPES
 
 
@@ -67,7 +67,7 @@ def apply_revision(ledger, run_id: str, fixture_id: str) -> dict:
                 budget["uncertain_tool_calls"] = budget.get("uncertain_tool_calls", 0) + reservation.get("tools", 0)
                 if run["mode"] == "real_model":
                     budget["uncertain_model_calls"] = budget.get("uncertain_model_calls", 0) + task["budget"]["max_model_calls"]
-                budget["reserved_cost_usd"] = max(0, budget.get("reserved_cost_usd", 0) - reservation.get("cost_usd", 0))
+                budget["reserved_cost_usd"] = remaining_usd_reservation(budget.get("reserved_cost_usd", 0), reservation.get("cost_usd", 0))
                 budget["uncertain_cost_usd"] = budget.get("uncertain_cost_usd", 0) + reservation.get("cost_usd", 0)
             task.update(status="superseded", superseded_by=successor["task_id"], reopen_reason=reason, reservation={})
             upserts.extend([task, successor])

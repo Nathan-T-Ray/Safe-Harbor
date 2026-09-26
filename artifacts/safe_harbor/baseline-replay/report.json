@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "segment": "Completed genuine R0 baseline; not canonical Q11 or an improvement comparison",
+  "run_id": "run-1c38545496844fcb858df0892a3df064",
+  "url": "http://127.0.0.1:5176/?run=run-1c38545496844fcb858df0892a3df064",
+  "mode": "recorded_replay_of_real_model",
+  "model_calls_by_this_journey": 0,
+  "ledger_writes": 0,
+  "viewport": "1280x720",
+  "data_version": "autio-79592-v2-gencode36-comp-pseudo-2026-09-26",
+  "through_sequence": 10,
+  "first_assessment_sequence": 9,
+  "recorded_start": "2026-09-26T19:30:02.362990+00:00",
+  "recorded_end": "2026-09-26T19:30:35.017709+00:00",
+  "actual_run_usage": {
+    "token_limit": 400000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5,
+    "tokens_used": 18200,
+    "tool_calls": 8,
+    "model_calls": 1,
+    "cost_usd": 0.00363608,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 0
+  },
+  "checks": [
+    {
+      "check": "Before event 1 there is no assessment or historical dossier",
+      "passed": true
+    },
+    {
+      "check": "Genome marker uses actual coordinate/chromosome length",
+      "passed": true,
+      "chromosome_length": 248956422,
+      "start": 113339960
+    },
+    {
+      "check": "Chromosome zoom preserves Pansio-1 coordinate",
+      "passed": true
+    },
+    {
+      "check": "Locus uses the frozen GENCODE v36 annotation window",
+      "passed": true,
+      "reference_artifact_id": "run-1c38545496844fcb858df0892a3df064:reference:pansio-1"
+    },
+    {
+      "check": "Sequence displays exact stored bases at original genomic offsets",
+      "passed": true,
+      "sha256": "3aa07aefbc467788e84ae19b85cc49021328cc2ad5255acfb32f5350fd322cd2",
+      "displayed_start_zero_based": 113339940,
+      "bases": 100
+    },
+    {
+      "check": "Final recorded assessment equals the committed real-model answer",
+      "passed": true,
+      "assessment_id": "run-1c38545496844fcb858df0892a3df064:pansio-1:assessment:1"
+    },
+    {
+      "check": "Backward seek to event 8 removes the future assessment",
+      "passed": true
+    },
+    {
+      "check": "Historical dossier download contains only event-1 state and reference assets",
+      "passed": true
+    },
+    {
+      "check": "Recorded playback reaches the stored final answer at 4 events per second",
+      "passed": true
+    },
+    {
+      "check": "Inspection issues no writes and leaves the authoritative record unchanged",
+      "passed": true
+    }
+  ],
+  "browser_errors": [],
+  "limitations": [
+    "R0 ran every relevant deterministic analysis before one synthesis call; this does not demonstrate adaptive tool selection.",
+    "No evidence revision or process interruption occurs in this specific run. Those are separate operational recordings.",
+    "No automatic executable H1 or successful comparison is established by this segment.",
+    "Playback uses event count, not elapsed scientific execution time."
+  ]
+}

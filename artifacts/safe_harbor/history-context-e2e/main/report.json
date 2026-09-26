@@ -1,0 +1,365 @@
+{
+  "ticket": "SH-Q10",
+  "started_at": "2026-09-26T19:38:01.585334+00:00",
+  "database": "safe_harbor_history_1790451481",
+  "mode": "deterministic_operational",
+  "harness_mode": "mock",
+  "mode_note": "Mock harness fixture; real deterministic science tools; no model calls; no biological conclusion.",
+  "processes": [
+    {
+      "index": 1,
+      "pid": 6474,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_ACCEPT": "inspect_evidence"
+      },
+      "log": "artifacts/safe_harbor/history-context-e2e/main/process-1.log",
+      "started_at": "2026-09-26T19:38:01.641716+00:00",
+      "exit_code": 86,
+      "ended_at": "2026-09-26T19:38:05.018445+00:00"
+    },
+    {
+      "index": 2,
+      "pid": 6520,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/history-context-e2e/main/process-2.log",
+      "started_at": "2026-09-26T19:38:05.042181+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:38:16.122426+00:00"
+    },
+    {
+      "index": 3,
+      "pid": 6625,
+      "hooks": {},
+      "log": "artifacts/safe_harbor/history-context-e2e/main/process-3.log",
+      "started_at": "2026-09-26T19:38:16.127882+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:38:17.909694+00:00"
+    }
+  ],
+  "checks": [
+    {
+      "check": "process_1_crashed_after_last_intervening_accept",
+      "passed": true,
+      "exit_code": 86
+    },
+    {
+      "check": "history_accepted_before_crash",
+      "passed": true,
+      "origin_status": "complete",
+      "last_intervening_status": "complete"
+    },
+    {
+      "check": "recall_not_run_before_crash",
+      "passed": true
+    },
+    {
+      "check": "recall_executed_in_fresh_epoch",
+      "passed": true,
+      "origin_epoch": 1,
+      "recall_epochs": [
+        2,
+        2
+      ],
+      "run_epoch": 2
+    },
+    {
+      "check": "no_model_usage",
+      "passed": true,
+      "model_calls": 0,
+      "tokens_used": 0
+    },
+    {
+      "check": "scoped_original_retrieval_artifact-763b3a3291bb4db2bb820c8c2a40859e",
+      "passed": true,
+      "retrievals": [
+        {
+          "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_declared:r0",
+          "response_bytes": 8394,
+          "original_hash_matches": true,
+          "response_is_bounded": true
+        },
+        {
+          "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_chain_only:r0",
+          "response_bytes": 8394,
+          "original_hash_matches": true,
+          "response_is_bounded": true
+        }
+      ]
+    },
+    {
+      "check": "scoped_original_retrieval_artifact-232e22d4acb34db5bc4be78be52cf691",
+      "passed": true,
+      "retrievals": [
+        {
+          "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_declared:r0",
+          "response_bytes": 9369,
+          "original_hash_matches": true,
+          "response_is_bounded": true
+        },
+        {
+          "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_chain_only:r0",
+          "response_bytes": 9369,
+          "original_hash_matches": true,
+          "response_is_bounded": true
+        }
+      ]
+    },
+    {
+      "check": "origin_evidence_exists_and_hashes_verify",
+      "passed": true,
+      "origin_evidence": [
+        {
+          "artifact_id": "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "kind": "scientific_tool_result",
+          "tool_name": "inspect_candidate",
+          "content_hash": "c1c7739b2031b5f2659073dcd0d5db562b318eea6d893a486da8d369c6202c13",
+          "hash_verified": true,
+          "retrieval_bytes": 8994
+        },
+        {
+          "artifact_id": "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "kind": "scientific_tool_result",
+          "tool_name": "screen_candidate",
+          "content_hash": "afc112a7ce7c072b037da11abfb33c679e8ea0f07105c2268ebc05b1e3be4ef9",
+          "hash_verified": true,
+          "retrieval_bytes": 9984
+        }
+      ]
+    },
+    {
+      "check": "history_is_ordered_and_complete",
+      "passed": true,
+      "event_count": 52
+    },
+    {
+      "check": "context_characters_recorded_matches_packet",
+      "passed": true
+    },
+    {
+      "check": "whole_context_packet_within_60000_bytes",
+      "passed": true
+    },
+    {
+      "check": "original_objective_in_packet",
+      "passed": true
+    },
+    {
+      "check": "exact_older_evidence_referenced",
+      "passed": true,
+      "inline": 2,
+      "omitted_referenced": 0
+    },
+    {
+      "check": "evidence_selection_within_code_bound",
+      "passed": true,
+      "selected_characters": 26812,
+      "limit": 28000
+    },
+    {
+      "check": "packet_smaller_than_full_history",
+      "passed": true,
+      "packet_bytes": 45503,
+      "export_bytes": 3234549,
+      "events_bytes": 1812624
+    },
+    {
+      "check": "bounded_retrieval_smaller_than_full_history",
+      "passed": true,
+      "bounded_bytes": 103300,
+      "export_bytes": 3234549
+    }
+  ],
+  "code_findings": [
+    {
+      "id": "transitive_ancestor_manifest",
+      "observation": "Current context retains transitive ancestor IDs and immutable hashes."
+    },
+    {
+      "id": "bounded_summary_identity",
+      "observation": "Inline data is a labeled summary; its content_hash identifies the retrievable original, not the summary bytes."
+    },
+    {
+      "id": "whole_packet_bound",
+      "observation": "Worker context is bounded at60000 UTF-8 bytes; scoped retrieval is bounded at24000 bytes per result."
+    }
+  ],
+  "run_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab",
+  "candidate_id": "pansio-1",
+  "task_count": 24,
+  "intervening_tasks": 21,
+  "objective": "SH-Q10 operational history E2E: keep the original objective and exact older evidence reachable from bounded context after restart. No biological inference or model execution.",
+  "before_restart": {
+    "through_sequence": 46,
+    "runtime_checkpoints": 65
+  },
+  "history": {
+    "event_count": 52,
+    "through_sequence": 52,
+    "export_response_bytes": 3234549,
+    "export_serialized": {
+      "characters": 3376880,
+      "utf8_bytes": 3376880
+    },
+    "events_serialized": {
+      "characters": 1812624,
+      "utf8_bytes": 1812624
+    },
+    "events_api_pages": 1,
+    "events_api_response_bytes": 1737605,
+    "artifact_count": 47,
+    "task_count": 24
+  },
+  "context_packets": {
+    "recall_declared": {
+      "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_declared:r0",
+      "worker_trace_artifact_id": "artifact-a9a69aed95034a77ac1dc3594780d218",
+      "worker_trace_retrieval_bytes": 48796,
+      "recorded_context_characters": 45503,
+      "measured_packet": {
+        "characters": 45503,
+        "utf8_bytes": 45503
+      },
+      "evidence_serialized": {
+        "characters": 26822,
+        "utf8_bytes": 26822
+      },
+      "evidence_count": 5,
+      "omitted_count": 18,
+      "context_selection_trace": {
+        "policy": "relevant_evidence",
+        "max_characters": 28000,
+        "selected_characters": 26812,
+        "available_count": 23,
+        "included_artifact_ids": [
+          "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "artifact-d766a01c051541a3869619b06a6e683f",
+          "artifact-a955c18a81de491eb8d151059c3c35d9",
+          "artifact-af8060c401134b85bda4c7517d7308b4"
+        ],
+        "omitted_artifact_ids": [
+          "artifact-d011a18b1ea14cce8667b5ee4d3b5178",
+          "artifact-a4afff3d7adb499a97317fd202757426",
+          "artifact-0b34af7f6e5444579a349723bc6dbc52",
+          "artifact-30130f53a4764470a464ec4552447e5f",
+          "artifact-428a4b17a2b2433a8273b978edb5c46b",
+          "artifact-709eda95ed804797b74fb00840d41d6b",
+          "artifact-04aa120e38fd4fbe83eda804ce1fefcb",
+          "artifact-d888cd2b7c18452bbb575b77f71e911c",
+          "artifact-872e02e0c5144d5b992f59151fddec8d",
+          "artifact-2d3b40918588494b9a2349b6b4391d33",
+          "artifact-3ea78786d217474382cd799b3c608b34",
+          "artifact-fed8d55894f349be885d7fce73627bf8",
+          "artifact-988609e556154581a30e943dedceb7d6",
+          "artifact-c2d6c38428884bfc8e1200d78368626e",
+          "artifact-0ba9286b72a142d8b60c6ddb9852da07",
+          "artifact-e5b8824d8d404d2cbdaec9f465f33756",
+          "artifact-b5c1272cd66f480b9e8f0a2fb5cfd3a1",
+          "artifact-437c3441e1c14e83b70ea92da62e64a9"
+        ]
+      },
+      "objective_present": true,
+      "origin_references": [
+        {
+          "artifact_id": "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "tool_name": "inspect_candidate",
+          "inline": true,
+          "inline_hash_matches": true,
+          "omitted_but_referenced": false,
+          "id_anywhere_in_packet": true
+        },
+        {
+          "artifact_id": "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "tool_name": "screen_candidate",
+          "inline": true,
+          "inline_hash_matches": true,
+          "omitted_but_referenced": false,
+          "id_anywhere_in_packet": true
+        }
+      ],
+      "packet_to_export_ratio": 0.0141
+    },
+    "recall_chain_only": {
+      "task_id": "history-e2e-03ba832ebed747db829054b7af6ff0ab:pansio-1:recall_chain_only:r0",
+      "worker_trace_artifact_id": "artifact-4f42909f250b4f398f1122eeb34eb2ac",
+      "worker_trace_retrieval_bytes": 47682,
+      "recorded_context_characters": 44321,
+      "measured_packet": {
+        "characters": 44321,
+        "utf8_bytes": 44321
+      },
+      "evidence_serialized": {
+        "characters": 25744,
+        "utf8_bytes": 25744
+      },
+      "evidence_count": 7,
+      "omitted_count": 16,
+      "context_selection_trace": {
+        "policy": "relevant_evidence",
+        "max_characters": 28000,
+        "selected_characters": 25730,
+        "available_count": 23,
+        "included_artifact_ids": [
+          "artifact-d766a01c051541a3869619b06a6e683f",
+          "artifact-a955c18a81de491eb8d151059c3c35d9",
+          "artifact-af8060c401134b85bda4c7517d7308b4",
+          "artifact-d011a18b1ea14cce8667b5ee4d3b5178",
+          "artifact-a4afff3d7adb499a97317fd202757426",
+          "artifact-0b34af7f6e5444579a349723bc6dbc52",
+          "artifact-30130f53a4764470a464ec4552447e5f"
+        ],
+        "omitted_artifact_ids": [
+          "artifact-428a4b17a2b2433a8273b978edb5c46b",
+          "artifact-709eda95ed804797b74fb00840d41d6b",
+          "artifact-04aa120e38fd4fbe83eda804ce1fefcb",
+          "artifact-d888cd2b7c18452bbb575b77f71e911c",
+          "artifact-872e02e0c5144d5b992f59151fddec8d",
+          "artifact-2d3b40918588494b9a2349b6b4391d33",
+          "artifact-3ea78786d217474382cd799b3c608b34",
+          "artifact-fed8d55894f349be885d7fce73627bf8",
+          "artifact-988609e556154581a30e943dedceb7d6",
+          "artifact-c2d6c38428884bfc8e1200d78368626e",
+          "artifact-0ba9286b72a142d8b60c6ddb9852da07",
+          "artifact-e5b8824d8d404d2cbdaec9f465f33756",
+          "artifact-b5c1272cd66f480b9e8f0a2fb5cfd3a1",
+          "artifact-437c3441e1c14e83b70ea92da62e64a9",
+          "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "artifact-232e22d4acb34db5bc4be78be52cf691"
+        ]
+      },
+      "objective_present": true,
+      "origin_references": [
+        {
+          "artifact_id": "artifact-763b3a3291bb4db2bb820c8c2a40859e",
+          "tool_name": "inspect_candidate",
+          "inline": false,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": true,
+          "id_anywhere_in_packet": true
+        },
+        {
+          "artifact_id": "artifact-232e22d4acb34db5bc4be78be52cf691",
+          "tool_name": "screen_candidate",
+          "inline": false,
+          "inline_hash_matches": false,
+          "omitted_but_referenced": true,
+          "id_anywhere_in_packet": true
+        }
+      ],
+      "packet_to_export_ratio": 0.0137
+    }
+  },
+  "bounded_retrieval_bytes": 103300,
+  "findings": [
+    {
+      "id": "transitive_older_evidence",
+      "measured": true,
+      "status": "supported",
+      "detail": "Origin evidence IDs appeared in the chain-only packet.",
+      "affects_acceptance": false
+    }
+  ],
+  "passed": true,
+  "finished_at": "2026-09-26T19:38:17.959256+00:00",
+  "failed_checks": []
+}
