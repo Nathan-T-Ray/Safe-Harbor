@@ -1,0 +1,634 @@
+{
+  "journey": "idem_budget_actual_service_subset",
+  "started_at": "2026-09-26T19:26:51.501568+00:00",
+  "database": "sh_e2e_idem_budget_actual_service_subset_1790450811_f138c9",
+  "api_port": 8037,
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "labels": {
+    "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
+    "fault_injection": "operational crash hooks / delays / token reservations are fault-injection only and never reported as model usage",
+    "biological_claims": "none; these journeys test runtime persistence and control flow only"
+  },
+  "checks": [
+    {
+      "check": "idempotency:identical_operation_deduplicates",
+      "passed": true,
+      "evidence": {
+        "operation_id": "accept:run-66c7d37f95014ee3a9ea6c76b07f441b:pansio-1:assess:r0:1:1",
+        "reconstructed_payload_hash": "36ec99d9169c8e21da5e6c2ed2f8e42ccc7509b5b296a1776c0d93a3d578b63d",
+        "stored_payload_hash": "36ec99d9169c8e21da5e6c2ed2f8e42ccc7509b5b296a1776c0d93a3d578b63d",
+        "returned": {
+          "run_id": "run-66c7d37f95014ee3a9ea6c76b07f441b",
+          "task_id": "run-66c7d37f95014ee3a9ea6c76b07f441b:pansio-1:assess:r0",
+          "sequence": 10,
+          "artifact_ids": [
+            "artifact-3a0175b8e0454542b51787eefd1518b1",
+            "artifact-86bb18dce95a4ec1b81f797d2909f327",
+            "artifact-7a67b433bfd3410ca8b32311d1fc2713",
+            "artifact-2d436bce20394da7b81e821ea5e11eae",
+            "artifact-01b9cfa4cc3f4ddda7d2821f4ca73ba7"
+          ]
+        },
+        "ledger_counts_before": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        },
+        "ledger_counts_after": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        }
+      }
+    },
+    {
+      "check": "idempotency:conflicting_hash_rejected_with_audit_record",
+      "passed": true,
+      "evidence": {
+        "outcome": "rejected 409: Operation ID was already used with different content",
+        "rejection_record": {
+          "operation_id": "rejected:accept:run-66c7d37f95014ee3a9ea6c76b07f441b:pansio-1:assess:r0:1:1:f46edc4194aedb0a53c66cb278fb3ce758ff1253bd738f6c1cadaf771c5da374",
+          "occurred_at": "2026-09-26T19:26:55.138251+00:00",
+          "original_operation_id": "accept:run-66c7d37f95014ee3a9ea6c76b07f441b:pansio-1:assess:r0:1:1",
+          "payload_hash": "f46edc4194aedb0a53c66cb278fb3ce758ff1253bd738f6c1cadaf771c5da374",
+          "reason": "Operation ID was already used with different content",
+          "run_id": "run-66c7d37f95014ee3a9ea6c76b07f441b",
+          "status": "rejected"
+        },
+        "through_sequence": 15
+      }
+    },
+    {
+      "check": "idempotency:repeated_prepared_revision_is_noop",
+      "passed": true,
+      "evidence": {
+        "response": {
+          "run_id": "run-571ba4ef7cd34f82bc0d8f200c6eeaa9",
+          "status": "unchanged",
+          "through_sequence": 28
+        },
+        "replan_rounds": 1,
+        "evidence_revised_events": 1,
+        "note": "Repeat is detected by the fixture's target state; each POST gets a fresh operation ID (no client-supplied idempotency key)."
+      }
+    },
+    {
+      "check": "budget:three_replan_limit_enforced",
+      "passed": true,
+      "evidence": {
+        "steps": [
+          [
+            "withhold#1",
+            200,
+            16
+          ],
+          [
+            "withhold#1-repeat",
+            200,
+            {
+              "run_id": "run-571ba4ef7cd34f82bc0d8f200c6eeaa9",
+              "status": "unchanged",
+              "through_sequence": 28
+            }
+          ],
+          [
+            "restore#2",
+            200,
+            31
+          ],
+          [
+            "withhold#3",
+            200,
+            44
+          ]
+        ],
+        "fourth_revision": {
+          "http_status": 429,
+          "body": {
+            "detail": "Three-replan limit reached"
+          }
+        },
+        "replan_rounds": 3,
+        "task_nodes": 21,
+        "final_status": "complete",
+        "budget": {
+          "token_limit": 60000,
+          "tool_limit": 200,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 46,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "open_work_when_terminal": {
+          "after_withhold#1": [],
+          "after_restore#2": [],
+          "after_withhold#3": []
+        },
+        "through_sequence_unchanged": true
+      }
+    },
+    {
+      "check": "idempotency:revision_racing_coordinator_stop_not_dropped",
+      "passed": false,
+      "evidence": {
+        "attempts": [
+          {
+            "run_id": "run-d3c72debe5764362b60496193ae14a20",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "run.stopped",
+                "complete"
+              ],
+              [
+                18,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                19,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                20,
+                "task.started",
+                "running"
+              ],
+              [
+                21,
+                "task.completed",
+                "running"
+              ],
+              [
+                22,
+                "task.started",
+                "running"
+              ],
+              [
+                23,
+                "task.completed",
+                "running"
+              ],
+              [
+                24,
+                "task.started",
+                "running"
+              ],
+              [
+                25,
+                "task.completed",
+                "running"
+              ],
+              [
+                26,
+                "task.started",
+                "running"
+              ],
+              [
+                27,
+                "task.completed",
+                "running"
+              ],
+              [
+                28,
+                "task.started",
+                "running"
+              ],
+              [
+                29,
+                "task.completed",
+                "running"
+              ],
+              [
+                30,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-23d77e3d5aff456299b4fb707f8298d7",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "run.stopped",
+                "complete"
+              ],
+              [
+                18,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                19,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                20,
+                "task.started",
+                "running"
+              ],
+              [
+                21,
+                "task.completed",
+                "running"
+              ],
+              [
+                22,
+                "task.started",
+                "running"
+              ],
+              [
+                23,
+                "task.completed",
+                "running"
+              ],
+              [
+                24,
+                "task.started",
+                "running"
+              ],
+              [
+                25,
+                "task.completed",
+                "running"
+              ],
+              [
+                26,
+                "task.started",
+                "running"
+              ],
+              [
+                27,
+                "task.completed",
+                "running"
+              ],
+              [
+                28,
+                "task.started",
+                "running"
+              ],
+              [
+                29,
+                "task.completed",
+                "running"
+              ],
+              [
+                30,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-be6158fde6794729bcb60f8ad3c3e8b0",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [
+              "run-be6158fde6794729bcb60f8ad3c3e8b0:pansio-1:assess:r0:revision1=reopened",
+              "run-be6158fde6794729bcb60f8ad3c3e8b0:pansio-1:compare:r0:revision1=reopened",
+              "run-be6158fde6794729bcb60f8ad3c3e8b0:pansio-1:inspect:r0:revision1=reopened",
+              "run-be6158fde6794729bcb60f8ad3c3e8b0:pansio-1:report:r0:revision1=reopened",
+              "run-be6158fde6794729bcb60f8ad3c3e8b0:pansio-1:review:r0:revision1=reopened"
+            ],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          }
+        ],
+        "note": "POST /resume on a complete run followed immediately by a prepared revision. A violation means the run was marked complete while reopened successors never ran. Absence of a violation in these attempts is not proof the race is absent."
+      }
+    },
+    {
+      "check": "budget:two_worker_cap_enforced_durably",
+      "passed": true,
+      "evidence": {
+        "third_reservation_probe": "rejected 409: Two-worker concurrency cap reached",
+        "probed_task": "e2e-idem_budget_actual_service_subset-6b50bcff6d194d268166c9caaf5d4557:keppel-19:inspect:r0",
+        "probed_task_status_after": "queued",
+        "max_concurrent_running_from_event_replay": 2,
+        "final_status": "complete",
+        "task_nodes": 18,
+        "note": "Probe calls Ledger.reserve with the live coordinator epoch while two workers hold reservations."
+      }
+    },
+    {
+      "check": "budget:tool_limit_stops_dispatch",
+      "passed": true,
+      "evidence": {
+        "final_status": "budget_exhausted",
+        "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+        "budget": {
+          "token_limit": 60000,
+          "tool_limit": 3,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 2,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "task_status": {
+          "assess": "queued",
+          "compare": "queued",
+          "inspect": "queued",
+          "report": "queued",
+          "review": "queued",
+          "screen": "complete"
+        }
+      }
+    },
+    {
+      "check": "budget:tool_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "resume_status": 200,
+        "status_after_resume": "budget_exhausted",
+        "tool_calls_before": 2,
+        "tool_calls_after": 2,
+        "task_started_events_after_resume": [],
+        "epochs": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "check": "budget:reservation_contention_not_reported_as_exhaustion",
+      "passed": false,
+      "evidence": {
+        "final_status": "budget_exhausted",
+        "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+        "task_status": {
+          "assess": "complete",
+          "compare": "complete",
+          "inspect": "complete",
+          "report": "complete",
+          "review": "complete",
+          "screen": "complete"
+        },
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 13,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "note": "Two concurrent 1000-unit reservations exceed a 1500 limit, so one dispatch is deferred with 429. Deterministic usage is 0, so the sequential total always fits; the run should end 'complete'."
+      }
+    },
+    {
+      "check": "budget:uncertain_tokens_count_against_limit",
+      "passed": true,
+      "evidence": {
+        "crash_exit_code": 87,
+        "final_status": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        },
+        "compare": {
+          "status": "queued",
+          "attempt": 1,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "usage_note": "Operational reservation units only; no model call."
+      }
+    },
+    {
+      "check": "budget:token_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "status_after_resume": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        }
+      }
+    },
+    {
+      "check": "budget:one_retry_for_interrupted_attempt",
+      "passed": true,
+      "evidence": {
+        "crash_exit_codes": [
+          87,
+          87
+        ],
+        "screen": {
+          "status": "failed",
+          "attempt": 2,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "reserve_operations": 2,
+        "final_status": "blocked",
+        "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+        "note": "Covers the interrupted-attempt retry path (Ledger.claim). The transient-exception retry path (Ledger.task_failed transient=True) has no fault hook and is not exercised."
+      }
+    }
+  ],
+  "processes": [
+    {
+      "pid": 1507,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-1.log",
+      "started_at": "2026-09-26T19:26:51.506057+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:26:58.308516+00:00"
+    },
+    {
+      "pid": 1583,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-2.log",
+      "started_at": "2026-09-26T19:26:58.314850+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:27:09.558309+00:00"
+    },
+    {
+      "pid": 1652,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "3"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-3.log",
+      "started_at": "2026-09-26T19:27:09.579725+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:27:40.959654+00:00"
+    },
+    {
+      "pid": 1848,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-4.log",
+      "started_at": "2026-09-26T19:27:40.964224+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:27:44.098852+00:00"
+    },
+    {
+      "pid": 1850,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-5.log",
+      "started_at": "2026-09-26T19:27:44.104110+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:27:45.769784+00:00"
+    },
+    {
+      "pid": 1884,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-6.log",
+      "started_at": "2026-09-26T19:27:45.795375+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:27:48.930121+00:00"
+    },
+    {
+      "pid": 1888,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "compute_features",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-7.log",
+      "started_at": "2026-09-26T19:27:48.953259+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:27:51.337113+00:00"
+    },
+    {
+      "pid": 1959,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-8.log",
+      "started_at": "2026-09-26T19:27:51.346929+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:28:02.676831+00:00"
+    },
+    {
+      "pid": 2134,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-9.log",
+      "started_at": "2026-09-26T19:28:02.683718+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:28:04.285994+00:00"
+    },
+    {
+      "pid": 2139,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-10.log",
+      "started_at": "2026-09-26T19:28:04.317306+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:28:05.455404+00:00"
+    },
+    {
+      "pid": 2140,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-11.log",
+      "started_at": "2026-09-26T19:28:05.458164+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:28:17.561047+00:00"
+    },
+    {
+      "pid": 2249,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/process-12.log",
+      "started_at": "2026-09-26T19:28:17.565171+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:28:31.336957+00:00"
+    }
+  ],
+  "excluded_component_probes": [
+    "Standalone apply_patch calls in invalid_plans_rejected_before_dispatch; method omitted in this actual-service subset."
+  ],
+  "runs": {
+    "idempotency_and_replans": {
+      "run_id": "run-571ba4ef7cd34f82bc0d8f200c6eeaa9",
+      "export": "/private/tmp/safe-harbor-ledger-repair/artifacts/safe_harbor/pr66-review/budgets-before/run-571ba4ef7cd34f82bc0d8f200c6eeaa9.export.json"
+    },
+    "tool_budget": {
+      "run_id": "run-38872ef24c064c89b2597926d5ee0ec9"
+    }
+  },
+  "finished_at": "2026-09-26T19:28:31.337185+00:00",
+  "passed": false,
+  "summary": {
+    "checks": 12,
+    "failed": [
+      "idempotency:revision_racing_coordinator_stop_not_dropped",
+      "budget:reservation_contention_not_reported_as_exhaustion"
+    ]
+  }
+}

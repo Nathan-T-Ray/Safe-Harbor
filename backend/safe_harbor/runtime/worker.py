@@ -158,7 +158,7 @@ def proposal_to_assessment(ledger, run: dict, task: dict, proposal: dict, result
     consumed = available_artifacts(ledger, run, task) + (direct_artifacts or [])
     evidence_ids += [item["artifact_id"] for item in context["evidence"]]
     previous = list(ledger.db.assessments.find({"run_id": run["run_id"], "candidate_id": task["candidate_id"]}, {"assessment_revision": 1}))
-    revision = max((item["assessment_revision"] for item in previous), default=0) + 1
+    revision = task.get("assessment_revision") or max((item["assessment_revision"] for item in previous), default=0) + 1
     validation_errors = []
     if run["mode"] == "deterministic":
         values, numerical_evidence = {key: None for key in METRICS}, {}

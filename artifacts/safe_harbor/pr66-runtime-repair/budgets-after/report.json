@@ -1,0 +1,1326 @@
+{
+  "journey": "idem_budget_actual_service_subset",
+  "started_at": "2026-09-26T19:30:57.047310+00:00",
+  "database": "sh_e2e_idem_budget_actual_service_subset_1790451056_5d2a89",
+  "api_port": 8037,
+  "mode": "deterministic_operational",
+  "model_calls": 0,
+  "labels": {
+    "execution": "deterministic_operational: real scientific tools over real source tables; no model call; no API key present",
+    "fault_injection": "operational crash hooks / delays / token reservations are fault-injection only and never reported as model usage",
+    "biological_claims": "none; these journeys test runtime persistence and control flow only"
+  },
+  "checks": [
+    {
+      "check": "idempotency:identical_operation_deduplicates",
+      "passed": true,
+      "evidence": {
+        "operation_id": "accept:run-a3b2a226161745e4b97b75952a6773a3:pansio-1:assess:r0:1:1",
+        "reconstructed_payload_hash": "8744c005d1918fa509006a9a53acc74df3b09276021568fc15ff19a551721b14",
+        "stored_payload_hash": "8744c005d1918fa509006a9a53acc74df3b09276021568fc15ff19a551721b14",
+        "returned": {
+          "run_id": "run-a3b2a226161745e4b97b75952a6773a3",
+          "task_id": "run-a3b2a226161745e4b97b75952a6773a3:pansio-1:assess:r0",
+          "sequence": 10,
+          "artifact_ids": [
+            "artifact-e28e9aa481534d5494852d14c0705a08",
+            "artifact-8cb7d7e1a7ff4e2ba96129d716e6e8c2",
+            "artifact-578c799fb17046dba4f5bffebe67d442",
+            "artifact-952d4ad1bdce4570a2e05edaa625099c",
+            "artifact-12cc6cfa46c544d2a74e08158f4eda91"
+          ]
+        },
+        "ledger_counts_before": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        },
+        "ledger_counts_after": {
+          "through_sequence": 15,
+          "operations": 15,
+          "assessments": 2,
+          "artifacts": 24
+        }
+      }
+    },
+    {
+      "check": "idempotency:conflicting_hash_rejected_with_audit_record",
+      "passed": true,
+      "evidence": {
+        "outcome": "rejected 409: Operation ID was already used with different content",
+        "rejection_record": {
+          "operation_id": "rejected:accept:run-a3b2a226161745e4b97b75952a6773a3:pansio-1:assess:r0:1:1:741cfe09d8475c1b69491263ae83a8f6fbbc7c1e253849ac1b918ff477438484",
+          "occurred_at": "2026-09-26T19:31:00.700453+00:00",
+          "original_operation_id": "accept:run-a3b2a226161745e4b97b75952a6773a3:pansio-1:assess:r0:1:1",
+          "payload_hash": "741cfe09d8475c1b69491263ae83a8f6fbbc7c1e253849ac1b918ff477438484",
+          "reason": "Operation ID was already used with different content",
+          "run_id": "run-a3b2a226161745e4b97b75952a6773a3",
+          "status": "rejected"
+        },
+        "through_sequence": 15
+      }
+    },
+    {
+      "check": "idempotency:repeated_prepared_revision_is_noop",
+      "passed": true,
+      "evidence": {
+        "response": {
+          "run_id": "run-80127a0271024762b10036d90821a07d",
+          "status": "unchanged",
+          "through_sequence": 28
+        },
+        "replan_rounds": 1,
+        "evidence_revised_events": 1,
+        "note": "Repeat is detected by the fixture's target state; each POST gets a fresh operation ID (no client-supplied idempotency key)."
+      }
+    },
+    {
+      "check": "budget:three_replan_limit_enforced",
+      "passed": true,
+      "evidence": {
+        "steps": [
+          [
+            "withhold#1",
+            200,
+            16
+          ],
+          [
+            "withhold#1-repeat",
+            200,
+            {
+              "run_id": "run-80127a0271024762b10036d90821a07d",
+              "status": "unchanged",
+              "through_sequence": 28
+            }
+          ],
+          [
+            "restore#2",
+            200,
+            31
+          ],
+          [
+            "withhold#3",
+            200,
+            44
+          ]
+        ],
+        "fourth_revision": {
+          "http_status": 429,
+          "body": {
+            "detail": "Three-replan limit reached"
+          }
+        },
+        "replan_rounds": 3,
+        "task_nodes": 21,
+        "final_status": "complete",
+        "budget": {
+          "token_limit": 60000,
+          "tool_limit": 200,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 46,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "open_work_when_terminal": {
+          "after_withhold#1": [],
+          "after_restore#2": [],
+          "after_withhold#3": []
+        },
+        "through_sequence_unchanged": true
+      }
+    },
+    {
+      "check": "idempotency:revision_racing_coordinator_stop_not_dropped",
+      "passed": true,
+      "evidence": {
+        "attempts": [
+          {
+            "run_id": "run-44e3c49c6ec54f46a779c625a3aaa6c3",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-3759cf96f55c4236a7897bafe6a41818",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "run.stopped",
+                "complete"
+              ],
+              [
+                18,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                19,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                20,
+                "task.started",
+                "running"
+              ],
+              [
+                21,
+                "task.completed",
+                "running"
+              ],
+              [
+                22,
+                "task.started",
+                "running"
+              ],
+              [
+                23,
+                "task.completed",
+                "running"
+              ],
+              [
+                24,
+                "task.started",
+                "running"
+              ],
+              [
+                25,
+                "task.completed",
+                "running"
+              ],
+              [
+                26,
+                "task.started",
+                "running"
+              ],
+              [
+                27,
+                "task.completed",
+                "running"
+              ],
+              [
+                28,
+                "task.started",
+                "running"
+              ],
+              [
+                29,
+                "task.completed",
+                "running"
+              ],
+              [
+                30,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-f57bce1d41ba4a4c828657c0b66e3239",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-c2fcfecae19740d6abd0c689a935d3b8",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-5eae138c4f784916b7f101f7cc6cbee8",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "run.stopped",
+                "complete"
+              ],
+              [
+                18,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                19,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                20,
+                "task.started",
+                "running"
+              ],
+              [
+                21,
+                "task.completed",
+                "running"
+              ],
+              [
+                22,
+                "task.started",
+                "running"
+              ],
+              [
+                23,
+                "task.completed",
+                "running"
+              ],
+              [
+                24,
+                "task.started",
+                "running"
+              ],
+              [
+                25,
+                "task.completed",
+                "running"
+              ],
+              [
+                26,
+                "task.started",
+                "running"
+              ],
+              [
+                27,
+                "task.completed",
+                "running"
+              ],
+              [
+                28,
+                "task.started",
+                "running"
+              ],
+              [
+                29,
+                "task.completed",
+                "running"
+              ],
+              [
+                30,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-74059a0581934cb6b36485611a4edc95",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-9a9f1384736f4acf88bfabdf73315dd7",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-492784299b6146b8979133a8c65f7466",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-cf879c80b7d94d1b8718f64543618d35",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          },
+          {
+            "run_id": "run-05f9c73c41ef4c3ca88751c3d5479d3b",
+            "revision_http": 200,
+            "final_status": "complete",
+            "open_work_while_complete": [],
+            "events_after_first_completion": [
+              [
+                16,
+                "coordinator.recovered",
+                "running"
+              ],
+              [
+                17,
+                "evidence.revised",
+                "revising"
+              ],
+              [
+                18,
+                "task.started",
+                "revising"
+              ],
+              [
+                19,
+                "task.completed",
+                "revising"
+              ],
+              [
+                20,
+                "task.started",
+                "revising"
+              ],
+              [
+                21,
+                "task.completed",
+                "revising"
+              ],
+              [
+                22,
+                "task.started",
+                "revising"
+              ],
+              [
+                23,
+                "task.completed",
+                "revising"
+              ],
+              [
+                24,
+                "task.started",
+                "revising"
+              ],
+              [
+                25,
+                "task.completed",
+                "revising"
+              ],
+              [
+                26,
+                "task.started",
+                "revising"
+              ],
+              [
+                27,
+                "task.completed",
+                "revising"
+              ],
+              [
+                28,
+                "run.stopped",
+                "complete"
+              ]
+            ]
+          }
+        ],
+        "note": "POST /resume on a complete run followed immediately by a prepared revision. A violation means the run was marked complete while reopened successors never ran. Absence of a violation in these attempts is not proof the race is absent."
+      }
+    },
+    {
+      "check": "invalid_plans:rejected_before_any_record_or_dispatch",
+      "passed": true,
+      "evidence": {
+        "results": {
+          "cyclic_dependencies": {
+            "http_status": 422,
+            "detail": "Harness dependencies contain a cycle"
+          },
+          "unknown_dependency": {
+            "http_status": 422,
+            "detail": "Role has unknown or repeated dependencies"
+          },
+          "unknown_tool": {
+            "http_status": 422,
+            "detail": "Role requests unapproved or repeated tools"
+          },
+          "unapproved_task_kind": {
+            "http_status": 422,
+            "detail": "Unapproved role kind or context policy"
+          },
+          "nine_roles_27_nodes_for_3_candidates": {
+            "http_status": 422,
+            "detail": "A harness must contain 1\u20138 roles, allowing three candidates within 24 tasks"
+          },
+          "altered_immutable_budget_and_worker_limits": {
+            "http_status": 422,
+            "detail": "Scientific, model, evidence, evaluation, permission, or total-budget constraints were altered"
+          },
+          "role_tool_cap_escalation": {
+            "http_status": 422,
+            "detail": "Role tool-call cap must remain within 0\u20134"
+          },
+          "forbidden_top_level_setting": {
+            "http_status": 422,
+            "detail": "Harness contains forbidden top-level settings"
+          },
+          "hash_does_not_match_content": {
+            "http_status": 422,
+            "detail": "Harness hash does not match its exact specification"
+          },
+          "unknown_harness_hash": {
+            "http_status": 404,
+            "detail": "Unknown saved harness version"
+          },
+          "four_candidates": {
+            "http_status": 422,
+            "detail": "schema validation error"
+          },
+          "duplicate_candidates": {
+            "http_status": 422,
+            "detail": "Candidate IDs must be unique IDs from the verified catalog."
+          },
+          "unknown_candidate": {
+            "http_status": 422,
+            "detail": "Candidate IDs must be unique IDs from the verified catalog."
+          },
+          "unassigned_budget_field": {
+            "http_status": 422,
+            "detail": "Only assigned budget limits may be supplied."
+          },
+          "negative_budget": {
+            "http_status": 422,
+            "detail": "Budget limits cannot be negative."
+          },
+          "mock_mode_live_run": {
+            "http_status": 422,
+            "detail": "Mock fixtures are supplied as files; live runs require deterministic or real_model mode."
+          },
+          "real_model_without_key": {
+            "http_status": 409,
+            "detail": "Real-model execution is unconfigured. Set OPENROUTER_API_KEY and MODEL_ID in the ignored .env file."
+          },
+          "unknown_request_field": {
+            "http_status": 422,
+            "detail": "schema validation error"
+          }
+        },
+        "expected_status": {
+          "cyclic_dependencies": 422,
+          "unknown_dependency": 422,
+          "unknown_tool": 422,
+          "unapproved_task_kind": 422,
+          "nine_roles_27_nodes_for_3_candidates": 422,
+          "altered_immutable_budget_and_worker_limits": 422,
+          "role_tool_cap_escalation": 422,
+          "forbidden_top_level_setting": 422,
+          "hash_does_not_match_content": 422,
+          "unknown_harness_hash": 404,
+          "four_candidates": 422,
+          "duplicate_candidates": 422,
+          "unknown_candidate": 422,
+          "unassigned_budget_field": 422,
+          "negative_budget": 422,
+          "mock_mode_live_run": 422,
+          "real_model_without_key": 409,
+          "unknown_request_field": 422
+        },
+        "ledger_counts_before": {
+          "runs": 12,
+          "tasks": 137,
+          "events": 355,
+          "operations": 365,
+          "artifacts": 548,
+          "assessments": 50
+        },
+        "ledger_counts_after": {
+          "runs": 12,
+          "tasks": 137,
+          "events": 355,
+          "operations": 365,
+          "artifacts": 548,
+          "assessments": 50
+        }
+      }
+    },
+    {
+      "check": "invalid_plans:24_node_limit_enforced_on_replanning",
+      "passed": true,
+      "evidence": {
+        "first_revision_status": 200,
+        "nodes_after_first": 23,
+        "second_revision": {
+          "http_status": 429,
+          "body": {
+            "detail": "Evidence revision would exceed the 24-node episode limit"
+          }
+        },
+        "replan_rounds": 1,
+        "final_status": "complete"
+      }
+    },
+    {
+      "check": "budget:two_worker_cap_enforced_durably",
+      "passed": true,
+      "evidence": {
+        "third_reservation_probe": "rejected 409: Two-worker concurrency cap reached",
+        "probed_task": "e2e-idem_budget_actual_service_subset-f182d1b87a4b4fb2899d01322e435a00:keppel-19:inspect:r0",
+        "probed_task_status_after": "queued",
+        "max_concurrent_running_from_event_replay": 2,
+        "final_status": "complete",
+        "task_nodes": 18,
+        "note": "Probe calls Ledger.reserve with the live coordinator epoch while two workers hold reservations."
+      }
+    },
+    {
+      "check": "budget:tool_limit_stops_dispatch",
+      "passed": true,
+      "evidence": {
+        "final_status": "budget_exhausted",
+        "stop_reason": "Assigned resource cap prevents additional work; uncertainty is preserved.",
+        "budget": {
+          "token_limit": 60000,
+          "tool_limit": 3,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 2,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "task_status": {
+          "assess": "queued",
+          "compare": "queued",
+          "inspect": "queued",
+          "report": "queued",
+          "review": "queued",
+          "screen": "complete"
+        }
+      }
+    },
+    {
+      "check": "budget:tool_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "resume_status": 200,
+        "status_after_resume": "budget_exhausted",
+        "tool_calls_before": 2,
+        "tool_calls_after": 2,
+        "task_started_events_after_resume": [],
+        "epochs": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "check": "budget:reservation_contention_not_reported_as_exhaustion",
+      "passed": true,
+      "evidence": {
+        "final_status": "complete",
+        "stop_reason": "All current tasks accepted; scientific unknowns remain explicit.",
+        "task_status": {
+          "assess": "complete",
+          "compare": "complete",
+          "inspect": "complete",
+          "report": "complete",
+          "review": "complete",
+          "screen": "complete"
+        },
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 13,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 0,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0
+        },
+        "note": "Two concurrent 1000-unit reservations exceed a 1500 limit, so one dispatch is deferred with 429. Deterministic usage is 0, so the sequential total always fits; the run should end 'complete'."
+      }
+    },
+    {
+      "check": "budget:uncertain_tokens_count_against_limit",
+      "passed": true,
+      "evidence": {
+        "crash_exit_code": 87,
+        "final_status": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        },
+        "compare": {
+          "status": "queued",
+          "attempt": 1,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "usage_note": "Operational reservation units only; no model call."
+      }
+    },
+    {
+      "check": "budget:token_limit_durable_across_restart_and_resume",
+      "passed": true,
+      "evidence": {
+        "status_after_resume": "budget_exhausted",
+        "budget": {
+          "token_limit": 1500,
+          "tool_limit": 40,
+          "cost_limit_usd": 5.0,
+          "tokens_used": 0,
+          "tool_calls": 5,
+          "model_calls": 0,
+          "cost_usd": 0.0,
+          "reserved_tokens": 0,
+          "uncertain_tokens": 1000,
+          "reserved_tools": 0,
+          "reserved_cost_usd": 0,
+          "uncertain_tool_calls": 3,
+          "uncertain_cost_usd": 0.0
+        }
+      }
+    },
+    {
+      "check": "budget:one_retry_for_interrupted_attempt",
+      "passed": true,
+      "evidence": {
+        "crash_exit_codes": [
+          87,
+          87
+        ],
+        "screen": {
+          "status": "failed",
+          "attempt": 2,
+          "recovery_reason": "Previous process ended with uncommitted work; reserved model expenditure remains uncertain."
+        },
+        "reserve_operations": 2,
+        "final_status": "blocked",
+        "stop_reason": "No ready task can make progress; failed or unavailable dependencies remain inspectable.",
+        "note": "Covers the interrupted-attempt retry path (Ledger.claim). The transient-exception retry path (Ledger.task_failed transient=True) has no fault hook and is not exercised."
+      }
+    }
+  ],
+  "processes": [
+    {
+      "pid": 3659,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-1.log",
+      "started_at": "2026-09-26T19:30:57.051619+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:31:03.512394+00:00"
+    },
+    {
+      "pid": 3710,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-2.log",
+      "started_at": "2026-09-26T19:31:03.517676+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:31:37.873256+00:00"
+    },
+    {
+      "pid": 3936,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-3.log",
+      "started_at": "2026-09-26T19:31:37.878458+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:31:42.651437+00:00"
+    },
+    {
+      "pid": 3985,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_DELAY_BEFORE_ACCEPT": "3"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-4.log",
+      "started_at": "2026-09-26T19:31:42.669700+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:13.181455+00:00"
+    },
+    {
+      "pid": 4236,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-5.log",
+      "started_at": "2026-09-26T19:32:13.187434+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:15.792951+00:00"
+    },
+    {
+      "pid": 4243,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-6.log",
+      "started_at": "2026-09-26T19:32:15.795685+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:17.192549+00:00"
+    },
+    {
+      "pid": 4279,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-7.log",
+      "started_at": "2026-09-26T19:32:17.209999+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:19.867654+00:00"
+    },
+    {
+      "pid": 4354,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "compute_features",
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-8.log",
+      "started_at": "2026-09-26T19:32:19.883459+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:32:21.773664+00:00"
+    },
+    {
+      "pid": 4358,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-9.log",
+      "started_at": "2026-09-26T19:32:21.776325+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:33.199416+00:00"
+    },
+    {
+      "pid": 4495,
+      "hooks": {
+        "SAFE_HARBOR_OPERATIONAL_TOKEN_RESERVATION": "1000"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-10.log",
+      "started_at": "2026-09-26T19:32:33.205912+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:32:34.928482+00:00"
+    },
+    {
+      "pid": 4498,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-11.log",
+      "started_at": "2026-09-26T19:32:34.946836+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:32:36.322600+00:00"
+    },
+    {
+      "pid": 4536,
+      "hooks": {
+        "SAFE_HARBOR_CRASH_AFTER_RESERVE": "screen_regions"
+      },
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-12.log",
+      "started_at": "2026-09-26T19:32:36.326620+00:00",
+      "exit_code": 87,
+      "ended_at": "2026-09-26T19:32:48.647301+00:00"
+    },
+    {
+      "pid": 4648,
+      "hooks": {},
+      "log": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/process-13.log",
+      "started_at": "2026-09-26T19:32:48.699779+00:00",
+      "exit_code": -15,
+      "ended_at": "2026-09-26T19:33:03.183117+00:00"
+    }
+  ],
+  "excluded_component_probes": [
+    "Standalone apply_patch calls removed from invalid_plans_rejected_before_dispatch; HTTP invalid-plan assertions unchanged."
+  ],
+  "runs": {
+    "idempotency_and_replans": {
+      "run_id": "run-80127a0271024762b10036d90821a07d",
+      "export": "/private/tmp/safe-harbor-race-repair/artifacts/safe_harbor/pr66-review/budgets-after/run-80127a0271024762b10036d90821a07d.export.json"
+    },
+    "tool_budget": {
+      "run_id": "run-ced9896dff2747da8d802bda3129a25c"
+    }
+  },
+  "finished_at": "2026-09-26T19:33:03.183335+00:00",
+  "passed": true,
+  "summary": {
+    "checks": 14,
+    "failed": []
+  }
+}

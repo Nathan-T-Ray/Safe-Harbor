@@ -1,0 +1,49 @@
+{
+  "status": "isolated_patch_ready_to_integrate",
+  "source_pr": 66,
+  "source_pr_head": "e30752e4ce7686da0b7932fe5a51bb6bcdabee16",
+  "isolated_checkout": "/tmp/safe-harbor-race-repair",
+  "patch": "runtime-races.patch",
+  "files": {
+    "backend/safe_harbor/runtime/ledger.py": {
+      "base_sha256": "5d609c6ba350fd7f5c093feaea87a0263a14d0fa37ab7546a0949770bbbdaebb",
+      "proposed_sha256": "f7b18e6d6250e5eeb390cd692f4a58212249a0e5b5d079da2e432bfffca22119"
+    },
+    "backend/safe_harbor/runtime/worker.py": {
+      "base_sha256": "c899a2087eeb7bce1c0b431acf4b28a32c5663bddd3f396cc2e93f7dfc2c7f10",
+      "proposed_sha256": "051da61e380ade14d11205b5b4fddc95262c552472e282bf448f66325b7e3a19"
+    },
+    "backend/safe_harbor/runtime/coordinator.py": {
+      "base_sha256": "6769c1c34d7ad9f4a63e8b0d360b26b6ad742a231bb2fbde9f44c650211176c9",
+      "proposed_sha256": "cb4d8e9a53414bbf656699f8e10442e43ca7223af191d7245c8c01a4b65fb5be"
+    }
+  },
+  "before": {
+    "recovery": "15/15 passed",
+    "revision": "9/10 passed; concurrent assessment revision collision",
+    "budgets_actual_service_subset": "10/12 passed; revision-stop and reservation-contention failures"
+  },
+  "excluded": "Standalone apply_patch component probes omitted; actual HTTP invalid-plan checks included in after journey.",
+  "after": {
+    "recovery-after": {
+      "checks": 15,
+      "failed": []
+    },
+    "revision-after": {
+      "checks": 10,
+      "failed": []
+    },
+    "budgets-after": {
+      "checks": 14,
+      "failed": []
+    }
+  },
+  "passed_actual_service_checks": 39,
+  "reproduction_runner": "run_service_journey.py",
+  "limitations": [
+    "The stop/revision race passed all10 bounded timing attempts; this is measured E2E evidence, not exhaustive scheduler proof.",
+    "Reserved assessment revisions may have gaps after interrupted attempts; the accepted IDs remain unique and immutable.",
+    "Main runtime has not been modified by the runtime agent; integrator owns application after the model comparison boundary.",
+    "Standalone component probes are excluded."
+  ]
+}

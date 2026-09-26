@@ -217,6 +217,13 @@ class Ledger:
             budget["reserved_tokens"] += tokens
             budget["reserved_tools"] = budget.get("reserved_tools", 0) + tools
             budget["reserved_cost_usd"] = budget.get("reserved_cost_usd", 0) + cost
+            if task["kind"] in ("assess_candidate", "review_candidate"):
+                candidate_id = task["candidate_id"]
+                counters = run.setdefault("assessment_revision_counters", {})
+                latest = self.db.assessments.find_one({"run_id": run_id, "candidate_id": candidate_id}, {"assessment_revision": 1}, sort=[("assessment_revision", -1)], session=session)
+                revision = max(counters.get(candidate_id, 0), (latest or {}).get("assessment_revision", 0)) + 1
+                counters[candidate_id] = revision
+                task["assessment_revision"] = revision
             self._write_event(session, run, operation_id, "task.started", {"tasks": [task]})
             return task
 
@@ -275,6 +282,8 @@ class Ledger:
             for assessment in assessments:
                 if assessment["candidate_id"] != task["candidate_id"]:
                     raise LedgerError("Cross-candidate assessment rejected")
+                if task.get("assessment_revision") is not None and assessment["assessment_revision"] != task["assessment_revision"]:
+                    raise LedgerError("Assessment revision differs from its reserved attempt", 422)
                 # The authoritative transaction enforces the same frozen aggregate
                 # rule as the worker. Missing rows cannot disappear into a pass.
                 manifest = self.db.artifacts.find_one({"run_id": run["run_id"], "artifact_id": f"{run['run_id']}:source-manifest", "kind": "source_manifest"}, {"_id": 0}, session=session)
@@ -406,6 +415,13 @@ class Ledger:
         def work(session):
             run = self.get_run(run_id, session)
             self.check_epoch(run, epoch)
+            if status in ("complete", "blocked"):
+                tasks = list(self.db.tasks.find({"run_id": run_id}, {"task_id": 1, "status": 1, "depends_on": 1}, session=session))
+                completed = {task["task_id"] for task in tasks if task["status"] == "complete"}
+                ready = any(task["status"] in ("queued", "reopened") and set(task["depends_on"]) <= completed for task in tasks)
+                unfinished = any(task["status"] not in ("complete", "superseded") for task in tasks)
+                if ready or (status == "complete" and unfinished):
+                    return {"status": "work_remaining", "through_sequence": run["through_sequence"]}
             run.update(status=status, stop_reason=reason, completed_at=now())
             run["lease_expires_at"] = 0
             event = self._write_event(session, run, operation_id, "run.stopped", {})

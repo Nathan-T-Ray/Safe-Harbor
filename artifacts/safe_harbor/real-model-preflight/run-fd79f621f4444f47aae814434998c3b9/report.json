@@ -1,0 +1,332 @@
+{
+  "mode": "real_model",
+  "purpose": "development_only_configuration_preflight_not_scored_comparison",
+  "run_id": "run-fd79f621f4444f47aae814434998c3b9",
+  "arm": "H0",
+  "case_id": "pansio-1--full_sources",
+  "recorded_at": "2026-09-26T19:33:43.625121+00:00",
+  "status": "complete",
+  "model_id": "deepseek/deepseek-v4.1-flash",
+  "model_settings": {
+    "temperature": 0,
+    "max_output_tokens": 8192,
+    "context_limit_bytes": 60000,
+    "reasoning": {
+      "effort": "low"
+    }
+  },
+  "pricing_hash": "628e2bcc5662afb8cd88005f6d11eee2da86453c98347fce4bc50143ee80b607",
+  "harness_hash": "2562bbd42027f9ec415163ca479978a862d087aed54be2c1d83ef28c63c58e5d",
+  "budget": {
+    "token_limit": 400000,
+    "tool_limit": 40,
+    "cost_limit_usd": 5.0,
+    "tokens_used": 206150,
+    "tool_calls": 21,
+    "model_calls": 12,
+    "cost_usd": 0.033225976,
+    "reserved_tokens": 0,
+    "uncertain_tokens": 0,
+    "reserved_tools": 0,
+    "reserved_cost_usd": 6.938893903907228e-18
+  },
+  "score": {
+    "required_correct": 16,
+    "required_total": 18,
+    "required_accuracy": 0.8888888888888888,
+    "required_decisions_correct": 3,
+    "required_decisions_total": 3,
+    "unsupported_count": 1,
+    "unsupported_findings": [
+      {
+        "kind": "unsupported_numeric_finding",
+        "key": "control_de_count"
+      }
+    ],
+    "coverage": 0.8888888888888888,
+    "completed": true,
+    "support_ok": false,
+    "details": [
+      {
+        "kind": "number",
+        "key": "de_count",
+        "expected": 96,
+        "actual": 96,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "control_de_count",
+        "expected": 260,
+        "actual": 260,
+        "present": true,
+        "correct": true,
+        "supported": false
+      },
+      {
+        "kind": "number",
+        "key": "shared_de_count",
+        "expected": 31,
+        "actual": 31,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "targeted_only_count",
+        "expected": 65,
+        "actual": 65,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "overlap_fraction",
+        "expected": 0.3229166666666667,
+        "actual": 0.3229166666666667,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "min_gene_body_gap_bp",
+        "expected": 50000,
+        "actual": 50000,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "min_tss_base_distance_bp",
+        "expected": 50001,
+        "actual": 50001,
+        "present": true,
+        "correct": true,
+        "supported": true
+      },
+      {
+        "kind": "number",
+        "key": "mapped_de_count",
+        "expected": 90,
+        "actual": null,
+        "present": false,
+        "correct": false,
+        "supported": false
+      },
+      {
+        "kind": "number",
+        "key": "nearest_mapped_de_gene_gap_bp",
+        "expected": 4352715,
+        "actual": null,
+        "present": false,
+        "correct": false,
+        "supported": false
+      },
+      {
+        "kind": "decision",
+        "key": "exclusion_decision",
+        "expected": [
+          "not_justified_by_available_evidence",
+          "unresolved"
+        ],
+        "actual": "not_justified_by_available_evidence",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "decision",
+        "key": "screen_status",
+        "expected": [
+          "incomplete"
+        ],
+        "actual": "incomplete",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "decision",
+        "key": "evidence_status",
+        "expected": [
+          "unknown",
+          "conflicting"
+        ],
+        "actual": "unknown",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "significant_only_tables",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "reference_not_personal_h1",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "control_overlap_not_causality",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "distance_not_safety",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "missing_cancer_regulatory_evidence",
+        "present": true,
+        "correct": true
+      },
+      {
+        "kind": "limitation",
+        "key": "unmapped_de_ids",
+        "present": true,
+        "correct": true
+      }
+    ],
+    "reference_review_status": "independently_computed_not_human_reviewed",
+    "limitations": [
+      "Structured required outputs, trace-backed numerical support, required-criterion aggregation, and bounded textual limitation checks are applied. Text heuristics can miss valid paraphrases or misleading prose; independent semantic claim review remains required."
+    ]
+  },
+  "provider_responses": [
+    {
+      "artifact_id": "artifact-2bfd7cdbc8c1405cb45f812b4441bda1",
+      "role_id": "screen",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 110,
+      "tool_call_count": 3,
+      "completion_tokens": 196,
+      "reasoning_tokens": 46
+    },
+    {
+      "artifact_id": "artifact-2bfd7cdbc8c1405cb45f812b4441bda1",
+      "role_id": "screen",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 31,
+      "tool_call_count": 0,
+      "completion_tokens": 106,
+      "reasoning_tokens": 95
+    },
+    {
+      "artifact_id": "artifact-5ab1e228297a45a886da3b115436e073",
+      "role_id": "inspect",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 49,
+      "tool_call_count": 4,
+      "completion_tokens": 272,
+      "reasoning_tokens": 37
+    },
+    {
+      "artifact_id": "artifact-5ab1e228297a45a886da3b115436e073",
+      "role_id": "inspect",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 7946,
+      "tool_call_count": 0,
+      "completion_tokens": 3031,
+      "reasoning_tokens": 532
+    },
+    {
+      "artifact_id": "artifact-aa88a0a0f63a44d78758bea34bc6d211",
+      "role_id": "compare",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 144,
+      "tool_call_count": 3,
+      "completion_tokens": 253,
+      "reasoning_tokens": 123
+    },
+    {
+      "artifact_id": "artifact-aa88a0a0f63a44d78758bea34bc6d211",
+      "role_id": "compare",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 9989,
+      "tool_call_count": 0,
+      "completion_tokens": 3396,
+      "reasoning_tokens": 401
+    },
+    {
+      "artifact_id": "artifact-40df581f13854a1b896b8dcd08f9eadf",
+      "role_id": "assess",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 105,
+      "tool_call_count": 3,
+      "completion_tokens": 185,
+      "reasoning_tokens": 63
+    },
+    {
+      "artifact_id": "artifact-40df581f13854a1b896b8dcd08f9eadf",
+      "role_id": "assess",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 5999,
+      "tool_call_count": 0,
+      "completion_tokens": 2068,
+      "reasoning_tokens": 373
+    },
+    {
+      "artifact_id": "artifact-5dd22badeb434047af74aefb5ca889f7",
+      "role_id": "review",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 120,
+      "tool_call_count": 4,
+      "completion_tokens": 943,
+      "reasoning_tokens": 724
+    },
+    {
+      "artifact_id": "artifact-5dd22badeb434047af74aefb5ca889f7",
+      "role_id": "review",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 6448,
+      "tool_call_count": 0,
+      "completion_tokens": 3262,
+      "reasoning_tokens": 1440
+    },
+    {
+      "artifact_id": "artifact-b0feffe9dc9b4241875270069b7f28b2",
+      "role_id": "report",
+      "call_index": 0,
+      "finish_reason": "tool_calls",
+      "content_characters": 119,
+      "tool_call_count": 4,
+      "completion_tokens": 1292,
+      "reasoning_tokens": 1053
+    },
+    {
+      "artifact_id": "artifact-b0feffe9dc9b4241875270069b7f28b2",
+      "role_id": "report",
+      "call_index": 1,
+      "finish_reason": "stop",
+      "content_characters": 6575,
+      "tool_call_count": 0,
+      "completion_tokens": 2758,
+      "reasoning_tokens": 905
+    }
+  ],
+  "valid_preflight": false,
+  "limitations": [
+    "Development-only preflight does not demonstrate improvement or held-out performance.",
+    "All reference answers and scoring stay evaluator-only; no answers were sent to the worker."
+  ]
+}

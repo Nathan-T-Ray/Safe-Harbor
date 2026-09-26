@@ -69,8 +69,10 @@ class Coordinator:
             if run_id is None:
                 return
             retry_lease = False
+            finished = False
             try:
                 self._run(run_id)
+                finished = True
             except LedgerError as exc:
                 retry_lease = "unexpired lease" in str(exc)
                 if not retry_lease:
@@ -80,6 +82,12 @@ class Coordinator:
             finally:
                 with self.lock:
                     self.pending.discard(run_id)
+            # A revision may commit after the terminal transaction but before the
+            # pending marker is released. Recheck after release so its enqueue
+            # cannot be lost in that interval.
+            if finished and not self.stop_event.is_set():
+                if self.ledger.get_run(run_id)["status"] in ("queued", "revising"):
+                    self.enqueue(run_id)
             if retry_lease and not self.stop_event.wait(1):
                 self.enqueue(run_id)
 
@@ -126,7 +134,6 @@ class Coordinator:
         epoch = self.ledger.claim(run_id, self.owner)
         active = {}
         last_heartbeat = 0
-        budget_exhausted = False
         while not self.stop_event.is_set():
             if time.monotonic() - last_heartbeat > 3:
                 if not self.ledger.heartbeat(run_id, epoch, self.owner):
@@ -136,6 +143,7 @@ class Coordinator:
             self.ledger.check_epoch(run, epoch)
             tasks = list(self.ledger.db.tasks.find({"run_id": run_id}, {"_id": 0}))
             ready = ready_tasks(tasks)
+            budget_exhausted = False
             for task in ready[:max(0, 2 - len(active))]:
                 try:
                     future = self._dispatch(run, task, epoch)
@@ -150,11 +158,13 @@ class Coordinator:
                 run = self.ledger.get_run(run_id)
             if not active:
                 if budget_exhausted:
-                    self.ledger.finish(run_id, epoch, "budget_exhausted", "Assigned resource cap prevents additional work; uncertainty is preserved.")
+                    stopped = self.ledger.finish(run_id, epoch, "budget_exhausted", "Assigned resource cap prevents additional work; uncertainty is preserved.")
                 elif all(task["status"] in ("complete", "superseded") for task in tasks):
-                    self.ledger.finish(run_id, epoch, "complete", "All current tasks accepted; scientific unknowns remain explicit.")
+                    stopped = self.ledger.finish(run_id, epoch, "complete", "All current tasks accepted; scientific unknowns remain explicit.")
                 else:
-                    self.ledger.finish(run_id, epoch, "blocked", "No ready task can make progress; failed or unavailable dependencies remain inspectable.")
+                    stopped = self.ledger.finish(run_id, epoch, "blocked", "No ready task can make progress; failed or unavailable dependencies remain inspectable.")
+                if stopped.get("status") == "work_remaining":
+                    continue
                 return
             completed, _ = wait(active, timeout=0.5, return_when=FIRST_COMPLETED)
             for future in completed:
