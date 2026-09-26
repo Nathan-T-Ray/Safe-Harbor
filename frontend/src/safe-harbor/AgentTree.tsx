@@ -14,8 +14,8 @@ const statusWord: Record<string, string> = { queued: 'Queued', running: 'Running
 const canonical = (value: unknown): string => JSON.stringify(value, (_key, v: unknown) => v && typeof v === 'object' && !Array.isArray(v) ? Object.fromEntries(Object.entries(v).sort(([a], [b]) => a.localeCompare(b))) : v);
 
 export interface CallLeaf { id: string; kind: 'model' | 'tool'; label: string; detail: string; tokens?: number; cost?: number | null; artifactId?: string }
-interface Agent { task: Task; calls: CallLeaf[]; tokens: number; tools: number; models: number; cost: number | null; hasTrace: boolean; deps: string[] }
-interface Branch { id: string; name: string; interval?: string; agents: Agent[] }
+export interface Agent { task: Task; calls: CallLeaf[]; tokens: number; tools: number; models: number; cost: number | null; hasTrace: boolean; deps: string[] }
+export interface Branch { id: string; name: string; interval?: string; agents: Agent[] }
 
 function argsSummary(args: unknown): string {
   const entries = Object.entries(rec(args));
@@ -24,7 +24,7 @@ function argsSummary(args: unknown): string {
   return text.length > 70 ? `${text.slice(0, 69)}…` : text;
 }
 
-function buildAgent(task: Task, artifacts: Artifact[], tasks: Task[]): Agent {
+export function buildAgent(task: Task, artifacts: Artifact[], tasks: Task[]): Agent {
   const traces = artifacts.filter(a => (a.kind === 'worker_trace' || a.kind === 'worker_failure_trace') && a.provenance?.task_id === task.task_id)
     .sort((a, b) => a.created_at.localeCompare(b.created_at));
   const results = artifacts.filter(a => a.kind === 'scientific_tool_result' && a.provenance?.task_id === task.task_id);
@@ -73,6 +73,17 @@ function StatusIcon({ status }: { status: string }) {
   return <svg {...p}><circle cx="8" cy="8" r="5.5" /></svg>;
 }
 const money = (v: number | null) => (v === null ? 'cost unreported' : `$${v.toFixed(v < 0.01 ? 5 : 3)}`);
+
+export function deriveBranches(run: Run | undefined, tasks: Task[], artifacts: Artifact[], candidates: Candidate[]): Branch[] {
+  const ids = [...new Set([...(run?.candidate_ids ?? []), ...tasks.map(t => t.candidate_id ?? '__run')])];
+  return ids.map(id => {
+    const c = candidates.find(x => x.candidate_id === id);
+    const agents = tasks.filter(t => (t.candidate_id ?? '__run') === id)
+      .sort((a, b) => (stageOrder[a.kind] ?? 9) - (stageOrder[b.kind] ?? 9) || num(a.plan_revision) - num(b.plan_revision) || a.task_id.localeCompare(b.task_id))
+      .map(t => buildAgent(t, artifacts, tasks));
+    return { id, name: id === '__run' ? 'Run-wide' : c?.name ?? id, interval: c ? `${c.chromosome}:${(c.start + 1).toLocaleString()}` : undefined, agents };
+  }).filter(b => b.agents.length || b.id !== '__run');
+}
 
 export function AgentTree({ run, tasks, artifacts, candidates, selectedTask, cursor, onSelectTask, onSelectArtifact }: {
   run?: Run; tasks: Task[]; artifacts: Artifact[]; candidates: Candidate[]; selectedTask?: string; cursor: number | null;
